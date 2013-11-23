@@ -15,9 +15,9 @@
 
 #include <math/vec3.h>
 
-void math::vec3::Normalize()
+void math::vec3::normalize()
 {
-	float length=GetLength();
+	float length=magnitude();
 
 	if(length==1 || length==0)			//return if length is 1 or 0
 		return;
@@ -32,7 +32,7 @@ math::vec3 math::vec3::GetNormalized() const
 {
 	vec3 result(*this);
 
-	result.Normalize();
+	result.normalize();
 
 	return result;
 }
@@ -116,9 +116,7 @@ math::vec3 math::vec3::GetRotatedAxis(double angle, const math::vec3 & axis) con
 	rotMatrixRow2.y=(u.y)*(u.z)*(oneMinusCosAngle) + sinAngle*u.x;
 	rotMatrixRow2.z=(u.z)*(u.z) + cosAngle*(1-(u.z)*(u.z));
 
-	return math::vec3(	this->DotProduct(rotMatrixRow0),
-						this->DotProduct(rotMatrixRow1),
-						this->DotProduct(rotMatrixRow2));
+	return math::vec3( dot(rotMatrixRow0), dot(rotMatrixRow1), dot(rotMatrixRow2));
 }
 
 void math::vec3::RotateAxis(double angle, const math::vec3 & axis)
@@ -136,7 +134,7 @@ math::vec3 math::vec3::GetPackedTo01() const
 {
 	math::vec3 temp(*this);
 
-	temp.Normalize();
+	temp.normalize();
 	
 	temp = temp * 0.5f + math::vec3(0.5f, 0.5f, 0.5f);
 	

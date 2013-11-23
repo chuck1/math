@@ -21,6 +21,7 @@
 #include <math/vec3.h>
 #include <math/vec4.h>
 #include <math/mat44.h>
+#include <math/quat.h>
 
 math::mat44::mat44(float e0, float e1, float e2, float e3,
 					float e4, float e5, float e6, float e7,
@@ -54,13 +55,52 @@ math::mat44::mat44(const float * rhs)
 {
 	memcpy(entries, rhs, 16*sizeof(float));
 }
+math::mat44::mat44(const math::quat & q)
+{
+	const float x = q.x;
+	const float y = q.y;
+	const float z = q.z;
+	const float w = q.w;
 
+	const float x2 = x + x;
+	const float y2 = y + y;
+	const float z2 = z + z;
+
+	const float xx = x2*x;
+	const float yy = y2*y;
+	const float zz = z2*z;
+
+	const float xy = x2*y;
+	const float xz = x2*z;
+	const float xw = x2*w;
+
+	const float yz = y2*z;
+	const float yw = y2*w;
+	const float zw = z2*w;
+
+	entries[0] = 1.0f - yy - zz;
+	entries[1] = xy + zw;
+	entries[2] = xz - yw;
+	entries[3] = 0.0f;
+	entries[4] = xy - zw;
+	entries[5] = 1.0f - xx - zz;
+	entries[6] = yz + xw;
+	entries[7] = 0.0f;
+	entries[8] = xz + yw;
+	entries[9] = yz - xw;
+	entries[10] = 1.0f - xx - yy;
+	entries[11] = 0.0f;
+	entries[12] = 0.0f;
+	entries[13] = 0.0f;
+	entries[14] = 0.0f;
+	entries[15] = 1.0f;
+}
 void math::mat44::SetEntry(int position, float value)
 {
 	if(position>=0 && position<=15)
 		entries[position]=value;
 }
-	
+
 float math::mat44::GetEntry(int position) const
 {
 	if(position>=0 && position<=15)
@@ -73,13 +113,13 @@ math::vec4 math::mat44::GetRow(int position) const
 {
 	if(position==0)
 		return vec4(entries[0], entries[4], entries[8], entries[12]);
-	
+
 	if(position==1)
 		return vec4(entries[1], entries[5], entries[9], entries[13]);
-	
+
 	if(position==2)
 		return vec4(entries[2], entries[6], entries[10], entries[14]);
-	
+
 	if(position==3)
 		return vec4(entries[3], entries[7], entries[11], entries[15]);
 
@@ -90,13 +130,13 @@ math::vec4 math::mat44::GetColumn(int position) const
 {
 	if(position==0)
 		return vec4(entries[0], entries[1], entries[2], entries[3]);
-	
+
 	if(position==1)
 		return vec4(entries[4], entries[5], entries[6], entries[7]);
-	
+
 	if(position==2)
 		return vec4(entries[8], entries[9], entries[10], entries[11]);
-	
+
 	if(position==3)
 		return vec4(entries[12], entries[13], entries[14], entries[15]);
 
@@ -120,154 +160,154 @@ void math::mat44::LoadZero(void)
 math::mat44 math::mat44::operator+(const math::mat44 & rhs) const		//overloaded operators
 {
 	return math::mat44(	entries[0]+rhs.entries[0],
-						entries[1]+rhs.entries[1],
-						entries[2]+rhs.entries[2],
-						entries[3]+rhs.entries[3],
-						entries[4]+rhs.entries[4],
-						entries[5]+rhs.entries[5],
-						entries[6]+rhs.entries[6],
-						entries[7]+rhs.entries[7],
-						entries[8]+rhs.entries[8],
-						entries[9]+rhs.entries[9],
-						entries[10]+rhs.entries[10],
-						entries[11]+rhs.entries[11],
-						entries[12]+rhs.entries[12],
-						entries[13]+rhs.entries[13],
-						entries[14]+rhs.entries[14],
-						entries[15]+rhs.entries[15]);
+			entries[1]+rhs.entries[1],
+			entries[2]+rhs.entries[2],
+			entries[3]+rhs.entries[3],
+			entries[4]+rhs.entries[4],
+			entries[5]+rhs.entries[5],
+			entries[6]+rhs.entries[6],
+			entries[7]+rhs.entries[7],
+			entries[8]+rhs.entries[8],
+			entries[9]+rhs.entries[9],
+			entries[10]+rhs.entries[10],
+			entries[11]+rhs.entries[11],
+			entries[12]+rhs.entries[12],
+			entries[13]+rhs.entries[13],
+			entries[14]+rhs.entries[14],
+			entries[15]+rhs.entries[15]);
 }
 
 math::mat44 math::mat44::operator-(const math::mat44 & rhs) const		//overloaded operators
 {
 	return math::mat44(	entries[0]-rhs.entries[0],
-						entries[1]-rhs.entries[1],
-						entries[2]-rhs.entries[2],
-						entries[3]-rhs.entries[3],
-						entries[4]-rhs.entries[4],
-						entries[5]-rhs.entries[5],
-						entries[6]-rhs.entries[6],
-						entries[7]-rhs.entries[7],
-						entries[8]-rhs.entries[8],
-						entries[9]-rhs.entries[9],
-						entries[10]-rhs.entries[10],
-						entries[11]-rhs.entries[11],
-						entries[12]-rhs.entries[12],
-						entries[13]-rhs.entries[13],
-						entries[14]-rhs.entries[14],
-						entries[15]-rhs.entries[15]);
+			entries[1]-rhs.entries[1],
+			entries[2]-rhs.entries[2],
+			entries[3]-rhs.entries[3],
+			entries[4]-rhs.entries[4],
+			entries[5]-rhs.entries[5],
+			entries[6]-rhs.entries[6],
+			entries[7]-rhs.entries[7],
+			entries[8]-rhs.entries[8],
+			entries[9]-rhs.entries[9],
+			entries[10]-rhs.entries[10],
+			entries[11]-rhs.entries[11],
+			entries[12]-rhs.entries[12],
+			entries[13]-rhs.entries[13],
+			entries[14]-rhs.entries[14],
+			entries[15]-rhs.entries[15]);
 }
 
 math::mat44 math::mat44::operator*(const math::mat44 & rhs) const
 {
 	//Optimise for matrices in which bottom row is (0, 0, 0, 1) in both matrices
 	if(	entries[3]==0.0f && entries[7]==0.0f && entries[11]==0.0f && entries[15]==1.0f	&&
-		rhs.entries[3]==0.0f && rhs.entries[7]==0.0f &&
-		rhs.entries[11]==0.0f && rhs.entries[15]==1.0f)
+			rhs.entries[3]==0.0f && rhs.entries[7]==0.0f &&
+			rhs.entries[11]==0.0f && rhs.entries[15]==1.0f)
 	{
 		return math::mat44(	entries[0]*rhs.entries[0]+entries[4]*rhs.entries[1]+entries[8]*rhs.entries[2],
-							entries[1]*rhs.entries[0]+entries[5]*rhs.entries[1]+entries[9]*rhs.entries[2],
-							entries[2]*rhs.entries[0]+entries[6]*rhs.entries[1]+entries[10]*rhs.entries[2],
-							0.0f,
-							entries[0]*rhs.entries[4]+entries[4]*rhs.entries[5]+entries[8]*rhs.entries[6],
-							entries[1]*rhs.entries[4]+entries[5]*rhs.entries[5]+entries[9]*rhs.entries[6],
-							entries[2]*rhs.entries[4]+entries[6]*rhs.entries[5]+entries[10]*rhs.entries[6],
-							0.0f,
-							entries[0]*rhs.entries[8]+entries[4]*rhs.entries[9]+entries[8]*rhs.entries[10],
-							entries[1]*rhs.entries[8]+entries[5]*rhs.entries[9]+entries[9]*rhs.entries[10],
-							entries[2]*rhs.entries[8]+entries[6]*rhs.entries[9]+entries[10]*rhs.entries[10],
-							0.0f,
-							entries[0]*rhs.entries[12]+entries[4]*rhs.entries[13]+entries[8]*rhs.entries[14]+entries[12],
-							entries[1]*rhs.entries[12]+entries[5]*rhs.entries[13]+entries[9]*rhs.entries[14]+entries[13],
-							entries[2]*rhs.entries[12]+entries[6]*rhs.entries[13]+entries[10]*rhs.entries[14]+entries[14],
-							1.0f);
+				entries[1]*rhs.entries[0]+entries[5]*rhs.entries[1]+entries[9]*rhs.entries[2],
+				entries[2]*rhs.entries[0]+entries[6]*rhs.entries[1]+entries[10]*rhs.entries[2],
+				0.0f,
+				entries[0]*rhs.entries[4]+entries[4]*rhs.entries[5]+entries[8]*rhs.entries[6],
+				entries[1]*rhs.entries[4]+entries[5]*rhs.entries[5]+entries[9]*rhs.entries[6],
+				entries[2]*rhs.entries[4]+entries[6]*rhs.entries[5]+entries[10]*rhs.entries[6],
+				0.0f,
+				entries[0]*rhs.entries[8]+entries[4]*rhs.entries[9]+entries[8]*rhs.entries[10],
+				entries[1]*rhs.entries[8]+entries[5]*rhs.entries[9]+entries[9]*rhs.entries[10],
+				entries[2]*rhs.entries[8]+entries[6]*rhs.entries[9]+entries[10]*rhs.entries[10],
+				0.0f,
+				entries[0]*rhs.entries[12]+entries[4]*rhs.entries[13]+entries[8]*rhs.entries[14]+entries[12],
+				entries[1]*rhs.entries[12]+entries[5]*rhs.entries[13]+entries[9]*rhs.entries[14]+entries[13],
+				entries[2]*rhs.entries[12]+entries[6]*rhs.entries[13]+entries[10]*rhs.entries[14]+entries[14],
+				1.0f);
 	}
 
 	//Optimise for when bottom row of 1st matrix is (0, 0, 0, 1)
 	if(	entries[3]==0.0f && entries[7]==0.0f && entries[11]==0.0f && entries[15]==1.0f)
 	{
 		return math::mat44(	entries[0]*rhs.entries[0]+entries[4]*rhs.entries[1]+entries[8]*rhs.entries[2]+entries[12]*rhs.entries[3],
-							entries[1]*rhs.entries[0]+entries[5]*rhs.entries[1]+entries[9]*rhs.entries[2]+entries[13]*rhs.entries[3],
-							entries[2]*rhs.entries[0]+entries[6]*rhs.entries[1]+entries[10]*rhs.entries[2]+entries[14]*rhs.entries[3],
-							rhs.entries[3],
-							entries[0]*rhs.entries[4]+entries[4]*rhs.entries[5]+entries[8]*rhs.entries[6]+entries[12]*rhs.entries[7],
-							entries[1]*rhs.entries[4]+entries[5]*rhs.entries[5]+entries[9]*rhs.entries[6]+entries[13]*rhs.entries[7],
-							entries[2]*rhs.entries[4]+entries[6]*rhs.entries[5]+entries[10]*rhs.entries[6]+entries[14]*rhs.entries[7],
-							rhs.entries[7],
-							entries[0]*rhs.entries[8]+entries[4]*rhs.entries[9]+entries[8]*rhs.entries[10]+entries[12]*rhs.entries[11],
-							entries[1]*rhs.entries[8]+entries[5]*rhs.entries[9]+entries[9]*rhs.entries[10]+entries[13]*rhs.entries[11],
-							entries[2]*rhs.entries[8]+entries[6]*rhs.entries[9]+entries[10]*rhs.entries[10]+entries[14]*rhs.entries[11],
-							rhs.entries[11],
-							entries[0]*rhs.entries[12]+entries[4]*rhs.entries[13]+entries[8]*rhs.entries[14]+entries[12]*rhs.entries[15],
-							entries[1]*rhs.entries[12]+entries[5]*rhs.entries[13]+entries[9]*rhs.entries[14]+entries[13]*rhs.entries[15],
-							entries[2]*rhs.entries[12]+entries[6]*rhs.entries[13]+entries[10]*rhs.entries[14]+entries[14]*rhs.entries[15],
-							rhs.entries[15]);
+				entries[1]*rhs.entries[0]+entries[5]*rhs.entries[1]+entries[9]*rhs.entries[2]+entries[13]*rhs.entries[3],
+				entries[2]*rhs.entries[0]+entries[6]*rhs.entries[1]+entries[10]*rhs.entries[2]+entries[14]*rhs.entries[3],
+				rhs.entries[3],
+				entries[0]*rhs.entries[4]+entries[4]*rhs.entries[5]+entries[8]*rhs.entries[6]+entries[12]*rhs.entries[7],
+				entries[1]*rhs.entries[4]+entries[5]*rhs.entries[5]+entries[9]*rhs.entries[6]+entries[13]*rhs.entries[7],
+				entries[2]*rhs.entries[4]+entries[6]*rhs.entries[5]+entries[10]*rhs.entries[6]+entries[14]*rhs.entries[7],
+				rhs.entries[7],
+				entries[0]*rhs.entries[8]+entries[4]*rhs.entries[9]+entries[8]*rhs.entries[10]+entries[12]*rhs.entries[11],
+				entries[1]*rhs.entries[8]+entries[5]*rhs.entries[9]+entries[9]*rhs.entries[10]+entries[13]*rhs.entries[11],
+				entries[2]*rhs.entries[8]+entries[6]*rhs.entries[9]+entries[10]*rhs.entries[10]+entries[14]*rhs.entries[11],
+				rhs.entries[11],
+				entries[0]*rhs.entries[12]+entries[4]*rhs.entries[13]+entries[8]*rhs.entries[14]+entries[12]*rhs.entries[15],
+				entries[1]*rhs.entries[12]+entries[5]*rhs.entries[13]+entries[9]*rhs.entries[14]+entries[13]*rhs.entries[15],
+				entries[2]*rhs.entries[12]+entries[6]*rhs.entries[13]+entries[10]*rhs.entries[14]+entries[14]*rhs.entries[15],
+				rhs.entries[15]);
 	}
 
 	//Optimise for when bottom row of 2nd matrix is (0, 0, 0, 1)
 	if(	rhs.entries[3]==0.0f && rhs.entries[7]==0.0f &&
-		rhs.entries[11]==0.0f && rhs.entries[15]==1.0f)
+			rhs.entries[11]==0.0f && rhs.entries[15]==1.0f)
 	{
 		return math::mat44(	entries[0]*rhs.entries[0]+entries[4]*rhs.entries[1]+entries[8]*rhs.entries[2],
-							entries[1]*rhs.entries[0]+entries[5]*rhs.entries[1]+entries[9]*rhs.entries[2],
-							entries[2]*rhs.entries[0]+entries[6]*rhs.entries[1]+entries[10]*rhs.entries[2],
-							entries[3]*rhs.entries[0]+entries[7]*rhs.entries[1]+entries[11]*rhs.entries[2],
-							entries[0]*rhs.entries[4]+entries[4]*rhs.entries[5]+entries[8]*rhs.entries[6],
-							entries[1]*rhs.entries[4]+entries[5]*rhs.entries[5]+entries[9]*rhs.entries[6],
-							entries[2]*rhs.entries[4]+entries[6]*rhs.entries[5]+entries[10]*rhs.entries[6],
-							entries[3]*rhs.entries[4]+entries[7]*rhs.entries[5]+entries[11]*rhs.entries[6],
-							entries[0]*rhs.entries[8]+entries[4]*rhs.entries[9]+entries[8]*rhs.entries[10],
-							entries[1]*rhs.entries[8]+entries[5]*rhs.entries[9]+entries[9]*rhs.entries[10],
-							entries[2]*rhs.entries[8]+entries[6]*rhs.entries[9]+entries[10]*rhs.entries[10],
-							entries[3]*rhs.entries[8]+entries[7]*rhs.entries[9]+entries[11]*rhs.entries[10],
-							entries[0]*rhs.entries[12]+entries[4]*rhs.entries[13]+entries[8]*rhs.entries[14]+entries[12],
-							entries[1]*rhs.entries[12]+entries[5]*rhs.entries[13]+entries[9]*rhs.entries[14]+entries[13],
-							entries[2]*rhs.entries[12]+entries[6]*rhs.entries[13]+entries[10]*rhs.entries[14]+entries[14],
-							entries[3]*rhs.entries[12]+entries[7]*rhs.entries[13]+entries[11]*rhs.entries[14]+entries[15]);
+				entries[1]*rhs.entries[0]+entries[5]*rhs.entries[1]+entries[9]*rhs.entries[2],
+				entries[2]*rhs.entries[0]+entries[6]*rhs.entries[1]+entries[10]*rhs.entries[2],
+				entries[3]*rhs.entries[0]+entries[7]*rhs.entries[1]+entries[11]*rhs.entries[2],
+				entries[0]*rhs.entries[4]+entries[4]*rhs.entries[5]+entries[8]*rhs.entries[6],
+				entries[1]*rhs.entries[4]+entries[5]*rhs.entries[5]+entries[9]*rhs.entries[6],
+				entries[2]*rhs.entries[4]+entries[6]*rhs.entries[5]+entries[10]*rhs.entries[6],
+				entries[3]*rhs.entries[4]+entries[7]*rhs.entries[5]+entries[11]*rhs.entries[6],
+				entries[0]*rhs.entries[8]+entries[4]*rhs.entries[9]+entries[8]*rhs.entries[10],
+				entries[1]*rhs.entries[8]+entries[5]*rhs.entries[9]+entries[9]*rhs.entries[10],
+				entries[2]*rhs.entries[8]+entries[6]*rhs.entries[9]+entries[10]*rhs.entries[10],
+				entries[3]*rhs.entries[8]+entries[7]*rhs.entries[9]+entries[11]*rhs.entries[10],
+				entries[0]*rhs.entries[12]+entries[4]*rhs.entries[13]+entries[8]*rhs.entries[14]+entries[12],
+				entries[1]*rhs.entries[12]+entries[5]*rhs.entries[13]+entries[9]*rhs.entries[14]+entries[13],
+				entries[2]*rhs.entries[12]+entries[6]*rhs.entries[13]+entries[10]*rhs.entries[14]+entries[14],
+				entries[3]*rhs.entries[12]+entries[7]*rhs.entries[13]+entries[11]*rhs.entries[14]+entries[15]);
 	}	
-	
+
 	return math::mat44(	entries[0]*rhs.entries[0]+entries[4]*rhs.entries[1]+entries[8]*rhs.entries[2]+entries[12]*rhs.entries[3],
-						entries[1]*rhs.entries[0]+entries[5]*rhs.entries[1]+entries[9]*rhs.entries[2]+entries[13]*rhs.entries[3],
-						entries[2]*rhs.entries[0]+entries[6]*rhs.entries[1]+entries[10]*rhs.entries[2]+entries[14]*rhs.entries[3],
-						entries[3]*rhs.entries[0]+entries[7]*rhs.entries[1]+entries[11]*rhs.entries[2]+entries[15]*rhs.entries[3],
-						entries[0]*rhs.entries[4]+entries[4]*rhs.entries[5]+entries[8]*rhs.entries[6]+entries[12]*rhs.entries[7],
-						entries[1]*rhs.entries[4]+entries[5]*rhs.entries[5]+entries[9]*rhs.entries[6]+entries[13]*rhs.entries[7],
-						entries[2]*rhs.entries[4]+entries[6]*rhs.entries[5]+entries[10]*rhs.entries[6]+entries[14]*rhs.entries[7],
-						entries[3]*rhs.entries[4]+entries[7]*rhs.entries[5]+entries[11]*rhs.entries[6]+entries[15]*rhs.entries[7],
-						entries[0]*rhs.entries[8]+entries[4]*rhs.entries[9]+entries[8]*rhs.entries[10]+entries[12]*rhs.entries[11],
-						entries[1]*rhs.entries[8]+entries[5]*rhs.entries[9]+entries[9]*rhs.entries[10]+entries[13]*rhs.entries[11],
-						entries[2]*rhs.entries[8]+entries[6]*rhs.entries[9]+entries[10]*rhs.entries[10]+entries[14]*rhs.entries[11],
-						entries[3]*rhs.entries[8]+entries[7]*rhs.entries[9]+entries[11]*rhs.entries[10]+entries[15]*rhs.entries[11],
-						entries[0]*rhs.entries[12]+entries[4]*rhs.entries[13]+entries[8]*rhs.entries[14]+entries[12]*rhs.entries[15],
-						entries[1]*rhs.entries[12]+entries[5]*rhs.entries[13]+entries[9]*rhs.entries[14]+entries[13]*rhs.entries[15],
-						entries[2]*rhs.entries[12]+entries[6]*rhs.entries[13]+entries[10]*rhs.entries[14]+entries[14]*rhs.entries[15],
-						entries[3]*rhs.entries[12]+entries[7]*rhs.entries[13]+entries[11]*rhs.entries[14]+entries[15]*rhs.entries[15]);
+			entries[1]*rhs.entries[0]+entries[5]*rhs.entries[1]+entries[9]*rhs.entries[2]+entries[13]*rhs.entries[3],
+			entries[2]*rhs.entries[0]+entries[6]*rhs.entries[1]+entries[10]*rhs.entries[2]+entries[14]*rhs.entries[3],
+			entries[3]*rhs.entries[0]+entries[7]*rhs.entries[1]+entries[11]*rhs.entries[2]+entries[15]*rhs.entries[3],
+			entries[0]*rhs.entries[4]+entries[4]*rhs.entries[5]+entries[8]*rhs.entries[6]+entries[12]*rhs.entries[7],
+			entries[1]*rhs.entries[4]+entries[5]*rhs.entries[5]+entries[9]*rhs.entries[6]+entries[13]*rhs.entries[7],
+			entries[2]*rhs.entries[4]+entries[6]*rhs.entries[5]+entries[10]*rhs.entries[6]+entries[14]*rhs.entries[7],
+			entries[3]*rhs.entries[4]+entries[7]*rhs.entries[5]+entries[11]*rhs.entries[6]+entries[15]*rhs.entries[7],
+			entries[0]*rhs.entries[8]+entries[4]*rhs.entries[9]+entries[8]*rhs.entries[10]+entries[12]*rhs.entries[11],
+			entries[1]*rhs.entries[8]+entries[5]*rhs.entries[9]+entries[9]*rhs.entries[10]+entries[13]*rhs.entries[11],
+			entries[2]*rhs.entries[8]+entries[6]*rhs.entries[9]+entries[10]*rhs.entries[10]+entries[14]*rhs.entries[11],
+			entries[3]*rhs.entries[8]+entries[7]*rhs.entries[9]+entries[11]*rhs.entries[10]+entries[15]*rhs.entries[11],
+			entries[0]*rhs.entries[12]+entries[4]*rhs.entries[13]+entries[8]*rhs.entries[14]+entries[12]*rhs.entries[15],
+			entries[1]*rhs.entries[12]+entries[5]*rhs.entries[13]+entries[9]*rhs.entries[14]+entries[13]*rhs.entries[15],
+			entries[2]*rhs.entries[12]+entries[6]*rhs.entries[13]+entries[10]*rhs.entries[14]+entries[14]*rhs.entries[15],
+			entries[3]*rhs.entries[12]+entries[7]*rhs.entries[13]+entries[11]*rhs.entries[14]+entries[15]*rhs.entries[15]);
 }
 
 math::mat44 math::mat44::operator*(const float rhs) const
 {
 	return math::mat44(	entries[0]*rhs,
-						entries[1]*rhs,
-						entries[2]*rhs,
-						entries[3]*rhs,
-						entries[4]*rhs,
-						entries[5]*rhs,
-						entries[6]*rhs,
-						entries[7]*rhs,
-						entries[8]*rhs,
-						entries[9]*rhs,
-						entries[10]*rhs,
-						entries[11]*rhs,
-						entries[12]*rhs,
-						entries[13]*rhs,
-						entries[14]*rhs,
-						entries[15]*rhs);
+			entries[1]*rhs,
+			entries[2]*rhs,
+			entries[3]*rhs,
+			entries[4]*rhs,
+			entries[5]*rhs,
+			entries[6]*rhs,
+			entries[7]*rhs,
+			entries[8]*rhs,
+			entries[9]*rhs,
+			entries[10]*rhs,
+			entries[11]*rhs,
+			entries[12]*rhs,
+			entries[13]*rhs,
+			entries[14]*rhs,
+			entries[15]*rhs);
 }
 
 math::mat44 math::mat44::operator/(const float rhs) const
 {
 	if (rhs==0.0f || rhs==1.0f)
 		return (*this);
-		
+
 	float temp=1/rhs;
 
 	return (*this)*temp;
@@ -334,57 +374,57 @@ math::vec4 math::mat44::operator*(const vec4 rhs) const
 	if(entries[3]==0.0f && entries[7]==0.0f && entries[11]==0.0f && entries[15]==1.0f)
 	{
 		return vec4(entries[0]*rhs.x
-					+	entries[4]*rhs.y
-					+	entries[8]*rhs.z
-					+	entries[12]*rhs.w,
+				+	entries[4]*rhs.y
+				+	entries[8]*rhs.z
+				+	entries[12]*rhs.w,
 
-						entries[1]*rhs.x
-					+	entries[5]*rhs.y
-					+	entries[9]*rhs.z
-					+	entries[13]*rhs.w,
+				entries[1]*rhs.x
+				+	entries[5]*rhs.y
+				+	entries[9]*rhs.z
+				+	entries[13]*rhs.w,
 
-						entries[2]*rhs.x
-					+	entries[6]*rhs.y
-					+	entries[10]*rhs.z
-					+	entries[14]*rhs.w,
+				entries[2]*rhs.x
+				+	entries[6]*rhs.y
+				+	entries[10]*rhs.z
+				+	entries[14]*rhs.w,
 
-						rhs.w);
+				rhs.w);
 	}
-	
+
 	return vec4(	entries[0]*rhs.x
-					+	entries[4]*rhs.y
-					+	entries[8]*rhs.z
-					+	entries[12]*rhs.w,
+			+	entries[4]*rhs.y
+			+	entries[8]*rhs.z
+			+	entries[12]*rhs.w,
 
-						entries[1]*rhs.x
-					+	entries[5]*rhs.y
-					+	entries[9]*rhs.z
-					+	entries[13]*rhs.w,
+			entries[1]*rhs.x
+			+	entries[5]*rhs.y
+			+	entries[9]*rhs.z
+			+	entries[13]*rhs.w,
 
-						entries[2]*rhs.x
-					+	entries[6]*rhs.y
-					+	entries[10]*rhs.z
-					+	entries[14]*rhs.w,
+			entries[2]*rhs.x
+			+	entries[6]*rhs.y
+			+	entries[10]*rhs.z
+			+	entries[14]*rhs.w,
 
-						entries[3]*rhs.x
-					+	entries[7]*rhs.y
-					+	entries[11]*rhs.z
-					+	entries[15]*rhs.w);
+			entries[3]*rhs.x
+			+	entries[7]*rhs.y
+			+	entries[11]*rhs.z
+			+	entries[15]*rhs.w);
 }
 
 math::vec3 math::mat44::GetRotatedVector3D(const vec3 & rhs) const
 {
 	return vec3(entries[0]*rhs.x + entries[4]*rhs.y + entries[8]*rhs.z,
-					entries[1]*rhs.x + entries[5]*rhs.y + entries[9]*rhs.z,
-					entries[2]*rhs.x + entries[6]*rhs.y + entries[10]*rhs.z);
+			entries[1]*rhs.x + entries[5]*rhs.y + entries[9]*rhs.z,
+			entries[2]*rhs.x + entries[6]*rhs.y + entries[10]*rhs.z);
 }
 
 math::vec3 math::mat44::GetInverseRotatedVector3D(const vec3 & rhs) const
 {
 	//rotate by transpose:
 	return vec3(entries[0]*rhs.x + entries[1]*rhs.y + entries[2]*rhs.z,
-					entries[4]*rhs.x + entries[5]*rhs.y + entries[6]*rhs.z,
-					entries[8]*rhs.x + entries[9]*rhs.y + entries[10]*rhs.z);
+			entries[4]*rhs.x + entries[5]*rhs.y + entries[6]*rhs.z,
+			entries[8]*rhs.x + entries[9]*rhs.y + entries[10]*rhs.z);
 }
 
 math::vec3 math::mat44::GetTranslatedVector3D(const vec3 & rhs) const
@@ -420,9 +460,9 @@ void math::mat44::Transpose(void)
 math::mat44 math::mat44::GetTranspose(void) const
 {
 	return math::mat44(	entries[ 0], entries[ 4], entries[ 8], entries[12],
-						entries[ 1], entries[ 5], entries[ 9], entries[13],
-						entries[ 2], entries[ 6], entries[10], entries[14],
-						entries[ 3], entries[ 7], entries[11], entries[15]);
+			entries[ 1], entries[ 5], entries[ 9], entries[13],
+			entries[ 2], entries[ 6], entries[10], entries[14],
+			entries[ 3], entries[ 7], entries[11], entries[15]);
 }
 
 void math::mat44::InvertTranspose(void)
@@ -453,28 +493,28 @@ math::mat44 math::mat44::GetInverseTranspose(void) const
 
 	//calculate first 8 elements (cofactors)
 	result.SetEntry(0,		tmp[0]*entries[5] + tmp[3]*entries[6] + tmp[4]*entries[7]
-					-	tmp[1]*entries[5] - tmp[2]*entries[6] - tmp[5]*entries[7]);
+			-	tmp[1]*entries[5] - tmp[2]*entries[6] - tmp[5]*entries[7]);
 
 	result.SetEntry(1,		tmp[1]*entries[4] + tmp[6]*entries[6] + tmp[9]*entries[7]
-					-	tmp[0]*entries[4] - tmp[7]*entries[6] - tmp[8]*entries[7]);
+			-	tmp[0]*entries[4] - tmp[7]*entries[6] - tmp[8]*entries[7]);
 
 	result.SetEntry(2,		tmp[2]*entries[4] + tmp[7]*entries[5] + tmp[10]*entries[7]
-					-	tmp[3]*entries[4] - tmp[6]*entries[5] - tmp[11]*entries[7]);
+			-	tmp[3]*entries[4] - tmp[6]*entries[5] - tmp[11]*entries[7]);
 
 	result.SetEntry(3,		tmp[5]*entries[4] + tmp[8]*entries[5] + tmp[11]*entries[6]
-					-	tmp[4]*entries[4] - tmp[9]*entries[5] - tmp[10]*entries[6]);
+			-	tmp[4]*entries[4] - tmp[9]*entries[5] - tmp[10]*entries[6]);
 
 	result.SetEntry(4,		tmp[1]*entries[1] + tmp[2]*entries[2] + tmp[5]*entries[3]
-					-	tmp[0]*entries[1] - tmp[3]*entries[2] - tmp[4]*entries[3]);
+			-	tmp[0]*entries[1] - tmp[3]*entries[2] - tmp[4]*entries[3]);
 
 	result.SetEntry(5,		tmp[0]*entries[0] + tmp[7]*entries[2] + tmp[8]*entries[3]
-					-	tmp[1]*entries[0] - tmp[6]*entries[2] - tmp[9]*entries[3]);
+			-	tmp[1]*entries[0] - tmp[6]*entries[2] - tmp[9]*entries[3]);
 
 	result.SetEntry(6,		tmp[3]*entries[0] + tmp[6]*entries[1] + tmp[11]*entries[3]
-					-	tmp[2]*entries[0] - tmp[7]*entries[1] - tmp[10]*entries[3]);
+			-	tmp[2]*entries[0] - tmp[7]*entries[1] - tmp[10]*entries[3]);
 
 	result.SetEntry(7,		tmp[4]*entries[0] + tmp[9]*entries[1] + tmp[10]*entries[2]
-					-	tmp[5]*entries[0] - tmp[8]*entries[1] - tmp[11]*entries[2]);
+			-	tmp[5]*entries[0] - tmp[8]*entries[1] - tmp[11]*entries[2]);
 
 	//calculate pairs for second 8 elements (cofactors)
 	tmp[0] = entries[2]*entries[7];
@@ -492,41 +532,41 @@ math::mat44 math::mat44::GetInverseTranspose(void) const
 
 	//calculate second 8 elements (cofactors)
 	result.SetEntry(8,		tmp[0]*entries[13] + tmp[3]*entries[14] + tmp[4]*entries[15]
-					-	tmp[1]*entries[13] - tmp[2]*entries[14] - tmp[5]*entries[15]);
+			-	tmp[1]*entries[13] - tmp[2]*entries[14] - tmp[5]*entries[15]);
 
 	result.SetEntry(9,		tmp[1]*entries[12] + tmp[6]*entries[14] + tmp[9]*entries[15]
-					-	tmp[0]*entries[12] - tmp[7]*entries[14] - tmp[8]*entries[15]);
+			-	tmp[0]*entries[12] - tmp[7]*entries[14] - tmp[8]*entries[15]);
 
 	result.SetEntry(10,		tmp[2]*entries[12] + tmp[7]*entries[13] + tmp[10]*entries[15]
-					-	tmp[3]*entries[12] - tmp[6]*entries[13] - tmp[11]*entries[15]);
+			-	tmp[3]*entries[12] - tmp[6]*entries[13] - tmp[11]*entries[15]);
 
 	result.SetEntry(11,		tmp[5]*entries[12] + tmp[8]*entries[13] + tmp[11]*entries[14]
-					-	tmp[4]*entries[12] - tmp[9]*entries[13] - tmp[10]*entries[14]);
+			-	tmp[4]*entries[12] - tmp[9]*entries[13] - tmp[10]*entries[14]);
 
 	result.SetEntry(12,		tmp[2]*entries[10] + tmp[5]*entries[11] + tmp[1]*entries[9]
-					-	tmp[4]*entries[11] - tmp[0]*entries[9] - tmp[3]*entries[10]);
+			-	tmp[4]*entries[11] - tmp[0]*entries[9] - tmp[3]*entries[10]);
 
 	result.SetEntry(13,		tmp[8]*entries[11] + tmp[0]*entries[8] + tmp[7]*entries[10]
-					-	tmp[6]*entries[10] - tmp[9]*entries[11] - tmp[1]*entries[8]);
+			-	tmp[6]*entries[10] - tmp[9]*entries[11] - tmp[1]*entries[8]);
 
 	result.SetEntry(14,		tmp[6]*entries[9] + tmp[11]*entries[11] + tmp[3]*entries[8]
-					-	tmp[10]*entries[11] - tmp[2]*entries[8] - tmp[7]*entries[9]);
+			-	tmp[10]*entries[11] - tmp[2]*entries[8] - tmp[7]*entries[9]);
 
 	result.SetEntry(15,		tmp[10]*entries[10] + tmp[4]*entries[8] + tmp[9]*entries[9]
-					-	tmp[8]*entries[9] - tmp[11]*entries[10] - tmp[5]*entries[8]);
+			-	tmp[8]*entries[9] - tmp[11]*entries[10] - tmp[5]*entries[8]);
 
 	// calculate determinant
 	det	=	 entries[0]*result.GetEntry(0)
-			+entries[1]*result.GetEntry(1)
-			+entries[2]*result.GetEntry(2)
-			+entries[3]*result.GetEntry(3);
+		+entries[1]*result.GetEntry(1)
+		+entries[2]*result.GetEntry(2)
+		+entries[3]*result.GetEntry(3);
 
 	if(det==0.0f)
 	{
 		math::mat44 id;
 		return id;
 	}
-	
+
 	result=result/det;
 
 	return result;
@@ -543,21 +583,21 @@ math::mat44 math::mat44::GetAffineInverse(void) const
 	//return the transpose of the rotation part
 	//and the negative of the inverse rotated translation part
 	return math::mat44(	entries[0],
-						entries[4],
-						entries[8],
-						0.0f,
-						entries[1],
-						entries[5],
-						entries[9],
-						0.0f,
-						entries[2],
-						entries[6],
-						entries[10],
-						0.0f,
-						-(entries[0]*entries[12]+entries[1]*entries[13]+entries[2]*entries[14]),
-						-(entries[4]*entries[12]+entries[5]*entries[13]+entries[6]*entries[14]),
-						-(entries[8]*entries[12]+entries[9]*entries[13]+entries[10]*entries[14]),
-						1.0f);
+			entries[4],
+			entries[8],
+			0.0f,
+			entries[1],
+			entries[5],
+			entries[9],
+			0.0f,
+			entries[2],
+			entries[6],
+			entries[10],
+			0.0f,
+			-(entries[0]*entries[12]+entries[1]*entries[13]+entries[2]*entries[14]),
+			-(entries[4]*entries[12]+entries[5]*entries[13]+entries[6]*entries[14]),
+			-(entries[8]*entries[12]+entries[9]*entries[13]+entries[10]*entries[14]),
+			1.0f);
 }
 
 void math::mat44::AffineInvertTranspose(void)
@@ -571,18 +611,18 @@ math::mat44 math::mat44::GetAffineInverseTranspose(void) const
 	//and the negative of the inverse rotated translation part
 	//transposed
 	return math::mat44(	entries[0],
-						entries[1],
-						entries[2],
-						-(entries[0]*entries[12]+entries[1]*entries[13]+entries[2]*entries[14]),
-						entries[4],
-						entries[5],
-						entries[6],
-						-(entries[4]*entries[12]+entries[5]*entries[13]+entries[6]*entries[14]),
-						entries[8],
-						entries[9],
-						entries[10],
-						-(entries[8]*entries[12]+entries[9]*entries[13]+entries[10]*entries[14]),
-						0.0f, 0.0f, 0.0f, 1.0f);
+			entries[1],
+			entries[2],
+			-(entries[0]*entries[12]+entries[1]*entries[13]+entries[2]*entries[14]),
+			entries[4],
+			entries[5],
+			entries[6],
+			-(entries[4]*entries[12]+entries[5]*entries[13]+entries[6]*entries[14]),
+			entries[8],
+			entries[9],
+			entries[10],
+			-(entries[8]*entries[12]+entries[9]*entries[13]+entries[10]*entries[14]),
+			0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void math::mat44::SetTranslation(const vec3 & translation)
@@ -625,7 +665,7 @@ void math::mat44::SetRotationAxis(const double angle, const vec3 & axis)
 	entries[1]=(u.x)*(u.y)*(oneMinusCosAngle) + sinAngle*u.z;
 	entries[5]=(u.y)*(u.y) + cosAngle*(1-(u.y)*(u.y));
 	entries[9]=(u.y)*(u.z)*(oneMinusCosAngle) - sinAngle*u.x;
-	
+
 	entries[2]=(u.x)*(u.z)*(oneMinusCosAngle) - sinAngle*u.y;
 	entries[6]=(u.y)*(u.z)*(oneMinusCosAngle) + sinAngle*u.x;
 	entries[10]=(u.z)*(u.z) + cosAngle*(1-(u.z)*(u.z));
@@ -672,7 +712,7 @@ void math::mat44::SetRotationEuler(const double angleX, const double angleY, con
 }
 
 void math::mat44::SetPerspective(	float left, float right, float bottom,
-								float top, float n, float f)
+		float top, float n, float f)
 {
 	float nudge=0.999f;		//prevent artifacts with infinite far plane
 
@@ -727,7 +767,7 @@ void math::mat44::SetPerspective(float fovy, float aspect, float n, float f)
 }
 
 void math::mat44::SetOrtho(	float left, float right, float bottom,
-							float top, float n, float f)
+		float top, float n, float f)
 {
 	LoadIdentity();
 
