@@ -34,7 +34,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = src
-DIST_COMMON = $(include_HEADERS) $(srcdir)/Makefile.am \
+DIST_COMMON = $(nobase_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -89,7 +89,7 @@ CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libmath_a_SOURCES)
 DIST_SOURCES = $(libmath_a_SOURCES)
-HEADERS = $(include_HEADERS)
+HEADERS = $(nobase_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -181,11 +181,17 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LIBRARIES = libmath.a
-libmath_a_SOURCES = math/math.h math/vec2.cpp math/vec2.h \
-math/vec3.cpp math/vec4.cpp math/mat44.cpp math/plane.cpp math/color.cpp math/vec3.h math/vec4.h math/mat44.h math/plane.h math/color.h \
-math/quat.h math/quat.cpp
+libmath_a_SOURCES = \
+		    math/math.h \
+		    math/vec2.h math/vec2.cpp \
+		    math/vec3.h math/vec3.cpp \
+		    math/vec4.h math/vec4.cpp \
+		    math/mat44.h math/mat44.cpp \
+		    math/plane.h math/plane.cpp \
+		    math/color.h math/color.cpp \
+		    math/quat.h math/quat.cpp
 
-include_HEADERS = math/math.h math/vec2.h math/vec3.h math/vec4.h math/mat44.h math/plane.h math/color.h math/quat.h
+nobase_include_HEADERS = math/math.h math/vec2.h math/vec3.h math/vec4.h math/mat44.h math/plane.h math/color.h math/quat.h
 all: all-am
 
 .SUFFIXES:
@@ -382,23 +388,26 @@ quat.obj: math/quat.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='math/quat.cpp' object='quat.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o quat.obj `if test -f 'math/quat.cpp'; then $(CYGPATH_W) 'math/quat.cpp'; else $(CYGPATH_W) '$(srcdir)/math/quat.cpp'; fi`
-install-includeHEADERS: $(include_HEADERS)
+install-nobase_includeHEADERS: $(nobase_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(includedir)" || $(MKDIR_P) "$(DESTDIR)$(includedir)"
-	@list='$(include_HEADERS)'; test -n "$(includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(includedir)" || exit $$?; \
+	@list='$(nobase_include_HEADERS)'; test -n "$(includedir)" || list=; \
+	$(am__nobase_list) | while read dir files; do \
+	  xfiles=; for file in $$files; do \
+	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
+	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
+	  test -z "$$xfiles" || { \
+	    test "x$$dir" = x. || { \
+	      echo "$(MKDIR_P) '$(DESTDIR)$(includedir)/$$dir'"; \
+	      $(MKDIR_P) "$(DESTDIR)$(includedir)/$$dir"; }; \
+	    echo " $(INSTALL_HEADER) $$xfiles '$(DESTDIR)$(includedir)/$$dir'"; \
+	    $(INSTALL_HEADER) $$xfiles "$(DESTDIR)$(includedir)/$$dir" || exit $$?; }; \
 	done
 
-uninstall-includeHEADERS:
+uninstall-nobase_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(include_HEADERS)'; test -n "$(includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	@list='$(nobase_include_HEADERS)'; test -n "$(includedir)" || list=; \
+	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(includedir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(includedir)" && rm -f $$files
@@ -539,7 +548,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-includeHEADERS
+install-data-am: install-nobase_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -584,7 +593,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-includeHEADERS uninstall-libLIBRARIES
+uninstall-am: uninstall-libLIBRARIES uninstall-nobase_includeHEADERS
 
 .MAKE: install-am install-strip
 
@@ -593,14 +602,15 @@ uninstall-am: uninstall-includeHEADERS uninstall-libLIBRARIES
 	distclean-generic distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-includeHEADERS install-info install-info-am \
-	install-libLIBRARIES install-man install-pdf install-pdf-am \
+	install-exec-am install-html install-html-am install-info \
+	install-info-am install-libLIBRARIES install-man \
+	install-nobase_includeHEADERS install-pdf install-pdf-am \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-includeHEADERS uninstall-libLIBRARIES
+	uninstall-am uninstall-libLIBRARIES \
+	uninstall-nobase_includeHEADERS
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

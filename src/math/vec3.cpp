@@ -13,14 +13,22 @@
 //	http://www.paulsprojects.net/NewBSDLicense.txt)
 //////////////////////////////////////////////////////////////////////////////////////////	
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <math/vec3.h>
 
 void math::vec3::normalize()
 {
 	float length=magnitude();
 
-	if(length==1 || length==0)			//return if length is 1 or 0
-		return;
+	if(length==1.0f) return;
+
+	if(length==0.0f)
+	{
+		printf("normalize zero vector");
+		exit(0);
+	}
 
 	float scalefactor = 1.0f/length;
 	x *= scalefactor;
@@ -46,8 +54,8 @@ math::vec3 math::vec3::GetRotatedX(double angle) const
 	float cosAngle=(float)cos(M_PI*angle/180);
 
 	return vec3(	x,
-						y*cosAngle - z*sinAngle,
-						y*sinAngle + z*cosAngle);
+			y*cosAngle - z*sinAngle,
+			y*sinAngle + z*cosAngle);
 }
 
 void math::vec3::RotateX(double angle)
@@ -64,8 +72,8 @@ math::vec3 math::vec3::GetRotatedY(double angle) const
 	float cosAngle=(float)cos(M_PI*angle/180);
 
 	return math::vec3(	x*cosAngle + z*sinAngle,
-						y,
-						-x*sinAngle + z*cosAngle);
+			y,
+			-x*sinAngle + z*cosAngle);
 }
 
 void math::vec3::RotateY(double angle)
@@ -80,10 +88,10 @@ math::vec3 math::vec3::GetRotatedZ(double angle) const
 
 	float sinAngle=(float)sin(M_PI*angle/180);
 	float cosAngle=(float)cos(M_PI*angle/180);
-	
+
 	return math::vec3(x*cosAngle - y*sinAngle,
-					x*sinAngle + y*cosAngle,
-					z);
+			x*sinAngle + y*cosAngle,
+			z);
 }
 
 void math::vec3::RotateZ(double angle)
@@ -111,7 +119,7 @@ math::vec3 math::vec3::GetRotatedAxis(double angle, const math::vec3 & axis) con
 	rotMatrixRow1.x=(u.x)*(u.y)*(oneMinusCosAngle) + sinAngle*u.z;
 	rotMatrixRow1.y=(u.y)*(u.y) + cosAngle*(1-(u.y)*(u.y));
 	rotMatrixRow1.z=(u.y)*(u.z)*(oneMinusCosAngle) - sinAngle*u.x;
-	
+
 	rotMatrixRow2.x=(u.x)*(u.z)*(oneMinusCosAngle) - sinAngle*u.y;
 	rotMatrixRow2.y=(u.y)*(u.z)*(oneMinusCosAngle) + sinAngle*u.x;
 	rotMatrixRow2.z=(u.z)*(u.z) + cosAngle*(1-(u.z)*(u.z));
@@ -135,9 +143,9 @@ math::vec3 math::vec3::GetPackedTo01() const
 	math::vec3 temp(*this);
 
 	temp.normalize();
-	
+
 	temp = temp * 0.5f + math::vec3(0.5f, 0.5f, 0.5f);
-	
+
 	return temp;
 }
 
