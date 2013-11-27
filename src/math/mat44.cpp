@@ -17,10 +17,13 @@
 //	http://www.paulsprojects.net/NewBSDLicense.txt)
 //////////////////////////////////////////////////////////////////////////////////////////	
 #include <memory.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include <math/vec3.h>
 #include <math/vec4.h>
 #include <math/mat44.h>
+#include <math/quat.h>
 
 math::mat44::mat44(float e0, float e1, float e2, float e3,
 		float e4, float e5, float e6, float e7,
@@ -54,7 +57,46 @@ math::mat44::mat44(const float * rhs)
 {
 	memcpy(entries, rhs, 16*sizeof(float));
 }
+math::mat44::mat44(const math::quat & q)
+{
+	const float x = q.x;
+	const float y = q.y;
+	const float z = q.z;
+	const float w = q.w;
 
+	const float x2 = x + x;
+	const float y2 = y + y;
+	const float z2 = z + z;
+
+	const float xx = x2*x;
+	const float yy = y2*y;
+	const float zz = z2*z;
+
+	const float xy = x2*y;
+	const float xz = x2*z;
+	const float xw = x2*w;
+
+	const float yz = y2*z;
+	const float yw = y2*w;
+	const float zw = z2*w;
+
+	entries[0] = 1.0f - yy - zz;
+	entries[1] = xy + zw;
+	entries[2] = xz - yw;
+	entries[3] = 0.0f;
+	entries[4] = xy - zw;
+	entries[5] = 1.0f - xx - zz;
+	entries[6] = yz + xw;
+	entries[7] = 0.0f;
+	entries[8] = xz + yw;
+	entries[9] = yz - xw;
+	entries[10] = 1.0f - xx - yy;
+	entries[11] = 0.0f;
+	entries[12] = 0.0f;
+	entries[13] = 0.0f;
+	entries[14] = 0.0f;
+	entries[15] = 1.0f;
+}
 void math::mat44::SetEntry(int position, float value)
 {
 	if(position>=0 && position<=15)
@@ -680,8 +722,10 @@ void math::mat44::SetPerspective(	float left, float right, float bottom,
 
 	//check for division by 0
 	if(left==right || top==bottom || n==f)
-		return;
-
+	{
+		printf("invalid perspective");
+		exit(0);
+	}
 	entries[0]=(2*n)/(right-left);
 
 	entries[5]=(2*n)/(top-bottom);
@@ -715,9 +759,9 @@ void math::mat44::SetPerspective(float fovy, float aspect, float n, float f)
 	float left, right, top, bottom;
 
 	//convert fov from degrees to radians
-	fovy*=(float)M_PI/180;
-
-	top=n*tanf(fovy/2.0f);
+	fovy *= (float)M_PI / 180.0f;
+	
+	top = n*tanf(fovy/2.0f);
 	bottom=-top;
 
 	left=aspect*bottom;
@@ -793,7 +837,30 @@ void math::mat44::SetRotationPartEuler(const math::vec3 & rotations)
 {
 	SetRotationPartEuler((double)rotations.x, (double)rotations.y, (double)rotations.z);
 }
+math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
+{
+	vec3 f = center - eye;
+	f.normalize();
+	
+	vec3 UP = up.GetNormalized();
+	
+	vec3 s = f.cross(UP);
+	vec3 S = s.GetNormalized();
+	
+	vec3 u = S.cross(f);
 
+	mat44 M(
+			s.x,    u.x,    -f.x , 0.0f,
+			s.y,    u.y,    -f.y , 0.0f,
+			s.z,    u.z,    -f.z , 0.0f,
+			0.0f, 0.0f, 0.0f, 1.0f);
+	
+	mat44 T;
+	T.SetTranslation(-eye);
+	
+	//return T*M;
+	return M*T;
+}
 
 
 

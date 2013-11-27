@@ -15,9 +15,12 @@
 /* Define to the one symbol short name of this package. */
 #undef PACKAGE_TARNAME
 
+<<<<<<< HEAD
 /* Define to the home page for this package. */
 #undef PACKAGE_URL
 
+=======
+>>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 

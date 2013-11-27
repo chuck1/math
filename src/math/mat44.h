@@ -1,30 +1,11 @@
-//////////////////////////////////////////////////////////////////////////////////////////
-//	mat44.h
-//	Class declaration for a 4x4 matrix
-//	Downloaded from: www.paulsprojects.net
-//	Created:	20th July 2002
-//	Updated:	19th August 2002	-	Corrected 2nd SetPerspective for n!=1.0f
-//				26th September 2002	-	Added nudge to prevent artifacts with infinite far plane
-//									-	Improved speed
-//				7th November 2002	-	Added Affine Inverse functions
-//									-	Changed constructors
-//									-	Added special cases for row3 = (0, 0, 0, 1)
-//				17th December 2002	-	Converted from radians to degrees for consistency
-//										with OpenGL. Should have been done a long time ago...
-//
-//	Copyright (c) 2006, Paul Baker
-//	Distributed under the New BSD Licence. (See accompanying file License.txt or copy at
-//	http://www.paulsprojects.net/NewBSDLicense.txt)
-//////////////////////////////////////////////////////////////////////////////////////////	
-
-#ifndef mat44_H
-#define mat44_H
+#ifndef __MAT44_H__
+#define __MAT44_H__
 
 namespace math
 {
 	class vec3;
 	class vec4;
-	
+	class quat;
 	class mat44
 	{
 		public:
@@ -36,6 +17,7 @@ namespace math
 					float e12, float e13, float e14, float e15);
 			mat44(const float * rhs);
 			mat44(const mat44 & rhs);
+			mat44(const quat & q);
 			~mat44() {}	//empty
 
 			void SetEntry(int position, float value);
@@ -92,13 +74,13 @@ namespace math
 			mat44 GetTranspose(void) const;
 			void InvertTranspose(void);
 			mat44 GetInverseTranspose(void) const;
-			
+
 			//Inverse of a rotation/translation only matrix
 			void AffineInvert(void);
 			mat44 GetAffineInverse(void) const;
 			void AffineInvertTranspose(void);
 			mat44 GetAffineInverseTranspose(void) const;
-			
+
 			//set to perform an operation on space - removes other entries
 			void SetTranslation(const vec3 & translation);
 			void SetScale(const vec3 & scaleFactor);
@@ -111,12 +93,12 @@ namespace math
 			void SetPerspective(float left, float right, float bottom, float top, float n, float f);
 			void SetPerspective(float fovy, float aspect, float n, float f);
 			void SetOrtho(float left, float right, float bottom, float top, float n, float f);
-			
+
 			//set parts of the matrix
 			void SetTranslationPart(const vec3 & translation);
 			void SetRotationPartEuler(const double angleX, const double angleY, const double angleZ);
 			void SetRotationPartEuler(const vec3 & rotations);
-			
+
 			//cast to pointer to a (float *) for glGetFloatv etc
 			operator float* () const {return (float*) this;}
 			operator const float* () const {return (const float*) this;}
@@ -124,6 +106,10 @@ namespace math
 			//member variables
 			float entries[16];
 	};
+
+	mat44	perspective(float fovy, float aspect, float zn, float zf);
+	mat44	lookat(math::vec3 eye, math::vec3 center, math::vec3 up);
+
 }
 
 #endif	//mat44_H

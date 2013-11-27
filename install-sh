@@ -1,7 +1,11 @@
 #!/bin/sh
 # install - install a program, script, or datafile
 
+<<<<<<< HEAD
 scriptversion=2011-01-19.21; # UTC
+=======
+scriptversion=2009-04-28.21; # UTC
+>>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 
 # This originates from X11R5 (mit/util/scripts/install.sh), which was
 # later released in X11R6 (xc/config/util/install.sh) with the
@@ -156,10 +160,13 @@ while test $# -ne 0; do
     -s) stripcmd=$stripprog;;
 
     -t) dst_arg=$2
+<<<<<<< HEAD
 	# Protect names problematic for `test' and other utilities.
 	case $dst_arg in
 	  -* | [=\(\)!]) dst_arg=./$dst_arg;;
 	esac
+=======
+>>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 	shift;;
 
     -T) no_target_directory=true;;
@@ -190,10 +197,13 @@ if test $# -ne 0 && test -z "$dir_arg$dst_arg"; then
     fi
     shift # arg
     dst_arg=$arg
+<<<<<<< HEAD
     # Protect names problematic for `test' and other utilities.
     case $dst_arg in
       -* | [=\(\)!]) dst_arg=./$dst_arg;;
     esac
+=======
+>>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
   done
 fi
 
@@ -208,11 +218,15 @@ if test $# -eq 0; then
 fi
 
 if test -z "$dir_arg"; then
+<<<<<<< HEAD
   do_exit='(exit $ret); exit $ret'
   trap "ret=129; $do_exit" 1
   trap "ret=130; $do_exit" 2
   trap "ret=141; $do_exit" 13
   trap "ret=143; $do_exit" 15
+=======
+  trap '(exit $?); exit' 1 2 13 15
+>>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 
   # Set umask so as not to create temps with too-generous modes.
   # However, 'strip' requires both read and write access to temps.
@@ -240,9 +254,15 @@ fi
 
 for src
 do
+<<<<<<< HEAD
   # Protect names problematic for `test' and other utilities.
   case $src in
     -* | [=\(\)!]) src=./$src;;
+=======
+  # Protect names starting with `-'.
+  case $src in
+    -*) src=./$src;;
+>>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
   esac
 
   if test -n "$dir_arg"; then
@@ -264,7 +284,16 @@ do
       echo "$0: no destination specified." >&2
       exit 1
     fi
+<<<<<<< HEAD
     dst=$dst_arg
+=======
+
+    dst=$dst_arg
+    # Protect names starting with `-'.
+    case $dst in
+      -*) dst=./$dst;;
+    esac
+>>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 
     # If destination is a directory, append the input filename; won't work
     # if double slashes aren't ignored.
@@ -392,7 +421,11 @@ do
 
       case $dstdir in
 	/*) prefix='/';;
+<<<<<<< HEAD
 	[-=\(\)!]*) prefix='./';;
+=======
+	-*) prefix='./';;
+>>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 	*)  prefix='';;
       esac
 
@@ -410,7 +443,11 @@ do
 
       for d
       do
+<<<<<<< HEAD
 	test X"$d" = X && continue
+=======
+	test -z "$d" && continue
+>>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 
 	prefix=$prefix$d
 	if test -d "$prefix"; then

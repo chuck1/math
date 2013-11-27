@@ -43,7 +43,7 @@ namespace math
 			void SetIntercept(float newIntercept) { intercept=newIntercept; }
 			void SetFromPoints(const vec3 & p0, const vec3 & p1, const vec3 & p2);
 
-			void CalculateIntercept(const vec3 & pointOnPlane) { intercept=-normal.DotProduct(pointOnPlane); }
+			void CalculateIntercept(const vec3 & pointOnPlane) { intercept=-normal.dot(pointOnPlane); }
 
 			void Normalize(void);
 
