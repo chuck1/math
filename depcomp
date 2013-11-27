@@ -1,17 +1,10 @@
 #! /bin/sh
 # depcomp - compile a program generating dependencies as side-effects
 
-<<<<<<< HEAD
 scriptversion=2011-12-04.11; # UTC
 
 # Copyright (C) 1999, 2000, 2003, 2004, 2005, 2006, 2007, 2009, 2010,
 # 2011 Free Software Foundation, Inc.
-=======
-scriptversion=2009-04-28.21; # UTC
-
-# Copyright (C) 1999, 2000, 2003, 2004, 2005, 2006, 2007, 2009 Free
-# Software Foundation, Inc.
->>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,11 +44,7 @@ Environment variables:
   object      Object file output by `PROGRAMS ARGS'.
   DEPDIR      directory where to store dependencies.
   depfile     Dependency file to output.
-<<<<<<< HEAD
   tmpdepfile  Temporary file to use when outputting dependencies.
-=======
-  tmpdepfile  Temporary file to use when outputing dependencies.
->>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
   libtool     Whether libtool is used (yes/no).
 
 Report bugs to <bug-automake@gnu.org>.
@@ -101,7 +90,6 @@ if test "$depmode" = msvcmsys; then
    # This is just like msvisualcpp but w/o cygpath translation.
    # Just convert the backslash-escaped backslashes to single forward
    # slashes to satisfy depend.m4
-<<<<<<< HEAD
    cygpath_u='sed s,\\\\,/,g'
    depmode=msvisualcpp
 fi
@@ -114,12 +102,6 @@ if test "$depmode" = msvc7msys; then
    depmode=msvc7
 fi
 
-=======
-   cygpath_u="sed s,\\\\\\\\,/,g"
-   depmode=msvisualcpp
-fi
-
->>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 case "$depmode" in
 gcc3)
 ## gcc 3 implements dependency tracking that does exactly what
@@ -184,19 +166,12 @@ gcc)
 ' < "$tmpdepfile" |
 ## Some versions of gcc put a space before the `:'.  On the theory
 ## that the space means something, we add a space to the output as
-<<<<<<< HEAD
 ## well.  hp depmode also adds that space, but also prefixes the VPATH
 ## to the object.  Take care to not repeat it in the output.
 ## Some versions of the HPUX 10.20 sed can't process this invocation
 ## correctly.  Breaking it into two sed invocations is a workaround.
     sed -e 's/^\\$//' -e '/^$/d' -e "s|.*$object$||" -e '/:$/d' \
       | sed -e 's/$/ :/' >> "$depfile"
-=======
-## well.
-## Some versions of the HPUX 10.20 sed can't process this invocation
-## correctly.  Breaking it into two sed invocations is a workaround.
-    sed -e 's/^\\$//' -e '/^$/d' -e '/:$/d' | sed -e 's/$/ :/' >> "$depfile"
->>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
   rm -f "$tmpdepfile"
   ;;
 
@@ -440,7 +415,6 @@ tru64)
    rm -f "$tmpdepfile"
    ;;
 
-<<<<<<< HEAD
 msvc7)
   if test "$libtool" = yes; then
     showIncludes=-Wc,-showIncludes
@@ -487,8 +461,6 @@ msvc7msys)
   exit 1
   ;;
 
-=======
->>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
 #nosideeffect)
   # This comment above is used by automake to tell side-effect
   # dependency tracking mechanisms from slower ones.
@@ -587,13 +559,9 @@ makedepend)
   touch "$tmpdepfile"
   ${MAKEDEPEND-makedepend} -o"$obj_suffix" -f"$tmpdepfile" "$@"
   rm -f "$depfile"
-<<<<<<< HEAD
   # makedepend may prepend the VPATH from the source file name to the object.
   # No need to regex-escape $object, excess matching of '.' is harmless.
   sed "s|^.*\($object *:\)|\1|" "$tmpdepfile" > "$depfile"
-=======
-  cat < "$tmpdepfile" > "$depfile"
->>>>>>> ef546caf7c44f6d309ad4476a93d0ab1d2a8a866
   sed '1,2d' "$tmpdepfile" | tr ' ' '
 ' | \
 ## Some versions of the HPUX 10.20 sed can't process this invocation
