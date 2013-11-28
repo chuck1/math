@@ -15,10 +15,15 @@
 
 #include <math/vec3.h>
 #include <math/vec4.h>
+#include <math/mat44.h>
 
 math::vec4::vec4(const vec3 & rhs):
 	x(rhs.x), y(rhs.y), z(rhs.z), w(1.0f)
 {}
+math::vec4::vec4(const vec3 & rhs,float const & newW):
+	x(rhs.x), y(rhs.y), z(rhs.z), w(newW)
+{}
+
 void math::vec4::RotateX(double angle)
 {
 	(*this)=GetRotatedX(angle);
@@ -96,3 +101,17 @@ math::vec4::operator math::vec3()
 	else
 		return math::vec3(x/w, y/w, z/w);
 }
+math::mat44 math::vec4::operator*(math::vec4 const & rhs)
+{
+	math::mat44 ret(
+			x*rhs.x, y*rhs.x, z*rhs.x, w*rhs.x,
+			x*rhs.y, y*rhs.y, z*rhs.y, w*rhs.y,
+			x*rhs.z, y*rhs.z, z*rhs.z, w*rhs.z,
+			x*rhs.w, y*rhs.w, z*rhs.w, w*rhs.w);
+
+	return ret;
+}
+
+
+
+

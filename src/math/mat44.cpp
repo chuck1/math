@@ -17,6 +17,8 @@
 //	http://www.paulsprojects.net/NewBSDLicense.txt)
 //////////////////////////////////////////////////////////////////////////////////////////	
 #include <memory.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include <math/vec3.h>
 #include <math/vec4.h>
@@ -24,9 +26,9 @@
 #include <math/quat.h>
 
 math::mat44::mat44(float e0, float e1, float e2, float e3,
-					float e4, float e5, float e6, float e7,
-					float e8, float e9, float e10, float e11,
-					float e12, float e13, float e14, float e15)
+		float e4, float e5, float e6, float e7,
+		float e8, float e9, float e10, float e11,
+		float e12, float e13, float e14, float e15)
 {
 	entries[0]=e0;
 	entries[1]=e1;
@@ -720,8 +722,10 @@ void math::mat44::SetPerspective(	float left, float right, float bottom,
 
 	//check for division by 0
 	if(left==right || top==bottom || n==f)
-		return;
-
+	{
+		printf("invalid perspective");
+		exit(0);
+	}
 	entries[0]=(2*n)/(right-left);
 
 	entries[5]=(2*n)/(top-bottom);
@@ -755,9 +759,9 @@ void math::mat44::SetPerspective(float fovy, float aspect, float n, float f)
 	float left, right, top, bottom;
 
 	//convert fov from degrees to radians
-	fovy*=(float)M_PI/180;
-
-	top=n*tanf(fovy/2.0f);
+	fovy *= (float)M_PI / 180.0f;
+	
+	top = n*tanf(fovy/2.0f);
 	bottom=-top;
 
 	left=aspect*bottom;
@@ -833,9 +837,30 @@ void math::mat44::SetRotationPartEuler(const math::vec3 & rotations)
 {
 	SetRotationPartEuler((double)rotations.x, (double)rotations.y, (double)rotations.z);
 }
+math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
+{
+	vec3 f = center - eye;
+	f.normalize();
+	
+	vec3 UP = up.GetNormalized();
+	
+	vec3 s = f.cross(UP);
+	vec3 S = s.GetNormalized();
+	
+	vec3 u = S.cross(f);
 
-
-
+	mat44 M(
+			s.x,    u.x,    -f.x , 0.0f,
+			s.y,    u.y,    -f.y , 0.0f,
+			s.z,    u.z,    -f.z , 0.0f,
+			0.0f, 0.0f, 0.0f, 1.0f);
+	
+	mat44 T;
+	T.SetTranslation(-eye);
+	
+	//return T*M;
+	return M*T;
+}
 
 
 

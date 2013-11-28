@@ -19,6 +19,7 @@
 namespace math
 {
 	class vec3;
+	class mat44;
 
 	class vec4
 	{
@@ -38,6 +39,9 @@ namespace math
 		{}
 			//convert v3d to v4d
 			vec4(const vec3 & rhs);
+			vec4(const vec3 & rhs,float const & newW);
+
+
 			~vec4() {}	//empty
 
 			void Set(float newX, float newY, float newZ, float newW)
@@ -116,6 +120,8 @@ namespace math
 				else
 				{	x/=rhs; y/=rhs; z/=rhs; w/=rhs;	}
 			}
+
+			mat44 operator*(vec4 const & rhs);
 
 			//unary operators
 			vec4 operator-(void) const {return vec4(-x, -y, -z, -w);}
