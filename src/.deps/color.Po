@@ -1,0 +1,3 @@
+color.o: math/color.cpp math/color.h
+
+math/color.h:
