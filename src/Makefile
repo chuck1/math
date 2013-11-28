@@ -78,11 +78,7 @@ ARFLAGS = cru
 libmath_a_AR = $(AR) $(ARFLAGS)
 libmath_a_LIBADD =
 am_libmath_a_OBJECTS = vec2.$(OBJEXT) vec3.$(OBJEXT) vec4.$(OBJEXT) \
-<<<<<<< HEAD
-	mat44.$(OBJEXT) plane.$(OBJEXT) color.$(OBJEXT)
-=======
 	mat44.$(OBJEXT) plane.$(OBJEXT) color.$(OBJEXT) quat.$(OBJEXT)
->>>>>>> be6a1b96348d4335b909c59e8c88946dbd916ea0
 libmath_a_OBJECTS = $(am_libmath_a_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -193,17 +189,6 @@ top_builddir = ..
 top_srcdir = ..
 lib_LIBRARIES = libmath.a
 libmath_a_SOURCES = \
-<<<<<<< HEAD
-math/math.h \
-math/vec2.h math/vec2.cpp \
-math/vec3.h math/vec3.cpp \
-math/vec4.h math/vec4.cpp \
-math/mat44.h math/mat44.cpp \
-math/plane.h math/plane.cpp \
-math/color.h math/color.cpp
-
-nobase_include_HEADERS = math/math.h math/vec2.h math/vec3.h math/vec4.h math/mat44.h math/plane.h math/color.h
-=======
 		    math/math.h \
 		    math/vec2.h math/vec2.cpp \
 		    math/vec3.h math/vec3.cpp \
@@ -214,7 +199,6 @@ nobase_include_HEADERS = math/math.h math/vec2.h math/vec3.h math/vec4.h math/ma
 		    math/quat.h math/quat.cpp
 
 nobase_include_HEADERS = math/math.h math/vec2.h math/vec3.h math/vec4.h math/mat44.h math/plane.h math/color.h math/quat.h
->>>>>>> be6a1b96348d4335b909c59e8c88946dbd916ea0
 all: all-am
 
 .SUFFIXES:
@@ -293,10 +277,7 @@ distclean-compile:
 include ./$(DEPDIR)/color.Po
 include ./$(DEPDIR)/mat44.Po
 include ./$(DEPDIR)/plane.Po
-<<<<<<< HEAD
-=======
 include ./$(DEPDIR)/quat.Po
->>>>>>> be6a1b96348d4335b909c59e8c88946dbd916ea0
 include ./$(DEPDIR)/vec2.Po
 include ./$(DEPDIR)/vec3.Po
 include ./$(DEPDIR)/vec4.Po
@@ -398,8 +379,6 @@ color.obj: math/color.cpp
 #	source='math/color.cpp' object='color.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o color.obj `if test -f 'math/color.cpp'; then $(CYGPATH_W) 'math/color.cpp'; else $(CYGPATH_W) '$(srcdir)/math/color.cpp'; fi`
-<<<<<<< HEAD
-=======
 
 quat.o: math/quat.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT quat.o -MD -MP -MF $(DEPDIR)/quat.Tpo -c -o quat.o `test -f 'math/quat.cpp' || echo '$(srcdir)/'`math/quat.cpp
@@ -414,7 +393,6 @@ quat.obj: math/quat.cpp
 #	source='math/quat.cpp' object='quat.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o quat.obj `if test -f 'math/quat.cpp'; then $(CYGPATH_W) 'math/quat.cpp'; else $(CYGPATH_W) '$(srcdir)/math/quat.cpp'; fi`
->>>>>>> be6a1b96348d4335b909c59e8c88946dbd916ea0
 install-nobase_includeHEADERS: $(nobase_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(includedir)" || $(MKDIR_P) "$(DESTDIR)$(includedir)"
