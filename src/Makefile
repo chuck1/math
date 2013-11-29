@@ -78,7 +78,8 @@ ARFLAGS = cru
 libmath_a_AR = $(AR) $(ARFLAGS)
 libmath_a_LIBADD =
 am_libmath_a_OBJECTS = vec2.$(OBJEXT) vec3.$(OBJEXT) vec4.$(OBJEXT) \
-	mat44.$(OBJEXT) plane.$(OBJEXT) color.$(OBJEXT) quat.$(OBJEXT)
+	mat44.$(OBJEXT) plane.$(OBJEXT) color.$(OBJEXT) quat.$(OBJEXT) \
+	vclip.$(OBJEXT)
 libmath_a_OBJECTS = $(am_libmath_a_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -111,7 +112,7 @@ CFLAGS = -g -O2
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
+CXXFLAGS = -std=c++0x
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -196,7 +197,8 @@ libmath_a_SOURCES = \
 		    math/mat44.h math/mat44.cpp \
 		    math/plane.h math/plane.cpp \
 		    math/color.h math/color.cpp \
-		    math/quat.h math/quat.cpp
+		    math/quat.h math/quat.cpp \
+		math/vclip/vclip.cpp
 
 nobase_include_HEADERS = math/math.h math/vec2.h math/vec3.h math/vec4.h math/mat44.h math/plane.h math/color.h math/quat.h
 all: all-am
@@ -278,6 +280,7 @@ include ./$(DEPDIR)/color.Po
 include ./$(DEPDIR)/mat44.Po
 include ./$(DEPDIR)/plane.Po
 include ./$(DEPDIR)/quat.Po
+include ./$(DEPDIR)/vclip.Po
 include ./$(DEPDIR)/vec2.Po
 include ./$(DEPDIR)/vec3.Po
 include ./$(DEPDIR)/vec4.Po
@@ -393,6 +396,20 @@ quat.obj: math/quat.cpp
 #	source='math/quat.cpp' object='quat.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o quat.obj `if test -f 'math/quat.cpp'; then $(CYGPATH_W) 'math/quat.cpp'; else $(CYGPATH_W) '$(srcdir)/math/quat.cpp'; fi`
+
+vclip.o: math/vclip/vclip.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT vclip.o -MD -MP -MF $(DEPDIR)/vclip.Tpo -c -o vclip.o `test -f 'math/vclip/vclip.cpp' || echo '$(srcdir)/'`math/vclip/vclip.cpp
+	$(am__mv) $(DEPDIR)/vclip.Tpo $(DEPDIR)/vclip.Po
+#	source='math/vclip/vclip.cpp' object='vclip.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o vclip.o `test -f 'math/vclip/vclip.cpp' || echo '$(srcdir)/'`math/vclip/vclip.cpp
+
+vclip.obj: math/vclip/vclip.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT vclip.obj -MD -MP -MF $(DEPDIR)/vclip.Tpo -c -o vclip.obj `if test -f 'math/vclip/vclip.cpp'; then $(CYGPATH_W) 'math/vclip/vclip.cpp'; else $(CYGPATH_W) '$(srcdir)/math/vclip/vclip.cpp'; fi`
+	$(am__mv) $(DEPDIR)/vclip.Tpo $(DEPDIR)/vclip.Po
+#	source='math/vclip/vclip.cpp' object='vclip.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o vclip.obj `if test -f 'math/vclip/vclip.cpp'; then $(CYGPATH_W) 'math/vclip/vclip.cpp'; else $(CYGPATH_W) '$(srcdir)/math/vclip/vclip.cpp'; fi`
 install-nobase_includeHEADERS: $(nobase_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(includedir)" || $(MKDIR_P) "$(DESTDIR)$(includedir)"

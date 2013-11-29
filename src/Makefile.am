@@ -8,8 +8,10 @@ libmath_a_SOURCES = \
 		    math/mat44.h math/mat44.cpp \
 		    math/plane.h math/plane.cpp \
 		    math/color.h math/color.cpp \
-		    math/quat.h math/quat.cpp
+		    math/quat.h math/quat.cpp \
+		math/vclip/vclip.cpp
 
 nobase_include_HEADERS = math/math.h math/vec2.h math/vec3.h math/vec4.h math/mat44.h math/plane.h math/color.h math/quat.h
 
+CXXFLAGS = -std=c++0x
 

@@ -60,7 +60,7 @@ math::geo::sphere(int slices, int stacks)
 			quad[a0][b0].v[3] = interior[a0][b1];
 		}
 	}
-
+	
 	if( flag_ & math::geo::PER_FACE_NORMAL )
 	{
 		for( int a0 = 0; a0 < slices; ++a0 )
@@ -74,7 +74,7 @@ math::geo::sphere(int slices, int stacks)
 			{
 				b1 = b0 + 1;
 
-				quad[a0][b0].v[0] = interior[a0][b0];
+				quad[a0][b0].reset_normals();
 			}
 		}
 
