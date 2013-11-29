@@ -13,6 +13,8 @@
 #ifndef __VEC2_H__
 #define __VEC2_H__
 
+#include <cmath>
+
 namespace math
 {
 	class vec2
