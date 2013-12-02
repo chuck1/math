@@ -6,6 +6,7 @@ namespace math
 	class vec3;
 	class vec4;
 	class quat;
+	class plane;
 	class mat44
 	{
 		public:
@@ -94,6 +95,9 @@ namespace math
 			void SetPerspective(float fovy, float aspect, float n, float f);
 			void SetOrtho(float left, float right, float bottom, float top, float n, float f);
 
+			void	SetReflection(plane const &);
+			void	print();
+			
 			//set parts of the matrix
 			void SetTranslationPart(const vec3 & translation);
 			void SetRotationPartEuler(const double angleX, const double angleY, const double angleZ);

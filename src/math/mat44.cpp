@@ -22,8 +22,10 @@
 
 #include <math/vec3.h>
 #include <math/vec4.h>
+//#include <math/mat33.h>
 #include <math/mat44.h>
 #include <math/quat.h>
+#include <math/plane.h>
 
 math::mat44::mat44(float e0, float e1, float e2, float e3,
 		float e4, float e5, float e6, float e7,
@@ -579,7 +581,6 @@ void math::mat44::AffineInvert(void)
 {
 	(*this)=GetAffineInverse();
 }
-
 math::mat44 math::mat44::GetAffineInverse(void) const
 {
 	//return the transpose of the rotation part
@@ -849,6 +850,10 @@ math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
 	
 	vec3 u = S.cross(f);
 
+	//printf("u\n");
+	//u.print();
+	
+	
 	mat44 M(
 			s.x,    u.x,    -f.x , 0.0f,
 			s.y,    u.y,    -f.y , 0.0f,
@@ -857,12 +862,37 @@ math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
 	
 	mat44 T;
 	T.SetTranslation(-eye);
+
+	//printf("M\n");
+	//M.print();
+	//printf("T\n");
+	//T.print();
 	
 	//return T*M;
 	return M*T;
 }
+void	math::mat44::SetReflection(math::plane const & p)
+{
+	math::mat44 A;
+	A.SetTranslation(p.n * -p.d);
 
-
+	math::mat44 I;
+		
+	math::mat44 RA = I - math::vec4(p.n,0) * math::vec4(p.n,0) * 2.0;
+	
+	*this = A * RA * A.GetInverse();
+}
+void	math::mat44::print()
+{
+	for(int i = 0; i < 4; ++i )
+	{
+		for(int j = 0; j < 4; ++j )
+		{
+			printf("%f ",entries[4*i+j]);
+		}
+		printf("\n");
+	}
+}
 
 
 
