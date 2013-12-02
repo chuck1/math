@@ -161,4 +161,8 @@ bool math::vec3::operator==(const math::vec3 & rhs) const
 
 	return false;
 }
+void	math::vec3::print()
+{
+	printf("%f %f %f\n",x,y,z);
+}
 

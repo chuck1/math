@@ -12,7 +12,7 @@
 //	Distributed under the New BSD Licence. (See accompanying file License.txt or copy at
 //	http://www.paulsprojects.net/NewBSDLicense.txt)
 //////////////////////////////////////////////////////////////////////////////////////////	
-
+#include <stdio.h>
 #include <math/vec3.h>
 #include <math/vec4.h>
 #include <math/mat44.h>
@@ -93,7 +93,6 @@ bool math::vec4::operator==(const math::vec4 & rhs) const
 
 	return false;
 }
-
 math::vec4::operator math::vec3()
 {
 	if(w==0.0f || w==1.0f)
@@ -110,6 +109,10 @@ math::mat44 math::vec4::operator*(math::vec4 const & rhs)
 			x*rhs.w, y*rhs.w, z*rhs.w, w*rhs.w);
 
 	return ret;
+}
+void	math::vec4::print()
+{
+	printf("%f %f %f %f\n",x,y,z,w);
 }
 
 

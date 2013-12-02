@@ -112,6 +112,7 @@ namespace math
 			operator float* () const {return (float*) this;}
 			operator const float* () const {return (const float*) this;}
 
+			void	print();
 			//member variables
 			float r;
 			float g;

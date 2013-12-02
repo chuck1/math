@@ -30,25 +30,30 @@ namespace math
 				POINT_IN_FRONT_OF_PLANE=1,
 				POINT_BEHIND_PLANE=2
 			};
-			plane()	:	normal(vec3(0.0f, 0.0f, 0.0f)), intercept(0.0f)
+			plane():
+				n(vec3(0.0f, 0.0f, 0.0f)), d(0.0f)
 		{}
-			plane(vec3 newNormal, float newIntercept)	: normal(newNormal), intercept(newIntercept)
+			plane(vec3 newNormal, float newIntercept):
+				n(newNormal), d(newIntercept)
 		{}
 			plane(const plane & rhs)
-			{	normal=rhs.normal;	intercept=rhs.intercept;	}
+			{
+				n=rhs.n;
+				d=rhs.d;
+			}
 
 			~plane() {}
 
-			void SetNormal(const vec3 & rhs) { normal=rhs; }
-			void SetIntercept(float newIntercept) { intercept=newIntercept; }
+			void SetNormal(const vec3 & rhs) { n=rhs; }
+			void SetIntercept(float newIntercept) { d=newIntercept; }
 			void SetFromPoints(const vec3 & p0, const vec3 & p1, const vec3 & p2);
 
-			void CalculateIntercept(const vec3 & pointOnPlane) { intercept=-normal.dot(pointOnPlane); }
+			void CalculateIntercept(const vec3 & pointOnPlane) { d=-n.dot(pointOnPlane); }
 
 			void Normalize(void);
 
-			vec3 GetNormal() { return normal; }
-			float GetIntercept() { return intercept; }
+			vec3 GetNormal() { return n; }
+			float GetIntercept() { return d; }
 
 			//find point of intersection of 3 planes
 			bool Intersect3(const plane & p2, const plane & p3, vec3 & result);
@@ -64,12 +69,12 @@ namespace math
 			{		return!((*this)==rhs);	}
 
 			//unary operators
-			plane operator-(void) const {return plane(-normal, -intercept);}
+			plane operator-(void) const {return plane(-n, -d);}
 			plane operator+(void) const {return (*this);}
 
 			//member variables
-			vec3 normal;	//X.N+intercept=0
-			float intercept;
+			vec3		n;
+			float		d;
 	};
 }
 

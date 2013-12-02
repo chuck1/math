@@ -82,6 +82,7 @@ class vclip
 		rc		vestate(int,int);
 		rc		vfstate(int,int);
 		rc		eestate();
+		rc		eestate(int,int);
 
 
 		polyhedron*	poly_[2];
@@ -348,38 +349,38 @@ vclip::rc vclip::eestate()
 }
 vclip::rc vclip::eestate(int a,int b)
 {
-	edge* e0 = x[a];
-	edge* e1 = x[b];
+	edge* e0 = (edge*)x_[a];
+	edge* e1 = (edge*)x_[b];
 
-	int rc = clip(e1, e0, e0->v);
+	int rc;// = clip(e1, e0, e0->u);
 
 	if( rc == vclip::rc::SIMPLY_EXCLUDED)
 	{
-		x[b] = v;
+		//x_[b] = v;
 	}
 	else
 	{
-		derivate_check();
+		//derivate_check();
 	}
 
 	// if e1 was updated
-	if( x[b] != e1 )
+	if( x_[b] != e1 )
 	{
 		return vclip::rc::CONTINUE;
 	}
 
-	rc = clip(e1, e0->fe);
+	//rc = clip(e1, e0->fe);
 	if( rc == vclip::rc::SIMPLY_EXCLUDED)
 	{
-		x[b] = f;
+		//x[b] = f;
 	}
 	else
 	{
-		derivate_check();
+		//derivate_check();
 	}
 
 	// if e1 was updated
-	if( x[b] != e1 )
+	if( x_[b] != e1 )
 	{
 		return vclip::rc::CONTINUE;
 	}

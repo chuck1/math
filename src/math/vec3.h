@@ -147,6 +147,7 @@ namespace math
 			}
 
 
+			void	print();
 			//unary operators
 			vec3 operator-(void) const {return vec3(-x, -y, -z);}
 			vec3 operator+(void) const {return *this;}
