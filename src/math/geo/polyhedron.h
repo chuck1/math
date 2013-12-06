@@ -5,8 +5,21 @@ namespace math
 {
 	namespace geo
 	{
+		class polygon
+		{
+			
+		};
+		class tri
+		{
+			
+		};
+		class quad
+		{
+			
+		};
 		class polyhedron
 		{
+			
 		};
 		class polyhedron_convex: public polyhedron
 		{
@@ -14,7 +27,20 @@ namespace math
 		class sphere: public polyhedron_convex
 		{
 			public:
-				sphere(int m,int n);
+				sphere(float,int,int);
+		};
+		class wedge: public polyhedron_convex
+		{
+
+		};
+		class tetrahedron: public polyhedron_convex
+		{
+
+		};
+		class cuboid: public polyhedron_convex
+		{
+			public:
+				cuboid(float,float,float);
 		};
 	}
 }
