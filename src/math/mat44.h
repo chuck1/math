@@ -69,18 +69,19 @@ namespace math
 			vec3 GetInverseTranslatedVector3D(const vec3 & rhs) const;
 
 			//Other methods
-			void Invert(void);
-			mat44 GetInverse(void) const;
-			void Transpose(void);
-			mat44 GetTranspose(void) const;
-			void InvertTranspose(void);
-			mat44 GetInverseTranspose(void) const;
-
+			void	Invert(void);
+			mat44	GetInverse(void) const;
+			void	Transpose(void);
+			mat44	GetTranspose(void) const;
+			void	InvertTranspose(void);
+			mat44	GetInverseTranspose(void) const;
+			void	SetCoordinateTransform(math::vec3 const,math::vec3 const);
+			
 			//Inverse of a rotation/translation only matrix
-			void AffineInvert(void);
-			mat44 GetAffineInverse(void) const;
-			void AffineInvertTranspose(void);
-			mat44 GetAffineInverseTranspose(void) const;
+			void	AffineInvert(void);
+			mat44	GetAffineInverse(void) const;
+			void	AffineInvertTranspose(void);
+			mat44	GetAffineInverseTranspose(void) const;
 
 			//set to perform an operation on space - removes other entries
 			void SetTranslation(const vec3 & translation);

@@ -463,7 +463,8 @@ void math::mat44::Transpose(void)
 
 math::mat44 math::mat44::GetTranspose(void) const
 {
-	return math::mat44(	entries[ 0], entries[ 4], entries[ 8], entries[12],
+	return math::mat44(
+			entries[ 0], entries[ 4], entries[ 8], entries[12],
 			entries[ 1], entries[ 5], entries[ 9], entries[13],
 			entries[ 2], entries[ 6], entries[10], entries[14],
 			entries[ 3], entries[ 7], entries[11], entries[15]);
@@ -585,18 +586,10 @@ math::mat44 math::mat44::GetAffineInverse(void) const
 {
 	//return the transpose of the rotation part
 	//and the negative of the inverse rotated translation part
-	return math::mat44(	entries[0],
-			entries[4],
-			entries[8],
-			0.0f,
-			entries[1],
-			entries[5],
-			entries[9],
-			0.0f,
-			entries[2],
-			entries[6],
-			entries[10],
-			0.0f,
+	return math::mat44(
+			entries[0],entries[4],entries[8],0.0f,
+			entries[1],entries[5],entries[9],0.0f,
+			entries[2],entries[6],entries[10],0.0f,
 			-(entries[0]*entries[12]+entries[1]*entries[13]+entries[2]*entries[14]),
 			-(entries[4]*entries[12]+entries[5]*entries[13]+entries[6]*entries[14]),
 			-(entries[8]*entries[12]+entries[9]*entries[13]+entries[10]*entries[14]),
@@ -761,7 +754,7 @@ void math::mat44::SetPerspective(float fovy, float aspect, float n, float f)
 
 	//convert fov from degrees to radians
 	fovy *= (float)M_PI / 180.0f;
-	
+
 	top = n*tanf(fovy/2.0f);
 	bottom=-top;
 
@@ -840,26 +833,27 @@ void math::mat44::SetRotationPartEuler(const math::vec3 & rotations)
 }
 math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
 {
-	vec3 f = center - eye;
-	f.normalize();
-	
-	vec3 UP = up.GetNormalized();
-	
-	vec3 s = f.cross(UP);
-	vec3 S = s.GetNormalized();
-	
-	vec3 u = S.cross(f);
+	vec3 F = center - eye;
+	vec3 f = F.GetNormalized();
 
+	vec3 UP = up.GetNormalized();
+
+	vec3 s = f.cross(UP);
+	s.normalize();
+	
+	vec3 u = s.cross(f);
+	
 	//printf("u\n");
 	//u.print();
 	
-	
 	mat44 M(
-			s.x,    u.x,    -f.x , 0.0f,
-			s.y,    u.y,    -f.y , 0.0f,
-			s.z,    u.z,    -f.z , 0.0f,
+			s.x,  u.x,  -f.x , 0.0f,
+			s.y,  u.y,  -f.y , 0.0f,
+			s.z,  u.z,  -f.z , 0.0f,
 			0.0f, 0.0f, 0.0f, 1.0f);
 	
+	//	M.print();
+
 	mat44 T;
 	T.SetTranslation(-eye);
 
@@ -867,20 +861,23 @@ math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
 	//M.print();
 	//printf("T\n");
 	//T.print();
-	
+
 	//return T*M;
 	return M*T;
 }
 void	math::mat44::SetReflection(math::plane const & p)
 {
+	math::vec3 n = p.n.GetNormalized();
+
 	math::mat44 A;
-	A.SetTranslation(p.n * -p.d);
+	A.SetTranslation(n * -p.d);
 
 	math::mat44 I;
-		
-	math::mat44 RA = I - math::vec4(p.n,0) * math::vec4(p.n,0) * 2.0;
-	
-	*this = A * RA * A.GetInverse();
+
+	math::mat44 RA = I - math::vec4(n,0) * math::vec4(n,0) * 2.0;
+
+	//*this = A * RA * A.GetInverse();
+	*this = A.GetInverse() * RA * A;
 }
 void	math::mat44::print()
 {
@@ -893,7 +890,26 @@ void	math::mat44::print()
 		printf("\n");
 	}
 }
+void	math::mat44::SetCoordinateTransform(math::vec3 const x, math::vec3 const y)
+{
 
+
+	math::vec3 Z = x.cross(y);
+
+	math::vec3 X = y.cross(Z);
+
+	X.normalize();
+	math::vec3 Y = y.GetNormalized();
+	Z.normalize();
+
+	math::mat44 m(
+			X.x,  Y.x,  Z.x , 0.0f,
+			X.y,  Y.y,  Z.y , 0.0f,
+			X.z,  Y.z,  Z.z , 0.0f,
+			0.0f, 0.0f, 0.0f, 1.0f);
+
+	*this = m;
+}
 
 
 
