@@ -79,5 +79,7 @@ math::geo::sphere(int slices, int stacks)
 		}
 
 	}
+	
+	
 }
 
