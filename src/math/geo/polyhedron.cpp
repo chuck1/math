@@ -1,9 +1,9 @@
 
 #include <math/geo/polyhedron.h>
 
-math::geo::sphere(int slices, int stacks)
+math::geo::sphere::sphere(float r, int slices, int stacks)
 {
-	//v = new math::geo::vertex[(stacks-1)*slices + 2];
+	math::geo::vertex* v = new math::geo::vertex[(stacks-1)*slices + 2];
 
 	math::geo::tri north[slices];
 	math::geo::tri south[slices];
@@ -15,12 +15,14 @@ math::geo::sphere(int slices, int stacks)
 	poles[0].xyz = vec3(0,-0.5,0);
 	poles[1].xyz = vec3(0, 0.5,0);
 	
+	
+	
 	math::geo::vertex* interior = v + 2;
 	
 	float theta;
 	float phi;
 	
-	float 
+	//float 
 	
 	for( int a = 0; a < slices; ++a )
 	{
@@ -32,8 +34,8 @@ math::geo::sphere(int slices, int stacks)
 			
 			vec3 v( cos(theta)*cos(phi), sin(phi), sin(theta)*cos(phi) );
 			
-			interior[a][b].v = v;
-			interior[a][b].n = v.GetNormalized();
+			interior[a*slices+b].xyz = v;
+			interior[a*slices+b].n = v.GetNormalized();
 		}
 	}
 	
@@ -42,26 +44,27 @@ math::geo::sphere(int slices, int stacks)
 		int a1 = ((a0+1) == slices) ? 0 : (a0+1);
 		
 		
-		north[a0].v[0] = interior[a0][stacks-1];
-		north[a0].v[1] = interior[a1][stacks-1];
+		north[a0].v[0] = interior[a0*slices+stacks-1];
+		north[a0].v[1] = interior[a1*slices+stacks-1];
 		north[a0].v[2] = poles[0];
 
-		south[a0].v[0] = interior[a1][0];
-		south[a0].v[1] = interior[a0][0];
+		south[a0].v[0] = interior[a1*slices+0];
+		south[a0].v[1] = interior[a0*slices+0];
 		south[a0].v[2] = poles[0];
 
 		for( int b0 = 0; b0 < (stacks-1); ++b0 )
 		{
-			b1 = b0 + 1;
+			int b1 = b0 + 1;
 
-			quad[a0][b0].v[0] = interior[a0][b0];
-			quad[a0][b0].v[1] = interior[a1][b0];
-			quad[a0][b0].v[2] = interior[a1][b1];
-			quad[a0][b0].v[3] = interior[a0][b1];
+			quads[a0][b0].v[0] = interior[a0*slices+b0];
+			quads[a0][b0].v[1] = interior[a1*slices+b0];
+			quads[a0][b0].v[2] = interior[a1*slices+b1];
+			quads[a0][b0].v[3] = interior[a0*slices+b1];
 		}
 	}
 	
-	if( flag_ & math::geo::PER_FACE_NORMAL )
+	//if( flag_ & math::geo::PER_FACE_NORMAL )
+	/*
 	{
 		for( int a0 = 0; a0 < slices; ++a0 )
 		{
@@ -79,7 +82,7 @@ math::geo::sphere(int slices, int stacks)
 		}
 
 	}
-	
+	*/
 	
 }
 

@@ -16,6 +16,8 @@
 #ifndef vec3_H
 #define vec3_H
 
+#include <PxPhysicsAPI.h>
+
 #include <math/math.h>
 
 namespace math
@@ -54,7 +56,8 @@ namespace math
 			{	x=y=z=0.0f;	}
 			void LoadOne(void)
 			{	x=y=z=1.0f;	}
-
+			bool		is_finite() const;
+			
 			//vector algebra
 			vec3 cross(const vec3 & rhs) const
 			{	return vec3(y*rhs.z - z*rhs.y, z*rhs.x - x*rhs.z, x*rhs.y - y*rhs.x);	}
@@ -155,7 +158,10 @@ namespace math
 			//cast to pointer to a (float *) for glVertex3fv etc
 			operator float* () const {return (float*) this;}
 			operator const float* () const {return (const float*) this;}
-
+			
+			operator physx::PxVec3() const { return physx::PxVec3(x,y,z); }
+			vec3&		operator=(physx::PxVec3 const & rhs) { x=rhs.x; y=rhs.y; z=rhs.z; return *this; }
+			
 			//member variables
 			float x;
 			float y;
