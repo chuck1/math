@@ -47,20 +47,16 @@ namespace math
 			quat(vec3 const &, vec3 const &);
 			quat(mat33 const & m);
 
-			bool isFinite() const;
-
+			bool	isFinite() const;
 			/**
 			  \brief returns true if finite and magnitude is close to unit
 			  */
-
-			bool isUnit() const;
-
-
+			bool	isUnit() const;
 			/**
 			  \brief returns true if finite and magnitude is reasonably close to unit to allow for some accumulation of error vs isValid
 			  */
 
-			bool isSane() const;
+			bool	isSane() const;
 
 			/**
 			  \brief converts this quaternion to angle-axis representation
@@ -79,13 +75,13 @@ namespace math
 			vec3 getBasisVector0()	const;
 			vec3 getBasisVector1()	const;
 			vec3 getBasisVector2() const;
-			const vec3 rotate(const vec3& v) const;
-			const vec3 rotateInv(const vec3& v) const;
-			quat&	operator=(const quat& p);
-			quat& operator*= (const quat& q);
-			quat& operator+= (const quat& q);
-			quat& operator-= (const quat& q);
-			quat& operator*= (const float s);
+			const vec3	rotate(const vec3& v) const;
+			const vec3	rotateInv(const vec3& v) const;
+			quat&		operator=(const quat& p);
+			quat&		operator*= (const quat& q);
+			quat&		operator+= (const quat& q);
+			quat&		operator-= (const quat& q);
+			quat&		operator*= (const float s);
 			quat operator*(const quat& q) const;
 			quat operator+(const quat& q) const;
 			quat operator-() const;
