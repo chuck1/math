@@ -38,7 +38,7 @@ namespace math
 				{
 					PER_FACE_NORMAL
 				};
-	
+
 				vertex*		vertices_;
 				tri*		tris_;
 				quad*		quads_;

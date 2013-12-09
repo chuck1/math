@@ -22,7 +22,6 @@ math::geo::sphere::sphere(float r, int slices, int stacks)
 	quads_ = new math::geo::quad[1000];
 
 
-
 	printf("arrays allocated\n");
 	
 	
@@ -43,8 +42,6 @@ math::geo::sphere::sphere(float r, int slices, int stacks)
 	float theta;
 	float phi;
 	
-	
-	
 	for( int a = 0; a < slices; ++a )
 	{
 		theta = a * 2.0f * M_PI / (float)slices;
@@ -61,7 +58,6 @@ math::geo::sphere::sphere(float r, int slices, int stacks)
 					r * cos(theta) * cos(phi),
 					r * sin(phi),
 					r * sin(theta) * cos(phi));
-			
 			
 			
 			//printf("% 5f % 5f % 5f\n",v.x,v.y,v.z);

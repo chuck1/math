@@ -79,7 +79,7 @@ libmath_a_AR = $(AR) $(ARFLAGS)
 libmath_a_LIBADD =
 am_libmath_a_OBJECTS = vec2.$(OBJEXT) vec3.$(OBJEXT) vec4.$(OBJEXT) \
 	mat44.$(OBJEXT) plane.$(OBJEXT) color.$(OBJEXT) quat.$(OBJEXT) \
-	polyhedron.$(OBJEXT) vclip.$(OBJEXT)
+	transform.$(OBJEXT) polyhedron.$(OBJEXT) vclip.$(OBJEXT)
 libmath_a_OBJECTS = $(am_libmath_a_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -112,7 +112,7 @@ CFLAGS = -g -O2
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -std=c++0x
+CXXFLAGS = -std=c++0x -D_DEBUG -I~/Programming/C++/external/PhysX/Include
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -191,18 +191,22 @@ top_srcdir = ..
 lib_LIBRARIES = libmath.a
 libmath_a_SOURCES = \
 		math/math.h \
-		math/vec2.h math/vec2.cpp \
-		math/vec3.h math/vec3.cpp \
-		math/vec4.h math/vec4.cpp \
-		math/mat44.h math/mat44.cpp \
-		math/plane.h math/plane.cpp \
-		math/color.h math/color.cpp \
-		math/quat.h math/quat.cpp \
-		math/geo/polyhedron.h math/geo/polyhedron.cpp \
+		math/vec2.h		math/vec2.cpp \
+		math/vec3.h		math/vec3.cpp \
+		math/vec4.h		math/vec4.cpp \
+		math/mat44.h		math/mat44.cpp \
+		math/plane.h		math/plane.cpp \
+		math/color.h		math/color.cpp \
+		math/quat.h		math/quat.cpp \
+		math/transform.h	math/transform.cpp\
+		math/geo/polyhedron.h	math/geo/polyhedron.cpp \
 		math/vclip/vclip.cpp
 
-nobase_include_HEADERS = math/math.h math/vec2.h math/vec3.h math/vec4.h math/mat44.h math/plane.h math/color.h math/quat.h \
-		math/geo/polyhedron.h
+nobase_include_HEADERS = \
+		math/geo/polyhedron.h \
+		math/vclip/vclip.cpp \
+		math/transform.h math/transform.cpp \
+		math/geo/polyhedron.h math/geo/polyhedron.cpp
 
 all: all-am
 
@@ -284,6 +288,7 @@ include ./$(DEPDIR)/mat44.Po
 include ./$(DEPDIR)/plane.Po
 include ./$(DEPDIR)/polyhedron.Po
 include ./$(DEPDIR)/quat.Po
+include ./$(DEPDIR)/transform.Po
 include ./$(DEPDIR)/vclip.Po
 include ./$(DEPDIR)/vec2.Po
 include ./$(DEPDIR)/vec3.Po
@@ -400,6 +405,20 @@ quat.obj: math/quat.cpp
 #	source='math/quat.cpp' object='quat.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o quat.obj `if test -f 'math/quat.cpp'; then $(CYGPATH_W) 'math/quat.cpp'; else $(CYGPATH_W) '$(srcdir)/math/quat.cpp'; fi`
+
+transform.o: math/transform.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT transform.o -MD -MP -MF $(DEPDIR)/transform.Tpo -c -o transform.o `test -f 'math/transform.cpp' || echo '$(srcdir)/'`math/transform.cpp
+	$(am__mv) $(DEPDIR)/transform.Tpo $(DEPDIR)/transform.Po
+#	source='math/transform.cpp' object='transform.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o transform.o `test -f 'math/transform.cpp' || echo '$(srcdir)/'`math/transform.cpp
+
+transform.obj: math/transform.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT transform.obj -MD -MP -MF $(DEPDIR)/transform.Tpo -c -o transform.obj `if test -f 'math/transform.cpp'; then $(CYGPATH_W) 'math/transform.cpp'; else $(CYGPATH_W) '$(srcdir)/math/transform.cpp'; fi`
+	$(am__mv) $(DEPDIR)/transform.Tpo $(DEPDIR)/transform.Po
+#	source='math/transform.cpp' object='transform.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o transform.obj `if test -f 'math/transform.cpp'; then $(CYGPATH_W) 'math/transform.cpp'; else $(CYGPATH_W) '$(srcdir)/math/transform.cpp'; fi`
 
 polyhedron.o: math/geo/polyhedron.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT polyhedron.o -MD -MP -MF $(DEPDIR)/polyhedron.Tpo -c -o polyhedron.o `test -f 'math/geo/polyhedron.cpp' || echo '$(srcdir)/'`math/geo/polyhedron.cpp
@@ -655,6 +674,15 @@ uninstall-am: uninstall-libLIBRARIES uninstall-nobase_includeHEADERS
 	uninstall-am uninstall-libLIBRARIES \
 	uninstall-nobase_includeHEADERS
 
+		math/vec2.h \
+		math/vec3.h \
+		math/vec4.h \
+		math/mat44.h \
+		math/plane.h \
+		math/color.h \
+		math/quat.h \
+		math/transform.h \
+		math/geo/polyhedron.h
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -70,11 +70,11 @@ namespace math
 			quat getNormalized() const;
 			float magnitude() const;
 			float normalize();
-			quat getConjugate() const;
-			vec3 getImaginaryPart() const;
-			vec3 getBasisVector0()	const;
-			vec3 getBasisVector1()	const;
-			vec3 getBasisVector2() const;
+			quat		getConjugate() const;
+			vec3		getImaginaryPart() const;
+			vec3		getBasisVector0() const;
+			vec3		getBasisVector1() const;
+			vec3		getBasisVector2() const;
 			const vec3	rotate(const vec3& v) const;
 			const vec3	rotateInv(const vec3& v) const;
 			quat&		operator=(const quat& p);
@@ -82,12 +82,16 @@ namespace math
 			quat&		operator+= (const quat& q);
 			quat&		operator-= (const quat& q);
 			quat&		operator*= (const float s);
-			quat operator*(const quat& q) const;
-			quat operator+(const quat& q) const;
-			quat operator-() const;
-			quat operator-(const quat& q) const;
-			quat operator*(float r) const;
-			static quat createIdentity();
+			quat		operator*(const quat& q) const;
+			quat		operator+(const quat& q) const;
+			quat		operator-() const;
+			quat		operator-(const quat& q) const;
+			quat		operator*(float r) const;
+			static quat	createIdentity();
+			
+			operator physx::PxQuat() const { return physx::PxQuat(x,y,z,w); }
+			quat&		operator=(physx::PxQuat const & rhs) { x=rhs.x; y=rhs.y; z=rhs.z; w=rhs.w; return *this; }
+			
 			float x,y,z,w;
 	};
 }
