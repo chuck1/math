@@ -192,15 +192,20 @@ void		math::vec3::operator*=(const float rhs)
 {
 	x*=rhs;	y*=rhs;	z*=rhs;
 }
-	void		math::vec3::operator/=(const float rhs)
+void		math::vec3::operator/=(const float rhs)
 {	if(rhs==0.0f)
 	return;
 	else
 	{	x/=rhs; y/=rhs; z/=rhs;	}
 }
-
 void	math::vec3::print()
 {
 	printf("%f %f %f\n",x,y,z);
+}
+bool	math::vec3::is_finite() const
+{
+	if(isinf(x)) return false;
+	
+	return true;
 }
 
