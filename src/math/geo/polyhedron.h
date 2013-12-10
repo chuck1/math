@@ -10,8 +10,8 @@ namespace math
 		class vertex
 		{
 			public:
-			math::vec3	xyz;
-			math::vec3	n;
+				vec3	xyz;
+				vec3	n;
 		};
 		class polygon
 		{
@@ -20,16 +20,31 @@ namespace math
 		class tri
 		{
 			public:
-				vertex	v[3];	
+				void	reset_normals();
+
+				vertex	v_[3];
 		};
 		class quad
 		{
 			public:
-				vertex	v[4];		
+				void	reset_normals();
+
+				vertex	v_[4];
 		};
 		class polyhedron
 		{
+			public:
+				enum
+				{
+					PER_FACE_NORMAL
+				};
 
+				vertex*		vertices_;
+				tri*		tris_;
+				quad*		quads_;
+				int		nt_;
+				int 		nq_;
+				unsigned int	flag_;
 		};
 		class polyhedron_convex: public polyhedron
 		{

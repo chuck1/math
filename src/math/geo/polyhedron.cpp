@@ -1,28 +1,46 @@
+#include <stdio.h>
 
 #include <math/geo/polyhedron.h>
 
 math::geo::sphere::sphere(float r, int slices, int stacks)
 {
-	math::geo::vertex* v = new math::geo::vertex[(stacks-1)*slices + 2];
+	int nv_ = (stacks-1)*slices + 2;
+	nt_ = 2 * slices;
+	nq_ = slices * (stacks-2);
+	
+	printf(	"tris:  %i\n"
+		"quads: %i\n",nt_,nq_);
+	
+	/*
+	vertices_ = new math::geo::vertex[nv_];
+	tris_ = new math::geo::tri[nt_];
+	quads_ = new math::geo::quad[nq_];
+	*/
+	
+	vertices_ = new math::geo::vertex[1000];
+	tris_ = new math::geo::tri[1000];
+	quads_ = new math::geo::quad[1000];
 
-	math::geo::tri north[slices];
-	math::geo::tri south[slices];
+
+	printf("arrays allocated\n");
 	
-	math::geo::quad quads[slices][stacks-2];
 	
+	
+	math::geo::tri* north = tris_;
+	math::geo::tri* south = tris_ + slices;
+
 	math::geo::vertex poles[2];
 	
-	poles[0].xyz = vec3(0,-0.5,0);
-	poles[1].xyz = vec3(0, 0.5,0);
+	poles[0].xyz = vec3(0,-r,0);
+	poles[1].xyz = vec3(0, r,0);
 	
+	poles[0].n = vec3(0,-1,0);
+	poles[1].n = vec3(0, 1,0);
 	
-	
-	math::geo::vertex* interior = v + 2;
+	math::geo::vertex* interior = vertices_ + 2;
 	
 	float theta;
 	float phi;
-	
-	//float 
 	
 	for( int a = 0; a < slices; ++a )
 	{
@@ -31,8 +49,20 @@ math::geo::sphere::sphere(float r, int slices, int stacks)
 		for( int b = 0; b < (stacks-1); ++b )
 		{
 			phi = -M_PI / 2.0f + (b+1) * M_PI / (float)stacks;
+
+			//printf("%f %f %f %f\n",theta/M_PI,phi/M_PI,cos(theta),cos(phi));
 			
-			vec3 v( cos(theta)*cos(phi), sin(phi), sin(theta)*cos(phi) );
+			
+			
+			vec3 v(
+					r * cos(theta) * cos(phi),
+					r * sin(phi),
+					r * sin(theta) * cos(phi));
+			
+			
+			//printf("% 5f % 5f % 5f\n",v.x,v.y,v.z);
+			//v.print();
+			
 			
 			interior[a*slices+b].xyz = v;
 			interior[a*slices+b].n = v.GetNormalized();
@@ -41,48 +71,46 @@ math::geo::sphere::sphere(float r, int slices, int stacks)
 	
 	for( int a0 = 0; a0 < slices; ++a0 )
 	{
-		int a1 = ((a0+1) == slices) ? 0 : (a0+1);
+		int a1 = (a0+1) % slices;
 		
-		
-		north[a0].v[0] = interior[a0*slices+stacks-1];
-		north[a0].v[1] = interior[a1*slices+stacks-1];
-		north[a0].v[2] = poles[0];
+		north[a0].v_[2] = interior[a0*slices + stacks-2];
+		north[a0].v_[1] = interior[a1*slices + stacks-2];
+		north[a0].v_[0] = poles[1];
 
-		south[a0].v[0] = interior[a1*slices+0];
-		south[a0].v[1] = interior[a0*slices+0];
-		south[a0].v[2] = poles[0];
+		south[a0].v_[2] = interior[a1*slices + 0];
+		south[a0].v_[1] = interior[a0*slices + 0];
+		south[a0].v_[0] = poles[0];
 
-		for( int b0 = 0; b0 < (stacks-1); ++b0 )
+		for( int b0 = 0; b0 < (stacks-2); ++b0 )
 		{
 			int b1 = b0 + 1;
-
-			quads[a0][b0].v[0] = interior[a0*slices+b0];
-			quads[a0][b0].v[1] = interior[a1*slices+b0];
-			quads[a0][b0].v[2] = interior[a1*slices+b1];
-			quads[a0][b0].v[3] = interior[a0*slices+b1];
+			
+			printf("a0 % 2i a1 % 2i b0 % 2i b1 % 2i\n",a0,a1,b0,b1);
+			
+			quads_[a0*slices + b0].v_[3] = interior[a0*slices + b0];
+			quads_[a0*slices + b0].v_[2] = interior[a1*slices + b0];
+			quads_[a0*slices + b0].v_[1] = interior[a1*slices + b1];
+			quads_[a0*slices + b0].v_[0] = interior[a0*slices + b1];
 		}
 	}
-	
-	//if( flag_ & math::geo::PER_FACE_NORMAL )
-	/*
+
+	if( flag_ & PER_FACE_NORMAL )
 	{
 		for( int a0 = 0; a0 < slices; ++a0 )
 		{
 			int a1 = ((a0+1) == slices) ? 0 : (a0+1);
-			
+
 			north[a0].reset_normals();
 			south[a0].reset_normals();
-			
+
 			for( int b0 = 0; b0 < (stacks-1); ++b0 )
 			{
-				b1 = b0 + 1;
+				int b1 = b0 + 1;
 
-				quad[a0][b0].reset_normals();
+				quads_[a0*slices + b0].reset_normals();
 			}
 		}
 
 	}
-	*/
-	
 }
 

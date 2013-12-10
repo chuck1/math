@@ -47,20 +47,16 @@ namespace math
 			quat(vec3 const &, vec3 const &);
 			quat(mat33 const & m);
 
-			bool isFinite() const;
-
+			bool	isFinite() const;
 			/**
 			  \brief returns true if finite and magnitude is close to unit
 			  */
-
-			bool isUnit() const;
-
-
+			bool	isUnit() const;
 			/**
 			  \brief returns true if finite and magnitude is reasonably close to unit to allow for some accumulation of error vs isValid
 			  */
 
-			bool isSane() const;
+			bool	isSane() const;
 
 			/**
 			  \brief converts this quaternion to angle-axis representation

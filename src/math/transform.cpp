@@ -15,7 +15,7 @@ math::transform::transform(const quat& orientation):
 {
 	assert(orientation.isSane());
 }
-math::transform::transform(const vec3& p0, const quat& q0):
+math::transform::transform(const math::vec3& p0, const math::quat& q0):
 	q(q0), p(p0) 
 {
 	assert(q0.isSane());
