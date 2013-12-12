@@ -40,24 +40,24 @@ math::quat::quat(mat33 const & m)
 {
 
 }
-bool math::quat::isFinite() const
+bool		math::quat::isFinite() const
 {
 	return std::isfinite(x) 
 		&& std::isfinite(y) 
 		&& std::isfinite(z)
 		&& std::isfinite(w);
 }
-bool math::quat::isUnit() const
+bool		math::quat::isUnit() const
 {
 	const float unitTolerance = 1e-4;
 	return isFinite() && (std::abs(magnitude()-1) < unitTolerance);
 }
-bool math::quat::isSane() const
+bool		math::quat::isSane() const
 {
 	const float unitTolerance = float(1e-2);
 	return isFinite() && std::abs(magnitude()-1)<unitTolerance;
 }
-void math::quat::toRadiansAndUnitAxis(float& angle, vec3& axis) const
+void		math::quat::toRadiansAndUnitAxis(float& angle, vec3& axis) const
 {
 	const float Epsilon = (float(1.0e-8f));
 	const float s2 = x*x+y*y+z*z;
@@ -74,32 +74,32 @@ void math::quat::toRadiansAndUnitAxis(float& angle, vec3& axis) const
 	}
 
 }
-float math::quat::getAngle() const
+float		math::quat::getAngle() const
 {
 	return acos(w) * float(2);
 }
-float math::quat::getAngle(const math::quat& q) const
+float		math::quat::getAngle(const math::quat& q) const
 {
 	return acos(dot(q)) * float(2);
 }
-float math::quat::magnitudeSquared() const
+float		math::quat::magnitudeSquared() const
 {
 	return x*x + y*y + z*z + w*w;
 }
-float math::quat::dot(const math::quat& v) const
+float		math::quat::dot(const math::quat& v) const
 {
 	return x * v.x + y * v.y + z * v.z  + w * v.w;
 }
-math::quat math::quat::getNormalized() const
+math::quat	math::quat::getNormalized() const
 {
 	const float s = 1.0f/magnitude();
 	return math::quat(x*s, y*s, z*s, w*s);
 }
-float math::quat::magnitude() const
+float		math::quat::magnitude() const
 {
 	return sqrt(magnitudeSquared());
 }
-float math::quat::normalize()											// convert this math::quat to a unit math::quaternion
+float		math::quat::normalize()
 {
 	const float mag = magnitude();
 	if (mag)
@@ -149,7 +149,6 @@ math::vec3 math::quat::getBasisVector2() const
 			(w * w2) - 1.0f + z*z2);
 }
 const math::vec3 math::quat::rotate(const math::vec3& v) const
-//	const math::vec3 rotate(const math::vec3& v) const
 {
 	const float vx = 2.0f*v.x;
 	const float vy = 2.0f*v.y;
@@ -165,10 +164,9 @@ const math::vec3 math::quat::rotate(const math::vec3& v) const
 	/*
 	   const math::vec3 qv(x,y,z);
 	   return (v*(w*w-0.5f) + (qv.cross(v))*w + qv*(qv.dot(v)))*2;
-	   */
+	 */
 }
 const math::vec3 math::quat::rotateInv(const math::vec3& v) const
-//	const math::vec3 rotateInv(const math::vec3& v) const
 {
 	const float vx = 2.0f*v.x;
 	const float vy = 2.0f*v.y;
@@ -184,12 +182,10 @@ const math::vec3 math::quat::rotateInv(const math::vec3& v) const
 	//		const math::vec3 qv(x,y,z);
 	//		return (v*(w*w-0.5f) - (qv.cross(v))*w + qv*(qv.dot(v)))*2;
 }
-
-/**
-  \brief Assignment operator
-  */
-math::quat&	math::quat::operator=(const math::quat& p)			{ x = p.x; y = p.y; z = p.z; w = p.w;	return *this;		}
-
+math::quat&	math::quat::operator=(const math::quat& p)
+{
+	x = p.x; y = p.y; z = p.z; w = p.w;	return *this;		
+}
 math::quat& math::quat::operator*= (const math::quat& q)
 {
 	const float tx = w*q.x + q.w*x + y*q.z - q.y*z;
@@ -203,7 +199,6 @@ math::quat& math::quat::operator*= (const math::quat& q)
 
 	return *this;
 }
-
 math::quat& math::quat::operator+= (const math::quat& q)
 {
 	x+=q.x;
@@ -212,7 +207,6 @@ math::quat& math::quat::operator+= (const math::quat& q)
 	w+=q.w;
 	return *this;
 }
-
 math::quat& math::quat::operator-= (const math::quat& q)
 {
 	x-=q.x;
@@ -221,7 +215,6 @@ math::quat& math::quat::operator-= (const math::quat& q)
 	w-=q.w;
 	return *this;
 }
-
 math::quat& math::quat::operator*= (const float s)
 {
 	x*=s;
@@ -230,8 +223,6 @@ math::quat& math::quat::operator*= (const float s)
 	w*=s;
 	return *this;
 }
-
-/** math::quaternion multiplication */
 math::quat math::quat::operator*(const math::quat& q) const
 {
 	return math::quat(w*q.x + q.w*x + y*q.z - q.y*z,
@@ -239,31 +230,22 @@ math::quat math::quat::operator*(const math::quat& q) const
 			w*q.z + q.w*z + x*q.y - q.x*y,
 			w*q.w - x*q.x - y*q.y - z*q.z);
 }
-
-/** math::quaternion addition */
 math::quat math::quat::operator+(const math::quat& q) const
 {
 	return math::quat(x+q.x,y+q.y,z+q.z,w+q.w);
 }
-
-/** math::quaternion subtraction */
 math::quat math::quat::operator-() const
 {
 	return math::quat(-x,-y,-z,-w);
 }
-
-
 math::quat math::quat::operator-(const math::quat& q) const
 {
 	return math::quat(x-q.x,y-q.y,z-q.z,w-q.w);
 }
-
-
 math::quat math::quat::operator*(float r) const
 {
 	return math::quat(x*r,y*r,z*r,w*r);
 }
-
 math::quat math::quat::createIdentity()
 {
 	return math::quat(0,0,0,1);

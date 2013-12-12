@@ -17,17 +17,15 @@ libmath_a_SOURCES = \
 nobase_include_HEADERS = \
 		math/geo/polyhedron.h \
 		math/vclip/vclip.cpp \
-		math/transform.h math/transform.cpp \
-		math/geo/polyhedron.h math/geo/polyhedron.cpp
+		math/transform.h \
+		math/geo/polyhedron.h \
 		math/vec2.h \
 		math/vec3.h \
 		math/vec4.h \
 		math/mat44.h \
 		math/plane.h \
 		math/color.h \
-		math/quat.h \
-		math/transform.h \
-		math/geo/polyhedron.h
+		math/quat.h
 
 
 CXXFLAGS = -std=c++0x -D_DEBUG -I~/Programming/C++/external/PhysX/Include
