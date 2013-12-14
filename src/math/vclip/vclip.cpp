@@ -4,93 +4,7 @@
 #include <math/vec2.h>
 #include <math/vec3.h>
 
-class feature;
-class vertex;
-class face;
-
-class plane
-{
-	public:
-		plane(feature* feat0,feature* feat1)
-		{
-
-		}
-		float	dist(math::vec3 v)
-		{
-			
-		}
-		math::vec3 n;
-};
-class polyhedron
-{
-	public:
-		std::set<face*>		f;
-};
-class feature
-{
-	public:
-};
-class face: public feature
-{
-	public:
-		std::set<feature*>	e;
-		plane			p;
-};
-class edge: public feature
-{
-	public:
-		math::vec3	at(float l)
-		{
-
-		}
-		vertex*		other(vertex*);
-		
-
-		math::vec3 u;
-		vertex* t;
-		vertex* h;
-		face* f[2];
-};
-class vertex: public feature
-{
-	public:
-		std::set<feature*>	e;
-		math::vec3		v;
-};
-
-class vclip
-{
-	public:
-		enum rc
-		{
-			SIMPLY_EXCLUDED,
-			NOT_EXCLUDED,
-			EXCLUDED,
-			CONTINUE,
-			PENETRATION,
-			NEXT,
-			DONE
-		};
-
-
-
-		rc		clip(edge* e, feature* feat0, std::set<feature*> feats);
-		feature*	post(face* f, edge* e, float l);
-		rc 		handleLocalMin(int a, face* f, vertex* v);
-		rc		vvstate();
-		rc		vvstate(int,int);
-		rc		vestate(int,int);
-		rc		vfstate(int,int);
-		rc		eestate();
-		rc		eestate(int,int);
-
-
-		polyhedron*	poly_[2];
-
-		feature*	x_[2];
-		
-		feature*	N_[2];
-};
+#include <math/vclip/vclip.h>
 
 
 vclip::rc vclip::clip(edge* e, feature* feat0, std::set<feature*> feats)
@@ -101,7 +15,7 @@ vclip::rc vclip::clip(edge* e, feature* feat0, std::set<feature*> feats)
 	float l = 0;
 
 	// make global
-	feature* N_[2] = {0,0};
+	//feature* N_[2] = {0,0};
 
 	feature* N = 0;
 
@@ -147,6 +61,10 @@ vclip::rc vclip::clip(edge* e, feature* feat0, std::set<feature*> feats)
 		}
 		return vclip::rc::NOT_EXCLUDED;
 	}
+
+	// not correct!!!!!
+	return vclip::rc::NOT_EXCLUDED;
+
 }
 int derivative_sign(face* f, edge* e, float l)
 {
@@ -155,8 +73,10 @@ int derivative_sign(face* f, edge* e, float l)
 
 	if( d > 0 )
 		return s;
-	if( d < 0 )
+	else//if( d < 0 )
 		return -s;
+
+	
 }
 int derivative_sign(vertex* v, edge* e, float l)
 {
@@ -172,6 +92,8 @@ feature* vclip::post(face* f, edge* e, float l)
 	else if(1) 
 	{
 	}
+	
+	return NULL;
 }
 vclip::rc vclip::handleLocalMin(int a, face* f, vertex* v)
 {
@@ -211,14 +133,14 @@ vclip::rc vclip::vvstate(int a,int b)
 	vertex* v0 = (vertex*)x_[a];
 	vertex* v1 = (vertex*)x_[b];
 
-	plane* p0 = NULL;
+	//plane* p0 = NULL;
 	edge* e0 = NULL;
 	edge* e0__ = NULL;
 	
 	// search for plane VP(v0,e0) that v1 violates
 	for( auto it = v0->e.begin(); it != v0->e.end(); ++it )
 	{
-		edge* e0 = (edge*)(*it);
+		e0 = (edge*)(*it);
 		
 		plane p(e0,v0);
 		
@@ -245,7 +167,7 @@ vclip::rc vclip::vestate(int a,int b)
 
 	face* f = NULL;
 	face* f0 = NULL;
-	plane* p0 = NULL;
+	//plane* p0 = NULL;
 
 	// search for plane VP(e,f) that v violates
 	for( int i = 0; i < 2; ++i )
@@ -349,7 +271,7 @@ vclip::rc vclip::eestate()
 }
 vclip::rc vclip::eestate(int a,int b)
 {
-	edge* e0 = (edge*)x_[a];
+	//edge* e0 = (edge*)x_[a];
 	edge* e1 = (edge*)x_[b];
 
 	int rc;// = clip(e1, e0, e0->u);

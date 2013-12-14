@@ -4,19 +4,24 @@
 #include <math/transform.h>
 
 math::transform::transform():
-	q(0, 0, 0, 1), p(0, 0, 0)
+	p(0, 0, 0),
+	q(1, 0, 0, 0)
 {
 }
-math::transform::transform(const vec3& position): q(0, 0, 0, 1), p(position)
+math::transform::transform(const vec3& position):
+	p(position),
+	q(0, 0, 0, 1)
 {
 }
 math::transform::transform(const quat& orientation):
-	q(orientation), p(0, 0, 0)
+	p(0, 0, 0),
+	q(orientation)
 {
 	assert(orientation.isSane());
 }
 math::transform::transform(const math::vec3& p0, const math::quat& q0):
-	q(q0), p(p0) 
+	p(p0),
+	q(q0)
 {
 	assert(q0.isSane());
 }
@@ -107,7 +112,7 @@ math::transform&	math::transform::operator=(physx::PxTransform const & rhs)
 {
 	p = rhs.p;
 	q = rhs.q;
-	
+
 	return *this;
 }
 

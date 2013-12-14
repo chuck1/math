@@ -4,7 +4,6 @@
 
 math::geo::sphere::sphere(float r, int slices, int stacks)
 {
-	int nv_ = (stacks-1)*slices + 2;
 	nt_ = 2 * slices;
 	nq_ = slices * (stacks-2);
 	
@@ -98,15 +97,11 @@ math::geo::sphere::sphere(float r, int slices, int stacks)
 	{
 		for( int a0 = 0; a0 < slices; ++a0 )
 		{
-			int a1 = ((a0+1) == slices) ? 0 : (a0+1);
-
 			north[a0].reset_normals();
 			south[a0].reset_normals();
 
 			for( int b0 = 0; b0 < (stacks-1); ++b0 )
 			{
-				int b1 = b0 + 1;
-
 				quads_[a0*slices + b0].reset_normals();
 			}
 		}
