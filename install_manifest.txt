@@ -1,3 +1,4 @@
+/home/charles/usr/lib/libmath.a
 /home/charles/usr/include/math/config.h
 /home/charles/usr/include/math/math.h
 /home/charles/usr/include/math/free.h

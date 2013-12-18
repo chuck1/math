@@ -1,4 +1,5 @@
 FILE(REMOVE_RECURSE
+  "CMakeFiles/math.dir/src/math/free.cpp.o"
   "CMakeFiles/math.dir/src/math/vec2.cpp.o"
   "CMakeFiles/math.dir/src/math/vec3.cpp.o"
   "CMakeFiles/math.dir/src/math/vec4.cpp.o"

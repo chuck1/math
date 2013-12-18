@@ -46,9 +46,32 @@ include CMakeFiles/math.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/math.dir/flags.make
 
+CMakeFiles/math.dir/src/math/free.cpp.o: CMakeFiles/math.dir/flags.make
+CMakeFiles/math.dir/src/math/free.cpp.o: src/math/free.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/free.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/free.cpp.o -c /home/charles/Programming/C++/math/src/math/free.cpp
+
+CMakeFiles/math.dir/src/math/free.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/math.dir/src/math/free.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/charles/Programming/C++/math/src/math/free.cpp > CMakeFiles/math.dir/src/math/free.cpp.i
+
+CMakeFiles/math.dir/src/math/free.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/math.dir/src/math/free.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/charles/Programming/C++/math/src/math/free.cpp -o CMakeFiles/math.dir/src/math/free.cpp.s
+
+CMakeFiles/math.dir/src/math/free.cpp.o.requires:
+.PHONY : CMakeFiles/math.dir/src/math/free.cpp.o.requires
+
+CMakeFiles/math.dir/src/math/free.cpp.o.provides: CMakeFiles/math.dir/src/math/free.cpp.o.requires
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/free.cpp.o.provides.build
+.PHONY : CMakeFiles/math.dir/src/math/free.cpp.o.provides
+
+CMakeFiles/math.dir/src/math/free.cpp.o.provides.build: CMakeFiles/math.dir/src/math/free.cpp.o
+
 CMakeFiles/math.dir/src/math/vec2.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/vec2.cpp.o: src/math/vec2.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/vec2.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/vec2.cpp.o -c /home/charles/Programming/C++/math/src/math/vec2.cpp
 
@@ -71,7 +94,7 @@ CMakeFiles/math.dir/src/math/vec2.cpp.o.provides.build: CMakeFiles/math.dir/src/
 
 CMakeFiles/math.dir/src/math/vec3.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/vec3.cpp.o: src/math/vec3.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/vec3.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/vec3.cpp.o -c /home/charles/Programming/C++/math/src/math/vec3.cpp
 
@@ -94,7 +117,7 @@ CMakeFiles/math.dir/src/math/vec3.cpp.o.provides.build: CMakeFiles/math.dir/src/
 
 CMakeFiles/math.dir/src/math/vec4.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/vec4.cpp.o: src/math/vec4.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/vec4.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/vec4.cpp.o -c /home/charles/Programming/C++/math/src/math/vec4.cpp
 
@@ -117,7 +140,7 @@ CMakeFiles/math.dir/src/math/vec4.cpp.o.provides.build: CMakeFiles/math.dir/src/
 
 CMakeFiles/math.dir/src/math/mat44.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/mat44.cpp.o: src/math/mat44.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/mat44.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/mat44.cpp.o -c /home/charles/Programming/C++/math/src/math/mat44.cpp
 
@@ -140,7 +163,7 @@ CMakeFiles/math.dir/src/math/mat44.cpp.o.provides.build: CMakeFiles/math.dir/src
 
 CMakeFiles/math.dir/src/math/plane.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/plane.cpp.o: src/math/plane.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/plane.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/plane.cpp.o -c /home/charles/Programming/C++/math/src/math/plane.cpp
 
@@ -163,7 +186,7 @@ CMakeFiles/math.dir/src/math/plane.cpp.o.provides.build: CMakeFiles/math.dir/src
 
 CMakeFiles/math.dir/src/math/color.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/color.cpp.o: src/math/color.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/color.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/color.cpp.o -c /home/charles/Programming/C++/math/src/math/color.cpp
 
@@ -186,7 +209,7 @@ CMakeFiles/math.dir/src/math/color.cpp.o.provides.build: CMakeFiles/math.dir/src
 
 CMakeFiles/math.dir/src/math/quat.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/quat.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/quat.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/quat.cpp.o -c /home/charles/Programming/C++/math/src/math/quat.cpp
 
@@ -209,7 +232,7 @@ CMakeFiles/math.dir/src/math/quat.cpp.o.provides.build: CMakeFiles/math.dir/src/
 
 CMakeFiles/math.dir/src/math/transform.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/transform.cpp.o: src/math/transform.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/transform.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/transform.cpp.o -c /home/charles/Programming/C++/math/src/math/transform.cpp
 
@@ -232,7 +255,7 @@ CMakeFiles/math.dir/src/math/transform.cpp.o.provides.build: CMakeFiles/math.dir
 
 CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o: src/math/geo/polyhedron.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o -c /home/charles/Programming/C++/math/src/math/geo/polyhedron.cpp
 
@@ -255,7 +278,7 @@ CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o.provides.build: CMakeFiles/mat
 
 CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o: src/math/vclip/vclip.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_10)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o -c /home/charles/Programming/C++/math/src/math/vclip/vclip.cpp
 
@@ -278,6 +301,7 @@ CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o.provides.build: CMakeFiles/math.d
 
 # Object files for target math
 math_OBJECTS = \
+"CMakeFiles/math.dir/src/math/free.cpp.o" \
 "CMakeFiles/math.dir/src/math/vec2.cpp.o" \
 "CMakeFiles/math.dir/src/math/vec3.cpp.o" \
 "CMakeFiles/math.dir/src/math/vec4.cpp.o" \
@@ -292,6 +316,7 @@ math_OBJECTS = \
 # External object files for target math
 math_EXTERNAL_OBJECTS =
 
+libmath.a: CMakeFiles/math.dir/src/math/free.cpp.o
 libmath.a: CMakeFiles/math.dir/src/math/vec2.cpp.o
 libmath.a: CMakeFiles/math.dir/src/math/vec3.cpp.o
 libmath.a: CMakeFiles/math.dir/src/math/vec4.cpp.o
@@ -312,6 +337,7 @@ libmath.a: CMakeFiles/math.dir/link.txt
 CMakeFiles/math.dir/build: libmath.a
 .PHONY : CMakeFiles/math.dir/build
 
+CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/free.cpp.o.requires
 CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/vec2.cpp.o.requires
 CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/vec3.cpp.o.requires
 CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/vec4.cpp.o.requires

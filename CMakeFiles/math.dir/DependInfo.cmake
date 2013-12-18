@@ -5,6 +5,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/charles/Programming/C++/math/src/math/color.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/color.cpp.o"
+  "/home/charles/Programming/C++/math/src/math/free.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/free.cpp.o"
   "/home/charles/Programming/C++/math/src/math/geo/polyhedron.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o"
   "/home/charles/Programming/C++/math/src/math/mat44.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/mat44.cpp.o"
   "/home/charles/Programming/C++/math/src/math/plane.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/plane.cpp.o"

@@ -173,6 +173,30 @@ src/math/color.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/color.cpp.s
 .PHONY : src/math/color.cpp.s
 
+src/math/free.o: src/math/free.cpp.o
+.PHONY : src/math/free.o
+
+# target to build an object file
+src/math/free.cpp.o:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/free.cpp.o
+.PHONY : src/math/free.cpp.o
+
+src/math/free.i: src/math/free.cpp.i
+.PHONY : src/math/free.i
+
+# target to preprocess a source file
+src/math/free.cpp.i:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/free.cpp.i
+.PHONY : src/math/free.cpp.i
+
+src/math/free.s: src/math/free.cpp.s
+.PHONY : src/math/free.s
+
+# target to generate assembly for a file
+src/math/free.cpp.s:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/free.cpp.s
+.PHONY : src/math/free.cpp.s
+
 src/math/geo/polyhedron.o: src/math/geo/polyhedron.cpp.o
 .PHONY : src/math/geo/polyhedron.o
 
@@ -405,6 +429,9 @@ help:
 	@echo "... src/math/color.o"
 	@echo "... src/math/color.i"
 	@echo "... src/math/color.s"
+	@echo "... src/math/free.o"
+	@echo "... src/math/free.i"
+	@echo "... src/math/free.s"
 	@echo "... src/math/geo/polyhedron.o"
 	@echo "... src/math/geo/polyhedron.i"
 	@echo "... src/math/geo/polyhedron.s"
