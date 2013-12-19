@@ -112,6 +112,7 @@ namespace math
 			operator float* () const {return (float*) this;}
 			operator const float* () const {return (const float*) this;}
 
+			void	print();
 			//member variables
 			float r;
 			float g;
@@ -119,16 +120,16 @@ namespace math
 			float a;
 	};
 
-	const color white(1.0f, 1.0f, 1.0f, 1.0f);
-	const color black(0.0f, 0.0f, 0.0f, 0.0f);
+	const color white(	1.0f, 1.0f, 1.0f, 1.0f);
+	const color black(	0.0f, 0.0f, 0.0f, 0.0f);
 
-	const color red(1.0f, 0.0f, 0.0f, 1.0f);
-	const color green(0.0f, 1.0f, 0.0f, 1.0f);
-	const color blue(0.0f, 0.0f, 1.0f, 1.0f);
+	const color red(	1.0f, 0.0f, 0.0f, 1.0f);
+	const color green(	0.0f, 1.0f, 0.0f, 1.0f);
+	const color blue(	0.0f, 0.0f, 1.0f, 1.0f);
 
-	const color cyan(0.0f, 1.0f, 1.0f, 1.0f);
-	const color magenta(1.0f, 0.0f, 1.0f, 1.0f);
-	const color yellow(1.0f, 1.0f, 0.0f, 1.0f);
+	const color cyan(	0.0f, 1.0f, 1.0f, 1.0f);
+	const color magenta(	1.0f, 0.0f, 1.0f, 1.0f);
+	const color yellow(	1.0f, 1.0f, 0.0f, 1.0f);
 }
 
 #endif	//color_H

@@ -77,12 +77,13 @@ namespace math
 			vec4 GetRotatedZ(double angle) const;
 			void RotateAxis(double angle, const vec3 & axis);
 			vec4 GetRotatedAxis(double angle, const vec3 & axis) const;
-
+			void	print();
+			
 			vec4 lerp(const vec4 & v2, float factor) const
 			{	return (*this)*(1.0f-factor)+v2*factor;	}
 
 			vec4 QuadraticInterpolate(const vec4 & v2, const vec4 & v3, float factor) const
-			{	return (*this)*(1.0f-factor)*(1.0f-factor) + 2*v2*factor*(1.0f-factor) + v3*factor*factor;}
+			{	return (*this)*(1.0f-factor)*(1.0f-factor) + v2*2*factor*(1.0f-factor) + v3*factor*factor;}
 
 			//binary operators
 			vec4 operator+(const vec4 & rhs) const
@@ -98,7 +99,7 @@ namespace math
 			{	return rhs==0.0f	?	vec4(0.0f, 0.0f, 0.0f, 0.0f): vec4(x/rhs, y/rhs, z/rhs, w/rhs);	}
 
 			//multiply by a float, eg 3*v
-			friend vec4 operator*(float scaleFactor, const vec4 & rhs);
+			//friend vec4 operator*(float scaleFactor, const vec4 & rhs);
 
 			bool operator==(const vec4 & rhs) const;
 			bool operator!=(const vec4 & rhs) const

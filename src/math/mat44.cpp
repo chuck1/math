@@ -22,8 +22,10 @@
 
 #include <math/vec3.h>
 #include <math/vec4.h>
+#include <math/transform.h>
 #include <math/mat44.h>
 #include <math/quat.h>
+#include <math/plane.h>
 
 math::mat44::mat44(float e0, float e1, float e2, float e3,
 		float e4, float e5, float e6, float e7,
@@ -47,12 +49,10 @@ math::mat44::mat44(float e0, float e1, float e2, float e3,
 	entries[14]=e14;
 	entries[15]=e15;
 }
-
 math::mat44::mat44(const math::mat44 & rhs)
 {
 	memcpy(entries, rhs.entries, 16*sizeof(float));
 }
-
 math::mat44::mat44(const float * rhs)
 {
 	memcpy(entries, rhs, 16*sizeof(float));
@@ -97,21 +97,61 @@ math::mat44::mat44(const math::quat & q)
 	entries[14] = 0.0f;
 	entries[15] = 1.0f;
 }
+math::mat44::mat44(math::transform const & t)
+{
+	LoadIdentity();
+	
+	set_rotation(t.q);
+	SetTranslationPart(t.p);
+}
+void		math::mat44::set_rotation(math::quat const & q)
+{
+	const float x = q.x;
+	const float y = q.y;
+	const float z = q.z;
+	const float w = q.w;
+
+	const float x2 = x + x;
+	const float y2 = y + y;
+	const float z2 = z + z;
+
+	const float xx = x2*x;
+	const float yy = y2*y;
+	const float zz = z2*z;
+
+	const float xy = x2*y;
+	const float xz = x2*z;
+	const float xw = x2*w;
+
+	const float yz = y2*z;
+	const float yw = y2*w;
+	const float zw = z2*w;
+
+	entries[0] = 1.0f - yy - zz;
+	entries[1] = xy + zw;
+	entries[2] = xz - yw;
+	
+	entries[4] = xy - zw;
+	entries[5] = 1.0f - xx - zz;
+	entries[6] = yz + xw;
+	
+	entries[8] = xz + yw;
+	entries[9] = yz - xw;
+	entries[10] = 1.0f - xx - yy;
+}
 void math::mat44::SetEntry(int position, float value)
 {
 	if(position>=0 && position<=15)
 		entries[position]=value;
 }
-
-float math::mat44::GetEntry(int position) const
+float		math::mat44::GetEntry(int position) const
 {
 	if(position>=0 && position<=15)
 		return entries[position];
 
 	return 0.0f;
 }
-
-math::vec4 math::mat44::GetRow(int position) const
+math::vec4	math::mat44::GetRow(int position) const
 {
 	if(position==0)
 		return vec4(entries[0], entries[4], entries[8], entries[12]);
@@ -127,7 +167,6 @@ math::vec4 math::mat44::GetRow(int position) const
 
 	return vec4(0.0f, 0.0f, 0.0f, 0.0f);
 }
-
 math::vec4 math::mat44::GetColumn(int position) const
 {
 	if(position==0)
@@ -144,7 +183,6 @@ math::vec4 math::mat44::GetColumn(int position) const
 
 	return vec4(0.0f, 0.0f, 0.0f, 0.0f);
 }
-
 void math::mat44::LoadIdentity(void)
 {
 	memset(entries, 0, 16*sizeof(float));
@@ -153,12 +191,10 @@ void math::mat44::LoadIdentity(void)
 	entries[10]=1.0f;
 	entries[15]=1.0f;
 }
-
 void math::mat44::LoadZero(void)
 {
 	memset(entries, 0, 16*sizeof(float));
 }
-
 math::mat44 math::mat44::operator+(const math::mat44 & rhs) const		//overloaded operators
 {
 	return math::mat44(	entries[0]+rhs.entries[0],
@@ -178,7 +214,6 @@ math::mat44 math::mat44::operator+(const math::mat44 & rhs) const		//overloaded 
 			entries[14]+rhs.entries[14],
 			entries[15]+rhs.entries[15]);
 }
-
 math::mat44 math::mat44::operator-(const math::mat44 & rhs) const		//overloaded operators
 {
 	return math::mat44(	entries[0]-rhs.entries[0],
@@ -198,7 +233,6 @@ math::mat44 math::mat44::operator-(const math::mat44 & rhs) const		//overloaded 
 			entries[14]-rhs.entries[14],
 			entries[15]-rhs.entries[15]);
 }
-
 math::mat44 math::mat44::operator*(const math::mat44 & rhs) const
 {
 	//Optimise for matrices in which bottom row is (0, 0, 0, 1) in both matrices
@@ -284,7 +318,6 @@ math::mat44 math::mat44::operator*(const math::mat44 & rhs) const
 			entries[2]*rhs.entries[12]+entries[6]*rhs.entries[13]+entries[10]*rhs.entries[14]+entries[14]*rhs.entries[15],
 			entries[3]*rhs.entries[12]+entries[7]*rhs.entries[13]+entries[11]*rhs.entries[14]+entries[15]*rhs.entries[15]);
 }
-
 math::mat44 math::mat44::operator*(const float rhs) const
 {
 	return math::mat44(	entries[0]*rhs,
@@ -304,7 +337,6 @@ math::mat44 math::mat44::operator*(const float rhs) const
 			entries[14]*rhs,
 			entries[15]*rhs);
 }
-
 math::mat44 math::mat44::operator/(const float rhs) const
 {
 	if (rhs==0.0f || rhs==1.0f)
@@ -314,12 +346,10 @@ math::mat44 math::mat44::operator/(const float rhs) const
 
 	return (*this)*temp;
 }
-
 math::mat44 operator*(float scaleFactor, const math::mat44 & rhs)
 {
 	return rhs*scaleFactor;
 }
-
 bool math::mat44::operator==(const math::mat44 & rhs) const
 {
 	for(int i=0; i<16; i++)
@@ -329,37 +359,30 @@ bool math::mat44::operator==(const math::mat44 & rhs) const
 	}
 	return true;
 }
-
 bool math::mat44::operator!=(const math::mat44 & rhs) const
 {
 	return !((*this)==rhs);
 }
-
 void math::mat44::operator+=(const math::mat44 & rhs)
 {
 	(*this)=(*this)+rhs;
 }
-
 void math::mat44::operator-=(const math::mat44 & rhs)
 {
 	(*this)=(*this)-rhs;
 }
-
 void math::mat44::operator*=(const math::mat44 & rhs)
 {
 	(*this)=(*this)*rhs;
 }
-
 void math::mat44::operator*=(const float rhs)
 {
 	(*this)=(*this)*rhs;
 }
-
 void math::mat44::operator/=(const float rhs)
 {
 	(*this)=(*this)/rhs;
 }
-
 math::mat44 math::mat44::operator-(void) const
 {
 	math::mat44 result(*this);
@@ -369,7 +392,6 @@ math::mat44 math::mat44::operator-(void) const
 
 	return result;
 }
-
 math::vec4 math::mat44::operator*(const vec4 rhs) const
 {
 	//Optimise for matrices in which bottom row is (0, 0, 0, 1)
@@ -413,38 +435,33 @@ math::vec4 math::mat44::operator*(const vec4 rhs) const
 			+	entries[11]*rhs.z
 			+	entries[15]*rhs.w);
 }
-
-math::vec3 math::mat44::GetRotatedVector3D(const vec3 & rhs) const
+math::vec3	math::mat44::GetRotatedVector3D(const vec3 & rhs) const
 {
-	return vec3(entries[0]*rhs.x + entries[4]*rhs.y + entries[8]*rhs.z,
+	return vec3(
+			entries[0]*rhs.x + entries[4]*rhs.y + entries[8]*rhs.z,
 			entries[1]*rhs.x + entries[5]*rhs.y + entries[9]*rhs.z,
 			entries[2]*rhs.x + entries[6]*rhs.y + entries[10]*rhs.z);
 }
-
-math::vec3 math::mat44::GetInverseRotatedVector3D(const vec3 & rhs) const
+math::vec3	math::mat44::GetInverseRotatedVector3D(const vec3 & rhs) const
 {
 	//rotate by transpose:
 	return vec3(entries[0]*rhs.x + entries[1]*rhs.y + entries[2]*rhs.z,
 			entries[4]*rhs.x + entries[5]*rhs.y + entries[6]*rhs.z,
 			entries[8]*rhs.x + entries[9]*rhs.y + entries[10]*rhs.z);
 }
-
-math::vec3 math::mat44::GetTranslatedVector3D(const vec3 & rhs) const
+math::vec3	math::mat44::GetTranslatedVector3D(const vec3 & rhs) const
 {
 	return vec3(rhs.x+entries[12], rhs.y+entries[13], rhs.z+entries[14]);
 }
-
-math::vec3 math::mat44::GetInverseTranslatedVector3D(const vec3 & rhs) const
+math::vec3	math::mat44::GetInverseTranslatedVector3D(const vec3 & rhs) const
 {
 	return vec3(rhs.x-entries[12], rhs.y-entries[13], rhs.z-entries[14]);
 }
-
-void math::mat44::Invert(void)
+void		math::mat44::Invert(void)
 {
 	*this=GetInverse();
 }
-
-math::mat44 math::mat44::GetInverse(void) const
+math::mat44	math::mat44::GetInverse(void) const
 {
 	math::mat44 result=GetInverseTranspose();
 
@@ -452,27 +469,23 @@ math::mat44 math::mat44::GetInverse(void) const
 
 	return result;
 }
-
-
-void math::mat44::Transpose(void)
+void		math::mat44::Transpose(void)
 {
 	*this=GetTranspose();
 }
-
-math::mat44 math::mat44::GetTranspose(void) const
+math::mat44	math::mat44::GetTranspose(void) const
 {
-	return math::mat44(	entries[ 0], entries[ 4], entries[ 8], entries[12],
+	return math::mat44(
+			entries[ 0], entries[ 4], entries[ 8], entries[12],
 			entries[ 1], entries[ 5], entries[ 9], entries[13],
 			entries[ 2], entries[ 6], entries[10], entries[14],
 			entries[ 3], entries[ 7], entries[11], entries[15]);
 }
-
-void math::mat44::InvertTranspose(void)
+void		math::mat44::InvertTranspose(void)
 {
 	*this=GetInverseTranspose();
 }
-
-math::mat44 math::mat44::GetInverseTranspose(void) const
+math::mat44	math::mat44::GetInverseTranspose(void) const
 {
 	math::mat44 result;
 
@@ -573,41 +586,28 @@ math::mat44 math::mat44::GetInverseTranspose(void) const
 
 	return result;
 }
-
-//Invert if only composed of rotations & translations
-void math::mat44::AffineInvert(void)
+void		math::mat44::AffineInvert(void)
 {
 	(*this)=GetAffineInverse();
 }
-
-math::mat44 math::mat44::GetAffineInverse(void) const
+math::mat44	math::mat44::GetAffineInverse(void) const
 {
 	//return the transpose of the rotation part
 	//and the negative of the inverse rotated translation part
-	return math::mat44(	entries[0],
-			entries[4],
-			entries[8],
-			0.0f,
-			entries[1],
-			entries[5],
-			entries[9],
-			0.0f,
-			entries[2],
-			entries[6],
-			entries[10],
-			0.0f,
+	return math::mat44(
+			entries[0],entries[4],entries[8],0.0f,
+			entries[1],entries[5],entries[9],0.0f,
+			entries[2],entries[6],entries[10],0.0f,
 			-(entries[0]*entries[12]+entries[1]*entries[13]+entries[2]*entries[14]),
 			-(entries[4]*entries[12]+entries[5]*entries[13]+entries[6]*entries[14]),
 			-(entries[8]*entries[12]+entries[9]*entries[13]+entries[10]*entries[14]),
 			1.0f);
 }
-
-void math::mat44::AffineInvertTranspose(void)
+void		math::mat44::AffineInvertTranspose(void)
 {
 	(*this)=GetAffineInverseTranspose();
 }
-
-math::mat44 math::mat44::GetAffineInverseTranspose(void) const
+math::mat44	math::mat44::GetAffineInverseTranspose(void) const
 {
 	//return the transpose of the rotation part
 	//and the negative of the inverse rotated translation part
@@ -626,15 +626,13 @@ math::mat44 math::mat44::GetAffineInverseTranspose(void) const
 			-(entries[8]*entries[12]+entries[9]*entries[13]+entries[10]*entries[14]),
 			0.0f, 0.0f, 0.0f, 1.0f);
 }
-
-void math::mat44::SetTranslation(const vec3 & translation)
+void		math::mat44::SetTranslation(const vec3 & translation)
 {
 	LoadIdentity();
 
 	SetTranslationPart(translation);
 }
-
-void math::mat44::SetScale(const vec3 & scaleFactor)
+void		math::mat44::SetScale(const vec3 & scaleFactor)
 {
 	LoadIdentity();
 
@@ -642,15 +640,13 @@ void math::mat44::SetScale(const vec3 & scaleFactor)
 	entries[5]=scaleFactor.y;
 	entries[10]=scaleFactor.z;
 }
-
-void math::mat44::SetUniformScale(const float scaleFactor)
+void		math::mat44::SetUniformScale(const float scaleFactor)
 {
 	LoadIdentity();
 
 	entries[0]=entries[5]=entries[10]=scaleFactor;
 }
-
-void math::mat44::SetRotationAxis(const double angle, const vec3 & axis)
+void		math::mat44::SetRotationAxis(const double angle, const vec3 & axis)
 {
 	vec3 u=axis.GetNormalized();
 
@@ -672,8 +668,7 @@ void math::mat44::SetRotationAxis(const double angle, const vec3 & axis)
 	entries[6]=(u.y)*(u.z)*(oneMinusCosAngle) + sinAngle*u.x;
 	entries[10]=(u.z)*(u.z) + cosAngle*(1-(u.z)*(u.z));
 }
-
-void math::mat44::SetRotationX(const double angle)
+void		math::mat44::SetRotationX(const double angle)
 {
 	LoadIdentity();
 
@@ -683,8 +678,7 @@ void math::mat44::SetRotationX(const double angle)
 	entries[9]=-entries[6];
 	entries[10]=entries[5];
 }
-
-void math::mat44::SetRotationY(const double angle)
+void		math::mat44::SetRotationY(const double angle)
 {
 	LoadIdentity();
 
@@ -694,8 +688,7 @@ void math::mat44::SetRotationY(const double angle)
 	entries[8]=-entries[2];
 	entries[10]=entries[0];
 }
-
-void math::mat44::SetRotationZ(const double angle)
+void		math::mat44::SetRotationZ(const double angle)
 {
 	LoadIdentity();
 
@@ -705,16 +698,13 @@ void math::mat44::SetRotationZ(const double angle)
 	entries[4]=-entries[1];
 	entries[5]=entries[0];
 }
-
-void math::mat44::SetRotationEuler(const double angleX, const double angleY, const double angleZ)
+void		math::mat44::SetRotationEuler(const double angleX, const double angleY, const double angleZ)
 {
 	LoadIdentity();
 
 	SetRotationPartEuler(angleX, angleY, angleZ);
 }
-
-void math::mat44::SetPerspective(	float left, float right, float bottom,
-		float top, float n, float f)
+void		math::mat44::SetPerspective(float left, float right, float bottom, float top, float n, float f)
 {
 	float nudge=0.999f;		//prevent artifacts with infinite far plane
 
@@ -753,14 +743,13 @@ void math::mat44::SetPerspective(	float left, float right, float bottom,
 		entries[14]=-2*n*nudge;
 	}
 }
-
-void math::mat44::SetPerspective(float fovy, float aspect, float n, float f)
+void		math::mat44::SetPerspective(float fovy, float aspect, float n, float f)
 {
 	float left, right, top, bottom;
 
 	//convert fov from degrees to radians
 	fovy *= (float)M_PI / 180.0f;
-	
+
 	top = n*tanf(fovy/2.0f);
 	bottom=-top;
 
@@ -769,9 +758,7 @@ void math::mat44::SetPerspective(float fovy, float aspect, float n, float f)
 
 	SetPerspective(left, right, bottom, top, n, f);
 }
-
-void math::mat44::SetOrtho(	float left, float right, float bottom,
-		float top, float n, float f)
+void		math::mat44::SetOrtho(	float left, float right, float bottom, float top, float n, float f)
 {
 	LoadIdentity();
 
@@ -785,15 +772,13 @@ void math::mat44::SetOrtho(	float left, float right, float bottom,
 	entries[13]=-(top+bottom)/(top-bottom);
 	entries[14]=-(f+n)/(f-n);
 }
-
-void math::mat44::SetTranslationPart(const vec3 & translation)
+void		math::mat44::SetTranslationPart(const vec3 & translation)
 {
 	entries[12]=translation.x;
 	entries[13]=translation.y;
 	entries[14]=translation.z;
 }
-
-void math::mat44::SetRotationPartEuler(const double angleX, const double angleY, const double angleZ)
+void		math::mat44::SetRotationPartEuler(const double angleX, const double angleY, const double angleZ)
 {
 	double cr = cos( M_PI*angleX/180 );
 	double sr = sin( M_PI*angleX/180 );
@@ -817,53 +802,105 @@ void math::mat44::SetRotationPartEuler(const double angleX, const double angleY,
 	entries[9] = ( float )( crsp*sy-sr*cy );
 	entries[10] = ( float )( cr*cp );
 }
-void math::mat44::RotateVector3D(math::vec3 & rhs) const
+void		math::mat44::RotateVector3D(math::vec3 & rhs) const
 {
 	rhs=GetRotatedVector3D(rhs);
 }
-void math::mat44::InverseRotateVector3D(math::vec3 & rhs) const
+void		math::mat44::InverseRotateVector3D(math::vec3 & rhs) const
 {
 	rhs=GetInverseRotatedVector3D(rhs);
 }
-void math::mat44::TranslateVector3D(vec3 & rhs) const
+void		math::mat44::TranslateVector3D(vec3 & rhs) const
 {
 	rhs=GetTranslatedVector3D(rhs);
 }
-void math::mat44::InverseTranslateVector3D(vec3 & rhs) const
+void		math::mat44::InverseTranslateVector3D(vec3 & rhs) const
 {
 	rhs=GetInverseTranslatedVector3D(rhs);
 }
-void math::mat44::SetRotationPartEuler(const math::vec3 & rotations)
+void		math::mat44::SetRotationPartEuler(const math::vec3 & rotations)
 {
 	SetRotationPartEuler((double)rotations.x, (double)rotations.y, (double)rotations.z);
 }
 math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
 {
-	vec3 f = center - eye;
-	f.normalize();
-	
-	vec3 UP = up.GetNormalized();
-	
-	vec3 s = f.cross(UP);
-	vec3 S = s.GetNormalized();
-	
-	vec3 u = S.cross(f);
+	vec3 F = center - eye;
+	vec3 f = F.GetNormalized();
 
+	vec3 UP = up.GetNormalized();
+
+	vec3 s = f.cross(UP);
+	s.normalize();
+	
+	vec3 u = s.cross(f);
+	
+	//printf("u\n");
+	//u.print();
+	
 	mat44 M(
-			s.x,    u.x,    -f.x , 0.0f,
-			s.y,    u.y,    -f.y , 0.0f,
-			s.z,    u.z,    -f.z , 0.0f,
+			s.x,  u.x,  -f.x , 0.0f,
+			s.y,  u.y,  -f.y , 0.0f,
+			s.z,  u.z,  -f.z , 0.0f,
 			0.0f, 0.0f, 0.0f, 1.0f);
 	
+	//	M.print();
+
 	mat44 T;
 	T.SetTranslation(-eye);
-	
+
+	//printf("M\n");
+	//M.print();
+	//printf("T\n");
+	//T.print();
+
 	//return T*M;
 	return M*T;
 }
+void	math::mat44::SetReflection(math::plane const & p)
+{
+	math::vec3 n = p.n.GetNormalized();
+
+	math::mat44 A;
+	A.SetTranslation(n * -p.d);
+
+	math::mat44 I;
+
+	math::mat44 RA = I - math::vec4(n,0) * math::vec4(n,0) * 2.0;
+
+	//*this = A * RA * A.GetInverse();
+	*this = A.GetInverse() * RA * A;
+}
+void	math::mat44::print()
+{
+	for(int i = 0; i < 4; ++i )
+	{
+		for(int j = 0; j < 4; ++j )
+		{
+			printf("%f ",entries[4*i+j]);
+		}
+		printf("\n");
+	}
+}
+void	math::mat44::SetCoordinateTransform(math::vec3 const x, math::vec3 const y)
+{
 
 
+	math::vec3 Z = x.cross(y);
 
+	math::vec3 X = y.cross(Z);
+
+	X.normalize();
+	math::vec3 Y = y.GetNormalized();
+	Z.normalize();
+
+	math::mat44 m(
+			X.x,  Y.x,  Z.x , 0.0f,
+			X.y,  Y.y,  Z.y , 0.0f,
+			X.z,  Y.z,  Z.z , 0.0f,
+			0.0f, 0.0f, 0.0f, 1.0f);
+
+	*this = m;
+}
 
 
 

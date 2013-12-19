@@ -126,19 +126,33 @@ math::vec3 math::vec3::GetRotatedAxis(double angle, const math::vec3 & axis) con
 
 	return math::vec3( dot(rotMatrixRow0), dot(rotMatrixRow1), dot(rotMatrixRow2));
 }
-
-void math::vec3::RotateAxis(double angle, const math::vec3 & axis)
+float		math::vec3::angle(vec3 const & rhs) const
+{
+	math::vec3 v = cross(rhs);
+	
+	return acos( v.magnitude() / magnitude() / rhs.magnitude() );
+}
+void		math::vec3::RotateAxis(double angle, const math::vec3 & axis)
 {
 	(*this)=GetRotatedAxis(angle, axis);
 }
-
-
-void math::vec3::PackTo01()
+void		math::vec3::PackTo01()
 {
 	(*this)=GetPackedTo01();	
 }
-
-math::vec3 math::vec3::GetPackedTo01() const
+void		math::vec3::Add(const vec3 & v2, vec3 & result)
+{
+	result.x=x+v2.x;
+	result.y=y+v2.y;
+	result.z=z+v2.z;
+}
+void		math::vec3::Subtract(const vec3 & v2, vec3 & result)
+{
+	result.x=x-v2.x;
+	result.y=y-v2.y;
+	result.z=z-v2.z;
+}
+math::vec3	math::vec3::GetPackedTo01() const
 {
 	math::vec3 temp(*this);
 
@@ -154,11 +168,44 @@ math::vec3 operator*(float scaleFactor, const math::vec3 & rhs)
 	return rhs*scaleFactor;
 }
 
-bool math::vec3::operator==(const math::vec3 & rhs) const
+bool		math::vec3::operator==(const math::vec3 & rhs) const
 {
 	if(x==rhs.x && y==rhs.y && z==rhs.z)
 		return true;
 
 	return false;
+}
+bool		math::vec3::operator!=(const vec3 & rhs) const
+{
+	return !((*this)==rhs);
+}
+//self-add etc
+void		math::vec3::operator+=(const vec3 & rhs)
+{
+	x+=rhs.x;	y+=rhs.y;	z+=rhs.z;
+}
+void		math::vec3::operator-=(const vec3 & rhs)
+{
+	x-=rhs.x;	y-=rhs.y;	z-=rhs.z;
+}
+void		math::vec3::operator*=(const float rhs)
+{
+	x*=rhs;	y*=rhs;	z*=rhs;
+}
+void		math::vec3::operator/=(const float rhs)
+{	if(rhs==0.0f)
+	return;
+	else
+	{	x/=rhs; y/=rhs; z/=rhs;	}
+}
+void	math::vec3::print()
+{
+	printf("%f %f %f\n",x,y,z);
+}
+bool	math::vec3::is_finite() const
+{
+	if(isinf(x)) return false;
+	
+	return true;
 }
 

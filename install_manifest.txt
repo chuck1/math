@@ -1,0 +1,14 @@
+/home/charles/usr/lib/libmath.a
+/home/charles/usr/include/math/config.h
+/home/charles/usr/include/math/math.h
+/home/charles/usr/include/math/free.h
+/home/charles/usr/include/math/vec2.h
+/home/charles/usr/include/math/vec3.h
+/home/charles/usr/include/math/vec4.h
+/home/charles/usr/include/math/mat44.h
+/home/charles/usr/include/math/plane.h
+/home/charles/usr/include/math/color.h
+/home/charles/usr/include/math/quat.h
+/home/charles/usr/include/math/transform.h
+/home/charles/usr/include/math/polyhedron.h
+/home/charles/usr/include/math/vclip.h

@@ -12,7 +12,7 @@
 //	Distributed under the New BSD Licence. (See accompanying file License.txt or copy at
 //	http://www.paulsprojects.net/NewBSDLicense.txt)
 //////////////////////////////////////////////////////////////////////////////////////////	
-
+#include <stdio.h>
 #include <math/color.h>
 
 void math::color::ClampTo01()
@@ -56,3 +56,8 @@ bool math::color::operator ==(const math::color & rhs) const
 
 	return true;
 }
+void	math::color::print()
+{
+	printf("%f %f %f %f\n",r,g,b,a);
+}
+
