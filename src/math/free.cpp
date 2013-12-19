@@ -1,7 +1,7 @@
 #include <math/free.h>
 #include <math/vec3.h>
 
-float           math::xml_parse_float(TiXmlElement* element){
+float           math::xml_parse_float(tinyxml2::XMLElement* element){
         if( !element )
         {
                 return 0.0f;
@@ -16,7 +16,7 @@ float           math::xml_parse_float(TiXmlElement* element){
 
         return f;
 }
-math::quat      math::xml_parse_quat(TiXmlElement* element){
+math::quat      math::xml_parse_quat(tinyxml2::XMLElement* element){
         if( !element )
         {
                 return math::quat(0.0f, math::vec3(0,0,0));
@@ -32,7 +32,7 @@ math::quat      math::xml_parse_quat(TiXmlElement* element){
         return math::quat(w, math::vec3(x,y,z));
 
 }       
-math::vec3      math::xml_parse_vec3(TiXmlElement* element){       
+math::vec3      math::xml_parse_vec3(tinyxml2::XMLElement* element){       
         if( !element )
         {
                 printf("element not found\n");
@@ -49,7 +49,7 @@ math::vec3      math::xml_parse_vec3(TiXmlElement* element){
 
         return math::vec3(x,y,z);
 }
-math::color     math::xml_parse_color(TiXmlElement* element) {
+math::color     math::xml_parse_color(tinyxml2::XMLElement* element) {
         if( !element )
         {
                 printf("element not found\n");
@@ -66,7 +66,7 @@ math::color     math::xml_parse_color(TiXmlElement* element) {
 
         return math::color(r,g,b,a);
 }
-math::vec4      math::xml_parse_vec4(TiXmlElement* element) {
+math::vec4      math::xml_parse_vec4(tinyxml2::XMLElement* element) {
         if( !element )
         {
                 printf("element not found\n");

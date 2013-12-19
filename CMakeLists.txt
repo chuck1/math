@@ -39,8 +39,8 @@ install(FILES ${PROJECT_SOURCE_DIR}/math/plane.h DESTINATION include/math/)
 install(FILES ${PROJECT_SOURCE_DIR}/math/color.h DESTINATION include/math/)
 install(FILES ${PROJECT_SOURCE_DIR}/math/quat.h DESTINATION include/math/)
 install(FILES ${PROJECT_SOURCE_DIR}/math/transform.h DESTINATION include/math/)
-install(FILES ${PROJECT_SOURCE_DIR}/math/geo/polyhedron.h DESTINATION include/math/)
-install(FILES ${PROJECT_SOURCE_DIR}/math/vclip/vclip.h DESTINATION include/math/)
+install(FILES ${PROJECT_SOURCE_DIR}/math/geo/polyhedron.h DESTINATION include/math/geo/)
+install(FILES ${PROJECT_SOURCE_DIR}/math/vclip/vclip.h DESTINATION include/math/vclip)
 
 
 
