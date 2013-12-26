@@ -253,9 +253,32 @@ CMakeFiles/math.dir/src/math/transform.cpp.o.provides: CMakeFiles/math.dir/src/m
 
 CMakeFiles/math.dir/src/math/transform.cpp.o.provides.build: CMakeFiles/math.dir/src/math/transform.cpp.o
 
+CMakeFiles/math.dir/src/math/raw/raw.cpp.o: CMakeFiles/math.dir/flags.make
+CMakeFiles/math.dir/src/math/raw/raw.cpp.o: src/math/raw/raw.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_10)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/raw/raw.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/raw/raw.cpp.o -c /home/charles/Programming/C++/math/src/math/raw/raw.cpp
+
+CMakeFiles/math.dir/src/math/raw/raw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/math.dir/src/math/raw/raw.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/charles/Programming/C++/math/src/math/raw/raw.cpp > CMakeFiles/math.dir/src/math/raw/raw.cpp.i
+
+CMakeFiles/math.dir/src/math/raw/raw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/math.dir/src/math/raw/raw.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/charles/Programming/C++/math/src/math/raw/raw.cpp -o CMakeFiles/math.dir/src/math/raw/raw.cpp.s
+
+CMakeFiles/math.dir/src/math/raw/raw.cpp.o.requires:
+.PHONY : CMakeFiles/math.dir/src/math/raw/raw.cpp.o.requires
+
+CMakeFiles/math.dir/src/math/raw/raw.cpp.o.provides: CMakeFiles/math.dir/src/math/raw/raw.cpp.o.requires
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/raw/raw.cpp.o.provides.build
+.PHONY : CMakeFiles/math.dir/src/math/raw/raw.cpp.o.provides
+
+CMakeFiles/math.dir/src/math/raw/raw.cpp.o.provides.build: CMakeFiles/math.dir/src/math/raw/raw.cpp.o
+
 CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o: src/math/geo/polyhedron.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_10)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o -c /home/charles/Programming/C++/math/src/math/geo/polyhedron.cpp
 
@@ -278,7 +301,7 @@ CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o.provides.build: CMakeFiles/mat
 
 CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o: CMakeFiles/math.dir/flags.make
 CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o: src/math/vclip/vclip.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_12)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o -c /home/charles/Programming/C++/math/src/math/vclip/vclip.cpp
 
@@ -310,6 +333,7 @@ math_OBJECTS = \
 "CMakeFiles/math.dir/src/math/color.cpp.o" \
 "CMakeFiles/math.dir/src/math/quat.cpp.o" \
 "CMakeFiles/math.dir/src/math/transform.cpp.o" \
+"CMakeFiles/math.dir/src/math/raw/raw.cpp.o" \
 "CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o" \
 "CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o"
 
@@ -325,6 +349,7 @@ libmath.a: CMakeFiles/math.dir/src/math/plane.cpp.o
 libmath.a: CMakeFiles/math.dir/src/math/color.cpp.o
 libmath.a: CMakeFiles/math.dir/src/math/quat.cpp.o
 libmath.a: CMakeFiles/math.dir/src/math/transform.cpp.o
+libmath.a: CMakeFiles/math.dir/src/math/raw/raw.cpp.o
 libmath.a: CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o
 libmath.a: CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o
 libmath.a: CMakeFiles/math.dir/build.make
@@ -346,6 +371,7 @@ CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/plane.cpp.o.requires
 CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/color.cpp.o.requires
 CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/quat.cpp.o.requires
 CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/transform.cpp.o.requires
+CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/raw/raw.cpp.o.requires
 CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o.requires
 CMakeFiles/math.dir/requires: CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o.requires
 .PHONY : CMakeFiles/math.dir/requires

@@ -10,6 +10,7 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/charles/Programming/C++/math/src/math/mat44.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/mat44.cpp.o"
   "/home/charles/Programming/C++/math/src/math/plane.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/plane.cpp.o"
   "/home/charles/Programming/C++/math/src/math/quat.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/quat.cpp.o"
+  "/home/charles/Programming/C++/math/src/math/raw/raw.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/raw/raw.cpp.o"
   "/home/charles/Programming/C++/math/src/math/transform.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/transform.cpp.o"
   "/home/charles/Programming/C++/math/src/math/vclip/vclip.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o"
   "/home/charles/Programming/C++/math/src/math/vec2.cpp" "/home/charles/Programming/C++/math/CMakeFiles/math.dir/src/math/vec2.cpp.o"

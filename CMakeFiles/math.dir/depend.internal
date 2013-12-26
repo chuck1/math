@@ -39,6 +39,13 @@ CMakeFiles/math.dir/src/math/quat.cpp.o
  src/math/quat.h
  src/math/vec3.h
  src/math/vec4.h
+CMakeFiles/math.dir/src/math/raw/raw.cpp.o
+ /home/charles/Programming/C++/math/src/math/raw/raw.cpp
+ src/math/math.h
+ src/math/quat.h
+ src/math/raw/raw.h
+ src/math/transform.h
+ src/math/vec3.h
 CMakeFiles/math.dir/src/math/transform.cpp.o
  /home/charles/Programming/C++/math/src/math/transform.cpp
  src/math/math.h

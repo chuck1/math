@@ -12,20 +12,10 @@ math/free.h
 math/vec3.h
 -
 
-/home/charles/Programming/C++/math/src/math/quat.cpp
-cmath
--
-math/free.h
--
-math/vec3.h
--
-math/quat.h
--
-
 src/math/color.h
 
 src/math/free.h
-tinyxml/tinyxml.h
+tinyxml2.h
 -
 math/quat.h
 -

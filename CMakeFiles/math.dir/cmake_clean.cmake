@@ -8,6 +8,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/math.dir/src/math/color.cpp.o"
   "CMakeFiles/math.dir/src/math/quat.cpp.o"
   "CMakeFiles/math.dir/src/math/transform.cpp.o"
+  "CMakeFiles/math.dir/src/math/raw/raw.cpp.o"
   "CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o"
   "CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o"
   "libmath.pdb"

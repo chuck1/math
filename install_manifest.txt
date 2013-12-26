@@ -10,5 +10,6 @@
 /home/charles/usr/include/math/color.h
 /home/charles/usr/include/math/quat.h
 /home/charles/usr/include/math/transform.h
+/home/charles/usr/include/math/raw/raw.h
 /home/charles/usr/include/math/geo/polyhedron.h
 /home/charles/usr/include/math/vclip/vclip.h
