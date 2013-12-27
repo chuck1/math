@@ -6,7 +6,7 @@ float           math::xml_parse_float(tinyxml2::XMLElement* element){
         {
                 return 0.0f;
         }
-
+	
         float f;
 
         char const * buf = element->GetText();
@@ -49,14 +49,12 @@ math::vec3      math::xml_parse_vec3(tinyxml2::XMLElement* element){
 
         return math::vec3(x,y,z);
 }
-math::color     math::xml_parse_color(tinyxml2::XMLElement* element) {
-        if( !element )
+math::color     math::xml_parse_color(tinyxml2::XMLElement* element, math::color color) {
+        if(element == NULL)
         {
-                printf("element not found\n");
-                exit(0);
-                return math::black;
+                return color;
         }
-
+	
         float r,g,b,a;
 
         char const * buf = element->GetText();

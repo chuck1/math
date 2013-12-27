@@ -296,6 +296,30 @@ src/math/quat.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/quat.cpp.s
 .PHONY : src/math/quat.cpp.s
 
+src/math/raw/raw.o: src/math/raw/raw.cpp.o
+.PHONY : src/math/raw/raw.o
+
+# target to build an object file
+src/math/raw/raw.cpp.o:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/raw/raw.cpp.o
+.PHONY : src/math/raw/raw.cpp.o
+
+src/math/raw/raw.i: src/math/raw/raw.cpp.i
+.PHONY : src/math/raw/raw.i
+
+# target to preprocess a source file
+src/math/raw/raw.cpp.i:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/raw/raw.cpp.i
+.PHONY : src/math/raw/raw.cpp.i
+
+src/math/raw/raw.s: src/math/raw/raw.cpp.s
+.PHONY : src/math/raw/raw.s
+
+# target to generate assembly for a file
+src/math/raw/raw.cpp.s:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/raw/raw.cpp.s
+.PHONY : src/math/raw/raw.cpp.s
+
 src/math/transform.o: src/math/transform.cpp.o
 .PHONY : src/math/transform.o
 
@@ -447,6 +471,9 @@ help:
 	@echo "... src/math/quat.o"
 	@echo "... src/math/quat.i"
 	@echo "... src/math/quat.s"
+	@echo "... src/math/raw/raw.o"
+	@echo "... src/math/raw/raw.i"
+	@echo "... src/math/raw/raw.s"
 	@echo "... src/math/transform.o"
 	@echo "... src/math/transform.i"
 	@echo "... src/math/transform.s"
