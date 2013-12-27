@@ -33,14 +33,14 @@ namespace math
 			  \brief converts this quaternion to angle-axis representation
 			  */
 
-			void toRadiansAndUnitAxis(float& angle, vec3& axis) const;
-			float getAngle() const;
-			float getAngle(const quat& q) const;
-			float magnitudeSquared() const;
-			float dot(const quat& v) const;
-			quat getNormalized() const;
-			float magnitude() const;
-			float normalize();
+			void		toRadiansAndUnitAxis(float& angle, vec3& axis) const;
+			float		getAngle() const;
+			float		getAngle(const quat& q) const;
+			float		magnitudeSquared() const;
+			float		dot(const quat& v) const;
+			quat		getNormalized() const;
+			float		magnitude() const;
+			float		normalize();
 			quat		getConjugate() const;
 			vec3		getImaginaryPart() const;
 			vec3		getBasisVector0() const;
