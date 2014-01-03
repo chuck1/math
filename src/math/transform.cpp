@@ -1,5 +1,6 @@
 #include <assert.h>
 
+#include <math/mat44.h>
 #include <math/plane.h>
 #include <math/transform.h>
 
@@ -27,7 +28,8 @@ math::transform::transform(const math::vec3& p0, const math::quat& q0):
 }
 math::transform::transform(mat44 const & m)
 {
-
+	p = m.GetTranslatedVector3D(math::vec3(0,0,0));
+	q = math::quat(m);
 }
 math::transform	math::transform::operator*(const transform& x) const
 {

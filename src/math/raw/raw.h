@@ -2,6 +2,7 @@
 #define __MATH_RAW_H__
 
 #include <math/vec3.h>
+#include <math/vec4.h>
 #include <math/transform.h>
 #include <math/color.h>
 
@@ -9,7 +10,14 @@ namespace math
 {
         namespace raw
         {
-                struct vec3
+		struct vec4
+                {
+                        int		from_math(math::vec4 const &);
+                        math::vec4	to_math();
+
+                        float   x, y, z, w;
+                };
+		struct vec3
                 {
                         int             from_math(math::vec3 const &);
                         math::vec3      to_math();

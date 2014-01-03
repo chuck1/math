@@ -11,7 +11,7 @@ namespace math
 {
 	float           xml_parse_float(tinyxml2::XMLElement* element);
         math::quat      xml_parse_quat(tinyxml2::XMLElement* element);
-        math::vec3      xml_parse_vec3(tinyxml2::XMLElement* element);       
+        math::vec3      xml_parse_vec3(tinyxml2::XMLElement* element, math::vec3);
         math::color     xml_parse_color(tinyxml2::XMLElement* element, math::color = math::black);
         math::vec4      xml_parse_vec4(tinyxml2::XMLElement* element);
 	

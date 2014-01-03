@@ -34,19 +34,23 @@ CMakeFiles/math.dir/src/math/plane.cpp.o: src/math/vec3.h
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/quat.cpp
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/color.h
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/free.h
+CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/mat44.h
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/math.h
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/quat.h
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/vec3.h
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/vec4.h
 
 CMakeFiles/math.dir/src/math/raw/raw.cpp.o: src/math/raw/raw.cpp
+CMakeFiles/math.dir/src/math/raw/raw.cpp.o: src/math/color.h
 CMakeFiles/math.dir/src/math/raw/raw.cpp.o: src/math/math.h
 CMakeFiles/math.dir/src/math/raw/raw.cpp.o: src/math/quat.h
 CMakeFiles/math.dir/src/math/raw/raw.cpp.o: src/math/raw/raw.h
 CMakeFiles/math.dir/src/math/raw/raw.cpp.o: src/math/transform.h
 CMakeFiles/math.dir/src/math/raw/raw.cpp.o: src/math/vec3.h
+CMakeFiles/math.dir/src/math/raw/raw.cpp.o: src/math/vec4.h
 
 CMakeFiles/math.dir/src/math/transform.cpp.o: src/math/transform.cpp
+CMakeFiles/math.dir/src/math/transform.cpp.o: src/math/mat44.h
 CMakeFiles/math.dir/src/math/transform.cpp.o: src/math/math.h
 CMakeFiles/math.dir/src/math/transform.cpp.o: src/math/plane.h
 CMakeFiles/math.dir/src/math/transform.cpp.o: src/math/quat.h

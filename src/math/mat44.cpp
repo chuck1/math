@@ -397,43 +397,40 @@ math::vec4 math::mat44::operator*(const vec4 rhs) const
 	//Optimise for matrices in which bottom row is (0, 0, 0, 1)
 	if(entries[3]==0.0f && entries[7]==0.0f && entries[11]==0.0f && entries[15]==1.0f)
 	{
-		return vec4(entries[0]*rhs.x
+		return vec4(
+				entries[0]*rhs.x
 				+	entries[4]*rhs.y
 				+	entries[8]*rhs.z
 				+	entries[12]*rhs.w,
-
 				entries[1]*rhs.x
 				+	entries[5]*rhs.y
 				+	entries[9]*rhs.z
 				+	entries[13]*rhs.w,
-
 				entries[2]*rhs.x
 				+	entries[6]*rhs.y
 				+	entries[10]*rhs.z
 				+	entries[14]*rhs.w,
-
 				rhs.w);
 	}
+	
+	return vec4(
+			entries[0] * rhs.x
+			+ entries[4] * rhs.y
+			+ entries[8] * rhs.z
+			+ entries[12] * rhs.w,
+			entries[1] * rhs.x
+			+ entries[5] * rhs.y
+			+ entries[9] * rhs.z
+			+ entries[13] * rhs.w,
+			entries[2] * rhs.x
+			+ entries[6] * rhs.y
+			+ entries[10] * rhs.z
+			+ entries[14] * rhs.w,
+			entries[3] * rhs.x
+			+ entries[7] * rhs.y
+			+ entries[11] * rhs.z
+			+ entries[15] * rhs.w);
 
-	return vec4(	entries[0]*rhs.x
-			+	entries[4]*rhs.y
-			+	entries[8]*rhs.z
-			+	entries[12]*rhs.w,
-
-			entries[1]*rhs.x
-			+	entries[5]*rhs.y
-			+	entries[9]*rhs.z
-			+	entries[13]*rhs.w,
-
-			entries[2]*rhs.x
-			+	entries[6]*rhs.y
-			+	entries[10]*rhs.z
-			+	entries[14]*rhs.w,
-
-			entries[3]*rhs.x
-			+	entries[7]*rhs.y
-			+	entries[11]*rhs.z
-			+	entries[15]*rhs.w);
 }
 math::vec3	math::mat44::GetRotatedVector3D(const vec3 & rhs) const
 {
@@ -449,8 +446,8 @@ math::vec3	math::mat44::GetInverseRotatedVector3D(const vec3 & rhs) const
 			entries[4]*rhs.x + entries[5]*rhs.y + entries[6]*rhs.z,
 			entries[8]*rhs.x + entries[9]*rhs.y + entries[10]*rhs.z);
 }
-math::vec3	math::mat44::GetTranslatedVector3D(const vec3 & rhs) const
-{
+math::vec3	math::mat44::GetTranslatedVector3D(const vec3 & rhs) const {
+
 	return vec3(rhs.x+entries[12], rhs.y+entries[13], rhs.z+entries[14]);
 }
 math::vec3	math::mat44::GetInverseTranslatedVector3D(const vec3 & rhs) const
@@ -802,8 +799,7 @@ void		math::mat44::SetRotationPartEuler(const double angleX, const double angleY
 	entries[9] = ( float )( crsp*sy-sr*cy );
 	entries[10] = ( float )( cr*cp );
 }
-void		math::mat44::RotateVector3D(math::vec3 & rhs) const
-{
+void		math::mat44::RotateVector3D(math::vec3 & rhs) const {
 	rhs=GetRotatedVector3D(rhs);
 }
 void		math::mat44::InverseRotateVector3D(math::vec3 & rhs) const
@@ -831,18 +827,18 @@ math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
 
 	vec3 s = f.cross(UP);
 	s.normalize();
-	
+
 	vec3 u = s.cross(f);
-	
+
 	//printf("u\n");
 	//u.print();
-	
+
 	mat44 M(
 			s.x,  u.x,  -f.x , 0.0f,
 			s.y,  u.y,  -f.y , 0.0f,
 			s.z,  u.z,  -f.z , 0.0f,
 			0.0f, 0.0f, 0.0f, 1.0f);
-	
+
 	//	M.print();
 
 	mat44 T;

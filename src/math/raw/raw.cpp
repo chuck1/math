@@ -1,5 +1,25 @@
 #include <math/raw/raw.h>
 
+int     math::raw::vec4::from_math(math::vec4 const & v)
+{
+        x = v.x;
+        y = v.y;
+        z = v.z;
+	w = v.w;
+        
+        return 0;
+}
+math::vec4      math::raw::vec4::to_math()
+{
+        math::vec4 v;   
+                        
+        v.x = x;
+        v.y = y;        
+        v.z = z;
+        v.w = z;
+	
+        return v;
+}
 int     math::raw::vec3::from_math(math::vec3 const & v)
 {
         x = v.x;
