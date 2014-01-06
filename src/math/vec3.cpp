@@ -18,8 +18,8 @@
 
 #include <math/vec3.h>
 
-void math::vec3::normalize()
-{
+void math::vec3::normalize() {
+
 	float length=magnitude();
 
 	if(length==1.0f) return;
@@ -29,26 +29,23 @@ void math::vec3::normalize()
 		printf("normalize zero vector");
 		exit(0);
 	}
-
+	
 	float scalefactor = 1.0f/length;
 	x *= scalefactor;
 	y *= scalefactor;
 	z *= scalefactor;
 }
+math::vec3 math::vec3::GetNormalized() const {
 
-math::vec3 math::vec3::GetNormalized() const
-{
 	vec3 result(*this);
 
 	result.normalize();
 
 	return result;
 }
+math::vec3 math::vec3::GetRotatedX(double angle) const {
 
-math::vec3 math::vec3::GetRotatedX(double angle) const
-{
-	if(angle==0.0)
-		return (*this);
+	if(angle==0.0) return (*this);
 
 	float sinAngle=(float)sin(M_PI*angle/180);
 	float cosAngle=(float)cos(M_PI*angle/180);
@@ -57,16 +54,13 @@ math::vec3 math::vec3::GetRotatedX(double angle) const
 			y*cosAngle - z*sinAngle,
 			y*sinAngle + z*cosAngle);
 }
+void math::vec3::RotateX(double angle) {
 
-void math::vec3::RotateX(double angle)
-{
 	(*this)=GetRotatedX(angle);
 }
+math::vec3 math::vec3::GetRotatedY(double angle) const {
 
-math::vec3 math::vec3::GetRotatedY(double angle) const
-{
-	if(angle==0.0)
-		return (*this);
+	if(angle==0.0) return (*this);
 
 	float sinAngle=(float)sin(M_PI*angle/180);
 	float cosAngle=(float)cos(M_PI*angle/180);
@@ -75,16 +69,13 @@ math::vec3 math::vec3::GetRotatedY(double angle) const
 			y,
 			-x*sinAngle + z*cosAngle);
 }
+void math::vec3::RotateY(double angle) {
 
-void math::vec3::RotateY(double angle)
-{
 	(*this)=GetRotatedY(angle);
 }
+math::vec3 math::vec3::GetRotatedZ(double angle) const {
 
-math::vec3 math::vec3::GetRotatedZ(double angle) const
-{
-	if(angle==0.0)
-		return (*this);
+	if(angle==0.0) return (*this);
 
 	float sinAngle=(float)sin(M_PI*angle/180);
 	float cosAngle=(float)cos(M_PI*angle/180);
@@ -93,16 +84,13 @@ math::vec3 math::vec3::GetRotatedZ(double angle) const
 			x*sinAngle + y*cosAngle,
 			z);
 }
+void math::vec3::RotateZ(double angle) {
 
-void math::vec3::RotateZ(double angle)
-{
 	(*this)=GetRotatedZ(angle);
 }
+math::vec3 math::vec3::GetRotatedAxis(double angle, const math::vec3 & axis) const {
 
-math::vec3 math::vec3::GetRotatedAxis(double angle, const math::vec3 & axis) const
-{
-	if(angle==0.0)
-		return (*this);
+	if(angle==0.0) return (*this);
 
 	math::vec3 u=axis.GetNormalized();
 
@@ -126,34 +114,34 @@ math::vec3 math::vec3::GetRotatedAxis(double angle, const math::vec3 & axis) con
 
 	return math::vec3( dot(rotMatrixRow0), dot(rotMatrixRow1), dot(rotMatrixRow2));
 }
-float		math::vec3::angle(vec3 const & rhs) const
-{
+float		math::vec3::angle(vec3 const & rhs) const {
+
 	math::vec3 v = cross(rhs);
-	
+
 	return acos( v.magnitude() / magnitude() / rhs.magnitude() );
 }
-void		math::vec3::RotateAxis(double angle, const math::vec3 & axis)
-{
+void		math::vec3::RotateAxis(double angle, const math::vec3 & axis) {
+
 	(*this)=GetRotatedAxis(angle, axis);
 }
-void		math::vec3::PackTo01()
-{
+void		math::vec3::PackTo01() {
+
 	(*this)=GetPackedTo01();	
 }
-void		math::vec3::Add(const vec3 & v2, vec3 & result)
-{
+void		math::vec3::Add(const vec3 & v2, vec3 & result) {
+
 	result.x=x+v2.x;
 	result.y=y+v2.y;
 	result.z=z+v2.z;
 }
-void		math::vec3::Subtract(const vec3 & v2, vec3 & result)
-{
+void		math::vec3::Subtract(const vec3 & v2, vec3 & result) {
+
 	result.x=x-v2.x;
 	result.y=y-v2.y;
 	result.z=z-v2.z;
 }
-math::vec3	math::vec3::GetPackedTo01() const
-{
+math::vec3	math::vec3::GetPackedTo01() const {
+
 	math::vec3 temp(*this);
 
 	temp.normalize();
@@ -162,50 +150,48 @@ math::vec3	math::vec3::GetPackedTo01() const
 
 	return temp;
 }
+math::vec3 operator*(float scaleFactor, const math::vec3 & rhs) {
 
-math::vec3 operator*(float scaleFactor, const math::vec3 & rhs)
-{
 	return rhs*scaleFactor;
 }
+bool		math::vec3::operator==(const math::vec3 & rhs) const {
 
-bool		math::vec3::operator==(const math::vec3 & rhs) const
-{
 	if(x==rhs.x && y==rhs.y && z==rhs.z)
 		return true;
 
 	return false;
 }
-bool		math::vec3::operator!=(const vec3 & rhs) const
-{
+bool		math::vec3::operator!=(const vec3 & rhs) const {
+
 	return !((*this)==rhs);
 }
-//self-add etc
-void		math::vec3::operator+=(const vec3 & rhs)
-{
+void		math::vec3::operator+=(const vec3 & rhs) {
+
 	x+=rhs.x;	y+=rhs.y;	z+=rhs.z;
 }
-void		math::vec3::operator-=(const vec3 & rhs)
-{
+void		math::vec3::operator-=(const vec3 & rhs) {
+
 	x-=rhs.x;	y-=rhs.y;	z-=rhs.z;
 }
-void		math::vec3::operator*=(const float rhs)
-{
+void		math::vec3::operator*=(const float rhs) {
+
 	x*=rhs;	y*=rhs;	z*=rhs;
 }
-void		math::vec3::operator/=(const float rhs)
-{	if(rhs==0.0f)
-	return;
+void		math::vec3::operator/=(const float rhs) {
+
+	if(rhs==0.0f)
+		return;
 	else
 	{	x/=rhs; y/=rhs; z/=rhs;	}
 }
-void	math::vec3::print()
-{
+void	math::vec3::print() {
+
 	printf("%f %f %f\n",x,y,z);
 }
-bool	math::vec3::is_finite() const
-{
+bool	math::vec3::is_finite() const {
+
 	if(isinf(x)) return false;
-	
+
 	return true;
 }
 
