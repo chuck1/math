@@ -85,6 +85,22 @@ math::vec4      math::xml_parse_vec4(tinyxml2::XMLElement* element) {
 
 	return math::vec4(r,g,b,a);
 }
+
+
+math::quat math::slerp(math::quat q0, math::quat q1, float u) {
+	
+	q0.normalize();
+	q1.normalize();
+	
+	math::quat z = q0 * q1.conjugate();
+	float t = acos(z.w);
+	
+	math::quat q = sin((1-u)*t) / sin(t) * q0 + sin(u*t) / sin(t) * q1;
+	
+	return q;
+}
+
+
 float	math::recipsqrt(float const & f) {
 	return ( sqrt(f)/f );
 }
