@@ -35,13 +35,13 @@ namespace math
 			 */
 
 			void toRadiansAndUnitAxis(float& angle, vec3& axis) const;
-			float getAngle() const;
-			float getAngle(const quat& q) const;
-			float magnitudeSquared() const;
-			float dot(const quat& v) const;
-			quat getNormalized() const;
-			float magnitude() const;
-			float normalize();
+			float		getAngle() const;
+			float		getAngle(const quat& q) const;
+			float		magnitudeSquared() const;
+			float		dot(const quat& v) const;
+			quat		getNormalized() const;
+			float		magnitude() const;
+			float		normalize();
 			quat		getConjugate() const;
 			vec3		getImaginaryPart() const;
 			vec3		getBasisVector0() const;
@@ -60,7 +60,7 @@ namespace math
 			quat		operator-(const quat& q) const;
 			quat		operator*(float r) const;
 			static quat	createIdentity();
-
+			
 			operator physx::PxQuat() const { return physx::PxQuat(x,y,z,w); }
 			quat&		operator=(physx::PxQuat const & rhs) { x=rhs.x; y=rhs.y; z=rhs.z; w=rhs.w; return *this; }
 			void		print();
