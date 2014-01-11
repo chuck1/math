@@ -15,7 +15,7 @@ namespace math
         math::color     xml_parse_color(tinyxml2::XMLElement* element, math::color = math::black);
         math::vec4      xml_parse_vec4(tinyxml2::XMLElement* element);
 	
-	quat		slerp(quat const &,quat const &,float);
+	quat		slerp(quat, quat, float);
 	
 	float recipsqrt(float const &);
 }

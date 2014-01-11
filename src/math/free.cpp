@@ -92,10 +92,10 @@ math::quat math::slerp(math::quat q0, math::quat q1, float u) {
 	q0.normalize();
 	q1.normalize();
 	
-	math::quat z = q0 * q1.conjugate();
+	math::quat z = q0 * q1.getConjugate();
 	float t = acos(z.w);
 	
-	math::quat q = sin((1-u)*t) / sin(t) * q0 + sin(u*t) / sin(t) * q1;
+	math::quat q =  q0 * (sin((1-u)*t) / sin(t)) + q1 * (sin(u*t) / sin(t));
 	
 	return q;
 }
