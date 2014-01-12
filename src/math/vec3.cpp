@@ -26,8 +26,8 @@ void math::vec3::normalize() {
 
 	if(length==0.0f)
 	{
-		printf("normalize zero vector");
-		exit(0);
+		printf("normalize zero vector\n");
+		abort();
 	}
 	
 	float scalefactor = 1.0f/length;

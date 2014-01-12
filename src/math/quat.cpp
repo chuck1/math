@@ -136,7 +136,7 @@ float		math::quat::dot(const math::quat& v) const
 }
 math::quat	math::quat::getNormalized() const
 {
-	const float s = 1.0f/magnitude();
+	const float s = 1.0f / magnitude();
 	return math::quat(x*s, y*s, z*s, w*s);
 }
 float		math::quat::magnitude() const
@@ -146,10 +146,10 @@ float		math::quat::magnitude() const
 float		math::quat::normalize()
 {
 	const float mag = magnitude();
-	if (mag)
+	if(mag)
 	{
-		const float imag = float(1) / mag;
-
+		const float imag = 1.0f / mag;
+		
 		x *= imag;
 		y *= imag;
 		z *= imag;

@@ -18,6 +18,8 @@
 #ifndef color_H
 #define color_H
 
+#include <stdlib.h>
+
 namespace math
 {
 	class color
@@ -38,8 +40,21 @@ namespace math
 
 			~color() {}	//empty
 
-			void Set(float newR, float newG, float newB, float newA=0.0f)
-			{	r=newR;	g=newG;	b=newB;	a=newA;	}
+			void Set(float newR, float newG, float newB, float newA=0.0f) {
+				r=newR;
+				g=newG;
+				b=newB;
+				a=newA;
+			}
+
+			static color	rand() {
+				color ret;
+				ret.r = (float)(::rand() % 1000) / 1000.0f;
+				ret.g = (float)(::rand() % 1000) / 1000.0f;
+				ret.b = (float)(::rand() % 1000) / 1000.0f;
+				ret.a = 1.0;
+				return ret;
+			}
 
 			//accessors kept for compatability
 			void SetR(float newR) {r = newR;}
