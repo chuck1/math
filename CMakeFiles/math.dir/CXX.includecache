@@ -6,16 +6,56 @@
 
 #IncludeRegexTransform: 
 
-/home/charles/Programming/C++/math/src/math/vec3.cpp
-stdio.h
--
-stdlib.h
+/home/charles/Programming/C++/math/src/math/free.cpp
+math/free.h
 -
 math/vec3.h
 -
 
+/home/charles/Programming/C++/math/src/math/quat.cpp
+cmath
+-
+math/mat44.h
+-
+math/free.h
+-
+math/vec3.h
+-
+math/quat.h
+-
+
+src/math/color.h
+stdlib.h
+-
+
+src/math/free.h
+tinyxml2.h
+-
+math/quat.h
+-
+math/vec4.h
+-
+math/transform.h
+-
+math/color.h
+-
+
+src/math/mat44.h
+
 src/math/math.h
 cmath
+-
+
+src/math/quat.h
+PxPhysicsAPI.h
+-
+
+src/math/transform.h
+PxPhysicsAPI.h
+-
+math/vec3.h
+-
+math/quat.h
 -
 
 src/math/vec3.h
@@ -23,4 +63,6 @@ PxPhysicsAPI.h
 -
 math/math.h
 -
+
+src/math/vec4.h
 

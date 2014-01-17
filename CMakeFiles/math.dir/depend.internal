@@ -10,6 +10,7 @@ CMakeFiles/math.dir/src/math/free.cpp.o
  src/math/free.h
  src/math/math.h
  src/math/quat.h
+ src/math/transform.h
  src/math/vec3.h
  src/math/vec4.h
 CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o
@@ -38,6 +39,7 @@ CMakeFiles/math.dir/src/math/quat.cpp.o
  src/math/mat44.h
  src/math/math.h
  src/math/quat.h
+ src/math/transform.h
  src/math/vec3.h
  src/math/vec4.h
 CMakeFiles/math.dir/src/math/raw/raw.cpp.o
