@@ -3,6 +3,7 @@
 
 CMakeFiles/math.dir/src/math/color.cpp.o: src/math/color.cpp
 CMakeFiles/math.dir/src/math/color.cpp.o: src/math/color.h
+CMakeFiles/math.dir/src/math/color.cpp.o: src/math/config.h
 
 CMakeFiles/math.dir/src/math/free.cpp.o: src/math/free.cpp
 CMakeFiles/math.dir/src/math/free.cpp.o: src/math/color.h

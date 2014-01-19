@@ -4,6 +4,7 @@
 CMakeFiles/math.dir/src/math/color.cpp.o
  /home/charles/Programming/C++/math/src/math/color.cpp
  src/math/color.h
+ src/math/config.h
 CMakeFiles/math.dir/src/math/free.cpp.o
  /home/charles/Programming/C++/math/src/math/free.cpp
  src/math/color.h

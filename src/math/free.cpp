@@ -13,7 +13,7 @@ int math::xml_parse_int(tinyxml2::XMLElement* element, int v) {
 }
 float math::xml_parse_float(tinyxml2::XMLElement* element, float f) {
 	
-	if( !element ) return 0.0f;
+	if(element == NULL) return f;
 	
 	char const * buf = element->GetText();
 	
@@ -63,9 +63,11 @@ math::color math::xml_parse_color(tinyxml2::XMLElement* element, math::color col
 	
 	float r,g,b,a;
 	
-	char const * buf = element->GetText();
-	assert(buf);
+	char const * buf = NULL;
 	
+	buf = element->GetText();
+	assert(buf);
+
 	if(strcmp(buf, "red") == 0)
 	{
 		color = math::red;
@@ -101,6 +103,22 @@ math::color math::xml_parse_color(tinyxml2::XMLElement* element, math::color col
 	else if(strcmp(buf, "rand") == 0)
 	{
 		color = math::color::rand();
+	}
+	else if(strcmp(buf, "sine") == 0)
+	{
+		printf("sine color\n");
+		color = math::color(0.25, 0.5, 1.0, 1.0,
+				math::color::type::e::SINE,
+				math::color::type::e::SINE,
+				math::color::type::e::SINE);
+	}
+	else if(strcmp(buf, "saw") == 0)
+	{
+		printf("saw color\n");
+		color = math::color(0.2, 0.5, 1.0, 1.0,
+				math::color::type::e::SAW,
+				math::color::type::e::SAW,
+				math::color::type::e::SAW);
 	}
 	else
 	{
@@ -156,7 +174,7 @@ void math::hexdump(void* v, size_t s) {
 
 	unsigned char* c = (unsigned char*)v;
 	unsigned char* end = c + s;
-	
+
 	for(; c < end; ++c)
 	{
 		printf("%02X ", *c);

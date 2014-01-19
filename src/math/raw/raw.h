@@ -42,8 +42,8 @@ namespace math
                 };
 		struct color
 		{
-			math::color	to_math();
-                        int		from_math(math::color const &);
+			//math::color	to_math();
+                        //int		from_math(math::color const &);
 
 			float r, g, b, a;
 		};

@@ -22,117 +22,74 @@
 
 namespace math
 {
-	class color
-	{
+	class color {
 		public:
+			struct type {
+				enum e: char {
+					CONST,
+					SINE,
+					SAW,
+					SQUARE,
+				};
+			};
+
 			//constructors
-			color()
-			{	r=g=b=a=0.0f;	}
+			color();
+			color(float newR, float newG, float newB, float newA=0.0f,
+					char = type::e::CONST,
+					char = type::e::CONST,
+					char = type::e::CONST);
+			//color(const float * rhs);
+			color(const color & rhs);
+			~color();
+			void		Set(float newR, float newG, float newB, float newA=0.0f);
+			static color	rand();
+			void		SetR(float newR);
+			void		SetG(float newG);
+			void		SetB(float newB);
+			void		SetA(float newA);
+			float		GetR() const;
+			float		GetG() const;
+			float		GetB() const;
+			float		GetA() const;
+			void		ClampTo01(void);
+			void		SetBlack(void);
+			void		SetWhite(void);
+			void		SetGrey(float shade);
 
-			color(float newR, float newG, float newB, float newA=0.0f)
-			{	r=newR;	g=newG;	b=newB;	a=newA;	}
-
-			color(const float * rhs)
-			{	r=*rhs;	g=*(rhs+1);	b=*(rhs+2); a=*(rhs+3);	}
-
-			color(const color & rhs)
-			{	r=rhs.r;	g=rhs.g;	b=rhs.b;	a=rhs.a;}
-
-			~color() {}	//empty
-
-			void Set(float newR, float newG, float newB, float newA=0.0f) {
-				r=newR;
-				g=newG;
-				b=newB;
-				a=newA;
-			}
-
-			static color	rand() {
-				color ret;
-				ret.r = (float)(::rand() % 1000) / 1000.0f;
-				ret.g = (float)(::rand() % 1000) / 1000.0f;
-				ret.b = (float)(::rand() % 1000) / 1000.0f;
-				ret.a = 1.0;
-				return ret;
-			}
-
-			//accessors kept for compatability
-			void SetR(float newR) {r = newR;}
-			void SetG(float newG) {g = newG;}
-			void SetB(float newB) {b = newB;}
-			void SetA(float newA) {a = newA;}
-
-			float GetR() const {return r;}	//public accessor functions
-			float GetG() const {return g;}	//inline, const
-			float GetB() const {return b;}
-			float GetA() const {return a;}
-
-			void ClampTo01(void);			//clamp all components to [0,1]
-
-			void SetBlack(void) {r=g=b=a=1.0f;}
-			void SetWhite(void) {r=g=b=a=0.0f;}
-			void SetGrey(float shade) {r=g=b=a=shade;}
-
-			//linear interpolate
-			color lerp(const color & c2, float factor)
-			{	return (*this)*(1.0f-factor) + c2*factor;	}
-
-			//binary operators
-			color operator+(const color & rhs) const
-			{	return color(r+rhs.r, g+rhs.g, b+rhs.b, a+rhs.a);	}
-
-			color operator-(const color & rhs) const
-			{	return color(r-rhs.r, g-rhs.g, b-rhs.b, a-rhs.a);	}
-
-			color operator*(const color & rhs) const
-			{	return color(r*rhs.r, g*rhs.g, b*rhs.b, a*rhs.a);	}
-
-			color operator/(const color & rhs) const
-			{	return color(r/rhs.r, g/rhs.g, b/rhs.b, a/rhs.a);	}
-
-			color operator*(const float rhs) const
-			{	return color(r*rhs, g*rhs, b*rhs, a*rhs);	}
-
-			color operator/(const float rhs) const
-			{	return color(r/rhs, g/rhs, b/rhs, a/rhs);	}
-
-			//multiply by a float, eg 3*c
-			friend color operator*(float scaleFactor, const color & rhs);
-
-			bool operator==(const color & rhs) const;
-			bool operator!=(const color & rhs) const
-			{	return !((*this)==rhs);	}
-
-			//self-add etc
-			color operator+=(const color & rhs)
-			{
-				(*this)=(*this)+rhs;
-				return (*this);
-			}
-			color operator-=(const color & rhs)
-			{	(*this)=(*this)-rhs;	return (*this);	}
-			color operator*=(const color & rhs)
-			{	(*this)=(*this)*rhs;	return (*this);	}
-			color operator/=(const color & rhs)
-			{	(*this)=(*this)/rhs;	return (*this);	}
-			color operator*=(const float rhs)
-			{	(*this)=(*this)*rhs;	return (*this);	}
-			color operator/=(const float rhs)
-			{	(*this)=(*this)/rhs;	return (*this);	}
-			//unary operators
-			color operator-(void) const {return color(-r,-g, -b, -a);}
-			color operator+(void) const {return (*this);}
-
-			//cast to pointer to float for glColor4fv etc
-			operator float* () const {return (float*) this;}
-			operator const float* () const {return (const float*) this;}
-
-			void	print();
-			//member variables
-			float r;
-			float g;
-			float b;
-			float a;
+			color		lerp(const color & c2, float factor);
+			color		operator+(const color & rhs) const;
+			color		operator-(const color & rhs) const;
+			color		operator*(const color & rhs) const;
+			color		operator/(const color & rhs) const;
+			color		operator*(const float rhs) const;
+			color		operator/(const float rhs) const;
+			friend color	operator*(float scaleFactor, const color & rhs);
+			bool		operator==(const color & rhs) const;
+			bool		operator!=(const color & rhs) const;
+			color		operator+=(const color & rhs);
+			color		operator-=(const color & rhs);
+			color		operator*=(const color & rhs);
+			color		operator/=(const color & rhs);
+			color		operator*=(const float rhs);
+			color		operator/=(const float rhs);
+			color		operator-(void) const;
+			color		operator+(void) const;
+			operator float* () const;
+			operator const float* () const;
+			void		step(double);
+			void		print();
+		public:
+			float	r;
+			float	g;
+			float	b;
+			float	a;
+			float	fr;
+			float	fg;
+			float	fb;
+			char	tr;
+			char	tg;
+			char	tb;	
 	};
 
 	const color white(	1.0f, 1.0f, 1.0f, 1.0f);

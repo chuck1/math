@@ -71,7 +71,7 @@ math::transform         math::raw::transform::to_math() {
         
         return t;
 }
-int     math::raw::color::from_math(math::color const & v)
+/*int     math::raw::color::from_math(math::color const & v)
 {                       
         r = v.r;
         g = v.g;        
@@ -79,7 +79,7 @@ int     math::raw::color::from_math(math::color const & v)
         a = v.a;
                 
         return 0;       
-}                       
+}                      
 math::color	math::raw::color::to_math()
 {                       
         math::color v;
@@ -90,6 +90,6 @@ math::color	math::raw::color::to_math()
         v.a = a;
         
         return v;
-}
+}*/
 
 

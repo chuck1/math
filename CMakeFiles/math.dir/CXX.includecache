@@ -12,18 +12,6 @@ math/free.h
 math/vec3.h
 -
 
-/home/charles/Programming/C++/math/src/math/quat.cpp
-cmath
--
-math/mat44.h
--
-math/free.h
--
-math/vec3.h
--
-math/quat.h
--
-
 src/math/color.h
 stdlib.h
 -
@@ -39,8 +27,6 @@ math/transform.h
 -
 math/color.h
 -
-
-src/math/mat44.h
 
 src/math/math.h
 cmath
