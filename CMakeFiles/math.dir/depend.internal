@@ -19,6 +19,15 @@ CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o
  src/math/geo/polyhedron.h
  src/math/math.h
  src/math/vec3.h
+CMakeFiles/math.dir/src/math/mat33.cpp.o
+ /home/charles/Programming/C++/math/src/math/mat33.cpp
+ src/math/mat44.h
+ src/math/math.h
+ src/math/plane.h
+ src/math/quat.h
+ src/math/transform.h
+ src/math/vec3.h
+ src/math/vec4.h
 CMakeFiles/math.dir/src/math/mat44.cpp.o
  /home/charles/Programming/C++/math/src/math/mat44.cpp
  src/math/mat44.h

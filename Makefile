@@ -221,6 +221,30 @@ src/math/geo/polyhedron.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.s
 .PHONY : src/math/geo/polyhedron.cpp.s
 
+src/math/mat33.o: src/math/mat33.cpp.o
+.PHONY : src/math/mat33.o
+
+# target to build an object file
+src/math/mat33.cpp.o:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/mat33.cpp.o
+.PHONY : src/math/mat33.cpp.o
+
+src/math/mat33.i: src/math/mat33.cpp.i
+.PHONY : src/math/mat33.i
+
+# target to preprocess a source file
+src/math/mat33.cpp.i:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/mat33.cpp.i
+.PHONY : src/math/mat33.cpp.i
+
+src/math/mat33.s: src/math/mat33.cpp.s
+.PHONY : src/math/mat33.s
+
+# target to generate assembly for a file
+src/math/mat33.cpp.s:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/mat33.cpp.s
+.PHONY : src/math/mat33.cpp.s
+
 src/math/mat44.o: src/math/mat44.cpp.o
 .PHONY : src/math/mat44.o
 
@@ -459,6 +483,9 @@ help:
 	@echo "... src/math/geo/polyhedron.o"
 	@echo "... src/math/geo/polyhedron.i"
 	@echo "... src/math/geo/polyhedron.s"
+	@echo "... src/math/mat33.o"
+	@echo "... src/math/mat33.i"
+	@echo "... src/math/mat33.s"
 	@echo "... src/math/mat44.o"
 	@echo "... src/math/mat44.i"
 	@echo "... src/math/mat44.s"

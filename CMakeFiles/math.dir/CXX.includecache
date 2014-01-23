@@ -6,30 +6,34 @@
 
 #IncludeRegexTransform: 
 
-/home/charles/Programming/C++/math/src/math/free.cpp
-math/free.h
+/home/charles/Programming/C++/math/src/math/mat33.cpp
+memory.h
 -
-math/vec3.h
+stdio.h
 -
-
-src/math/color.h
 stdlib.h
 -
-
-src/math/free.h
-tinyxml2.h
--
-math/quat.h
+math/vec3.h
 -
 math/vec4.h
 -
 math/transform.h
 -
-math/color.h
+math/mat44.h
 -
+math/quat.h
+-
+math/plane.h
+-
+
+src/math/mat44.h
 
 src/math/math.h
 cmath
+-
+
+src/math/plane.h
+math/vec3.h
 -
 
 src/math/quat.h
