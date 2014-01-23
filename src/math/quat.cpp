@@ -170,7 +170,8 @@ math::vec3 math::quat::getBasisVector0()	const
 	//		return rotate(math::vec3(1,0,0));
 	const float x2 = x*2.0f;
 	const float w2 = w*2.0f;
-	return math::vec3(	(w * w2) - 1.0f + x*x2,
+	return math::vec3(
+			(w * w2) - 1.0f + x*x2,
 			(z * w2)        + y*x2,
 			(-y * w2)       + z*x2);
 }
@@ -179,7 +180,8 @@ math::vec3 math::quat::getBasisVector1()	const
 	//		return rotate(math::vec3(0,1,0));
 	const float y2 = y*2.0f;
 	const float w2 = w*2.0f;
-	return math::vec3(	(-z * w2)       + x*y2,
+	return math::vec3(
+			(-z * w2)       + x*y2,
 			(w * w2) - 1.0f + y*y2,
 			(x * w2)        + z*y2);
 }
@@ -188,7 +190,8 @@ math::vec3 math::quat::getBasisVector2() const
 	//		return rotate(math::vec3(0,0,1));
 	const float z2 = z*2.0f;
 	const float w2 = w*2.0f;
-	return math::vec3(	(y * w2)        + x*z2,
+	return math::vec3(
+			(y * w2)        + x*z2,
 			(-x * w2)       + y*z2,
 			(w * w2) - 1.0f + z*z2);
 }

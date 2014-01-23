@@ -48,11 +48,17 @@ math::mat33::mat33(
 }
 math::mat33::mat33(const math::mat33 & rhs)
 {
-	memcpy(v, rhs.v, 16*sizeof(float));
+	memcpy(v, rhs.v, 9*sizeof(float));
 }
 math::mat33::mat33(const float * rhs)
 {
 	memcpy(v, rhs, 9*sizeof(float));
+}
+math::mat33::mat33(vec3 const & rhs) {
+	LoadIdentity();
+	v[0] = rhs.x;
+	v[4] = rhs.y;
+	v[8] = rhs.z;
 }
 void		math::mat33::set_rotation(math::quat const & q)
 {
@@ -81,13 +87,13 @@ void		math::mat33::set_rotation(math::quat const & q)
 	v[1] = xy + zw;
 	v[2] = xz - yw;
 
-	v[4] = xy - zw;
-	v[5] = 1.0f - xx - zz;
-	v[6] = yz + xw;
+	v[3] = xy - zw;
+	v[4] = 1.0f - xx - zz;
+	v[5] = yz + xw;
 
-	v[8] = xz + yw;
-	v[9] = yz - xw;
-	v[10] = 1.0f - xx - yy;
+	v[6] = xz + yw;
+	v[7] = yz - xw;
+	v[8] = 1.0f - xx - yy;
 }
 void math::mat33::SetEntry(int position, float value)
 {
@@ -135,11 +141,10 @@ math::vec4 math::mat33::GetColumn(int position) const
 }
 void math::mat33::LoadIdentity(void)
 {
-	memset(v, 0, 16*sizeof(float));
+	memset(v, 0, 9*sizeof(float));
 	v[0]=1.0f;
-	v[5]=1.0f;
-	v[10]=1.0f;
-	v[15]=1.0f;
+	v[4]=1.0f;
+	v[8]=1.0f;
 }
 void math::mat33::LoadZero(void)
 {
@@ -156,73 +161,23 @@ math::mat33 math::mat33::operator-(const math::mat33 & rhs) const {
 	return m;
 }
 math::mat33 math::mat33::operator*(const math::mat33 & rhs) const {
-	//Optimise for matrices in which bottom row is (0, 0, 0, 1) in both matrices
-
-	if( 
-			v[3]  == 0.0f && v[7]  == 0.0f &&
-			v[11] == 0.0f && v[15] == 1.0f &&
-			rhs.v[3]  == 0.0f && rhs.v[7]  == 0.0f &&
-			rhs.v[11] == 0.0f && rhs.v[15] == 1.0f)
-	{
-		return math::mat33(
-				v[0]*rhs.v[0] + v[4]*rhs.v[1] + v[8]  * rhs.v[2],
-				v[1]*rhs.v[0] + v[5]*rhs.v[1] + v[9]  * rhs.v[2],
-				v[2]*rhs.v[0] + v[6]*rhs.v[1] + v[10] * rhs.v[2],
-				v[0]*rhs.v[4] + v[4] * rhs.v[5] + v[8]  * rhs.v[6],
-				v[1]*rhs.v[4] + v[5] * rhs.v[5] + v[9]  * rhs.v[6],
-				v[2]*rhs.v[4] + v[6] * rhs.v[5] + v[10] * rhs.v[6],
-				v[0]*rhs.v[8]+v[4]*rhs.v[9]+v[8]*rhs.v[10],
-				v[1]*rhs.v[8]+v[5]*rhs.v[9]+v[9]*rhs.v[10],
-				v[2]*rhs.v[8]+v[6]*rhs.v[9]+v[10]*rhs.v[10]);
-	}
-
-	//Optimise for when bottom row of 1st matrix is (0, 0, 0, 1)
-	if(v[3]==0.0f && v[7]==0.0f && v[11]==0.0f && v[15]==1.0f)
-	{
-		return math::mat33(
-				v[0]*rhs.v[0]+v[4]*rhs.v[1]+v[8]*rhs.v[2]+v[12]*rhs.v[3],
-				v[1]*rhs.v[0]+v[5]*rhs.v[1]+v[9]*rhs.v[2]+v[13]*rhs.v[3],
-				v[2]*rhs.v[0]+v[6]*rhs.v[1]+v[10]*rhs.v[2]+v[14]*rhs.v[3],
-				v[0]*rhs.v[4]+v[4]*rhs.v[5]+v[8]*rhs.v[6]+v[12]*rhs.v[7],
-				v[1]*rhs.v[4]+v[5]*rhs.v[5]+v[9]*rhs.v[6]+v[13]*rhs.v[7],
-				v[2]*rhs.v[4]+v[6]*rhs.v[5]+v[10]*rhs.v[6]+v[14]*rhs.v[7],
-				v[0]*rhs.v[8]+v[4]*rhs.v[9]+v[8]*rhs.v[10]+v[12]*rhs.v[11],
-				v[1]*rhs.v[8]+v[5]*rhs.v[9]+v[9]*rhs.v[10]+v[13]*rhs.v[11],
-				v[2]*rhs.v[8]+v[6]*rhs.v[9]+v[10]*rhs.v[10]+v[14]*rhs.v[11]);
-	}
-
-	//Optimise for when bottom row of 2nd matrix is (0, 0, 0, 1)
-	if(	rhs.v[3]==0.0f && rhs.v[7]==0.0f &&
-			rhs.v[11]==0.0f && rhs.v[15]==1.0f)
-	{
-		return math::mat33(
-				v[0]*rhs.v[0]+v[4]*rhs.v[1]+v[8]*rhs.v[2],
-				v[1]*rhs.v[0]+v[5]*rhs.v[1]+v[9]*rhs.v[2],
-				v[2]*rhs.v[0]+v[6]*rhs.v[1]+v[10]*rhs.v[2],
-				v[0]*rhs.v[4]+v[4]*rhs.v[5]+v[8]*rhs.v[6],
-				v[1]*rhs.v[4]+v[5]*rhs.v[5]+v[9]*rhs.v[6],
-				v[2]*rhs.v[4]+v[6]*rhs.v[5]+v[10]*rhs.v[6],
-				v[0]*rhs.v[8]+v[4]*rhs.v[9]+v[8]*rhs.v[10],
-				v[1]*rhs.v[8]+v[5]*rhs.v[9]+v[9]*rhs.v[10],
-				v[2]*rhs.v[8]+v[6]*rhs.v[9]+v[10]*rhs.v[10]);
-	}	
 
 	return math::mat33(
-			v[0]*rhs.v[0]+v[4]*rhs.v[1]+v[8]*rhs.v[2]+v[12]*rhs.v[3],
-			v[1]*rhs.v[0]+v[5]*rhs.v[1]+v[9]*rhs.v[2]+v[13]*rhs.v[3],
-			v[2]*rhs.v[0]+v[6]*rhs.v[1]+v[10]*rhs.v[2]+v[14]*rhs.v[3],
-			v[0]*rhs.v[4]+v[4]*rhs.v[5]+v[8]*rhs.v[6]+v[12]*rhs.v[7],
-			v[1]*rhs.v[4]+v[5]*rhs.v[5]+v[9]*rhs.v[6]+v[13]*rhs.v[7],
-			v[2]*rhs.v[4]+v[6]*rhs.v[5]+v[10]*rhs.v[6]+v[14]*rhs.v[7],
-			v[0]*rhs.v[8]+v[4]*rhs.v[9]+v[8]*rhs.v[10]+v[12]*rhs.v[11],
-			v[1]*rhs.v[8]+v[5]*rhs.v[9]+v[9]*rhs.v[10]+v[13]*rhs.v[11],
-			v[2]*rhs.v[8]+v[6]*rhs.v[9]+v[10]*rhs.v[10]+v[14]*rhs.v[11]);
+			v[0]*rhs.v[0] + v[3] * rhs.v[1] + v[6] * rhs.v[2],
+			v[1]*rhs.v[0] + v[4] * rhs.v[1] + v[7] * rhs.v[2],
+			v[2]*rhs.v[0] + v[5] * rhs.v[1] + v[8] * rhs.v[2],
+			v[0]*rhs.v[3] + v[3] * rhs.v[4] + v[6] * rhs.v[5],
+			v[1]*rhs.v[3] + v[4] * rhs.v[4] + v[7] * rhs.v[5],
+			v[2]*rhs.v[3] + v[5] * rhs.v[4] + v[8] * rhs.v[5],
+			v[0]*rhs.v[6] + v[3] * rhs.v[7] + v[6] * rhs.v[8],
+			v[1]*rhs.v[6] + v[4] * rhs.v[7] + v[7] * rhs.v[8],
+			v[2]*rhs.v[6] + v[5] * rhs.v[7] + v[8] * rhs.v[8]);
 }
 math::mat33 math::mat33::operator*(const float rhs) const
 {
 	math::mat33 m;
 	for(int i = 0; i < 9; ++i) m.v[i] = v[i]*rhs;
-	
+
 	return math::mat33(
 			v[0]*rhs,
 			v[1]*rhs,
@@ -266,7 +221,7 @@ void math::mat33::operator+=(const math::mat33 & rhs)
 }
 void math::mat33::operator-=(const math::mat33 & rhs)
 {
-for(int i = 0; i < 9; ++i) v[i] *= rhs.v[i];
+	for(int i = 0; i < 9; ++i) v[i] *= rhs.v[i];
 }
 void math::mat33::operator*=(const math::mat33 & rhs) {
 	(*this) = (*this) * rhs;
@@ -289,19 +244,10 @@ math::mat33 math::mat33::operator-(void) const
 }
 math::vec3 math::mat33::operator*(const vec3 rhs) const
 {
-	//Optimise for matrices in which bottom row is (0, 0, 0, 1)
-	if(v[3]==0.0f && v[7]==0.0f && v[11]==0.0f && v[15]==1.0f)
-	{
-		return vec3(
-				v[0]*rhs.x + v[4]*rhs.y + v[8] *rhs.z + v[12]*rhs.w,
-				v[1]*rhs.x + v[5]*rhs.y	+ v[9] *rhs.z + v[13]*rhs.w,
-				v[2]*rhs.x + v[6]*rhs.y + v[10]*rhs.z + v[14]*rhs.w);
-	}
-
 	return vec3(
-			v[0] * rhs.x + v[4] * rhs.y + v[8] * rhs.z  + v[12] * rhs.w,
-			v[1] * rhs.x + v[5] * rhs.y + v[9] * rhs.z  + v[13] * rhs.w,
-			v[2] * rhs.x + v[6] * rhs.y + v[10] * rhs.z + v[14] * rhs.w);
+			v[0]*rhs.x + v[3]*rhs.y + v[6] * rhs.z,
+			v[1]*rhs.x + v[4]*rhs.y	+ v[7] * rhs.z,
+			v[2]*rhs.x + v[5]*rhs.y + v[8] * rhs.z);
 
 }
 math::vec3	math::mat33::GetRotatedVector3D(const vec3 & rhs) const
@@ -317,14 +263,6 @@ math::vec3	math::mat33::GetInverseRotatedVector3D(const vec3 & rhs) const
 	return vec3(v[0]*rhs.x + v[1]*rhs.y + v[2]*rhs.z,
 			v[4]*rhs.x + v[5]*rhs.y + v[6]*rhs.z,
 			v[8]*rhs.x + v[9]*rhs.y + v[10]*rhs.z);
-}
-math::vec3	math::mat33::GetTranslatedVector3D(const vec3 & rhs) const {
-
-	return vec3(rhs.x+v[12], rhs.y+v[13], rhs.z+v[14]);
-}
-math::vec3	math::mat33::GetInverseTranslatedVector3D(const vec3 & rhs) const
-{
-	return vec3(rhs.x-v[12], rhs.y-v[13], rhs.z-v[14]);
 }
 void		math::mat33::Invert(void)
 {
@@ -345,10 +283,9 @@ void		math::mat33::Transpose(void)
 math::mat33	math::mat33::GetTranspose(void) const
 {
 	return math::mat33(
-			v[ 0], v[ 4], v[ 8], v[12],
-			v[ 1], v[ 5], v[ 9], v[13],
-			v[ 2], v[ 6], v[10], v[14],
-			v[ 3], v[ 7], v[11], v[15]);
+			v[ 0], v[ 3], v[6],
+			v[ 1], v[ 4], v[7],
+			v[ 2], v[ 5], v[8]);
 }
 void		math::mat33::InvertTranspose(void)
 {
@@ -454,46 +391,6 @@ math::mat33	math::mat33::GetInverseTranspose(void) const
 	result=result/det;
 
 	return result;
-}
-void		math::mat33::AffineInvert(void)
-{
-	(*this)=GetAffineInverse();
-}
-math::mat33	math::mat33::GetAffineInverse(void) const
-{
-	//return the transpose of the rotation part
-	//and the negative of the inverse rotated translation part
-	return math::mat33(
-			v[0],v[4],v[8],0.0f,
-			v[1],v[5],v[9],0.0f,
-			v[2],v[6],v[10],0.0f,
-			-(v[0]*v[12]+v[1]*v[13]+v[2]*v[14]),
-			-(v[4]*v[12]+v[5]*v[13]+v[6]*v[14]),
-			-(v[8]*v[12]+v[9]*v[13]+v[10]*v[14]),
-			1.0f);
-}
-void		math::mat33::AffineInvertTranspose(void)
-{
-	(*this)=GetAffineInverseTranspose();
-}
-math::mat33	math::mat33::GetAffineInverseTranspose(void) const
-{
-	//return the transpose of the rotation part
-	//and the negative of the inverse rotated translation part
-	//transposed
-	return math::mat33(	v[0],
-			v[1],
-			v[2],
-			-(v[0]*v[12]+v[1]*v[13]+v[2]*v[14]),
-			v[4],
-			v[5],
-			v[6],
-			-(v[4]*v[12]+v[5]*v[13]+v[6]*v[14]),
-			v[8],
-			v[9],
-			v[10],
-			-(v[8]*v[12]+v[9]*v[13]+v[10]*v[14]),
-			0.0f, 0.0f, 0.0f, 1.0f);
 }
 void		math::mat33::SetTranslation(const vec3 & translation)
 {
@@ -678,96 +575,20 @@ void		math::mat33::InverseRotateVector3D(math::vec3 & rhs) const
 {
 	rhs=GetInverseRotatedVector3D(rhs);
 }
-void		math::mat33::TranslateVector3D(vec3 & rhs) const
-{
-	rhs=GetTranslatedVector3D(rhs);
-}
-void		math::mat33::InverseTranslateVector3D(vec3 & rhs) const
-{
-	rhs=GetInverseTranslatedVector3D(rhs);
-}
 void		math::mat33::SetRotationPartEuler(const math::vec3 & rotations)
 {
 	SetRotationPartEuler((double)rotations.x, (double)rotations.y, (double)rotations.z);
 }
-math::mat33	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
-{
-	vec3 F = center - eye;
-	vec3 f = F.GetNormalized();
-
-	vec3 UP = up.GetNormalized();
-
-	vec3 s = f.cross(UP);
-	s.normalize();
-
-	vec3 u = s.cross(f);
-
-	//printf("u\n");
-	//u.print();
-
-	mat33 M(
-			s.x,  u.x,  -f.x , 0.0f,
-			s.y,  u.y,  -f.y , 0.0f,
-			s.z,  u.z,  -f.z , 0.0f,
-			0.0f, 0.0f, 0.0f, 1.0f);
-
-	//	M.print();
-
-	mat33 T;
-	T.SetTranslation(-eye);
-
-	//printf("M\n");
-	//M.print();
-	//printf("T\n");
-	//T.print();
-
-	//return T*M;
-	return M*T;
-}
-void	math::mat33::SetReflection(math::plane const & p)
-{
-	math::vec3 n = p.n.GetNormalized();
-
-	math::mat33 A;
-	A.SetTranslation(n * -p.d);
-
-	math::mat33 I;
-
-	math::mat33 RA = I - math::vec4(n,0) * math::vec4(n,0) * 2.0;
-
-	//*this = A * RA * A.GetInverse();
-	*this = A.GetInverse() * RA * A;
-}
 void	math::mat33::print()
 {
-	for(int i = 0; i < 4; ++i )
+	for(int i = 0; i < 3; ++i )
 	{
-		for(int j = 0; j < 4; ++j )
+		for(int j = 0; j < 3; ++j )
 		{
-			printf("%f ",v[4*i+j]);
+			printf("%f ",v[3*i+j]);
 		}
 		printf("\n");
 	}
-}
-void	math::mat33::SetCoordinateTransform(math::vec3 const x, math::vec3 const y)
-{
-
-
-	math::vec3 Z = x.cross(y);
-
-	math::vec3 X = y.cross(Z);
-
-	X.normalize();
-	math::vec3 Y = y.GetNormalized();
-	Z.normalize();
-
-	math::mat33 m(
-			X.x,  Y.x,  Z.x , 0.0f,
-			X.y,  Y.y,  Z.y , 0.0f,
-			X.z,  Y.z,  Z.z , 0.0f,
-			0.0f, 0.0f, 0.0f, 1.0f);
-
-	*this = m;
 }
 
 

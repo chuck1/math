@@ -11,7 +11,7 @@ namespace math
 	class mat33
 	{
 		public:
-			friend mat33 operator*(float scaleFactor, const mat33 & rhs);
+			//friend mat33 operator*(float scaleFactor, const mat33 & rhs);
 			
 			mat33();
 			mat33(
@@ -20,6 +20,7 @@ namespace math
 				float, float, float);
 			mat33(const float * rhs);
 			mat33(const mat33 & rhs);
+			mat33(vec3 const &);
 			~mat33() {}
 			
 			void	SetEntry(int position, float value);
@@ -69,13 +70,6 @@ namespace math
 			mat33	GetTranspose(void) const;
 			void	InvertTranspose(void);
 			mat33	GetInverseTranspose(void) const;
-			void	SetCoordinateTransform(math::vec3 const,math::vec3 const);
-			
-			//Inverse of a rotation/translation only matrix
-			void	AffineInvert(void);
-			mat33	GetAffineInverse(void) const;
-			void	AffineInvertTranspose(void);
-			mat33	GetAffineInverseTranspose(void) const;
 			
 			//set to perform an operation on space - removes other entries
 			void	SetTranslation(vec3 const &);
@@ -91,7 +85,6 @@ namespace math
 			void	SetPerspective(float fovy, float aspect, float n, float f);
 			void	SetOrtho(float left, float right, float bottom, float top, float n, float f);
 			
-			void	SetReflection(plane const &);
 			void	print();
 			
 			//set parts of the matrix
