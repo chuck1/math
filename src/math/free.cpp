@@ -1,6 +1,9 @@
+#include <stdio.h>
+
 #include <math/free.h>
 #include <math/vec3.h>
 
+#ifdef TINYXML
 int math::xml_parse_int(tinyxml2::XMLElement* element, int v) {
 	
 	if(!element) return v;
@@ -151,7 +154,7 @@ math::vec4      math::xml_parse_vec4(tinyxml2::XMLElement* element) {
 
 	return math::vec4(r,g,b,a);
 }
-
+#endif
 
 math::quat math::slerp(math::quat q0, math::quat q1, float u) {
 

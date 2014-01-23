@@ -1,4 +1,5 @@
 #include <cmath>
+#include <stdio.h>
 
 #include <math/mat44.h>
 #include <math/free.h>

@@ -1,7 +1,9 @@
 #ifndef __QUAT_H__
 #define __QUAT_H__
 
+#ifdef PHYSX
 #include <PxPhysicsAPI.h>
+#endif
 
 namespace math
 {
@@ -60,6 +62,7 @@ namespace math
 			quat		operator-(const quat& q) const;
 			quat		operator*(float r) const;
 			static quat	createIdentity();
+#ifdef PHYSX
 
 			operator physx::PxQuat() const { return physx::PxQuat(x,y,z,w); }
 			quat&		operator=(physx::PxQuat const & rhs) {
@@ -69,6 +72,7 @@ namespace math
 				w=rhs.w;
 				return *this;
 			}
+#endif
 			void		print();
 
 			float x,y,z,w;

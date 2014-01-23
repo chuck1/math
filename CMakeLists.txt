@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 include(ExternalProject)
 
-project(nebula)
+project(math)
 
 set(PROJECT_SOURCE_DIR src)
 
