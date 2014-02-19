@@ -47,4 +47,10 @@ install(FILES ${PROJECT_SOURCE_DIR}/math/geo/polyhedron.h DESTINATION	include/ma
 install(FILES ${PROJECT_SOURCE_DIR}/math/vclip/vclip.h DESTINATION	include/math/vclip)
 
 
+project(test_array)
+add_executable(test_array test/array/main.cpp)
+target_link_libraries(test_array math)
+
+
+
 
