@@ -2,12 +2,12 @@
 
 #include <math/geo/polyhedron.h>
 
-math::geo::sphere::sphere(float r, int slices, int stacks)
-{
+//math::geo::thin_cyl::cylinder(float 
+math::geo::sphere::sphere(float r, int slices, int stacks) {
 	nt_ = 2 * slices;
 	nq_ = slices * (stacks-2);
 	
-	printf(	"tris:  %i\n"
+	printf( "tris:  %i\n"
 		"quads: %i\n",nt_,nq_);
 	
 	/*

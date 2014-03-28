@@ -78,6 +78,8 @@ namespace math
 			void RotateAxis(double angle, const vec3 & axis);
 			vec4 GetRotatedAxis(double angle, const vec3 & axis) const;
 			void	print();
+
+			bool isNan() { return false; }
 			
 			vec4 lerp(const vec4 & v2, float factor) const
 			{	return (*this)*(1.0f-factor)+v2*factor;	}
