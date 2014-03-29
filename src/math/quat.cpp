@@ -1,5 +1,7 @@
 #include <cmath>
+#include <stdio.h>
 
+#include <math/mat44.h>
 #include <math/free.h>
 #include <math/vec3.h>
 #include <math/quat.h>
@@ -29,16 +31,59 @@ math::quat::quat(math::quat const & v):
 math::quat::quat(math::vec3 const & u, math::vec3 const & v)
 {
 	math::vec3 a = u.cross(v);
-	
+
 	x = a.x;
 	y = a.y;
 	z = a.z;
-	
+
 	w = sqrt( u.magnitudeSquared() * v.magnitudeSquared() ) + u.dot(v);
 }
-math::quat::quat(mat33 const & m)
+math::quat::quat(mat44 const & m)
 {
+	float m00 = m.entries[0];
+	float m01 = m.entries[1];
+	float m02 = m.entries[2];
+	float m10 = m.entries[4];
+	float m11 = m.entries[5];
+	float m12 = m.entries[6];
+	float m20 = m.entries[8];
+	float m21 = m.entries[9];
+	float m22 = m.entries[10];
 
+	float tr = m00 + m11 + m22;
+
+	if (tr > 0)
+	{ 
+		float S = sqrt(tr+1.0) * 2; // S=4*qw 
+		w = 0.25 * S;
+		x = (m21 - m12) / S;
+		y = (m02 - m20) / S; 
+		z = (m10 - m01) / S; 
+	}
+	else if ((m00 > m11)&(m00 > m22))
+	{ 
+		float S = sqrt(1.0 + m00 - m11 - m22) * 2; // S=4*qx 
+		w = (m21 - m12) / S;
+		x = 0.25 * S;
+		y = (m01 + m10) / S; 
+		z = (m02 + m20) / S; 
+	}
+	else if (m11 > m22)
+	{ 
+		float S = sqrt(1.0 + m11 - m00 - m22) * 2; // S=4*qy
+		w = (m02 - m20) / S;
+		x = (m01 + m10) / S; 
+		y = 0.25 * S;
+		z = (m12 + m21) / S; 
+	}
+	else
+	{ 
+		float S = sqrt(1.0 + m22 - m00 - m11) * 2; // S=4*qz
+		w = (m10 - m01) / S;
+		x = (m02 + m20) / S;
+		y = (m12 + m21) / S;
+		z = 0.25 * S;
+	}
 }
 bool		math::quat::isFinite() const
 {
@@ -92,7 +137,7 @@ float		math::quat::dot(const math::quat& v) const
 }
 math::quat	math::quat::getNormalized() const
 {
-	const float s = 1.0f/magnitude();
+	const float s = 1.0f / magnitude();
 	return math::quat(x*s, y*s, z*s, w*s);
 }
 float		math::quat::magnitude() const
@@ -102,10 +147,10 @@ float		math::quat::magnitude() const
 float		math::quat::normalize()
 {
 	const float mag = magnitude();
-	if (mag)
+	if(mag)
 	{
-		const float imag = float(1) / mag;
-
+		const float imag = 1.0f / mag;
+		
 		x *= imag;
 		y *= imag;
 		z *= imag;
@@ -126,7 +171,8 @@ math::vec3 math::quat::getBasisVector0()	const
 	//		return rotate(math::vec3(1,0,0));
 	const float x2 = x*2.0f;
 	const float w2 = w*2.0f;
-	return math::vec3(	(w * w2) - 1.0f + x*x2,
+	return math::vec3(
+			(w * w2) - 1.0f + x*x2,
 			(z * w2)        + y*x2,
 			(-y * w2)       + z*x2);
 }
@@ -135,7 +181,8 @@ math::vec3 math::quat::getBasisVector1()	const
 	//		return rotate(math::vec3(0,1,0));
 	const float y2 = y*2.0f;
 	const float w2 = w*2.0f;
-	return math::vec3(	(-z * w2)       + x*y2,
+	return math::vec3(
+			(-z * w2)       + x*y2,
 			(w * w2) - 1.0f + y*y2,
 			(x * w2)        + z*y2);
 }
@@ -144,7 +191,8 @@ math::vec3 math::quat::getBasisVector2() const
 	//		return rotate(math::vec3(0,0,1));
 	const float z2 = z*2.0f;
 	const float w2 = w*2.0f;
-	return math::vec3(	(y * w2)        + x*z2,
+	return math::vec3(
+			(y * w2)        + x*z2,
 			(-x * w2)       + y*z2,
 			(w * w2) - 1.0f + z*z2);
 }
@@ -250,4 +298,8 @@ math::quat math::quat::createIdentity()
 {
 	return math::quat(0,0,0,1);
 }
+void math::quat::print() {
+	printf("%f %f %f %f\n", x, y, z, w);
+}
+
 

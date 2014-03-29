@@ -6,6 +6,7 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/color.cpp
 stdio.h
 -
@@ -13,18 +14,61 @@ math/color.h
 -
 
 /home/charles/Programming/C++/math/src/math/free.cpp
+=======
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/color.cpp
+stdio.h
+-
+cmath
+-
+math/color.h
+-
+math/config.h
+-
+
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/free.cpp
+stdio.h
+-
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 math/free.h
 -
 math/vec3.h
 -
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/geo/polyhedron.cpp
+=======
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/geo/polyhedron.cpp
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 stdio.h
 -
 math/geo/polyhedron.h
 -
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/mat44.cpp
+=======
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/mat33.cpp
+memory.h
+-
+stdio.h
+-
+stdlib.h
+-
+math/vec3.h
+-
+math/vec4.h
+-
+math/transform.h
+-
+math/mat33.h
+-
+math/quat.h
+-
+math/plane.h
+-
+
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/mat44.cpp
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 memory.h
 -
 stdio.h
@@ -44,6 +88,7 @@ math/quat.h
 math/plane.h
 -
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/plane.cpp
 math/plane.h
 -
@@ -51,6 +96,19 @@ math/plane.h
 /home/charles/Programming/C++/math/src/math/quat.cpp
 cmath
 -
+=======
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/plane.cpp
+math/plane.h
+-
+
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/quat.cpp
+cmath
+-
+stdio.h
+-
+math/mat44.h
+-
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 math/free.h
 -
 math/vec3.h
@@ -58,6 +116,7 @@ math/vec3.h
 math/quat.h
 -
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/raw/raw.cpp
 math/raw/raw.h
 -
@@ -65,12 +124,27 @@ math/raw/raw.h
 /home/charles/Programming/C++/math/src/math/transform.cpp
 assert.h
 -
+=======
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/raw/raw.cpp
+math/raw/raw.h
+-
+
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/transform.cpp
+assert.h
+-
+math/mat44.h
+-
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 math/plane.h
 -
 math/transform.h
 -
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/vclip/vclip.cpp
+=======
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/vclip/vclip.cpp
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 stdlib.h
 -
 set
@@ -82,13 +156,21 @@ math/vec3.h
 math/vclip/vclip.h
 -
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/vec2.cpp
+=======
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/vec2.cpp
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 math/math.h
 -
 math/vec2.h
 -
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/vec3.cpp
+=======
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/vec3.cpp
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 stdio.h
 -
 stdlib.h
@@ -96,7 +178,11 @@ stdlib.h
 math/vec3.h
 -
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/vec4.cpp
+=======
+/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/vec4.cpp
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 stdio.h
 -
 math/vec3.h
@@ -107,6 +193,10 @@ math/mat44.h
 -
 
 src/math/color.h
+stdlib.h
+-
+
+src/math/config.h
 
 src/math/free.h
 tinyxml2.h
@@ -115,6 +205,8 @@ math/quat.h
 -
 math/vec4.h
 -
+math/transform.h
+-
 math/color.h
 -
 
@@ -122,6 +214,11 @@ src/math/geo/polyhedron.h
 math/vec3.h
 -
 
+<<<<<<< HEAD
+=======
+src/math/mat33.h
+
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 src/math/mat44.h
 
 src/math/math.h
@@ -139,6 +236,11 @@ PxPhysicsAPI.h
 src/math/raw/raw.h
 math/vec3.h
 -
+<<<<<<< HEAD
+=======
+math/vec4.h
+-
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 math/transform.h
 -
 math/color.h

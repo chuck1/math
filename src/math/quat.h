@@ -1,12 +1,14 @@
 #ifndef __QUAT_H__
 #define __QUAT_H__
 
+#ifdef PHYSX
 #include <PxPhysicsAPI.h>
+#endif
 
 namespace math
 {
 	class vec3;
-	class mat33;
+	class mat44;
 
 	class quat
 	{
@@ -16,22 +18,23 @@ namespace math
 			quat(float angleRadians, vec3 const & axis);
 			quat(quat const & v);
 			quat(vec3 const &, vec3 const &);
-			quat(mat33 const & m);
-
+			quat(mat44 const & m);
+			
 			bool	isFinite() const;
 			/**
 			  \brief returns true if finite and magnitude is close to unit
-			  */
+			 */
 			bool	isUnit() const;
 			/**
-			  \brief returns true if finite and magnitude is reasonably close to unit to allow for some accumulation of error vs isValid
-			  */
+			  \brief returns true if finite and magnitude is reasonably
+			  close to unit to allow for some accumulation of error vs isValid
+			 */
 
 			bool	isSane() const;
 
 			/**
 			  \brief converts this quaternion to angle-axis representation
-			  */
+			 */
 
 			void		toRadiansAndUnitAxis(float& angle, vec3& axis) const;
 			float		getAngle() const;
@@ -59,10 +62,19 @@ namespace math
 			quat		operator-(const quat& q) const;
 			quat		operator*(float r) const;
 			static quat	createIdentity();
-			
+#ifdef PHYSX
+
 			operator physx::PxQuat() const { return physx::PxQuat(x,y,z,w); }
-			quat&		operator=(physx::PxQuat const & rhs) { x=rhs.x; y=rhs.y; z=rhs.z; w=rhs.w; return *this; }
-			
+			quat&		operator=(physx::PxQuat const & rhs) {
+				x=rhs.x;
+				y=rhs.y;
+				z=rhs.z;
+				w=rhs.w;
+				return *this;
+			}
+#endif
+			void		print();
+
 			float x,y,z,w;
 	};
 }

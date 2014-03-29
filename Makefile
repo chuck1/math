@@ -35,22 +35,27 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+<<<<<<< HEAD
 # Escaping for special characters.
 EQUALS = =
+=======
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+>>>>>>> 4ebb5cfd78edf46d57b0550d9c1db41fac29cd4b
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/charles/Programming/C++/math
+CMAKE_SOURCE_DIR = /nfs/stak/students/r/rymalc/Documents/Programming/C++/math
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/charles/Programming/C++/math
+CMAKE_BINARY_DIR = /nfs/stak/students/r/rymalc/Documents/Programming/C++/math
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/usr/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -110,9 +115,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/charles/Programming/C++/math/CMakeFiles /home/charles/Programming/C++/math/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/charles/Programming/C++/math/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -151,6 +156,19 @@ math: cmake_check_build_system
 math/fast:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/build
 .PHONY : math/fast
+
+#=============================================================================
+# Target rules for targets named test_array
+
+# Build rule for target.
+test_array: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_array
+.PHONY : test_array
+
+# fast build rule for target.
+test_array/fast:
+	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/build
+.PHONY : test_array/fast
 
 src/math/color.o: src/math/color.cpp.o
 .PHONY : src/math/color.o
@@ -223,6 +241,30 @@ src/math/geo/polyhedron.s: src/math/geo/polyhedron.cpp.s
 src/math/geo/polyhedron.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.s
 .PHONY : src/math/geo/polyhedron.cpp.s
+
+src/math/mat33.o: src/math/mat33.cpp.o
+.PHONY : src/math/mat33.o
+
+# target to build an object file
+src/math/mat33.cpp.o:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/mat33.cpp.o
+.PHONY : src/math/mat33.cpp.o
+
+src/math/mat33.i: src/math/mat33.cpp.i
+.PHONY : src/math/mat33.i
+
+# target to preprocess a source file
+src/math/mat33.cpp.i:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/mat33.cpp.i
+.PHONY : src/math/mat33.cpp.i
+
+src/math/mat33.s: src/math/mat33.cpp.s
+.PHONY : src/math/mat33.s
+
+# target to generate assembly for a file
+src/math/mat33.cpp.s:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/mat33.cpp.s
+.PHONY : src/math/mat33.cpp.s
 
 src/math/mat44.o: src/math/mat44.cpp.o
 .PHONY : src/math/mat44.o
@@ -440,6 +482,30 @@ src/math/vec4.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/vec4.cpp.s
 .PHONY : src/math/vec4.cpp.s
 
+test/array/main.o: test/array/main.cpp.o
+.PHONY : test/array/main.o
+
+# target to build an object file
+test/array/main.cpp.o:
+	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/test/array/main.cpp.o
+.PHONY : test/array/main.cpp.o
+
+test/array/main.i: test/array/main.cpp.i
+.PHONY : test/array/main.i
+
+# target to preprocess a source file
+test/array/main.cpp.i:
+	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/test/array/main.cpp.i
+.PHONY : test/array/main.cpp.i
+
+test/array/main.s: test/array/main.cpp.s
+.PHONY : test/array/main.s
+
+# target to generate assembly for a file
+test/array/main.cpp.s:
+	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/test/array/main.cpp.s
+.PHONY : test/array/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -453,6 +519,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... math"
 	@echo "... rebuild_cache"
+	@echo "... test_array"
 	@echo "... src/math/color.o"
 	@echo "... src/math/color.i"
 	@echo "... src/math/color.s"
@@ -462,6 +529,9 @@ help:
 	@echo "... src/math/geo/polyhedron.o"
 	@echo "... src/math/geo/polyhedron.i"
 	@echo "... src/math/geo/polyhedron.s"
+	@echo "... src/math/mat33.o"
+	@echo "... src/math/mat33.i"
+	@echo "... src/math/mat33.s"
 	@echo "... src/math/mat44.o"
 	@echo "... src/math/mat44.i"
 	@echo "... src/math/mat44.s"
@@ -489,6 +559,9 @@ help:
 	@echo "... src/math/vec4.o"
 	@echo "... src/math/vec4.i"
 	@echo "... src/math/vec4.s"
+	@echo "... test/array/main.o"
+	@echo "... test/array/main.i"
+	@echo "... test/array/main.s"
 .PHONY : help
 
 

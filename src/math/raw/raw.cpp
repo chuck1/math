@@ -1,5 +1,25 @@
 #include <math/raw/raw.h>
 
+int     math::raw::vec4::from_math(math::vec4 const & v)
+{
+        x = v.x;
+        y = v.y;
+        z = v.z;
+	w = v.w;
+        
+        return 0;
+}
+math::vec4      math::raw::vec4::to_math()
+{
+        math::vec4 v;   
+                        
+        v.x = x;
+        v.y = y;        
+        v.z = z;
+        v.w = z;
+	
+        return v;
+}
 int     math::raw::vec3::from_math(math::vec3 const & v)
 {
         x = v.x;
@@ -51,7 +71,7 @@ math::transform         math::raw::transform::to_math() {
         
         return t;
 }
-int     math::raw::color::from_math(math::color const & v)
+/*int     math::raw::color::from_math(math::color const & v)
 {                       
         r = v.r;
         g = v.g;        
@@ -59,7 +79,7 @@ int     math::raw::color::from_math(math::color const & v)
         a = v.a;
                 
         return 0;       
-}                       
+}                      
 math::color	math::raw::color::to_math()
 {                       
         math::color v;
@@ -70,6 +90,6 @@ math::color	math::raw::color::to_math()
         v.a = a;
         
         return v;
-}
+}*/
 
 
