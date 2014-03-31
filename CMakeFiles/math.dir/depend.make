@@ -20,6 +20,7 @@ CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o: src/math/math.h
 CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o: src/math/vec3.h
 
 CMakeFiles/math.dir/src/math/mat33.cpp.o: src/math/mat33.cpp
+CMakeFiles/math.dir/src/math/mat33.cpp.o: src/math/vec3.cpp
 CMakeFiles/math.dir/src/math/mat33.cpp.o: src/math/mat33.h
 CMakeFiles/math.dir/src/math/mat33.cpp.o: src/math/math.h
 CMakeFiles/math.dir/src/math/mat33.cpp.o: src/math/plane.h
@@ -44,7 +45,6 @@ CMakeFiles/math.dir/src/math/plane.cpp.o: src/math/vec3.h
 
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/quat.cpp
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/color.h
-CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/config.h
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/free.h
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/mat44.h
 CMakeFiles/math.dir/src/math/quat.cpp.o: src/math/math.h

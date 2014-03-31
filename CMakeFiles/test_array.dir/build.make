@@ -31,9 +31,6 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
-# Escaping for special characters.
-EQUALS = =
-
 # The top-level source directory on which CMake was run.
 CMAKE_SOURCE_DIR = /home/charles/Programming/C++/math
 
@@ -80,8 +77,8 @@ test_array_OBJECTS = \
 test_array_EXTERNAL_OBJECTS =
 
 test_array: CMakeFiles/test_array.dir/test/array/main.cpp.o
-test_array: CMakeFiles/test_array.dir/build.make
 test_array: libmath.a
+test_array: CMakeFiles/test_array.dir/build.make
 test_array: CMakeFiles/test_array.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable test_array"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_array.dir/link.txt --verbose=$(VERBOSE)

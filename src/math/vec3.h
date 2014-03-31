@@ -1,11 +1,7 @@
 #ifndef vec3_H
 #define vec3_H
 
-<<<<<<< HEAD
-
-=======
 #ifdef PHYSX
->>>>>>> 8d9981bb77743791c689a297547529af504cc83b
 #include <PxPhysicsAPI.h>
 #endif
 
