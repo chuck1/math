@@ -24,6 +24,14 @@ math::vec4::vec4(const vec3 & rhs,float const & newW):
 	x(rhs.x), y(rhs.y), z(rhs.z), w(newW)
 {}
 
+bool math::vec4::isNan() const {
+	if(isnan(x)) return true;
+	if(isnan(y)) return true;
+	if(isnan(z)) return true;
+	if(isnan(w)) return true;
+	return false;
+}
+
 void math::vec4::RotateX(double angle)
 {
 	(*this)=GetRotatedX(angle);

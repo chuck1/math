@@ -6,6 +6,7 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
 /home/charles/Programming/C++/math/src/math/free.cpp
 math/free.h
 -
@@ -21,12 +22,16 @@ math/geo/polyhedron.h
 /home/charles/Programming/C++/math/src/math/mat33.cpp
 memory.h
 -
+=======
+/home/charles/Programming/C++/math/src/math/vec3.cpp
+>>>>>>> 8d9981bb77743791c689a297547529af504cc83b
 stdio.h
 -
 stdlib.h
 -
 math/vec3.h
 -
+<<<<<<< HEAD
 math/vec4.h
 -
 math/transform.h
@@ -139,6 +144,8 @@ math/vec3.h
 -
 
 src/math/mat33.h
+=======
+>>>>>>> 8d9981bb77743791c689a297547529af504cc83b
 
 src/math/mat44.h
 
@@ -146,6 +153,7 @@ src/math/math.h
 cmath
 -
 
+<<<<<<< HEAD
 src/math/plane.h
 math/vec3.h
 -
@@ -178,11 +186,11 @@ src/math/vec2.h
 cmath
 -
 
+=======
+>>>>>>> 8d9981bb77743791c689a297547529af504cc83b
 src/math/vec3.h
 PxPhysicsAPI.h
 -
 math/math.h
 -
-
-src/math/vec4.h
 

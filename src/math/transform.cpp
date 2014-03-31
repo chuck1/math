@@ -70,7 +70,7 @@ math::transform		math::transform::trans(const transform& src) const
 }
 bool math::transform::isValid() const
 {
-	return p.is_finite() && q.isFinite() && q.isUnit();
+	return p.isFinite() && q.isFinite() && q.isUnit();
 }
 bool math::transform::isSane() const
 {
@@ -78,7 +78,7 @@ bool math::transform::isSane() const
 }
 bool math::transform::isFinite() const
 {
-	return p.is_finite() && q.isFinite();
+	return p.isFinite() && q.isFinite();
 }
 math::transform math::transform::transformInv(const transform& src) const
 {
@@ -106,6 +106,7 @@ math::transform math::transform::getNormalized() const
 {
 	return transform(p, q.getNormalized());
 }
+#ifdef PHYSX
 math::transform::operator physx::PxTransform() const
 {
 	return physx::PxTransform(p,q);
@@ -117,5 +118,6 @@ math::transform&	math::transform::operator=(physx::PxTransform const & rhs)
 
 	return *this;
 }
+#endif
 
 

@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 include(ExternalProject)
 
-project(nebula)
+project(math)
 
 set(PROJECT_SOURCE_DIR src)
 
@@ -25,7 +25,7 @@ add_library(math
 
 configure_file("${PROJECT_SOURCE_DIR}/math/config.h.in" "${PROJECT_SOURCE_DIR}/math/config.h")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_DEBUG -std=c++0x -Wall -Werror -Wno-unknown-pragmas -rdynamic -pthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_DEBUG -std=c++0x -Wall -Werror -Wno-unused-local-typedefs -Wno-unknown-pragmas -rdynamic -pthread")
 set(CMAKE_INSTALL_PREFIX $ENV{HOME}/usr)
 
 install(TARGETS math DESTINATION lib)
@@ -45,6 +45,12 @@ install(FILES ${PROJECT_SOURCE_DIR}/math/transform.h DESTINATION	include/math/)
 install(FILES ${PROJECT_SOURCE_DIR}/math/raw/raw.h DESTINATION		include/math/raw)
 install(FILES ${PROJECT_SOURCE_DIR}/math/geo/polyhedron.h DESTINATION	include/math/geo/)
 install(FILES ${PROJECT_SOURCE_DIR}/math/vclip/vclip.h DESTINATION	include/math/vclip)
+
+
+project(test_array)
+add_executable(test_array test/array/main.cpp)
+target_link_libraries(test_array math)
+
 
 
 

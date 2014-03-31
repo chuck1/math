@@ -35,6 +35,9 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# Escaping for special characters.
+EQUALS = =
+
 # The top-level source directory on which CMake was run.
 CMAKE_SOURCE_DIR = /home/charles/Programming/C++/math
 
@@ -75,16 +78,6 @@ install/local: preinstall
 # Special rule for the target install/local
 install/local/fast: install/local
 .PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-.PHONY : install/strip/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -148,6 +141,19 @@ math: cmake_check_build_system
 math/fast:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/build
 .PHONY : math/fast
+
+#=============================================================================
+# Target rules for targets named test_array
+
+# Build rule for target.
+test_array: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_array
+.PHONY : test_array
+
+# fast build rule for target.
+test_array/fast:
+	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/build
+.PHONY : test_array/fast
 
 src/math/color.o: src/math/color.cpp.o
 .PHONY : src/math/color.o
@@ -461,6 +467,30 @@ src/math/vec4.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/vec4.cpp.s
 .PHONY : src/math/vec4.cpp.s
 
+test/array/main.o: test/array/main.cpp.o
+.PHONY : test/array/main.o
+
+# target to build an object file
+test/array/main.cpp.o:
+	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/test/array/main.cpp.o
+.PHONY : test/array/main.cpp.o
+
+test/array/main.i: test/array/main.cpp.i
+.PHONY : test/array/main.i
+
+# target to preprocess a source file
+test/array/main.cpp.i:
+	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/test/array/main.cpp.i
+.PHONY : test/array/main.cpp.i
+
+test/array/main.s: test/array/main.cpp.s
+.PHONY : test/array/main.s
+
+# target to generate assembly for a file
+test/array/main.cpp.s:
+	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/test/array/main.cpp.s
+.PHONY : test/array/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -470,10 +500,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... install/local"
-	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... math"
 	@echo "... rebuild_cache"
+	@echo "... test_array"
 	@echo "... src/math/color.o"
 	@echo "... src/math/color.i"
 	@echo "... src/math/color.s"
@@ -513,6 +543,9 @@ help:
 	@echo "... src/math/vec4.o"
 	@echo "... src/math/vec4.i"
 	@echo "... src/math/vec4.s"
+	@echo "... test/array/main.o"
+	@echo "... test/array/main.i"
+	@echo "... test/array/main.s"
 .PHONY : help
 
 

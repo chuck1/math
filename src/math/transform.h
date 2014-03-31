@@ -1,7 +1,9 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
+#ifdef PHYSX
 #include <PxPhysicsAPI.h>
+#endif
 
 #include <math/vec3.h>
 #include <math/quat.h>
@@ -34,8 +36,10 @@ namespace math
 			plane		inverseTransform(const plane& plane) const;
 			transform	getNormalized() const;
 
+#ifdef PHYSX
 			operator physx::PxTransform() const;
 			transform&	operator=(physx::PxTransform const &);
+#endif
 
 			math::vec3	p;
 			math::quat	q;
