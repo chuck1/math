@@ -64,6 +64,8 @@ namespace math
 			void LoadOne(void)
 			{	x=1.0f; y=1.0f; z=1.0f; w=1.0f;	}
 
+			bool	isNan() const;
+
 			//vector algebra
 			float DotProduct(const vec4 & rhs)
 			{	return x*rhs.x + y*rhs.y + z*rhs.z + w*rhs.w;	}
