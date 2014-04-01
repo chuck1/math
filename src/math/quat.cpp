@@ -43,6 +43,14 @@ math::quat::quat(math::vec3 const & u, math::vec3 const & v)
 	z = c.z;
 	
 	w = a.dot(b);
+
+	if(!isSane()) {
+		printf("a b c\n");
+		a.print();
+		b.print();
+		c.print();
+		throw;
+	}
 }
 math::quat::quat(mat44 const & m)
 {
@@ -131,7 +139,11 @@ void		math::quat::toRadiansAndUnitAxis(double& angle, vec3& axis) const
 }
 double		math::quat::getAngle() const
 {
-	if(w > 1.0) throw math::DomainError();
+	if(w > 1.0) {
+		printf("quat getAngle\n");
+		printf("w %e\n",w-1.0);
+		throw math::DomainError();
+	}
 	
 	if(isnan(acos(w))) {
 		printf("%f\n",w);
@@ -307,12 +319,10 @@ math::quat math::quat::operator-(const math::quat& q) const
 {
 	return math::quat(x-q.x,y-q.y,z-q.z,w-q.w);
 }
-math::quat math::quat::operator*(double r) const
-{
+math::quat math::quat::operator*(double r) const {
 	return math::quat(x*r,y*r,z*r,w*r);
 }
-math::quat math::quat::createIdentity()
-{
+math::quat math::quat::createIdentity() {
 	return math::quat(0,0,0,1);
 }
 void math::quat::print() {

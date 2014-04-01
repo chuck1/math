@@ -46,6 +46,7 @@ CMakeFiles/math.dir/src/math/plane.cpp.o
 CMakeFiles/math.dir/src/math/quat.cpp.o
  /home/charles/Programming/C++/math/src/math/quat.cpp
  src/math/color.h
+ src/math/config.h
  src/math/free.h
  src/math/mat44.h
  src/math/math.h
