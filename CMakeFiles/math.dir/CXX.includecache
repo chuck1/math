@@ -53,9 +53,53 @@ math/quat.h
 -
 math/plane.h
 -
+=======
+/home/charles/Programming/C++/math/src/math/quat.cpp
+cmath
+-
+stdio.h
+-
+math/config.h
+-
+math/mat44.h
+-
+math/free.h
+-
+math/vec3.h
+-
+math/quat.h
+-
+>>>>>>> cd23171782a242661a1a345ae89603851e2784f3
+-
+src/math/color.h
+stdlib.h
+-
+-
+<<<<<<< HEAD
+=======
+src/math/config.h
+exception
+-
+-
+>>>>>>> cd23171782a242661a1a345ae89603851e2784f3
+src/math/free.h
+tinyxml2.h
+-
+math/quat.h
+-
+math/vec4.h
+-
+math/transform.h
+-
+math/color.h
+-
 
 src/math/color.h
 stdlib.h
+-
+
+src/math/config.h
+exception
 -
 
 src/math/free.h

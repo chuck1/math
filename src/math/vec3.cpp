@@ -114,7 +114,7 @@ math::vec3 math::vec3::GetRotatedAxis(double angle, const math::vec3 & axis) con
 
 	return math::vec3( dot(rotMatrixRow0), dot(rotMatrixRow1), dot(rotMatrixRow2));
 }
-float		math::vec3::angle(vec3 const & rhs) const {
+double		math::vec3::angle(vec3 const & rhs) const {
 
 	math::vec3 v = cross(rhs);
 
@@ -150,7 +150,7 @@ math::vec3	math::vec3::GetPackedTo01() const {
 
 	return temp;
 }
-math::vec3 operator*(float scaleFactor, const math::vec3 & rhs) {
+math::vec3 operator*(double scaleFactor, const math::vec3 & rhs) {
 
 	return rhs*scaleFactor;
 }
@@ -173,11 +173,11 @@ void		math::vec3::operator-=(const vec3 & rhs) {
 
 	x-=rhs.x;	y-=rhs.y;	z-=rhs.z;
 }
-void		math::vec3::operator*=(const float rhs) {
+void		math::vec3::operator*=(const double rhs) {
 
 	x*=rhs;	y*=rhs;	z*=rhs;
 }
-void		math::vec3::operator/=(const float rhs) {
+void		math::vec3::operator/=(const double rhs) {
 
 	if(rhs==0.0f)
 		return;
@@ -188,10 +188,24 @@ void	math::vec3::print() {
 
 	printf("%f %f %f\n",x,y,z);
 }
-bool	math::vec3::is_finite() const {
-
+bool	math::vec3::isFinite() const {
 	if(isinf(x)) return false;
-
+	if(isinf(y)) return false;
+	if(isinf(z)) return false;
 	return true;
+}
+bool	math::vec3::isNan() const {
+	if(isnan(x)) return true;
+	if(isnan(y)) return true;
+	if(isnan(z)) return true;
+	return false;
+}
+bool math::vec3::abs_less(vec3 const & rhs) {
+	if(fabs(x) < rhs.x) {
+		if(fabs(y) < rhs.y) {
+			if(fabs(z) < rhs.z) return true;
+		}
+	}
+	return false;
 }
 

@@ -64,6 +64,8 @@ namespace math
 			void LoadOne(void)
 			{	x=1.0f; y=1.0f; z=1.0f; w=1.0f;	}
 
+			bool	isNan() const;
+
 			//vector algebra
 			float DotProduct(const vec4 & rhs)
 			{	return x*rhs.x + y*rhs.y + z*rhs.z + w*rhs.w;	}
@@ -78,6 +80,8 @@ namespace math
 			void RotateAxis(double angle, const vec3 & axis);
 			vec4 GetRotatedAxis(double angle, const vec3 & axis) const;
 			void	print();
+
+			bool isNan() { return false; }
 			
 			vec4 lerp(const vec4 & v2, float factor) const
 			{	return (*this)*(1.0f-factor)+v2*factor;	}

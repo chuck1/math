@@ -1,5 +1,5 @@
-#ifndef __MAT44_H__
-#define __MAT44_H__
+#ifndef __MATH_MAT44_H__
+#define __MATH_MAT44_H__
 
 namespace math
 {

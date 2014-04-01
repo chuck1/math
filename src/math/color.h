@@ -93,7 +93,7 @@ namespace math
 	};
 
 	const color white(	1.0f, 1.0f, 1.0f, 1.0f);
-	const color black(	0.0f, 0.0f, 0.0f, 0.0f);
+	const color black(	0.0f, 0.0f, 0.0f, 1.0f);
 
 	const color red(	1.0f, 0.0f, 0.0f, 1.0f);
 	const color green(	0.0f, 1.0f, 0.0f, 1.0f);
