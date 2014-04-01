@@ -140,8 +140,22 @@ void		math::quat::toRadiansAndUnitAxis(double& angle, vec3& axis) const
 double		math::quat::getAngle() const
 {
 	if(w > 1.0) {
+		if(fabs(w - 1.0) < 1e-10) {
+			return 0.0;
+		}
+		
 		printf("quat getAngle\n");
 		printf("w %e\n",w-1.0);
+		throw math::DomainError();
+	}
+	
+	if(w < -1.0) {
+		if(fabs(w + 1.0) < 1e-10) {
+			return M_PI;
+		}
+		
+		printf("quat getAngle\n");
+		printf("w %e\n",w+1.0);
 		throw math::DomainError();
 	}
 	
