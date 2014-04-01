@@ -6,10 +6,14 @@
 #include <math/vec3.h>
 #include <math/quat.h>
 
-math::quat::quat()
+math::quat::quat():
+	w(1.0),
+	x(0.0),
+	y(0.0),
+	z(0.0)
 {}
 math::quat::quat(float nx, float ny, float nz, float nw):
-	x(nx),y(ny),z(nz),w(nw)
+	w(nw),x(nx),y(ny),z(nz)
 {}
 math::quat::quat(float angleRadians, vec3 const & axis)
 {
@@ -25,7 +29,7 @@ math::quat::quat(float angleRadians, vec3 const & axis)
 	z = unitAxis.z * s;
 }
 math::quat::quat(math::quat const & v):
-	x(v.x), y(v.y), z(v.z), w(v.w)
+	w(v.w), x(v.x), y(v.y), z(v.z)
 {
 }
 math::quat::quat(math::vec3 const & u, math::vec3 const & v)
@@ -95,12 +99,12 @@ bool		math::quat::isFinite() const
 bool		math::quat::isUnit() const
 {
 	const float unitTolerance = 1e-4;
-	return isFinite() && (std::abs(magnitude()-1) < unitTolerance);
+	return isFinite() && (std::abs(magnitude()-1.0) < unitTolerance);
 }
 bool		math::quat::isSane() const
 {
 	const float unitTolerance = float(1e-2);
-	return isFinite() && std::abs(magnitude()-1)<unitTolerance;
+	return isFinite() && std::abs(magnitude()-1.0) < unitTolerance;
 }
 void		math::quat::toRadiansAndUnitAxis(float& angle, vec3& axis) const
 {
@@ -150,7 +154,7 @@ float		math::quat::normalize()
 	if(mag)
 	{
 		const float imag = 1.0f / mag;
-		
+
 		x *= imag;
 		y *= imag;
 		z *= imag;
@@ -212,7 +216,7 @@ const math::vec3 math::quat::rotate(const math::vec3& v) const
 	/*
 	   const math::vec3 qv(x,y,z);
 	   return (v*(w*w-0.5f) + (qv.cross(v))*w + qv*(qv.dot(v)))*2;
-	 */
+	   */
 }
 const math::vec3 math::quat::rotateInv(const math::vec3& v) const
 {
@@ -301,5 +305,4 @@ math::quat math::quat::createIdentity()
 void math::quat::print() {
 	printf("%f %f %f %f\n", x, y, z, w);
 }
-
 

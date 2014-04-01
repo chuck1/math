@@ -24,7 +24,9 @@ math::transform::transform(const math::vec3& p0, const math::quat& q0):
 	p(p0),
 	q(q0)
 {
-	assert(q0.isSane());
+	if(!q.isSane()) {
+		q = quat();
+	}
 }
 math::transform::transform(mat44 const & m)
 {
