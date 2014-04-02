@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/free.cpp
+/home/charles/Programming/C++/math/src/math/free.cpp
 stdio.h
 -
 math/free.h
@@ -14,13 +14,7 @@ math/free.h
 math/vec3.h
 -
 
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/geo/polyhedron.cpp
-stdio.h
--
-math/geo/polyhedron.h
--
-
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/mat33.cpp
+/home/charles/Programming/C++/math/src/math/mat33.cpp
 memory.h
 -
 stdio.h
@@ -40,7 +34,7 @@ math/quat.h
 math/plane.h
 -
 
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/mat44.cpp
+/home/charles/Programming/C++/math/src/math/mat44.cpp
 memory.h
 -
 stdio.h
@@ -60,11 +54,7 @@ math/quat.h
 math/plane.h
 -
 
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/plane.cpp
-math/plane.h
--
-
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/quat.cpp
+/home/charles/Programming/C++/math/src/math/quat.cpp
 cmath
 -
 stdio.h
@@ -80,41 +70,11 @@ math/vec3.h
 math/quat.h
 -
 
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/raw/raw.cpp
+/home/charles/Programming/C++/math/src/math/raw/raw.cpp
 math/raw/raw.h
 -
 
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/transform.cpp
-assert.h
--
-math/mat44.h
--
-math/plane.h
--
-math/transform.h
--
-
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/vclip/vclip.cpp
-stdlib.h
--
-set
--
-math/vec2.h
--
-math/vec3.h
--
-math/vclip/vclip.h
--
-
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/vec3.cpp
-stdio.h
--
-stdlib.h
--
-math/vec3.h
--
-
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/vec4.cpp
+/home/charles/Programming/C++/math/src/math/vec4.cpp
 stdio.h
 -
 math/vec3.h
@@ -142,10 +102,6 @@ math/vec4.h
 math/transform.h
 -
 math/color.h
--
-
-src/math/geo/polyhedron.h
-math/vec3.h
 -
 
 src/math/mat33.h
@@ -180,12 +136,6 @@ PxPhysicsAPI.h
 math/vec3.h
 -
 math/quat.h
--
-
-src/math/vclip/vclip.h
-
-src/math/vec2.h
-cmath
 -
 
 src/math/vec3.h

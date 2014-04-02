@@ -1,2 +1,2 @@
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles/math.dir
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles/test_array.dir
+/home/charles/Programming/C++/math/CMakeFiles/math.dir
+/home/charles/Programming/C++/math/CMakeFiles/test_array.dir

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/nfs/stak/students/r/rymalc/Documents/Programming/C++/math/test/array/main.cpp
+/home/charles/Programming/C++/math/test/array/main.cpp
 stdio.h
 -
 math/array/array.h

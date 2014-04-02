@@ -3,8 +3,10 @@
 
 #define MATH_DEBUG_1_FUNCTION printf("%s\n", __PRETTY_FUNCTION__);
 
+#include <exception>
+
 namespace math {
-	class DomainError: public exception
+	class DomainError: public std::exception
 	{
 		public:
 			DomainError() {}
