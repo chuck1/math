@@ -41,6 +41,7 @@ namespace math
 			void		LoadOne(void){	x=y=z=1.0f;	}
 			bool		isFinite() const;
 			bool		isNan() const;
+			bool		isSane() const {return (!isNan() && isFinite());}
 			bool		abs_less(vec3 const & rhs);
 			
 			//vector algebra

@@ -33,9 +33,12 @@ math::quat::quat(math::quat const & v):
 }
 math::quat::quat(math::vec3 const & u, math::vec3 const & v)
 {
-	math::vec3 a = u.GetNormalized();
-	math::vec3 b = v.GetNormalized();
+	math::vec3 a(u);
+	math::vec3 b(v);
 	
+	a.normalize();
+	b.normalize();
+
 	math::vec3 c = a.cross(b);
 	
 	x = c.x;
@@ -43,7 +46,7 @@ math::quat::quat(math::vec3 const & u, math::vec3 const & v)
 	z = c.z;
 	
 	w = a.dot(b);
-
+	
 	if(!isSane()) {
 		printf("a b c\n");
 		a.print();
@@ -139,8 +142,10 @@ void		math::quat::toRadiansAndUnitAxis(double& angle, vec3& axis) const
 }
 double		math::quat::getAngle() const
 {
+	const double unitTolerance = 1e-6;
+
 	if(w > 1.0) {
-		if(fabs(w - 1.0) < 1e-10) {
+		if(fabs(w - 1.0) < unitTolerance) {
 			return 0.0;
 		}
 		
@@ -150,7 +155,7 @@ double		math::quat::getAngle() const
 	}
 	
 	if(w < -1.0) {
-		if(fabs(w + 1.0) < 1e-10) {
+		if(fabs(w + 1.0) < unitTolerance) {
 			return M_PI;
 		}
 		

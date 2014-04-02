@@ -29,9 +29,6 @@ CMakeFiles/math.dir/src/math/mat33.cpp.o: src/math/vec3.h
 CMakeFiles/math.dir/src/math/mat33.cpp.o: src/math/vec4.h
 
 CMakeFiles/math.dir/src/math/mat44.cpp.o: src/math/mat44.cpp
-CMakeFiles/math.dir/src/math/mat44.cpp.o: src/math/color.h
-CMakeFiles/math.dir/src/math/mat44.cpp.o: src/math/config.h
-CMakeFiles/math.dir/src/math/mat44.cpp.o: src/math/free.h
 CMakeFiles/math.dir/src/math/mat44.cpp.o: src/math/mat44.h
 CMakeFiles/math.dir/src/math/mat44.cpp.o: src/math/math.h
 CMakeFiles/math.dir/src/math/mat44.cpp.o: src/math/plane.h

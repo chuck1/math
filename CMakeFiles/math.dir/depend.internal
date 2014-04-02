@@ -30,9 +30,6 @@ CMakeFiles/math.dir/src/math/mat33.cpp.o
  src/math/vec4.h
 CMakeFiles/math.dir/src/math/mat44.cpp.o
  /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/src/math/mat44.cpp
- src/math/color.h
- src/math/config.h
- src/math/free.h
  src/math/mat44.h
  src/math/math.h
  src/math/plane.h
