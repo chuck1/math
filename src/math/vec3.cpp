@@ -184,7 +184,7 @@ void		math::vec3::operator/=(const double rhs) {
 	else
 	{	x/=rhs; y/=rhs; z/=rhs;	}
 }
-void	math::vec3::print() {
+void	math::vec3::print() const {
 
 	printf("%f %f %f\n",x,y,z);
 }
@@ -208,4 +208,5 @@ bool math::vec3::abs_less(vec3 const & rhs) {
 	}
 	return false;
 }
+
 

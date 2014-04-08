@@ -64,7 +64,6 @@ namespace math
 			void LoadOne(void)
 			{	x=1.0f; y=1.0f; z=1.0f; w=1.0f;	}
 
-			bool	isNan() const;
 
 			//vector algebra
 			double DotProduct(const vec4 & rhs)
@@ -80,8 +79,10 @@ namespace math
 			void RotateAxis(double angle, const vec3 & axis);
 			vec4 GetRotatedAxis(double angle, const vec3 & axis) const;
 			void	print();
-
-			bool isNan() { return false; }
+		
+			bool	isFinite() const;	
+			bool	isSane() const {return (!isNan() && isFinite());}
+			bool	isNan() const;
 			
 			vec4 lerp(const vec4 & v2, double factor) const
 			{	return (*this)*(1.0f-factor)+v2*factor;	}

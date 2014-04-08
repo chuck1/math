@@ -14,6 +14,12 @@ math/free.h
 math/vec3.h
 -
 
+/home/charles/Programming/C++/math/src/math/geo/polyhedron.cpp
+stdio.h
+-
+math/geo/polyhedron.h
+-
+
 /home/charles/Programming/C++/math/src/math/mat33.cpp
 memory.h
 -
@@ -54,6 +60,10 @@ math/quat.h
 math/plane.h
 -
 
+/home/charles/Programming/C++/math/src/math/plane.cpp
+math/plane.h
+-
+
 /home/charles/Programming/C++/math/src/math/quat.cpp
 cmath
 -
@@ -69,9 +79,41 @@ math/vec3.h
 -
 math/quat.h
 -
+gal/except.h
+-
 
 /home/charles/Programming/C++/math/src/math/raw/raw.cpp
 math/raw/raw.h
+-
+
+/home/charles/Programming/C++/math/src/math/transform.cpp
+assert.h
+-
+math/mat44.h
+-
+math/plane.h
+-
+math/transform.h
+-
+
+/home/charles/Programming/C++/math/src/math/vclip/vclip.cpp
+stdlib.h
+-
+set
+-
+math/vec2.h
+-
+math/vec3.h
+-
+math/vclip/vclip.h
+-
+
+/home/charles/Programming/C++/math/src/math/vec3.cpp
+stdio.h
+-
+stdlib.h
+-
+math/vec3.h
 -
 
 /home/charles/Programming/C++/math/src/math/vec4.cpp
@@ -102,6 +144,10 @@ math/vec4.h
 math/transform.h
 -
 math/color.h
+-
+
+src/math/geo/polyhedron.h
+math/vec3.h
 -
 
 src/math/mat33.h
@@ -138,11 +184,21 @@ math/vec3.h
 math/quat.h
 -
 
+src/math/vclip/vclip.h
+
+src/math/vec2.h
+cmath
+-
+
 src/math/vec3.h
 PxPhysicsAPI.h
 -
 math/math.h
 -
+math/vecbase.h
+-
 
 src/math/vec4.h
+
+src/math/vecbase.h
 

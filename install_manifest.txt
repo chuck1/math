@@ -5,6 +5,7 @@
 /home/charles/usr/include/math/vec2.h
 /home/charles/usr/include/math/vec3.h
 /home/charles/usr/include/math/vec4.h
+/home/charles/usr/include/math/mat33.h
 /home/charles/usr/include/math/mat44.h
 /home/charles/usr/include/math/plane.h
 /home/charles/usr/include/math/color.h

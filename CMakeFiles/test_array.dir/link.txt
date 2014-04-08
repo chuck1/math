@@ -1,1 +1,1 @@
-/usr/bin/c++    -D_DEBUG -std=c++0x -Wall -Werror -Wno-unused-local-typedefs -Wno-unknown-pragmas -rdynamic -pthread    CMakeFiles/test_array.dir/test/array/main.cpp.o  -o test_array -rdynamic libmath.a 
+/usr/bin/c++    -D_DEBUG -g -std=c++0x -Wall -Werror -Wno-unused-local-typedefs -Wno-unknown-pragmas -rdynamic -pthread    CMakeFiles/test_array.dir/test/array/main.cpp.o  -o test_array -rdynamic libmath.a 

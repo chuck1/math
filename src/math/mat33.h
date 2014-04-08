@@ -11,32 +11,34 @@ namespace math
 	class mat33
 	{
 		public:
-			//friend mat33 operator*(float scaleFactor, const mat33 & rhs);
+			//friend mat33 operator*(double scaleFactor, const mat33 & rhs);
 			
 			mat33();
 			mat33(
-				float, float, float,
-				float, float, float,
-				float, float, float);
-			mat33(const float * rhs);
+				double, double, double,
+				double, double, double,
+				double, double, double);
+			mat33(const double * rhs);
 			mat33(const mat33 & rhs);
 			mat33(vec3 const &);
 			~mat33() {}
 			
-			void	SetEntry(int position, float value);
-			float	GetEntry(int position) const;
+			void	SetEntry(int position, double value);
+			double	GetEntry(int position) const;
 			vec4	GetRow(int position) const;
 			vec4	GetColumn(int position) const;
 
 			void	LoadIdentity(void);
 			void	LoadZero(void);
 			
+			void	SetDiagonal(double, double, double);
+			
 			//binary operators
 			mat33	operator+(const mat33 & rhs) const;
 			mat33	operator-(const mat33 & rhs) const;
 			mat33	operator*(const mat33 & rhs) const;
-			mat33	operator*(const float rhs) const;
-			mat33	operator/(const float rhs) const;
+			mat33	operator*(const double rhs) const;
+			mat33	operator/(const double rhs) const;
 			
 
 			bool	operator==(const mat33 & rhs) const;
@@ -46,8 +48,8 @@ namespace math
 			void	operator+=(const mat33 & rhs);
 			void	operator-=(const mat33 & rhs);
 			void	operator*=(const mat33 & rhs);
-			void	operator*=(const float rhs);
-			void	operator/=(const float rhs);
+			void	operator*=(const double rhs);
+			void	operator/=(const double rhs);
 
 			//unary operators
 			mat33	operator-(void) const;
@@ -74,30 +76,25 @@ namespace math
 			//set to perform an operation on space - removes other entries
 			void	SetTranslation(vec3 const &);
 			void	SetScale(vec3 const &);
-			void	SetUniformScale(const float scaleFactor);
-			void	set_rotation(quat const &);
+			void	SetUniformScale(const double scaleFactor);
+			void	setRotation(quat const &);
 			void	SetRotationAxis(const double angle, const vec3 & axis);
 			void	SetRotationX(const double angle);
 			void	SetRotationY(const double angle);
 			void	SetRotationZ(const double angle);
 			void	SetRotationEuler(const double angleX, const double, const double angleZ);
-			void	SetPerspective(float, float, float, float, float, float);
-			void	SetPerspective(float fovy, float aspect, float n, float f);
-			void	SetOrtho(float left, float right, float bottom, float top, float n, float f);
 			
 			void	print();
 			
 			//set parts of the matrix
-			void	SetTranslationPart(vec3 const &);
-			void	SetRotationPartEuler(double const, double const, double const);
 			void	SetRotationPartEuler(vec3 const & rotations);
 			
-			//cast to pointer to a (float *) for glGetFloatv etc
-			operator float* () const {return (float*) this;}
-			operator const float* () const {return (const float*) this;}
+			//cast to pointer to a (double *) for glGetFloatv etc
+			operator double* () const {return (double*) this;}
+			operator const double* () const {return (const double*) this;}
 
 			//member variables
-			float	v[9];
+			double	v[9];
 	};
 }
 

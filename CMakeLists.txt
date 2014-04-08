@@ -25,7 +25,7 @@ add_library(math
 
 configure_file("${PROJECT_SOURCE_DIR}/math/config.h.in" "${PROJECT_SOURCE_DIR}/math/config.h")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_DEBUG -std=c++0x -Wall -Werror -Wno-unused-local-typedefs -Wno-unknown-pragmas -rdynamic -pthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_DEBUG -g -std=c++0x -Wall -Werror -Wno-unused-local-typedefs -Wno-unknown-pragmas -rdynamic -pthread")
 set(CMAKE_INSTALL_PREFIX $ENV{HOME}/usr)
 
 install(TARGETS math DESTINATION lib)

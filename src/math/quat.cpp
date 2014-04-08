@@ -7,6 +7,8 @@
 #include <math/vec3.h>
 #include <math/quat.h>
 
+#include <gal/except.h>
+
 math::quat::quat()
 {
 	loadZero();
@@ -52,7 +54,7 @@ math::quat::quat(math::vec3 const & u, math::vec3 const & v)
 		a.print();
 		b.print();
 		c.print();
-		throw;
+		throw gal::except();
 	}
 }
 math::quat::quat(mat44 const & m)
@@ -120,8 +122,15 @@ bool		math::quat::isUnit() const
 }
 bool		math::quat::isSane() const
 {
-	const double unitTolerance = double(1e-2);
-	return isFinite() && std::abs(magnitude()-1)<unitTolerance;
+	const double unitTolerance = double(1e-4);
+	if(!isFinite()) return false;
+	
+	if(std::abs(magnitude()-1) < unitTolerance) {
+		return true;
+	} else {
+		printf("%lf\n", magnitude()-1);
+		return false;
+	}
 }
 void		math::quat::toRadiansAndUnitAxis(double& angle, vec3& axis) const
 {
@@ -206,15 +215,15 @@ double		math::quat::normalize()
 	}
 	return mag;
 }
-math::quat math::quat::getConjugate() const
+math::quat	math::quat::getConjugate() const
 {
 	return math::quat(-x,-y,-z,w);
 }
-math::vec3 math::quat::getImaginaryPart() const
+math::vec3	math::quat::getImaginaryPart() const
 {
 	return math::vec3(x,y,z);
 }
-math::vec3 math::quat::getBasisVector0()	const
+math::vec3	math::quat::getBasisVector0()	const
 {	
 	//		return rotate(math::vec3(1,0,0));
 	const double x2 = x*2.0f;

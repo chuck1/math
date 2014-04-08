@@ -31,7 +31,13 @@ bool math::vec4::isNan() const {
 	if(isnan(w)) return true;
 	return false;
 }
-
+bool	math::vec4::isFinite() const {
+	if(isinf(w)) return false;
+	if(isinf(x)) return false;
+	if(isinf(y)) return false;
+	if(isinf(z)) return false;
+	return true;
+}
 void math::vec4::RotateX(double angle)
 {
 	(*this)=GetRotatedX(angle);
