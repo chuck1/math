@@ -20,7 +20,7 @@
 math::vec4::vec4(const vec3 & rhs):
 	x(rhs.x), y(rhs.y), z(rhs.z), w(1.0f)
 {}
-math::vec4::vec4(const vec3 & rhs,float const & newW):
+math::vec4::vec4(const vec3 & rhs,double const & newW):
 	x(rhs.x), y(rhs.y), z(rhs.z), w(newW)
 {}
 
@@ -31,7 +31,13 @@ bool math::vec4::isNan() const {
 	if(isnan(w)) return true;
 	return false;
 }
-
+bool	math::vec4::isFinite() const {
+	if(isinf(w)) return false;
+	if(isinf(x)) return false;
+	if(isinf(y)) return false;
+	if(isinf(z)) return false;
+	return true;
+}
 void math::vec4::RotateX(double angle)
 {
 	(*this)=GetRotatedX(angle);
@@ -89,7 +95,7 @@ math::vec4 math::vec4::GetRotatedAxis(double angle, const math::vec3 & axis) con
 }
 
 
-math::vec4 operator*(float scaleFactor, const math::vec4 & rhs)
+math::vec4 operator*(double scaleFactor, const math::vec4 & rhs)
 {
 	return rhs*scaleFactor;
 }

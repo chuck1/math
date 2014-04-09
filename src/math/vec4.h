@@ -28,35 +28,35 @@ namespace math
 			vec4(void)	:	x(0.0f), y(0.0f), z(0.0f), w(0.0f)
 		{}
 
-			vec4(float newX, float newY, float newZ, float newW)	
+			vec4(double newX, double newY, double newZ, double newW)	
 				:	x(newX), y(newY), z(newZ), w(newW)
 			{}
 
-			vec4(const float * rhs)	:	x(*rhs), y(*(rhs+1)), z(*(rhs+2)), w(*(rhs+3))
+			vec4(const double * rhs)	:	x(*rhs), y(*(rhs+1)), z(*(rhs+2)), w(*(rhs+3))
 		{}
 
 			vec4(const vec4 & rhs):	x(rhs.x), y(rhs.y), z(rhs.z), w(rhs.w)
 		{}
 			//convert v3d to v4d
 			vec4(const vec3 & rhs);
-			vec4(const vec3 & rhs,float const & newW);
+			vec4(const vec3 & rhs,double const & newW);
 
 
 			~vec4() {}	//empty
 
-			void Set(float newX, float newY, float newZ, float newW)
+			void Set(double newX, double newY, double newZ, double newW)
 			{	x=newX;	y=newY;	z=newZ; w=newW;	}
 
 			//accessors kept for compatability
-			void SetX(float newX) {x = newX;}
-			void SetY(float newY) {y = newY;}
-			void SetZ(float newZ) {z = newZ;}
-			void SetW(float newW) {w = newW;}
+			void SetX(double newX) {x = newX;}
+			void SetY(double newY) {y = newY;}
+			void SetZ(double newZ) {z = newZ;}
+			void SetW(double newW) {w = newW;}
 
-			float GetX() const {return x;}	//public accessor functions
-			float GetY() const {return y;}	//inline, const
-			float GetZ() const {return z;}
-			float GetW() const {return w;}
+			double GetX() const {return x;}	//public accessor functions
+			double GetY() const {return y;}	//inline, const
+			double GetZ() const {return z;}
+			double GetW() const {return w;}
 
 			void LoadZero(void)
 			{	x=0.0f; y=0.0f; z=0.0f; w=0.0f;	}
@@ -64,10 +64,9 @@ namespace math
 			void LoadOne(void)
 			{	x=1.0f; y=1.0f; z=1.0f; w=1.0f;	}
 
-			bool	isNan() const;
 
 			//vector algebra
-			float DotProduct(const vec4 & rhs)
+			double DotProduct(const vec4 & rhs)
 			{	return x*rhs.x + y*rhs.y + z*rhs.z + w*rhs.w;	}
 
 			//rotations
@@ -80,30 +79,34 @@ namespace math
 			void RotateAxis(double angle, const vec3 & axis);
 			vec4 GetRotatedAxis(double angle, const vec3 & axis) const;
 			void	print();
-
-			bool isNan() { return false; }
+		
+			bool	isFinite() const;	
+			bool	isSane() const {return (!isNan() && isFinite());}
+			bool	isNan() const;
 			
-			vec4 lerp(const vec4 & v2, float factor) const
+			vec4 lerp(const vec4 & v2, double factor) const
 			{	return (*this)*(1.0f-factor)+v2*factor;	}
 
-			vec4 QuadraticInterpolate(const vec4 & v2, const vec4 & v3, float factor) const
+			vec4 QuadraticInterpolate(const vec4 & v2, const vec4 & v3, double factor) const
 			{	return (*this)*(1.0f-factor)*(1.0f-factor) + v2*2*factor*(1.0f-factor) + v3*factor*factor;}
 
 			//binary operators
 			vec4 operator+(const vec4 & rhs) const
 			{	return vec4(x+rhs.x, y+rhs.y, z+rhs.z, w+rhs.w);	}
+			vec4 operator+(const double & rhs) const
+			{	return vec4(x+rhs, y+rhs, z+rhs, w+rhs);	}
 
 			vec4 operator-(const vec4 & rhs) const
 			{	return vec4(x-rhs.x, y-rhs.y, z-rhs.z, w-rhs.w);	}
 
-			vec4 operator*(const float rhs) const
+			vec4 operator*(const double rhs) const
 			{	return vec4(x*rhs, y*rhs, z*rhs, w*rhs);	}
 
-			vec4 operator/(const float rhs) const
+			vec4 operator/(const double rhs) const
 			{	return rhs==0.0f	?	vec4(0.0f, 0.0f, 0.0f, 0.0f): vec4(x/rhs, y/rhs, z/rhs, w/rhs);	}
 
-			//multiply by a float, eg 3*v
-			//friend vec4 operator*(float scaleFactor, const vec4 & rhs);
+			//multiply by a double, eg 3*v
+			//friend vec4 operator*(double scaleFactor, const vec4 & rhs);
 
 			bool operator==(const vec4 & rhs) const;
 			bool operator!=(const vec4 & rhs) const
@@ -116,10 +119,10 @@ namespace math
 			void operator-=(const vec4 & rhs)
 			{	x-=rhs.x; y-=rhs.y; z-=rhs.z; w-=rhs.w;	}
 
-			void operator*=(const float rhs)
+			void operator*=(const double rhs)
 			{	x*=rhs; y*=rhs; z*=rhs; w*=rhs;	}
 
-			void operator/=(const float rhs)
+			void operator/=(const double rhs)
 			{	if(rhs==0.0f)
 				return;
 				else
@@ -132,17 +135,17 @@ namespace math
 			vec4 operator-(void) const {return vec4(-x, -y, -z, -w);}
 			vec4 operator+(void) const {return (*this);}
 
-			//cast to pointer to float for glVertex4fv etc
-			operator float* () const {return (float*) this;}
-			operator const float* () const {return (const float*) this;}
+			//cast to pointer to double for glVertex4fv etc
+			operator double* () const {return (double*) this;}
+			operator const double* () const {return (const double*) this;}
 
 			operator vec3();							//convert v4d to v3d
 
 			//member variables
-			float x;
-			float y;
-			float z;
-			float w;
+			double x;
+			double y;
+			double z;
+			double w;
 	};
 }
 

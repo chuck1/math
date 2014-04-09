@@ -12,6 +12,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/CMakeSystem.cmake"
   "CMakeLists.txt"
   "src/math/config.h.in"
+<<<<<<< HEAD
   "/usr/share/cmake/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
@@ -26,6 +27,22 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake/Modules/Platform/Linux.cmake"
   "/usr/share/cmake/Modules/Platform/UnixPaths.cmake"
+=======
+  "/usr/share/cmake-2.8/Modules/CMakeCInformation.cmake"
+  "/usr/share/cmake-2.8/Modules/CMakeCXXInformation.cmake"
+  "/usr/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake"
+  "/usr/share/cmake-2.8/Modules/CMakeGenericSystem.cmake"
+  "/usr/share/cmake-2.8/Modules/CMakeSystemSpecificInformation.cmake"
+  "/usr/share/cmake-2.8/Modules/Compiler/GNU-C.cmake"
+  "/usr/share/cmake-2.8/Modules/Compiler/GNU-CXX.cmake"
+  "/usr/share/cmake-2.8/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-2.8/Modules/ExternalProject.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/Linux-GNU-C.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/Linux-GNU-CXX.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/Linux-GNU.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/Linux.cmake"
+  "/usr/share/cmake-2.8/Modules/Platform/UnixPaths.cmake"
+>>>>>>> 0a7ce78188c9d29b486aad5cd777b761d2ac926e
   )
 
 # The corresponding makefile is:

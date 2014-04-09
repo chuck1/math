@@ -7,29 +7,39 @@
 
 
 #include <math/math.h>
+#include <math/vecbase.h>
 
-namespace math
-{
-	class vec3
-	{
+namespace math {
+	namespace base {
+		class vec3 {
+			public:
+				vec3(void);
+				vec3(double, double, double);
+				vec3(const double * rhs);
+
+			public:
+				union {
+					struct {
+						double x;
+						double y;
+						double z;
+					};
+					double v[3];
+				};
+		};
+	}
+	class vec3: public vecio<base::vec3,3> {
 		public:
 			//constructors
-			vec3(void):	x(0.0f), y(0.0f), z(0.0f){}
-			vec3(double newX, double newY, double newZ):x(newX), y(newY), z(newZ){}
-			vec3(const double * rhs):x(*rhs), y(*(rhs+1)), z(*(rhs+2)){}
-			vec3(const vec3 & rhs):x(rhs.x), y(rhs.y), z(rhs.z){}
+			vec3(void);
+			vec3(double, double, double);
+			vec3(const double * rhs);
+			vec3(const vec3 & rhs);
 #ifdef PHYSX
-			vec3(physx::PxVec3 const & rhs) {
-				x=rhs.x;
-				y=rhs.y;
-				z=rhs.z;
-			}
+			vec3(physx::PxVec3 const & rhs);
 #endif
 			~vec3() {}	//empty
 
-			void		Set(double newX, double newY, double newZ){
-				x=newX;	y=newY;	z=newZ;
-			}
 			//Accessors kept for compatibility
 			void		SetX(double newX) {x = newX;}
 			void		SetY(double newY) {y = newY;}
@@ -37,13 +47,13 @@ namespace math
 			double		GetX() const {return x;}	//public accessor functions
 			double		GetY() const {return y;}	//inline, const
 			double		GetZ() const {return z;}
-			void		LoadZero(void){	x=y=z=0.0f;	}
-			void		LoadOne(void){	x=y=z=1.0f;	}
+			void		LoadZero(void){	v[0]=v[1]=v[2]=0.0f;	}
+			void		LoadOne(void){	v[0]=v[1]=v[2]=1.0f;	}
 			bool		isFinite() const;
 			bool		isNan() const;
 			bool		isSane() const {return (!isNan() && isFinite());}
 			bool		abs_less(vec3 const & rhs);
-			
+
 			//vector algebra
 			vec3		cross(const vec3 & rhs) const
 			{
@@ -84,7 +94,7 @@ namespace math
 					v2 * 2 * factor*(1.0f-factor)+
 					v3 * factor * factor;
 			}
-			
+
 			//overloaded operators
 			//binary operators
 			vec3		operator+(const vec3 & rhs) const
@@ -117,7 +127,7 @@ namespace math
 			void		operator*=(const double rhs);
 			void		operator/=(const double rhs);
 
-			void		print();
+			void		print() const;
 			//unary operators
 			vec3		operator-(void) const {return vec3(-x, -y, -z);}
 			vec3		operator+(void) const {return *this;}
@@ -129,18 +139,22 @@ namespace math
 #ifdef PHYSX
 			operator physx::PxVec3() const { return physx::PxVec3(x,y,z); }
 			vec3&		operator=(physx::PxVec3 const & rhs) {
-				x=rhs.x;
-				y=rhs.y;
-				z=rhs.z;
+				v[0]=rhs.x;
+				v[1]=rhs.y;
+				v[2]=rhs.z;
 				return *this;
 			}
 #endif
-			//member variables
-			double		x;
-			double		y;
-			double		z;
+
+
 	};
+
 }
 
 #endif	//vec3_H
+
+
+
+
+
 

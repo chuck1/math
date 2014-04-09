@@ -32,9 +32,9 @@ math::mat33::mat33()
 	LoadIdentity();
 }
 math::mat33::mat33(
-		float e0, float e1, float e2,
-		float e3, float e4, float e5,
-		float e6, float e7, float e8)
+		double e0, double e1, double e2,
+		double e3, double e4, double e5,
+		double e6, double e7, double e8)
 {
 	v[0]=e0;
 	v[1]=e1;
@@ -48,11 +48,11 @@ math::mat33::mat33(
 }
 math::mat33::mat33(const math::mat33 & rhs)
 {
-	memcpy(v, rhs.v, 9*sizeof(float));
+	memcpy(v, rhs.v, 9*sizeof(double));
 }
-math::mat33::mat33(const float * rhs)
+math::mat33::mat33(const double * rhs)
 {
-	memcpy(v, rhs, 9*sizeof(float));
+	memcpy(v, rhs, 9*sizeof(double));
 }
 math::mat33::mat33(vec3 const & rhs) {
 	LoadIdentity();
@@ -60,28 +60,34 @@ math::mat33::mat33(vec3 const & rhs) {
 	v[4] = rhs.y;
 	v[8] = rhs.z;
 }
-void		math::mat33::set_rotation(math::quat const & q)
+void math::mat33::SetDiagonal(double x, double y, double z) {
+	LoadZero();
+	v[0] = x;
+	v[4] = y;
+	v[8] = z;
+}
+void math::mat33::setRotation(math::quat const & q)
 {
-	const float x = q.x;
-	const float y = q.y;
-	const float z = q.z;
-	const float w = q.w;
+	const double x = q.x;
+	const double y = q.y;
+	const double z = q.z;
+	const double w = q.w;
 
-	const float x2 = x + x;
-	const float y2 = y + y;
-	const float z2 = z + z;
+	const double x2 = x + x;
+	const double y2 = y + y;
+	const double z2 = z + z;
 
-	const float xx = x2*x;
-	const float yy = y2*y;
-	const float zz = z2*z;
+	const double xx = x2*x;
+	const double yy = y2*y;
+	const double zz = z2*z;
 
-	const float xy = x2*y;
-	const float xz = x2*z;
-	const float xw = x2*w;
+	const double xy = x2*y;
+	const double xz = x2*z;
+	const double xw = x2*w;
 
-	const float yz = y2*z;
-	const float yw = y2*w;
-	const float zw = z2*w;
+	const double yz = y2*z;
+	const double yw = y2*w;
+	const double zw = z2*w;
 
 	v[0] = 1.0f - yy - zz;
 	v[1] = xy + zw;
@@ -95,12 +101,12 @@ void		math::mat33::set_rotation(math::quat const & q)
 	v[7] = yz - xw;
 	v[8] = 1.0f - xx - yy;
 }
-void math::mat33::SetEntry(int position, float value)
+void math::mat33::SetEntry(int position, double value)
 {
 	if(position>=0 && position<=15)
 		v[position]=value;
 }
-float		math::mat33::GetEntry(int position) const
+double		math::mat33::GetEntry(int position) const
 {
 	if(position>=0 && position<=15)
 		return v[position];
@@ -141,14 +147,14 @@ math::vec4 math::mat33::GetColumn(int position) const
 }
 void math::mat33::LoadIdentity(void)
 {
-	memset(v, 0, 9*sizeof(float));
+	memset(v, 0, 9*sizeof(double));
 	v[0]=1.0f;
 	v[4]=1.0f;
 	v[8]=1.0f;
 }
 void math::mat33::LoadZero(void)
 {
-	memset(v, 0, 16*sizeof(float));
+	memset(v, 0, 9*sizeof(double));
 }
 math::mat33 math::mat33::operator+(const math::mat33 & rhs) const {
 	math::mat33 m;
@@ -173,7 +179,7 @@ math::mat33 math::mat33::operator*(const math::mat33 & rhs) const {
 			v[1]*rhs.v[6] + v[4] * rhs.v[7] + v[7] * rhs.v[8],
 			v[2]*rhs.v[6] + v[5] * rhs.v[7] + v[8] * rhs.v[8]);
 }
-math::mat33 math::mat33::operator*(const float rhs) const
+math::mat33 math::mat33::operator*(const double rhs) const
 {
 	math::mat33 m;
 	for(int i = 0; i < 9; ++i) m.v[i] = v[i]*rhs;
@@ -189,16 +195,16 @@ math::mat33 math::mat33::operator*(const float rhs) const
 			v[7]*rhs,
 			v[8]*rhs);
 }
-math::mat33 math::mat33::operator/(const float rhs) const
+math::mat33 math::mat33::operator/(const double rhs) const
 {
 	if (rhs==0.0f || rhs==1.0f)
 		return (*this);
 
-	float temp=1/rhs;
+	double temp=1/rhs;
 
 	return (*this)*temp;
 }
-math::mat33 operator*(float scaleFactor, const math::mat33 & rhs)
+math::mat33 operator*(double scaleFactor, const math::mat33 & rhs)
 {
 	return rhs*scaleFactor;
 }
@@ -226,10 +232,10 @@ void math::mat33::operator-=(const math::mat33 & rhs)
 void math::mat33::operator*=(const math::mat33 & rhs) {
 	(*this) = (*this) * rhs;
 }
-void math::mat33::operator*=(const float rhs) {
+void math::mat33::operator*=(const double rhs) {
 	for(int i = 0; i < 9; ++i) v[i] *= rhs;
 }
-void math::mat33::operator/=(const float rhs)
+void math::mat33::operator/=(const double rhs)
 {
 	(*this)=(*this)/rhs;
 }
@@ -295,8 +301,8 @@ math::mat33	math::mat33::GetInverseTranspose(void) const
 {
 	math::mat33 result;
 
-	float tmp[12];												//temporary pair storage
-	float det;													//determinant
+	double tmp[12];												//temporary pair storage
+	double det;													//determinant
 
 	//calculate pairs for first 8 elements (cofactors)
 	tmp[0] = v[10] * v[15];
@@ -392,12 +398,6 @@ math::mat33	math::mat33::GetInverseTranspose(void) const
 
 	return result;
 }
-void		math::mat33::SetTranslation(const vec3 & translation)
-{
-	LoadIdentity();
-
-	SetTranslationPart(translation);
-}
 void		math::mat33::SetScale(const vec3 & scaleFactor)
 {
 	LoadIdentity();
@@ -406,7 +406,7 @@ void		math::mat33::SetScale(const vec3 & scaleFactor)
 	v[5]=scaleFactor.y;
 	v[10]=scaleFactor.z;
 }
-void		math::mat33::SetUniformScale(const float scaleFactor)
+void		math::mat33::SetUniformScale(const double scaleFactor)
 {
 	LoadIdentity();
 
@@ -416,9 +416,9 @@ void		math::mat33::SetRotationAxis(const double angle, const vec3 & axis)
 {
 	vec3 u=axis.GetNormalized();
 
-	float sinAngle=(float)sin(M_PI*angle/180);
-	float cosAngle=(float)cos(M_PI*angle/180);
-	float oneMinusCosAngle=1.0f-cosAngle;
+	double sinAngle=(double)sin(M_PI*angle/180);
+	double cosAngle=(double)cos(M_PI*angle/180);
+	double oneMinusCosAngle=1.0f-cosAngle;
 
 	LoadIdentity();
 
@@ -438,8 +438,8 @@ void		math::mat33::SetRotationX(const double angle)
 {
 	LoadIdentity();
 
-	v[5]=(float)cos(M_PI*angle/180);
-	v[6]=(float)sin(M_PI*angle/180);
+	v[5]=(double)cos(M_PI*angle/180);
+	v[6]=(double)sin(M_PI*angle/180);
 
 	v[9]=-v[6];
 	v[10]=v[5];
@@ -448,8 +448,8 @@ void		math::mat33::SetRotationY(const double angle)
 {
 	LoadIdentity();
 
-	v[0]=(float)cos(M_PI*angle/180);
-	v[2]=-(float)sin(M_PI*angle/180);
+	v[0]=(double)cos(M_PI*angle/180);
+	v[2]=-(double)sin(M_PI*angle/180);
 
 	v[8]=-v[2];
 	v[10]=v[0];
@@ -458,93 +458,13 @@ void		math::mat33::SetRotationZ(const double angle)
 {
 	LoadIdentity();
 
-	v[0]=(float)cos(M_PI*angle/180);
-	v[1]=(float)sin(M_PI*angle/180);
+	v[0]=(double)cos(M_PI*angle/180);
+	v[1]=(double)sin(M_PI*angle/180);
 
 	v[4]=-v[1];
 	v[5]=v[0];
 }
 void		math::mat33::SetRotationEuler(const double angleX, const double angleY, const double angleZ)
-{
-	LoadIdentity();
-
-	SetRotationPartEuler(angleX, angleY, angleZ);
-}
-void		math::mat33::SetPerspective(float left, float right, float bottom, float top, float n, float f)
-{
-	float nudge=0.999f;		//prevent artifacts with infinite far plane
-
-	LoadZero();
-
-	//check for division by 0
-	if(left==right || top==bottom || n==f)
-	{
-		printf("invalid perspective");
-		exit(0);
-	}
-	v[0]=(2*n)/(right-left);
-
-	v[5]=(2*n)/(top-bottom);
-
-	v[8]=(right+left)/(right-left);
-	v[9]=(top+bottom)/(top-bottom);
-
-	if(f!=-1)
-	{
-		v[10]=-(f+n)/(f-n);
-	}
-	else		//if f==-1, use an infinite far plane
-	{
-		v[10]=-nudge;
-	}
-
-	v[11]=-1;
-
-	if(f!=-1)
-	{
-		v[14]=-(2*f*n)/(f-n);
-	}
-	else		//if f==-1, use an infinite far plane
-	{
-		v[14]=-2*n*nudge;
-	}
-}
-void		math::mat33::SetPerspective(float fovy, float aspect, float n, float f)
-{
-	float left, right, top, bottom;
-
-	//convert fov from degrees to radians
-	fovy *= (float)M_PI / 180.0f;
-
-	top = n*tanf(fovy/2.0f);
-	bottom=-top;
-
-	left=aspect*bottom;
-	right=aspect*top;
-
-	SetPerspective(left, right, bottom, top, n, f);
-}
-void		math::mat33::SetOrtho(	float left, float right, float bottom, float top, float n, float f)
-{
-	LoadIdentity();
-
-	v[0]=2.0f/(right-left);
-
-	v[5]=2.0f/(top-bottom);
-
-	v[10]=-2.0f/(f-n);
-
-	v[12]=-(right+left)/(right-left);
-	v[13]=-(top+bottom)/(top-bottom);
-	v[14]=-(f+n)/(f-n);
-}
-void		math::mat33::SetTranslationPart(const vec3 & translation)
-{
-	v[12]=translation.x;
-	v[13]=translation.y;
-	v[14]=translation.z;
-}
-void		math::mat33::SetRotationPartEuler(const double angleX, const double angleY, const double angleZ)
 {
 	double cr = cos( M_PI*angleX/180 );
 	double sr = sin( M_PI*angleX/180 );
@@ -553,31 +473,27 @@ void		math::mat33::SetRotationPartEuler(const double angleX, const double angleY
 	double cy = cos( M_PI*angleZ/180 );
 	double sy = sin( M_PI*angleZ/180 );
 
-	v[0] = ( float )( cp*cy );
-	v[1] = ( float )( cp*sy );
-	v[2] = ( float )( -sp );
+	v[0] = ( double )( cp*cy );
+	v[1] = ( double )( cp*sy );
+	v[2] = ( double )( -sp );
 
 	double srsp = sr*sp;
 	double crsp = cr*sp;
 
-	v[4] = ( float )( srsp*cy-cr*sy );
-	v[5] = ( float )( srsp*sy+cr*cy );
-	v[6] = ( float )( sr*cp );
+	v[4] = ( double )( srsp*cy-cr*sy );
+	v[5] = ( double )( srsp*sy+cr*cy );
+	v[6] = ( double )( sr*cp );
 
-	v[8] = ( float )( crsp*cy+sr*sy );
-	v[9] = ( float )( crsp*sy-sr*cy );
-	v[10] = ( float )( cr*cp );
+	v[8] = ( double )( crsp*cy+sr*sy );
+	v[9] = ( double )( crsp*sy-sr*cy );
+	v[10] = ( double )( cr*cp );
 }
 void		math::mat33::RotateVector3D(math::vec3 & rhs) const {
-	rhs=GetRotatedVector3D(rhs);
+	rhs = GetRotatedVector3D(rhs);
 }
 void		math::mat33::InverseRotateVector3D(math::vec3 & rhs) const
 {
 	rhs=GetInverseRotatedVector3D(rhs);
-}
-void		math::mat33::SetRotationPartEuler(const math::vec3 & rotations)
-{
-	SetRotationPartEuler((double)rotations.x, (double)rotations.y, (double)rotations.z);
 }
 void	math::mat33::print()
 {
