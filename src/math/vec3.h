@@ -10,7 +10,25 @@
 #include <math/vecbase.h>
 
 namespace math {
-	class vec3: public vecbase<3> {
+	namespace base {
+		class vec3 {
+			public:
+				vec3(void);
+				vec3(double, double, double);
+				vec3(const double * rhs);
+
+			public:
+				union {
+					struct {
+						double x;
+						double y;
+						double z;
+					};
+					double v[3];
+				};
+		};
+	}
+	class vec3: public vecio<base::vec3,3> {
 		public:
 			//constructors
 			vec3(void);
@@ -18,11 +36,7 @@ namespace math {
 			vec3(const double * rhs);
 			vec3(const vec3 & rhs);
 #ifdef PHYSX
-			vec3(physx::PxVec3 const & rhs) {
-				v[0]=rhs.x;
-				v[1]=rhs.y;
-				v[2]=rhs.z;
-			}
+			vec3(physx::PxVec3 const & rhs);
 #endif
 			~vec3() {}	//empty
 
@@ -39,7 +53,7 @@ namespace math {
 			bool		isNan() const;
 			bool		isSane() const {return (!isNan() && isFinite());}
 			bool		abs_less(vec3 const & rhs);
-			
+
 			//vector algebra
 			vec3		cross(const vec3 & rhs) const
 			{
@@ -80,7 +94,7 @@ namespace math {
 					v2 * 2 * factor*(1.0f-factor)+
 					v3 * factor * factor;
 			}
-			
+
 			//overloaded operators
 			//binary operators
 			vec3		operator+(const vec3 & rhs) const
@@ -131,8 +145,16 @@ namespace math {
 				return *this;
 			}
 #endif
+
+
 	};
+
 }
 
 #endif	//vec3_H
+
+
+
+
+
 

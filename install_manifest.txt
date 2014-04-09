@@ -2,6 +2,7 @@
 /home/charles/usr/include/math/config.h
 /home/charles/usr/include/math/math.h
 /home/charles/usr/include/math/free.h
+/home/charles/usr/include/math/vecbase.h
 /home/charles/usr/include/math/vec2.h
 /home/charles/usr/include/math/vec3.h
 /home/charles/usr/include/math/vec4.h

@@ -18,6 +18,34 @@
 
 #include <math/vec3.h>
 
+math::base::vec3::vec3():
+	x(0),y(0),z(0)
+{
+}
+math::base::vec3::vec3(double nx, double ny, double nz):
+	x(nx),y(ny),z(nz)
+{
+}
+math::base::vec3::vec3(double const * const v):
+	x(v[0]),y(v[1]),z(v[2])
+{
+}
+
+math::vec3::vec3() {
+}
+math::vec3::vec3(double nx, double ny, double nz):
+	math::base::vec3(nx,ny,nz)
+{
+}
+math::vec3::vec3(double const * const v):
+	math::base::vec3(v)
+{
+}
+math::vec3::vec3(math::vec3 const & rhs):
+	math::base::vec3(rhs.x,rhs.y,rhs.z)
+{
+}
+
 void math::vec3::normalize() {
 
 	float length=magnitude();
@@ -29,7 +57,7 @@ void math::vec3::normalize() {
 		printf("normalize zero vector\n");
 		abort();
 	}
-	
+
 	float scalefactor = 1.0f/length;
 	x *= scalefactor;
 	y *= scalefactor;

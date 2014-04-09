@@ -151,6 +151,8 @@ math/vec3.h
 -
 
 src/math/mat33.h
+math/vecbase.h
+-
 
 src/math/mat44.h
 
@@ -201,4 +203,6 @@ math/vecbase.h
 src/math/vec4.h
 
 src/math/vecbase.h
+cstdio
+-
 
