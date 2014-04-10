@@ -4,14 +4,16 @@
 #include <cstdio>
 
 namespace math {
-	template <class A, int n> class vecio: virtual public A {
+	template <int N> class vecbase {
 		public:
 			void	write(FILE* file) const {
-				fwrite(A::v, sizeof(double), n, file);
+				fwrite(v, sizeof(double), N, file);
 			}
 			void	read(FILE* file) {
-				fread(A::v, sizeof(double), n, file);
+				fread(v, sizeof(double), N, file);
 			}
+		public:
+			double	v[N];
 	};
 }
 

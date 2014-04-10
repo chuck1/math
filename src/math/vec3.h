@@ -20,10 +20,7 @@ namespace math {
 			public:
 				union {
 					struct {
-						double x;
-						double y;
-						double z;
-					};
+										};
 					double v[3];
 				};
 		};
@@ -145,6 +142,9 @@ namespace math {
 				return *this;
 			}
 #endif
+			double	x;
+			double	y;
+			double	z;
 
 
 	};
