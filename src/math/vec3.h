@@ -24,22 +24,15 @@ namespace math {
 			~vec3() {}	//empty
 
 			//Accessors kept for compatibility
-			double&		x();
-			double&		y();
-			double&		z();
+			double&		x() { return v[0]; }
+			double&		y() { return v[1]; }
+			double&		z() { return v[2]; }
 
-			bool		abs_less(vec3 const & rhs) {
-				return (*this < rhs);
-			}
-			
 			//vector algebra
 			double		dot(vec3 const & rhs) const;
 			vec3		cross(const vec3 & rhs) const;
-						void		normalize();
-			vec3		GetNormalized() const;
-			double		magnitude() const;
-			double		magnitudeSquared() const;
 			double		angle(vec3 const & rhs) const;
+			math::vec3	GetNormalized() const;
 			//rotations
 			void		RotateX(double angle);
 			void		RotateY(double angle);
@@ -84,10 +77,10 @@ namespace math {
 			bool		operator==(const vec3 & rhs) const;
 			bool		operator!=(const vec3 & rhs) const;
 			//self-add etc
-			void		operator+=(const vec3 & rhs);
-			void		operator-=(const vec3 & rhs);
-			void		operator*=(const double rhs);
-			void		operator/=(const double rhs);
+			vec3&		operator+=(const vec3 & rhs);
+			vec3&		operator-=(const vec3 & rhs);
+			vec3&		operator*=(const double rhs);
+			vec3&		operator/=(const double rhs);
 
 			void		print() const;
 			//unary operators

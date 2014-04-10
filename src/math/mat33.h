@@ -9,14 +9,7 @@ namespace math {
 	class quat;
 	class plane;
 	class transform;
-	namespace base {
-		class mat33 {
-			public:
-				double	v[9];
-		};
-	}
-	class mat33: public vecio<base::mat33,9>
-	{
+	class mat33: public vecbase<double,9> {
 		public:
 			//friend mat33 operator*(double scaleFactor, const mat33 & rhs);
 

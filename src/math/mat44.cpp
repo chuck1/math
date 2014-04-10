@@ -435,24 +435,25 @@ math::vec4 math::mat44::operator*(const vec4 rhs) const
 math::vec3	math::mat44::GetRotatedVector3D(const vec3 & rhs) const
 {
 	return vec3(
-			entries[0]*rhs.x + entries[4]*rhs.y + entries[8]*rhs.z,
-			entries[1]*rhs.x + entries[5]*rhs.y + entries[9]*rhs.z,
-			entries[2]*rhs.x + entries[6]*rhs.y + entries[10]*rhs.z);
+			entries[0]*rhs.v[0] + entries[4]*rhs.v[1] + entries[8] *rhs.v[2],
+			entries[1]*rhs.v[0] + entries[5]*rhs.v[1] + entries[9] *rhs.v[2],
+			entries[2]*rhs.v[0] + entries[6]*rhs.v[1] + entries[10]*rhs.v[2]);
 }
 math::vec3	math::mat44::GetInverseRotatedVector3D(const vec3 & rhs) const
 {
 	//rotate by transpose:
-	return vec3(entries[0]*rhs.x + entries[1]*rhs.y + entries[2]*rhs.z,
-			entries[4]*rhs.x + entries[5]*rhs.y + entries[6]*rhs.z,
-			entries[8]*rhs.x + entries[9]*rhs.y + entries[10]*rhs.z);
+	return vec3(
+			entries[0]*rhs.v[0] + entries[1]*rhs.v[1] + entries[2] *rhs.v[2],
+			entries[4]*rhs.v[0] + entries[5]*rhs.v[1] + entries[6] *rhs.v[2],
+			entries[8]*rhs.v[0] + entries[9]*rhs.v[1] + entries[10]*rhs.v[2]);
 }
 math::vec3	math::mat44::GetTranslatedVector3D(const vec3 & rhs) const {
 
-	return vec3(rhs.x+entries[12], rhs.y+entries[13], rhs.z+entries[14]);
+	return vec3(rhs.v[0]+entries[12], rhs.v[1]+entries[13], rhs.v[2]+entries[14]);
 }
 math::vec3	math::mat44::GetInverseTranslatedVector3D(const vec3 & rhs) const
 {
-	return vec3(rhs.x-entries[12], rhs.y-entries[13], rhs.z-entries[14]);
+	return vec3(rhs.v[0]-entries[12], rhs.v[1]-entries[13], rhs.v[2]-entries[14]);
 }
 void		math::mat44::Invert(void)
 {
@@ -633,9 +634,9 @@ void		math::mat44::SetScale(const vec3 & scaleFactor)
 {
 	LoadIdentity();
 
-	entries[0]=scaleFactor.x;
-	entries[5]=scaleFactor.y;
-	entries[10]=scaleFactor.z;
+	entries[0]=scaleFactor.v[0];
+	entries[5]=scaleFactor.v[1];
+	entries[10]=scaleFactor.v[2];
 }
 void		math::mat44::SetUniformScale(const float scaleFactor)
 {
@@ -653,17 +654,17 @@ void		math::mat44::SetRotationAxis(const double angle, const vec3 & axis)
 
 	LoadIdentity();
 
-	entries[0]=(u.x)*(u.x) + cosAngle*(1-(u.x)*(u.x));
-	entries[4]=(u.x)*(u.y)*(oneMinusCosAngle) - sinAngle*u.z;
-	entries[8]=(u.x)*(u.z)*(oneMinusCosAngle) + sinAngle*u.y;
+	entries[0]=(u.v[0])*(u.v[0]) + cosAngle*(1-(u.v[0])*(u.v[0]));
+	entries[4]=(u.v[0])*(u.v[1])*(oneMinusCosAngle) - sinAngle*u.v[2];
+	entries[8]=(u.v[0])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[1];
 
-	entries[1]=(u.x)*(u.y)*(oneMinusCosAngle) + sinAngle*u.z;
-	entries[5]=(u.y)*(u.y) + cosAngle*(1-(u.y)*(u.y));
-	entries[9]=(u.y)*(u.z)*(oneMinusCosAngle) - sinAngle*u.x;
+	entries[1]=(u.v[0])*(u.v[1])*(oneMinusCosAngle) + sinAngle*u.v[2];
+	entries[5]=(u.v[1])*(u.v[1]) + cosAngle*(1-(u.v[1])*(u.v[1]));
+	entries[9]=(u.v[1])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[0];
 
-	entries[2]=(u.x)*(u.z)*(oneMinusCosAngle) - sinAngle*u.y;
-	entries[6]=(u.y)*(u.z)*(oneMinusCosAngle) + sinAngle*u.x;
-	entries[10]=(u.z)*(u.z) + cosAngle*(1-(u.z)*(u.z));
+	entries[2]=(u.v[0])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[1];
+	entries[6]=(u.v[1])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[0];
+	entries[10]=(u.v[2])*(u.v[2]) + cosAngle*(1-(u.v[2])*(u.v[2]));
 }
 void		math::mat44::SetRotationX(const double angle)
 {
@@ -771,9 +772,9 @@ void		math::mat44::SetOrtho(	float left, float right, float bottom, float top, f
 }
 void		math::mat44::SetTranslationPart(const vec3 & translation)
 {
-	entries[12]=translation.x;
-	entries[13]=translation.y;
-	entries[14]=translation.z;
+	entries[12]=translation.v[0];
+	entries[13]=translation.v[1];
+	entries[14]=translation.v[2];
 }
 void		math::mat44::SetRotationPartEuler(const double angleX, const double angleY, const double angleZ)
 {
@@ -816,7 +817,7 @@ void		math::mat44::InverseTranslateVector3D(vec3 & rhs) const
 }
 void		math::mat44::SetRotationPartEuler(const math::vec3 & rotations)
 {
-	SetRotationPartEuler((double)rotations.x, (double)rotations.y, (double)rotations.z);
+	SetRotationPartEuler((double)rotations.v[0], (double)rotations.v[1], (double)rotations.v[2]);
 }
 math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
 {
@@ -826,7 +827,7 @@ math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
 	vec3 UP = up.GetNormalized();
 
 	vec3 s = f.cross(UP);
-	s.normalize();
+	s.Normalize();
 
 	vec3 u = s.cross(f);
 
@@ -834,9 +835,9 @@ math::mat44	math::lookat(math::vec3 eye, math::vec3 center, math::vec3 up)
 	//u.print();
 
 	mat44 M(
-			s.x,  u.x,  -f.x , 0.0f,
-			s.y,  u.y,  -f.y , 0.0f,
-			s.z,  u.z,  -f.z , 0.0f,
+			s.v[0],  u.v[0],  -f.v[0] , 0.0f,
+			s.v[1],  u.v[1],  -f.v[1] , 0.0f,
+			s.v[2],  u.v[2],  -f.v[2] , 0.0f,
 			0.0f, 0.0f, 0.0f, 1.0f);
 
 	//	M.print();
@@ -885,14 +886,14 @@ void	math::mat44::SetCoordinateTransform(math::vec3 const x, math::vec3 const y)
 
 	math::vec3 X = y.cross(Z);
 
-	X.normalize();
+	X.Normalize();
 	math::vec3 Y = y.GetNormalized();
-	Z.normalize();
+	Z.Normalize();
 
 	math::mat44 m(
-			X.x,  Y.x,  Z.x , 0.0f,
-			X.y,  Y.y,  Z.y , 0.0f,
-			X.z,  Y.z,  Z.z , 0.0f,
+			X.v[0],  Y.v[0],  Z.v[0] , 0.0f,
+			X.v[1],  Y.v[1],  Z.v[1] , 0.0f,
+			X.v[2],  Y.v[2],  Z.v[2] , 0.0f,
 			0.0f, 0.0f, 0.0f, 1.0f);
 
 	*this = m;

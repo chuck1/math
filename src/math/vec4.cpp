@@ -18,10 +18,10 @@
 #include <math/mat44.h>
 
 math::vec4::vec4(const vec3 & rhs):
-	x(rhs.x), y(rhs.y), z(rhs.z), w(1.0f)
+	x(rhs.v[0]), y(rhs.v[1]), z(rhs.v[2]), w(1.0f)
 {}
 math::vec4::vec4(const vec3 & rhs,double const & newW):
-	x(rhs.x), y(rhs.y), z(rhs.z), w(newW)
+	x(rhs.v[0]), y(rhs.v[1]), z(rhs.v[2]), w(newW)
 {}
 
 bool math::vec4::isNan() const {
@@ -49,7 +49,7 @@ math::vec4 math::vec4::GetRotatedX(double angle) const
 
 	v3d.RotateX(angle);
 
-	return math::vec4(v3d.x, v3d.y, v3d.z, w);
+	return math::vec4(v3d, w);
 }
 
 void math::vec4::RotateY(double angle)
@@ -63,7 +63,7 @@ math::vec4 math::vec4::GetRotatedY(double angle) const
 
 	v3d.RotateY(angle);
 
-	return math::vec4(v3d.x, v3d.y, v3d.z, w);
+	return math::vec4(v3d, w);
 }
 
 void math::vec4::RotateZ(double angle)
@@ -77,7 +77,7 @@ math::vec4 math::vec4::GetRotatedZ(double angle) const
 
 	v3d.RotateZ(angle);
 
-	return math::vec4(v3d.x, v3d.y, v3d.z, w);
+	return math::vec4(v3d, w);
 }
 
 void math::vec4::RotateAxis(double angle, const math::vec3 & axis)
@@ -91,7 +91,7 @@ math::vec4 math::vec4::GetRotatedAxis(double angle, const math::vec3 & axis) con
 
 	v3d.RotateAxis(angle, axis);
 
-	return math::vec4(v3d.x, v3d.y, v3d.z, w);
+	return math::vec4(v3d, w);
 }
 
 

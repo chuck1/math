@@ -18,7 +18,7 @@ void math::plane::SetFromPoints(const math::vec3 & p0, const math::vec3 & p1, co
 {
 	n=(p1-p0).cross(p2-p0);
 
-	n.normalize();
+	n.Normalize();
 
 	CalculateIntercept(p0);
 }
@@ -71,7 +71,7 @@ math::plane math::plane::lerp(const math::plane & p2, float factor)
 
 	result.n = n*(1.0f-factor) + p2.n*factor;
 
-	result.n.normalize();
+	result.n.Normalize();
 
 	result.d = d * (1.0f-factor) + p2.d * factor;
 

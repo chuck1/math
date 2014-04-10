@@ -20,14 +20,14 @@ math::quat::quat(double angleRadians, vec3 const & axis)
 {
 	vec3 unitAxis(axis);
 
-	unitAxis.normalize();
+	unitAxis.Normalize();
 
 	const double a = angleRadians * 0.5f;
 	const double s = sin(a);
 	w = cos(a);
-	x = unitAxis.x * s;
-	y = unitAxis.y * s;
-	z = unitAxis.z * s;
+	x = unitAxis.v[0] * s;
+	y = unitAxis.v[1] * s;
+	z = unitAxis.v[2] * s;
 }
 math::quat::quat(math::quat const & v):
 	w(v.w), x(v.x), y(v.y), z(v.z)
@@ -38,14 +38,14 @@ math::quat::quat(math::vec3 const & u, math::vec3 const & v)
 	math::vec3 a(u);
 	math::vec3 b(v);
 	
-	a.normalize();
-	b.normalize();
+	a.Normalize();
+	b.Normalize();
 
 	math::vec3 c = a.cross(b);
 	
-	x = c.x;
-	y = c.y;
-	z = c.z;
+	x = c.v[0];
+	y = c.v[1];
+	z = c.v[2];
 	
 	w = a.dot(b);
 	
@@ -255,9 +255,9 @@ math::vec3 math::quat::getBasisVector2() const
 }
 const math::vec3 math::quat::rotate(const math::vec3& v) const
 {
-	const double vx = 2.0f*v.x;
-	const double vy = 2.0f*v.y;
-	const double vz = 2.0f*v.z;
+	const double vx = 2.0f*v.v[0];
+	const double vy = 2.0f*v.v[1];
+	const double vz = 2.0f*v.v[2];
 	const double w2 = w*w-0.5f;
 	const double dot2 = (x*vx + y*vy +z*vz);
 	return math::vec3
@@ -273,9 +273,9 @@ const math::vec3 math::quat::rotate(const math::vec3& v) const
 }
 const math::vec3 math::quat::rotateInv(const math::vec3& v) const
 {
-	const double vx = 2.0f*v.x;
-	const double vy = 2.0f*v.y;
-	const double vz = 2.0f*v.z;
+	const double vx = 2.0f*v.v[0];
+	const double vy = 2.0f*v.v[1];
+	const double vz = 2.0f*v.v[2];
 	const double w2 = w*w-0.5f;
 	const double dot2 = (x*vx + y*vy +z*vz);
 	return math::vec3
@@ -366,11 +366,11 @@ math::vec3 math::quat::getOmega(double dt) {
 	}
 	
 	if (v.magnitude() > 0.0) {
-		v.normalize();
+		v.Normalize();
 		omega = v * getAngle() / dt;
 	}
 	
-	if(omega.isNan()) throw;
+	if(omega.IsNan()) throw;
 
 	return omega;
 }

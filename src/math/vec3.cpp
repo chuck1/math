@@ -18,76 +18,53 @@
 
 #include <math/vec3.h>
 
-math::vec3::vec3():
-	x(0),y(0),z(0)
-{
+math::vec3::vec3() {
+	LoadZero();
 }
-math::vec3::vec3(double nx, double ny, double nz):
-	x(nx),y(ny),z(nz)
-{
+math::vec3::vec3(double const & nx, double const & ny, double const & nz) {
+	v[0] = nx;
+	v[1] = ny;
+	v[2] = nz;
 }
 math::vec3::vec3(double const * const v):
-	x(v[0]),y(v[1]),z(v[2])
+	math::vecbase<double,3>(v)
 {
 }
 
-math::vec3::vec3(math::vec3 const & rhs):
-	math::base::vec3(rhs.x,rhs.y,rhs.z)
+double	math::vec3::dot(math::vec3 const & rhs) const
 {
-}
-T		math::vec3::dot(const vecbase & rhs) const
-{
-	return x*rhs.x + y*rhs.y + z*rhs.z;
+	return v[0]*rhs.v[0] + v[1]*rhs.v[1] + v[2]*rhs.v[2];
 }
 math::vec3	math::vec3::cross(const vec3 & rhs) const
 {
-	return vec3(y*rhs.v[2] - z*rhs.y, z*rhs.x - x*rhs.z, x*rhs.y - y*rhs.x);
+	return vec3(v[1]*rhs.v[2] - v[2]*rhs.v[1], v[2]*rhs.v[0] - v[0]*rhs.v[2], v[0]*rhs.v[1] - v[1]*rhs.v[0]);
 }
-double		magnitude() const
+math::vec3		math::vec3::operator+(const vec3 & rhs) const
 {
-return (double)sqrt((x*x)+(y*y)+(z*z));
+	math::vec3 a(*this);
+	a += rhs;
+	return a;
 }
-double		magnitudeSquared() const
-{	
-return (x*x)+(y*y)+(z*z);
+math::vec3		math::vec3::operator-(const vec3 & rhs) const {
+	math::vec3 a(*this);
+	a -= rhs;
+	return a;
 }
-			vec3		operator+(const vec3 & rhs) const
-			{
-				return vec3(x + rhs.x, y + rhs.y, z + rhs.z);
-			}
-			vec3		operator-(const vec3 & rhs) const
-			{
-				return vec3(x - rhs.x, y - rhs.y, z - rhs.z);	}
-			vec3		operator*(const double rhs) const
-			{
-				return vec3(x*rhs, y*rhs, z*rhs);	}
-			vec3		operator/(const double rhs) const
-			{
-				return (rhs==0.0f) ? vec3(0.0f, 0.0f, 0.0f) : vec3(x / rhs, y / rhs, z / rhs);	
-			}
-
-void math::vec3::normalize() {
-
-	float length=magnitude();
-
-	if(length==1.0f) return;
-
-	if(length==0.0f)
-	{
-		printf("normalize zero vector\n");
-		abort();
-	}
-
-	float scalefactor = 1.0f/length;
-	x *= scalefactor;
-	y *= scalefactor;
-	z *= scalefactor;
+math::vec3		math::vec3::operator*(const double rhs) const {
+	math::vec3 a(*this);
+	a *= rhs;
+	return a;
+}
+math::vec3		math::vec3::operator/(const double rhs) const {
+	math::vec3 a(*this);
+	a /= rhs;
+	return a;
 }
 math::vec3 math::vec3::GetNormalized() const {
 
 	vec3 result(*this);
 
-	result.normalize();
+	result.Normalize();
 
 	return result;
 }
@@ -98,9 +75,9 @@ math::vec3 math::vec3::GetRotatedX(double angle) const {
 	float sinAngle=(float)sin(M_PI*angle/180);
 	float cosAngle=(float)cos(M_PI*angle/180);
 
-	return vec3(	x,
-			y*cosAngle - z*sinAngle,
-			y*sinAngle + z*cosAngle);
+	return vec3(	v[0],
+			v[1]*cosAngle - v[2]*sinAngle,
+			v[1]*sinAngle + v[2]*cosAngle);
 }
 void math::vec3::RotateX(double angle) {
 
@@ -113,9 +90,9 @@ math::vec3 math::vec3::GetRotatedY(double angle) const {
 	float sinAngle=(float)sin(M_PI*angle/180);
 	float cosAngle=(float)cos(M_PI*angle/180);
 
-	return math::vec3(	x*cosAngle + z*sinAngle,
-			y,
-			-x*sinAngle + z*cosAngle);
+	return math::vec3(	v[0]*cosAngle + v[2]*sinAngle,
+			v[1],
+			-v[0]*sinAngle + v[2]*cosAngle);
 }
 void math::vec3::RotateY(double angle) {
 
@@ -128,9 +105,9 @@ math::vec3 math::vec3::GetRotatedZ(double angle) const {
 	float sinAngle=(float)sin(M_PI*angle/180);
 	float cosAngle=(float)cos(M_PI*angle/180);
 
-	return math::vec3(x*cosAngle - y*sinAngle,
-			x*sinAngle + y*cosAngle,
-			z);
+	return math::vec3(v[0]*cosAngle - v[1]*sinAngle,
+			v[0]*sinAngle + v[1]*cosAngle,
+			v[2]);
 }
 void math::vec3::RotateZ(double angle) {
 
@@ -140,7 +117,7 @@ math::vec3 math::vec3::GetRotatedAxis(double angle, const math::vec3 & axis) con
 
 	if(angle==0.0) return (*this);
 
-	math::vec3 u=axis.GetNormalized();
+	math::vec3 u = axis.GetNormalized();
 
 	math::vec3 rotMatrixRow0, rotMatrixRow1, rotMatrixRow2;
 
@@ -148,17 +125,17 @@ math::vec3 math::vec3::GetRotatedAxis(double angle, const math::vec3 & axis) con
 	float cosAngle=(float)cos(M_PI*angle/180);
 	float oneMinusCosAngle=1.0f-cosAngle;
 
-	rotMatrixRow0.x=(u.x)*(u.x) + cosAngle*(1-(u.x)*(u.x));
-	rotMatrixRow0.y=(u.x)*(u.y)*(oneMinusCosAngle) - sinAngle*u.z;
-	rotMatrixRow0.z=(u.x)*(u.z)*(oneMinusCosAngle) + sinAngle*u.y;
+	rotMatrixRow0.v[0]=(u.v[0])*(u.v[0]) + cosAngle*(1-(u.v[0])*(u.v[0]));
+	rotMatrixRow0.v[1]=(u.v[0])*(u.v[1])*(oneMinusCosAngle) - sinAngle*u.v[2];
+	rotMatrixRow0.v[2]=(u.v[0])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[1];
 
-	rotMatrixRow1.x=(u.x)*(u.y)*(oneMinusCosAngle) + sinAngle*u.z;
-	rotMatrixRow1.y=(u.y)*(u.y) + cosAngle*(1-(u.y)*(u.y));
-	rotMatrixRow1.z=(u.y)*(u.z)*(oneMinusCosAngle) - sinAngle*u.x;
+	rotMatrixRow1.v[0]=(u.v[0])*(u.v[1])*(oneMinusCosAngle) + sinAngle*u.v[2];
+	rotMatrixRow1.v[1]=(u.v[1])*(u.v[1]) + cosAngle*(1-(u.v[1])*(u.v[1]));
+	rotMatrixRow1.v[2]=(u.v[1])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[0];
 
-	rotMatrixRow2.x=(u.x)*(u.z)*(oneMinusCosAngle) - sinAngle*u.y;
-	rotMatrixRow2.y=(u.y)*(u.z)*(oneMinusCosAngle) + sinAngle*u.x;
-	rotMatrixRow2.z=(u.z)*(u.z) + cosAngle*(1-(u.z)*(u.z));
+	rotMatrixRow2.v[0]=(u.v[0])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[1];
+	rotMatrixRow2.v[1]=(u.v[1])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[0];
+	rotMatrixRow2.v[2]=(u.v[2])*(u.v[2]) + cosAngle*(1-(u.v[2])*(u.v[2]));
 
 	return math::vec3( dot(rotMatrixRow0), dot(rotMatrixRow1), dot(rotMatrixRow2));
 }
@@ -170,7 +147,7 @@ double		math::vec3::angle(vec3 const & rhs) const {
 }
 void		math::vec3::RotateAxis(double angle, const math::vec3 & axis) {
 
-	(*this)=GetRotatedAxis(angle, axis);
+	(*this) = GetRotatedAxis(angle, axis);
 }
 void		math::vec3::PackTo01() {
 
@@ -178,21 +155,21 @@ void		math::vec3::PackTo01() {
 }
 void		math::vec3::Add(const vec3 & v2, vec3 & result) {
 
-	result.x=x+v2.x;
-	result.y=y+v2.y;
-	result.z=z+v2.z;
+	result.v[0]=v[0]+v2.v[0];
+	result.v[1]=v[1]+v2.v[1];
+	result.v[2]=v[2]+v2.v[2];
 }
 void		math::vec3::Subtract(const vec3 & v2, vec3 & result) {
 
-	result.x=x-v2.x;
-	result.y=y-v2.y;
-	result.z=z-v2.z;
+	result.v[0]=v[0]-v2.v[0];
+	result.v[1]=v[1]-v2.v[1];
+	result.v[2]=v[2]-v2.v[2];
 }
 math::vec3	math::vec3::GetPackedTo01() const {
 
 	math::vec3 temp(*this);
 
-	temp.normalize();
+	temp.Normalize();
 
 	temp = temp * 0.5f + math::vec3(0.5f, 0.5f, 0.5f);
 
@@ -204,7 +181,7 @@ math::vec3 operator*(double scaleFactor, const math::vec3 & rhs) {
 }
 bool		math::vec3::operator==(const math::vec3 & rhs) const {
 
-	if(x==rhs.x && y==rhs.y && z==rhs.z)
+	if(v[0]==rhs.v[0] && v[1]==rhs.v[1] && v[2]==rhs.v[2])
 		return true;
 
 	return false;
@@ -213,48 +190,28 @@ bool		math::vec3::operator!=(const vec3 & rhs) const {
 
 	return !((*this)==rhs);
 }
-void		math::vec3::operator+=(const vec3 & rhs) {
-
-	x+=rhs.x;	y+=rhs.y;	z+=rhs.z;
+math::vec3&		math::vec3::operator+=(math::vec3 const & rhs) {
+	math::vecbase<double,3>::operator+=(rhs);
+	return *this;
 }
-void		math::vec3::operator-=(const vec3 & rhs) {
-
-	x-=rhs.x;	y-=rhs.y;	z-=rhs.z;
+math::vec3&		math::vec3::operator-=(const vec3 & rhs) {
+	math::vecbase<double,3>::operator-=(rhs);
+	return *this;
 }
-void		math::vec3::operator*=(const double rhs) {
+math::vec3&		math::vec3::operator*=(const double rhs) {
+	math::vecbase<double,3>::operator*=(rhs);
+	return *this;
 
-	x*=rhs;	y*=rhs;	z*=rhs;
+	v[0]*=rhs;	v[1]*=rhs;	v[2]*=rhs;
 }
-void		math::vec3::operator/=(const double rhs) {
-
-	if(rhs==0.0f)
-		return;
-	else
-	{	x/=rhs; y/=rhs; z/=rhs;	}
+math::vec3&		math::vec3::operator/=(const double rhs) {
+	math::vecbase<double,3>::operator/=(rhs);
+	return *this;
 }
 void	math::vec3::print() const {
 
-	printf("%f %f %f\n",x,y,z);
+	printf("%f %f %f\n",v[0],v[1],v[2]);
 }
-bool	math::vec3::isFinite() const {
-	if(isinf(x)) return false;
-	if(isinf(y)) return false;
-	if(isinf(z)) return false;
-	return true;
-}
-bool	math::vec3::isNan() const {
-	if(isnan(x)) return true;
-	if(isnan(y)) return true;
-	if(isnan(z)) return true;
-	return false;
-}
-bool math::vec3::abs_less(vec3 const & rhs) {
-	if(fabs(x) < rhs.x) {
-		if(fabs(y) < rhs.y) {
-			if(fabs(z) < rhs.z) return true;
-		}
-	}
-	return false;
-}
+
 
 

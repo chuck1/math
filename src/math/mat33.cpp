@@ -56,9 +56,9 @@ math::mat33::mat33(const double * rhs)
 }
 math::mat33::mat33(vec3 const & rhs) {
 	LoadIdentity();
-	v[0] = rhs.x;
-	v[4] = rhs.y;
-	v[8] = rhs.z;
+	v[0] = rhs.v[0];
+	v[4] = rhs.v[1];
+	v[8] = rhs.v[2];
 }
 void math::mat33::SetDiagonal(double x, double y, double z) {
 	LoadZero();
@@ -251,24 +251,24 @@ math::mat33 math::mat33::operator-(void) const
 math::vec3 math::mat33::operator*(const vec3 rhs) const
 {
 	return vec3(
-			v[0]*rhs.x + v[3]*rhs.y + v[6] * rhs.z,
-			v[1]*rhs.x + v[4]*rhs.y	+ v[7] * rhs.z,
-			v[2]*rhs.x + v[5]*rhs.y + v[8] * rhs.z);
+			v[0]*rhs.v[0] + v[3]*rhs.v[1] + v[6] * rhs.v[2],
+			v[1]*rhs.v[0] + v[4]*rhs.v[1] + v[7] * rhs.v[2],
+			v[2]*rhs.v[0] + v[5]*rhs.v[1] + v[8] * rhs.v[2]);
 
 }
 math::vec3	math::mat33::GetRotatedVector3D(const vec3 & rhs) const
 {
 	return vec3(
-			v[0]*rhs.x + v[4]*rhs.y + v[8]*rhs.z,
-			v[1]*rhs.x + v[5]*rhs.y + v[9]*rhs.z,
-			v[2]*rhs.x + v[6]*rhs.y + v[10]*rhs.z);
+			v[0]*rhs.v[0] + v[4]*rhs.v[1] + v[8]*rhs.v[2],
+			v[1]*rhs.v[0] + v[5]*rhs.v[1] + v[9]*rhs.v[2],
+			v[2]*rhs.v[0] + v[6]*rhs.v[1] + v[10]*rhs.v[2]);
 }
 math::vec3	math::mat33::GetInverseRotatedVector3D(const vec3 & rhs) const
 {
-	//rotate by transpose:
-	return vec3(v[0]*rhs.x + v[1]*rhs.y + v[2]*rhs.z,
-			v[4]*rhs.x + v[5]*rhs.y + v[6]*rhs.z,
-			v[8]*rhs.x + v[9]*rhs.y + v[10]*rhs.z);
+	//rotate .v[1] transpose:
+	return vec3(v[0]*rhs.v[0] + v[1]*rhs.v[1] + v[2]*rhs.v[2],
+			v[4]*rhs.v[0] + v[5]*rhs.v[1] + v[6]*rhs.v[2],
+			v[8]*rhs.v[0] + v[9]*rhs.v[1] + v[10]*rhs.v[2]);
 }
 void		math::mat33::Invert(void)
 {
@@ -402,9 +402,9 @@ void		math::mat33::SetScale(const vec3 & scaleFactor)
 {
 	LoadIdentity();
 
-	v[0]=scaleFactor.x;
-	v[5]=scaleFactor.y;
-	v[10]=scaleFactor.z;
+	v[0]  = scaleFactor.v[0];
+	v[5]  = scaleFactor.v[1];
+	v[10] = scaleFactor.v[2];
 }
 void		math::mat33::SetUniformScale(const double scaleFactor)
 {
@@ -422,17 +422,17 @@ void		math::mat33::SetRotationAxis(const double angle, const vec3 & axis)
 
 	LoadIdentity();
 
-	v[0]=(u.x)*(u.x) + cosAngle*(1-(u.x)*(u.x));
-	v[4]=(u.x)*(u.y)*(oneMinusCosAngle) - sinAngle*u.z;
-	v[8]=(u.x)*(u.z)*(oneMinusCosAngle) + sinAngle*u.y;
+	v[0]  = (u.v[0])*(u.v[0]) + cosAngle*(1-(u.v[0])*(u.v[0]));
+	v[4]  = (u.v[0])*(u.v[1])*(oneMinusCosAngle) - sinAngle*u.v[2];
+	v[8]  = (u.v[0])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[1];
 
-	v[1]=(u.x)*(u.y)*(oneMinusCosAngle) + sinAngle*u.z;
-	v[5]=(u.y)*(u.y) + cosAngle*(1-(u.y)*(u.y));
-	v[9]=(u.y)*(u.z)*(oneMinusCosAngle) - sinAngle*u.x;
+	v[1]  = (u.v[0])*(u.v[1])*(oneMinusCosAngle) + sinAngle*u.v[2];
+	v[5]  = (u.v[1])*(u.v[1]) + cosAngle*(1-(u.v[1])*(u.v[1]));
+	v[9]  = (u.v[1])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[0];
 
-	v[2]=(u.x)*(u.z)*(oneMinusCosAngle) - sinAngle*u.y;
-	v[6]=(u.y)*(u.z)*(oneMinusCosAngle) + sinAngle*u.x;
-	v[10]=(u.z)*(u.z) + cosAngle*(1-(u.z)*(u.z));
+	v[2]  = (u.v[0])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[1];
+	v[6]  = (u.v[1])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[0];
+	v[10] = (u.v[2])*(u.v[2]) + cosAngle*(1-(u.v[2])*(u.v[2]));
 }
 void		math::mat33::SetRotationX(const double angle)
 {

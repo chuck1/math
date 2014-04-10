@@ -18,7 +18,6 @@ add_library(math
 	src/math/color.cpp
 	src/math/quat.cpp
 	src/math/transform.cpp
-	src/math/raw/raw.cpp
 	src/math/geo/polyhedron.cpp
 	src/math/vclip/vclip.cpp
 )
