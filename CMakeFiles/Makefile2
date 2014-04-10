@@ -43,14 +43,11 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nfs/stak/students/r/rymalc/Documents/Programming/C++/math
+CMAKE_SOURCE_DIR = /home/charles/Programming/C++/math
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nfs/stak/students/r/rymalc/Documents/Programming/C++/math
+CMAKE_BINARY_DIR = /home/charles/Programming/C++/math
 
 #=============================================================================
 # Target rules for target CMakeFiles/math.dir
@@ -59,7 +56,7 @@ CMAKE_BINARY_DIR = /nfs/stak/students/r/rymalc/Documents/Programming/C++/math
 CMakeFiles/math.dir/all:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/depend
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles  1 2 3 4 5 6 7 8 9 10 11 12 13
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles  1 2 3 4 5 6 7 8 9 10 11 12 13
 	@echo "Built target math"
 .PHONY : CMakeFiles/math.dir/all
 
@@ -69,9 +66,9 @@ all: CMakeFiles/math.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/math.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/charles/Programming/C++/math/CMakeFiles 13
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/math.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/charles/Programming/C++/math/CMakeFiles 0
 .PHONY : CMakeFiles/math.dir/rule
 
 # Convenience name for target.
@@ -94,7 +91,7 @@ clean: CMakeFiles/math.dir/clean
 CMakeFiles/test_array.dir/all: CMakeFiles/math.dir/all
 	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/depend
 	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles  14
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles  14
 	@echo "Built target test_array"
 .PHONY : CMakeFiles/test_array.dir/all
 
@@ -104,9 +101,9 @@ all: CMakeFiles/test_array.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_array.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/charles/Programming/C++/math/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_array.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/charles/Programming/C++/math/CMakeFiles 0
 .PHONY : CMakeFiles/test_array.dir/rule
 
 # Convenience name for target.
