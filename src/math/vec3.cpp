@@ -18,33 +18,53 @@
 
 #include <math/vec3.h>
 
-math::base::vec3::vec3():
+math::vec3::vec3():
 	x(0),y(0),z(0)
 {
 }
-math::base::vec3::vec3(double nx, double ny, double nz):
+math::vec3::vec3(double nx, double ny, double nz):
 	x(nx),y(ny),z(nz)
 {
 }
-math::base::vec3::vec3(double const * const v):
+math::vec3::vec3(double const * const v):
 	x(v[0]),y(v[1]),z(v[2])
 {
 }
 
-math::vec3::vec3() {
-}
-math::vec3::vec3(double nx, double ny, double nz):
-	math::base::vec3(nx,ny,nz)
-{
-}
-math::vec3::vec3(double const * const v):
-	math::base::vec3(v)
-{
-}
 math::vec3::vec3(math::vec3 const & rhs):
 	math::base::vec3(rhs.x,rhs.y,rhs.z)
 {
 }
+T		math::vec3::dot(const vecbase & rhs) const
+{
+	return x*rhs.x + y*rhs.y + z*rhs.z;
+}
+math::vec3	math::vec3::cross(const vec3 & rhs) const
+{
+	return vec3(y*rhs.v[2] - z*rhs.y, z*rhs.x - x*rhs.z, x*rhs.y - y*rhs.x);
+}
+double		magnitude() const
+{
+return (double)sqrt((x*x)+(y*y)+(z*z));
+}
+double		magnitudeSquared() const
+{	
+return (x*x)+(y*y)+(z*z);
+}
+			vec3		operator+(const vec3 & rhs) const
+			{
+				return vec3(x + rhs.x, y + rhs.y, z + rhs.z);
+			}
+			vec3		operator-(const vec3 & rhs) const
+			{
+				return vec3(x - rhs.x, y - rhs.y, z - rhs.z);	}
+			vec3		operator*(const double rhs) const
+			{
+				return vec3(x*rhs, y*rhs, z*rhs);	}
+			vec3		operator/(const double rhs) const
+			{
+				return (rhs==0.0f) ? vec3(0.0f, 0.0f, 0.0f) : vec3(x / rhs, y / rhs, z / rhs);	
+			}
 
 void math::vec3::normalize() {
 

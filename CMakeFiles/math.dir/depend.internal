@@ -7,13 +7,11 @@ CMakeFiles/math.dir/src/math/color.cpp.o
  src/math/config.h
 CMakeFiles/math.dir/src/math/free.cpp.o
  /home/charles/Programming/C++/math/src/math/free.cpp
- src/math/color.h
- src/math/free.h
+ /home/charles/Programming/C++/math/src/math/geo/polyhedron.cpp
+ src/math/geo/polyhedron.h
  src/math/math.h
- src/math/quat.h
- src/math/transform.h
+ src/math/plane.h
  src/math/vec3.h
- src/math/vec4.h
  src/math/vecbase.h
 CMakeFiles/math.dir/src/math/geo/polyhedron.cpp.o
  /home/charles/Programming/C++/math/src/math/geo/polyhedron.cpp
@@ -49,15 +47,9 @@ CMakeFiles/math.dir/src/math/plane.cpp.o
  src/math/vecbase.h
 CMakeFiles/math.dir/src/math/quat.cpp.o
  /home/charles/Programming/C++/math/src/math/quat.cpp
- src/math/color.h
- src/math/config.h
- src/math/free.h
- src/math/mat44.h
  src/math/math.h
- src/math/quat.h
- src/math/transform.h
+ src/math/plane.h
  src/math/vec3.h
- src/math/vec4.h
  src/math/vecbase.h
 CMakeFiles/math.dir/src/math/raw/raw.cpp.o
  /home/charles/Programming/C++/math/src/math/raw/raw.cpp
@@ -71,12 +63,13 @@ CMakeFiles/math.dir/src/math/raw/raw.cpp.o
  src/math/vecbase.h
 CMakeFiles/math.dir/src/math/transform.cpp.o
  /home/charles/Programming/C++/math/src/math/transform.cpp
- src/math/mat44.h
+ src/math/color.h
  src/math/math.h
- src/math/plane.h
  src/math/quat.h
+ src/math/raw/raw.h
  src/math/transform.h
  src/math/vec3.h
+ src/math/vec4.h
  src/math/vecbase.h
 CMakeFiles/math.dir/src/math/vclip/vclip.cpp.o
  /home/charles/Programming/C++/math/src/math/vclip/vclip.cpp
@@ -91,8 +84,11 @@ CMakeFiles/math.dir/src/math/vec2.cpp.o
  src/math/vec2.h
 CMakeFiles/math.dir/src/math/vec3.cpp.o
  /home/charles/Programming/C++/math/src/math/vec3.cpp
+ /home/charles/Programming/C++/math/src/math/vec4.cpp
+ src/math/mat44.h
  src/math/math.h
  src/math/vec3.h
+ src/math/vec4.h
  src/math/vecbase.h
 CMakeFiles/math.dir/src/math/vec4.cpp.o
  /home/charles/Programming/C++/math/src/math/vec4.cpp

@@ -10,63 +10,35 @@
 #include <math/vecbase.h>
 
 namespace math {
-	namespace base {
-		class vec3 {
-			public:
-				vec3(void);
-				vec3(double, double, double);
-				vec3(const double * rhs);
-
-			public:
-				union {
-					struct {
-						double x;
-						double y;
-						double z;
-					};
-					double v[3];
-				};
-		};
-	}
-	class vec3: public vecio<base::vec3,3> {
+	class vec3: public vecbase<double,3> {
 		public:
 			//constructors
-			vec3(void);
-			vec3(double, double, double);
-			vec3(const double * rhs);
-			vec3(const vec3 & rhs);
+			vec3();
+			vec3(vec3 const &);
+			vec3(double const &, double const &, double const &);
+			vec3(double const * const);
+			
 #ifdef PHYSX
 			vec3(physx::PxVec3 const & rhs);
 #endif
 			~vec3() {}	//empty
 
 			//Accessors kept for compatibility
-			void		SetX(double newX) {x = newX;}
-			void		SetY(double newY) {y = newY;}
-			void		SetZ(double newZ) {z = newZ;}
-			double		GetX() const {return x;}	//public accessor functions
-			double		GetY() const {return y;}	//inline, const
-			double		GetZ() const {return z;}
-			void		LoadZero(void){	v[0]=v[1]=v[2]=0.0f;	}
-			void		LoadOne(void){	v[0]=v[1]=v[2]=1.0f;	}
-			bool		isFinite() const;
-			bool		isNan() const;
-			bool		isSane() const {return (!isNan() && isFinite());}
-			bool		abs_less(vec3 const & rhs);
+			double&		x();
+			double&		y();
+			double&		z();
 
+			bool		abs_less(vec3 const & rhs) {
+				return (*this < rhs);
+			}
+			
 			//vector algebra
-			vec3		cross(const vec3 & rhs) const
-			{
-				return vec3(y*rhs.z - z*rhs.y, z*rhs.x - x*rhs.z, x*rhs.y - y*rhs.x);
-			}
-			double		dot(const vec3 & rhs) const
-			{
-				return x*rhs.x + y*rhs.y + z*rhs.z;
-			}
-			void		normalize();
+			double		dot(vec3 const & rhs) const;
+			vec3		cross(const vec3 & rhs) const;
+						void		normalize();
 			vec3		GetNormalized() const;
-			double		magnitude() const{	return (double)sqrt((x*x)+(y*y)+(z*z));	}
-			double		magnitudeSquared() const{	return (x*x)+(y*y)+(z*z);	}
+			double		magnitude() const;
+			double		magnitudeSquared() const;
 			double		angle(vec3 const & rhs) const;
 			//rotations
 			void		RotateX(double angle);
@@ -97,20 +69,10 @@ namespace math {
 
 			//overloaded operators
 			//binary operators
-			vec3		operator+(const vec3 & rhs) const
-			{
-				return vec3(x + rhs.x, y + rhs.y, z + rhs.z);
-			}
-			vec3		operator-(const vec3 & rhs) const
-			{
-				return vec3(x - rhs.x, y - rhs.y, z - rhs.z);	}
-			vec3		operator*(const double rhs) const
-			{
-				return vec3(x*rhs, y*rhs, z*rhs);	}
-			vec3		operator/(const double rhs) const
-			{
-				return (rhs==0.0f) ? vec3(0.0f, 0.0f, 0.0f) : vec3(x / rhs, y / rhs, z / rhs);	
-			}
+			vec3		operator+(const vec3 & rhs) const;
+			vec3		operator-(const vec3 & rhs) const;
+			vec3		operator*(const double rhs) const;
+			vec3		operator/(const double rhs) const;
 
 			//multiply by a double, eg 3*v
 			//friend vec3 operator*(double scaleFactor, const vec3 & rhs);
@@ -129,8 +91,8 @@ namespace math {
 
 			void		print() const;
 			//unary operators
-			vec3		operator-(void) const {return vec3(-x, -y, -z);}
-			vec3		operator+(void) const {return *this;}
+			vec3		operator-() const {return vec3(-v[0], -v[1], -v[2]);}
+			vec3		operator+() const {return *this;}
 
 			//cast to pointer to a (double *) for glVertex3fv etc
 			operator double* () const {return (double*) this;}
