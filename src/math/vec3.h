@@ -86,7 +86,9 @@ namespace math {
 			//unary operators
 			vec3		operator-() const {return vec3(-v[0], -v[1], -v[2]);}
 			vec3		operator+() const {return *this;}
-
+			vec3		Abs() { vec3 a(*this); a.vecbase<double,3>::Abs(); return a; }
+			// logical
+			bool		operator<(vec3 const & rhs) { return vecbase<double,3>::operator<(rhs); }
 			//cast to pointer to a (double *) for glVertex3fv etc
 			operator double* () const {return (double*) this;}
 			operator const double* () const {return (const double*) this;}

@@ -3,6 +3,7 @@
 
 #include <cstdio>
 #include <cstring>
+#include <cmath>
 
 namespace math {
 	template <typename T, int N> class vecbase {
@@ -85,7 +86,13 @@ namespace math {
 				}
 				return *this;
 			}
-
+			// unary
+			vecbase<T,N>&	Abs() {
+				for(int i = 0; i < N; ++i) {
+					v[i] = fabs(v[i]);
+				}
+				return *this;
+			}
 		protected:
 			bool	operator<(vecbase<T,N> const & rhs) {
 				for(int i = 0; i < N; i++) {
