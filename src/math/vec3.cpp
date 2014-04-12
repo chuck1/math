@@ -21,6 +21,8 @@
 math::vec3::vec3() {
 	LoadZero();
 }
+math::vec3::vec3(math::vec3 const & rhs): math::vecbase<double,3>(rhs) {
+}
 math::vec3::vec3(double const & nx, double const & ny, double const & nz) {
 	v[0] = nx;
 	v[1] = ny;
