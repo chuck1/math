@@ -30,11 +30,11 @@ math::geo::sphere::sphere(float r, int slices, int stacks) {
 
 	math::geo::vertex poles[2];
 	
-	poles[0].xyz = vec3(0,-r,0);
-	poles[1].xyz = vec3(0, r,0);
+	poles[0].xyz = vec3<double>(0,-r,0);
+	poles[1].xyz = vec3<double>(0, r,0);
 	
-	poles[0].n = vec3(0,-1,0);
-	poles[1].n = vec3(0, 1,0);
+	poles[0].n = vec3<double>(0,-1,0);
+	poles[1].n = vec3<double>(0, 1,0);
 	
 	math::geo::vertex* interior = vertices_ + 2;
 	
@@ -53,7 +53,7 @@ math::geo::sphere::sphere(float r, int slices, int stacks) {
 			
 			
 			
-			vec3 v(
+			vec3<double> v(
 					r * cos(theta) * cos(phi),
 					r * sin(phi),
 					r * sin(theta) * cos(phi));

@@ -17,10 +17,10 @@
 #include <math/vec4.h>
 #include <math/mat44.h>
 
-math::vec4::vec4(const vec3 & rhs):
+math::vec4::vec4(const vec3<double> & rhs):
 	x(rhs.v[0]), y(rhs.v[1]), z(rhs.v[2]), w(1.0f)
 {}
-math::vec4::vec4(const vec3 & rhs,double const & newW):
+math::vec4::vec4(const vec3<double> & rhs,double const & newW):
 	x(rhs.v[0]), y(rhs.v[1]), z(rhs.v[2]), w(newW)
 {}
 
@@ -45,7 +45,7 @@ void math::vec4::RotateX(double angle)
 
 math::vec4 math::vec4::GetRotatedX(double angle) const
 {
-	math::vec3 v3d(x, y, z);
+	math::vec3<double> v3d(x, y, z);
 
 	v3d.RotateX(angle);
 
@@ -59,7 +59,7 @@ void math::vec4::RotateY(double angle)
 
 math::vec4 math::vec4::GetRotatedY(double angle) const
 {
-	math::vec3 v3d(x, y, z);
+	math::vec3<double> v3d(x, y, z);
 
 	v3d.RotateY(angle);
 
@@ -73,21 +73,21 @@ void math::vec4::RotateZ(double angle)
 
 math::vec4 math::vec4::GetRotatedZ(double angle) const
 {
-	math::vec3 v3d(x, y, z);
+	math::vec3<double> v3d(x, y, z);
 
 	v3d.RotateZ(angle);
 
 	return math::vec4(v3d, w);
 }
 
-void math::vec4::RotateAxis(double angle, const math::vec3 & axis)
+void math::vec4::RotateAxis(double angle, const math::vec3<double> & axis)
 {
 	(*this)=GetRotatedAxis(angle, axis);
 }
 
-math::vec4 math::vec4::GetRotatedAxis(double angle, const math::vec3 & axis) const
+math::vec4 math::vec4::GetRotatedAxis(double angle, const math::vec3<double> & axis) const
 {
-	math::vec3 v3d(x, y, z);
+	math::vec3<double> v3d(x, y, z);
 
 	v3d.RotateAxis(angle, axis);
 
@@ -107,12 +107,12 @@ bool math::vec4::operator==(const math::vec4 & rhs) const
 
 	return false;
 }
-math::vec4::operator math::vec3()
+math::vec4::operator math::vec3<double>()
 {
 	if(w==0.0f || w==1.0f)
-		return math::vec3(x, y, z);
+		return math::vec3<double>(x, y, z);
 	else
-		return math::vec3(x/w, y/w, z/w);
+		return math::vec3<double>(x/w, y/w, z/w);
 }
 math::mat44 math::vec4::operator*(math::vec4 const & rhs)
 {

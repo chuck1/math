@@ -10,8 +10,8 @@ namespace math
 		class vertex
 		{
 			public:
-				vec3	xyz;
-				vec3	n;
+				vec3<double>	xyz;
+				vec3<double>	n;
 		};
 		class polygon
 		{

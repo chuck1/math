@@ -12,11 +12,11 @@ class plane
 		{
 
 		}
-		float	dist(math::vec3 v)
+		float	dist(math::vec3<double> v)
 		{
 			return 0.0;
 		}
-		math::vec3 n;
+		math::vec3<double> n;
 };
 class polyhedron
 {
@@ -36,11 +36,11 @@ class face: public feature
 class edge: public feature
 {
 	public:
-		math::vec3	at(float l);
+		math::vec3<double>	at(float l);
 		vertex*		other(vertex*);
 		
 
-		math::vec3 u;
+		math::vec3<double> u;
 		vertex* t;
 		vertex* h;
 		face* f[2];
@@ -49,9 +49,9 @@ class vertex: public feature
 {
 	public:
 		std::set<feature*>	e;
-		math::vec3		v;
+		math::vec3<double>		v;
 };
-math::vec3	edge::at(float l)
+math::vec3<double>	edge::at(float l)
 {
 	return h->v - t->v;
 }

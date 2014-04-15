@@ -1,14 +1,10 @@
 #ifndef __MAT33_H__
 #define __MAT33_H__
 
+#include <math/config.h>
 #include <math/vecbase.h>
 
 namespace math {
-	class vec3;
-	class vec4;
-	class quat;
-	class plane;
-	class transform;
 	class mat33: public vecbase<double,9> {
 		public:
 			//friend mat33 operator*(double scaleFactor, const mat33 & rhs);
@@ -20,7 +16,7 @@ namespace math {
 					double, double, double);
 			mat33(const double * rhs);
 			mat33(const mat33 & rhs);
-			mat33(vec3 const &);
+			mat33(vec3<double> const &);
 			~mat33() {}
 
 			void	SetEntry(int position, double value);
@@ -56,14 +52,14 @@ namespace math {
 			mat33	operator+(void) const {return (*this);}
 
 			//multiply a vector by this matrix
-			vec3	operator*(const vec3 rhs) const;
+			vec3<double>	operator*(const vec3<double> rhs) const;
 
 			//rotate a 3d vector by rotation part
-			void	RotateVector3D(vec3 & rhs) const;
-			void	InverseRotateVector3D(vec3 & rhs) const;
+			void	RotateVector3D(vec3<double> & rhs) const;
+			void	InverseRotateVector3D(vec3<double> & rhs) const;
 
-			vec3	GetRotatedVector3D(const vec3 & rhs) const;
-			vec3	GetInverseRotatedVector3D(const vec3 & rhs) const;
+			vec3<double>	GetRotatedVector3D(const vec3<double> & rhs) const;
+			vec3<double>	GetInverseRotatedVector3D(const vec3<double> & rhs) const;
 
 			//Other methods
 			void	Invert(void);
@@ -74,11 +70,11 @@ namespace math {
 			mat33	GetInverseTranspose(void) const;
 
 			//set to perform an operation on space - removes other entries
-			void	SetTranslation(vec3 const &);
-			void	SetScale(vec3 const &);
+			void	SetTranslation(vec3<double> const &);
+			void	SetScale(vec3<double> const &);
 			void	SetUniformScale(const double scaleFactor);
 			void	setRotation(quat const &);
-			void	SetRotationAxis(const double angle, const vec3 & axis);
+			void	SetRotationAxis(const double angle, const vec3<double> & axis);
 			void	SetRotationX(const double angle);
 			void	SetRotationY(const double angle);
 			void	SetRotationZ(const double angle);
@@ -87,7 +83,7 @@ namespace math {
 			void	print();
 
 			//set parts of the matrix
-			void	SetRotationPartEuler(vec3 const & rotations);
+			void	SetRotationPartEuler(vec3<double> const & rotations);
 
 			//cast to pointer to a (double *) for glGetFloatv etc
 			operator double* () const {return (double*) this;}

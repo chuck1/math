@@ -16,13 +16,10 @@
 #ifndef vec4_H
 #define vec4_H
 
-namespace math
-{
-	class vec3;
-	class mat44;
+#include <math/config.h>
 
-	class vec4
-	{
+namespace math {
+	class vec4 {
 		public:
 			//constructors
 			vec4(void)	:	x(0.0f), y(0.0f), z(0.0f), w(0.0f)
@@ -38,8 +35,8 @@ namespace math
 			vec4(const vec4 & rhs):	x(rhs.x), y(rhs.y), z(rhs.z), w(rhs.w)
 		{}
 			//convert v3d to v4d
-			vec4(const vec3 & rhs);
-			vec4(const vec3 & rhs,double const & newW);
+			vec4(const vec3<double> & rhs);
+			vec4(const vec3<double> & rhs,double const & newW);
 
 
 			~vec4() {}	//empty
@@ -76,8 +73,8 @@ namespace math
 			vec4 GetRotatedY(double angle) const;
 			void RotateZ(double angle);
 			vec4 GetRotatedZ(double angle) const;
-			void RotateAxis(double angle, const vec3 & axis);
-			vec4 GetRotatedAxis(double angle, const vec3 & axis) const;
+			void RotateAxis(double angle, const vec3<double> & axis);
+			vec4 GetRotatedAxis(double angle, const vec3<double> & axis) const;
 			void	print();
 		
 			bool	isFinite() const;	
@@ -139,7 +136,7 @@ namespace math
 			operator double* () const {return (double*) this;}
 			operator const double* () const {return (const double*) this;}
 
-			operator vec3();							//convert v4d to v3d
+			operator vec3<double>();							//convert v4d to v3d
 
 			//member variables
 			double x;
@@ -149,4 +146,4 @@ namespace math
 	};
 }
 
-#endif	//vec3_H
+#endif	//vec3<double>_H

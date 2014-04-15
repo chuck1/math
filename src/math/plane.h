@@ -17,11 +17,8 @@
 
 #include <math/vec3.h>
 
-namespace math
-{
-
-	class plane
-	{
+namespace math {
+	class plane {
 		public:
 			enum
 			{
@@ -31,9 +28,9 @@ namespace math
 				POINT_BEHIND_PLANE=2
 			};
 			plane():
-				n(vec3(0.0f, 0.0f, 0.0f)), d(0.0f)
+				n(vec3<double>(0.0f, 0.0f, 0.0f)), d(0.0f)
 		{}
-			plane(vec3 newNormal, float newIntercept):
+			plane(vec3<double> newNormal, float newIntercept):
 				n(newNormal), d(newIntercept)
 		{}
 			plane(const plane & rhs)
@@ -44,22 +41,22 @@ namespace math
 
 			~plane() {}
 
-			void SetNormal(const vec3 & rhs) { n=rhs; }
+			void SetNormal(const vec3<double> & rhs) { n=rhs; }
 			void SetIntercept(float newIntercept) { d=newIntercept; }
-			void SetFromPoints(const vec3 & p0, const vec3 & p1, const vec3 & p2);
+			void SetFromPoints(const vec3<double> & p0, const vec3<double> & p1, const vec3<double> & p2);
 
-			void CalculateIntercept(const vec3 & pointOnPlane) { d=-n.dot(pointOnPlane); }
+			void CalculateIntercept(const vec3<double> & pointOnPlane) { d=-n.dot(pointOnPlane); }
 
 			void Normalize(void);
 
-			vec3 GetNormal() { return n; }
+			vec3<double> GetNormal() { return n; }
 			float GetIntercept() { return d; }
 
 			//find point of intersection of 3 planes
-			bool Intersect3(const plane & p2, const plane & p3, vec3 & result);
+			bool Intersect3(const plane & p2, const plane & p3, vec3<double> & result);
 
-			float GetDistance(const vec3 & point) const;
-			int ClassifyPoint(const vec3 & point) const;
+			float GetDistance(const vec3<double> & point) const;
+			int ClassifyPoint(const vec3<double> & point) const;
 
 			plane lerp(const plane & p2, float factor);
 
@@ -73,7 +70,7 @@ namespace math
 			plane operator+(void) const {return (*this);}
 
 			//member variables
-			vec3		n;
+			vec3<double>		n;
 			float		d;
 	};
 }

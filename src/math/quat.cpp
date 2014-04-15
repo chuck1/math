@@ -2,10 +2,12 @@
 #include <stdio.h>
 
 #include <math/config.h>
+#include <math/except.hpp>
 #include <math/mat44.h>
 #include <math/free.h>
 #include <math/vec3.h>
 #include <math/quat.h>
+
 
 #include <gal/except.h>
 
@@ -16,9 +18,9 @@ math::quat::quat()
 math::quat::quat(double nx, double ny, double nz, double nw):
 	w(nw),x(nx),y(ny),z(nz)
 {}
-math::quat::quat(double angleRadians, vec3 const & axis)
+math::quat::quat(double angleRadians, vec3<double> const & axis)
 {
-	vec3 unitAxis(axis);
+	vec3<double> unitAxis(axis);
 
 	unitAxis.Normalize();
 
@@ -33,15 +35,15 @@ math::quat::quat(math::quat const & v):
 	w(v.w), x(v.x), y(v.y), z(v.z)
 {
 }
-math::quat::quat(math::vec3 const & u, math::vec3 const & v)
+math::quat::quat(math::vec3<double> const & u, math::vec3<double> const & v)
 {
-	math::vec3 a(u);
-	math::vec3 b(v);
+	math::vec3<double> a(u);
+	math::vec3<double> b(v);
 	
 	a.Normalize();
 	b.Normalize();
 
-	math::vec3 c = a.cross(b);
+	math::vec3<double> c = a.cross(b);
 	
 	x = c.v[0];
 	y = c.v[1];
@@ -132,19 +134,19 @@ bool		math::quat::isSane() const
 		return false;
 	}
 }
-void		math::quat::toRadiansAndUnitAxis(double& angle, vec3& axis) const
+void		math::quat::toRadiansAndUnitAxis(double& angle, vec3<double>& axis) const
 {
 	const double Epsilon = (double(1.0e-8f));
 	const double s2 = x*x+y*y+z*z;
 	if(s2 < (Epsilon*Epsilon))  // can't extract a sensible axis
 	{
 		angle = 0;
-		axis = vec3(1,0,0);
+		axis = vec3<double>(1,0,0);
 	}
 	else
 	{
 		const double s = math::recipsqrt(s2);
-		axis = vec3(x,y,z) * s; 
+		axis = vec3<double>(x,y,z) * s; 
 		angle = (std::abs(w) < Epsilon) ? M_PI : atan((s2*s)/w) * 2;
 	}
 
@@ -160,7 +162,7 @@ double		math::quat::getAngle() const
 		
 		printf("quat getAngle\n");
 		printf("w %e\n",w-1.0);
-		throw math::DomainError();
+		throw math::except::domain();
 	}
 	
 	if(w < -1.0) {
@@ -170,7 +172,7 @@ double		math::quat::getAngle() const
 		
 		printf("quat getAngle\n");
 		printf("w %e\n",w+1.0);
-		throw math::DomainError();
+		throw math::except::domain();
 	}
 	
 	if(isnan(acos(w))) {
@@ -219,72 +221,72 @@ math::quat	math::quat::getConjugate() const
 {
 	return math::quat(-x,-y,-z,w);
 }
-math::vec3	math::quat::getImaginaryPart() const
+math::vec3<double>	math::quat::getImaginaryPart() const
 {
-	return math::vec3(x,y,z);
+	return math::vec3<double>(x,y,z);
 }
-math::vec3	math::quat::getBasisVector0()	const
+math::vec3<double>	math::quat::getBasisVector0()	const
 {	
-	//		return rotate(math::vec3(1,0,0));
+	//		return rotate(math::vec3<double>(1,0,0));
 	const double x2 = x*2.0f;
 	const double w2 = w*2.0f;
-	return math::vec3(
+	return math::vec3<double>(
 			(w * w2) - 1.0f + x*x2,
 			(z * w2)        + y*x2,
 			(-y * w2)       + z*x2);
 }
-math::vec3 math::quat::getBasisVector1()	const 
+math::vec3<double> math::quat::getBasisVector1()	const 
 {	
-	//		return rotate(math::vec3(0,1,0));
+	//		return rotate(math::vec3<double>(0,1,0));
 	const double y2 = y*2.0f;
 	const double w2 = w*2.0f;
-	return math::vec3(
+	return math::vec3<double>(
 			(-z * w2)       + x*y2,
 			(w * w2) - 1.0f + y*y2,
 			(x * w2)        + z*y2);
 }
-math::vec3 math::quat::getBasisVector2() const	
+math::vec3<double> math::quat::getBasisVector2() const	
 {	
-	//		return rotate(math::vec3(0,0,1));
+	//		return rotate(math::vec3<double>(0,0,1));
 	const double z2 = z*2.0f;
 	const double w2 = w*2.0f;
-	return math::vec3(
+	return math::vec3<double>(
 			(y * w2)        + x*z2,
 			(-x * w2)       + y*z2,
 			(w * w2) - 1.0f + z*z2);
 }
-const math::vec3 math::quat::rotate(const math::vec3& v) const
+const math::vec3<double> math::quat::rotate(const math::vec3<double>& v) const
 {
 	const double vx = 2.0f*v.v[0];
 	const double vy = 2.0f*v.v[1];
 	const double vz = 2.0f*v.v[2];
 	const double w2 = w*w-0.5f;
 	const double dot2 = (x*vx + y*vy +z*vz);
-	return math::vec3
+	return math::vec3<double>
 		(
 		 (vx*w2 + (y * vz - z * vy)*w + x*dot2), 
 		 (vy*w2 + (z * vx - x * vz)*w + y*dot2), 
 		 (vz*w2 + (x * vy - y * vx)*w + z*dot2)
 		);
 	/*
-	   const math::vec3 qv(x,y,z);
+	   const math::vec3<double> qv(x,y,z);
 	   return (v*(w*w-0.5f) + (qv.cross(v))*w + qv*(qv.dot(v)))*2;
 	   */
 }
-const math::vec3 math::quat::rotateInv(const math::vec3& v) const
+const math::vec3<double> math::quat::rotateInv(const math::vec3<double>& v) const
 {
 	const double vx = 2.0f*v.v[0];
 	const double vy = 2.0f*v.v[1];
 	const double vz = 2.0f*v.v[2];
 	const double w2 = w*w-0.5f;
 	const double dot2 = (x*vx + y*vy +z*vz);
-	return math::vec3
+	return math::vec3<double>
 		(
 		 (vx*w2 - (y * vz - z * vy)*w + x*dot2), 
 		 (vy*w2 - (z * vx - x * vz)*w + y*dot2), 
 		 (vz*w2 - (x * vy - y * vx)*w + z*dot2)
 		);
-	//		const math::vec3 qv(x,y,z);
+	//		const math::vec3<double> qv(x,y,z);
 	//		return (v*(w*w-0.5f) - (qv.cross(v))*w + qv*(qv.dot(v)))*2;
 }
 math::quat&	math::quat::operator=(const math::quat& p)
@@ -356,12 +358,13 @@ math::quat math::quat::createIdentity() {
 void math::quat::print() {
 	printf("%f %f %f %f\n", x, y, z, w);
 }
-math::vec3 math::quat::getOmega(double dt) {
-	vec3 v = getImaginaryPart();
+math::vec3<double> math::quat::getOmega(double dt) {
+	vec3<double> v = getImaginaryPart();
 	
-	vec3 omega;
+	vec3<double> omega;
 	
 	if (v.magnitude() > 1.0) {
+		printf("%e\n",v.magnitude() - 1.0);
 		throw;
 	}
 	

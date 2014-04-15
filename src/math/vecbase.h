@@ -5,6 +5,9 @@
 #include <cstring>
 #include <cmath>
 
+#include <math/print.hpp>
+#include <math/discrete.hpp>
+
 namespace math {
 	template <typename T, int N> class vecbase {
 		public:
@@ -20,7 +23,7 @@ namespace math {
 					v[i] = 0;
 				}
 			}
-			double		magnitude() const {
+			double	magnitude() const {
 				double a;
 				for(int i = 0; i < N; ++i) {
 					a += v[i]*v[i];
@@ -43,9 +46,9 @@ namespace math {
 				(*this) *= scalefactor;
 			}
 			bool	IsFinite() const {
-				if(isinf(v[0])) return false;
-				if(isinf(v[1])) return false;
-				if(isinf(v[2])) return false;
+				for(int i = 0; i < N; ++i) {
+					if(isinf(v[i])) return false;
+				}
 				return true;
 			}
 			bool	IsNan() const {
@@ -60,7 +63,38 @@ namespace math {
 			void	read(FILE* file) {
 				fread(v, sizeof(T), N, file);
 			}
-			// binary operators
+			T&	operator[](int i) { return v[i]; }
+
+			/** @name comparison
+			 * @{
+			 */
+			bool		operator==(const vecbase<T,N> & rhs) const {
+				for(int i = 0; i < N; ++i) {
+					if(v[i]!=rhs.v[i]) return false;
+				}
+				return true;
+			}
+			bool		operator!=(const vecbase<T,N> & rhs) const {
+				return !((*this)==rhs);
+			}/** @} */
+
+
+			/** @name vector algebra
+			 * @{
+			 */
+
+			T	dot(vecbase<T,N> const & rhs) const {
+				T res = 0;
+				for(int i = 0; i < N; ++i) {
+					res += v[i] * rhs.v[i];
+				}
+				return res;
+			}
+			/** @} */
+
+			/** @name binary operators
+			 * @{
+			 */
 			vecbase<T,N>&	operator+=(const vecbase<T,N> & rhs) {
 				for(int i = 0; i < N; ++i) {
 					v[i] += rhs.v[i];
@@ -86,12 +120,39 @@ namespace math {
 				}
 				return *this;
 			}
-			// unary
-			vecbase<T,N>&	Abs() {
+			void		Add(const vecbase<T,N> & v2, vecbase<T,N> & result) {
+				for(int i = 0; i < N; ++i) {
+					result.v[i]=v[i]+v2.v[i];
+				}
+			}
+			void		Subtract(const vecbase<T,N> & v2, vecbase<T,N> & result) {
+				for(int i = 0; i < N; ++i) {
+					result.v[i]=v[i]-v2.v[i];
+				}
+			}
+			/** @} */
+
+			/** @name unary operators
+			 * @{
+			 */
+			vecbase<T,N>&	minus() {
+				for(int i = 0; i < N; ++i) {
+					v[i] = -v[i];
+				}
+				return *this;
+			}
+			vecbase<T,N>&	abs() {
 				for(int i = 0; i < N; ++i) {
 					v[i] = fabs(v[i]);
 				}
 				return *this;
+			}
+			/** @} */
+
+			void	print() const {
+				for(int i = 0; i < N; i++) {
+					::math::print(v[i]);
+				}
 			}
 		protected:
 			bool	operator<(vecbase<T,N> const & rhs) {
@@ -103,6 +164,51 @@ namespace math {
 		public:
 			T	v[N];
 	};
+
+	template <typename T, int R, int C> class matbase: public vecbase<T,R*C> {
+		T&	v(int i, int j) {
+			return v[i*C + j];
+		}
+	};
+	template <typename T, int N> class matsqu: public matbase<T,N,N> {
+		public:
+			/** @brief determinant */
+			T	det() {
+				int** perm;
+				int* sig;
+				math::discrete::permutations(perm, sig, N);
+				int p = math::discrete::p(N,N);
+
+				T res = 0;
+				for(int i = 0; i < p; ++i) {
+					T prod = 1;
+					for (int j = 0; j < N; ++j) {
+						prod *= matbase<T,N,N>::v(j,perm[i][j]);
+					}
+					res += sig[i] * prod;
+				}
+			}
+			/** @brief determinant of subset */
+			T	det(int* a, int* b, int n) {
+				int** perm;
+				int* sig;
+				math::discrete::permutations(perm, sig, N);
+				int p = math::discrete::p(N,N);
+
+				T res = 0;
+				for(int i = 0; i < p; ++i) {
+					T prod = 1;
+					for (int j = 0; j < N; ++j) {
+						prod *= matbase<T,N,N>::v(a[j],b[perm[i][j]]);
+					}
+					res += sig[i] * prod;
+				}
+
+			}
+		private:
+
+	};
+
 }
 
 
