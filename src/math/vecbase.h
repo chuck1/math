@@ -6,7 +6,7 @@
 #include <cmath>
 
 #include <math/print.hpp>
-#include <math/discrete.hpp>
+#include <math/discrete/discrete.hpp>
 
 namespace math {
 	template <typename T, int N> class vecbase {
