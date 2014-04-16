@@ -31,11 +31,17 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+<<<<<<< HEAD
+=======
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
+>>>>>>> 4ce5c3c3aad8372c9006153666fc5521a3f6f7e7
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/charles/Programming/C++/math
+CMAKE_SOURCE_DIR = /nfs/stak/students/r/rymalc/Documents/Programming/C++/math
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/charles/Programming/C++/math
+CMAKE_BINARY_DIR = /nfs/stak/students/r/rymalc/Documents/Programming/C++/math
 
 # Include any dependencies generated for this target.
 include CMakeFiles/test_array.dir/depend.make
@@ -48,17 +54,17 @@ include CMakeFiles/test_array.dir/flags.make
 
 CMakeFiles/test_array.dir/test/array/main.cpp.o: CMakeFiles/test_array.dir/flags.make
 CMakeFiles/test_array.dir/test/array/main.cpp.o: test/array/main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/charles/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test_array.dir/test/array/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test_array.dir/test/array/main.cpp.o -c /home/charles/Programming/C++/math/test/array/main.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test_array.dir/test/array/main.cpp.o -c /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/test/array/main.cpp
 
 CMakeFiles/test_array.dir/test/array/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_array.dir/test/array/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/charles/Programming/C++/math/test/array/main.cpp > CMakeFiles/test_array.dir/test/array/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/test/array/main.cpp > CMakeFiles/test_array.dir/test/array/main.cpp.i
 
 CMakeFiles/test_array.dir/test/array/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_array.dir/test/array/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/charles/Programming/C++/math/test/array/main.cpp -o CMakeFiles/test_array.dir/test/array/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/test/array/main.cpp -o CMakeFiles/test_array.dir/test/array/main.cpp.s
 
 CMakeFiles/test_array.dir/test/array/main.cpp.o.requires:
 .PHONY : CMakeFiles/test_array.dir/test/array/main.cpp.o.requires
@@ -95,6 +101,6 @@ CMakeFiles/test_array.dir/clean:
 .PHONY : CMakeFiles/test_array.dir/clean
 
 CMakeFiles/test_array.dir/depend:
-	cd /home/charles/Programming/C++/math && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/charles/Programming/C++/math /home/charles/Programming/C++/math /home/charles/Programming/C++/math /home/charles/Programming/C++/math /home/charles/Programming/C++/math/CMakeFiles/test_array.dir/DependInfo.cmake --color=$(COLOR)
+	cd /nfs/stak/students/r/rymalc/Documents/Programming/C++/math && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /nfs/stak/students/r/rymalc/Documents/Programming/C++/math /nfs/stak/students/r/rymalc/Documents/Programming/C++/math /nfs/stak/students/r/rymalc/Documents/Programming/C++/math /nfs/stak/students/r/rymalc/Documents/Programming/C++/math /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles/test_array.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/test_array.dir/depend
 

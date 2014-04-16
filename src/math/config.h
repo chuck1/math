@@ -5,16 +5,22 @@
 
 #include <exception>
 
+/** \brief %the %math library
+ */
 namespace math {
-	class DomainError: public std::exception
-	{
-		public:
-			DomainError() {}
-			~DomainError() throw() {}
-			const char* what() const throw() { return "math domain error"; }
+	template<typename> class vec3;
+	class vec4;
+	class mat33;
+	class mat44;
+	class quat;
+	class plane;
+	class transform;
 
-		private:
-	};
+	/** \brief exceptions
+	 */
+	namespace except {
+	}
+
 }
 
 #endif

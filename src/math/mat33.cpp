@@ -54,7 +54,7 @@ math::mat33::mat33(const double * rhs)
 {
 	memcpy(v, rhs, 9*sizeof(double));
 }
-math::mat33::mat33(vec3 const & rhs) {
+math::mat33::mat33(vec3<double> const & rhs) {
 	LoadIdentity();
 	v[0] = rhs.v[0];
 	v[4] = rhs.v[1];
@@ -248,25 +248,25 @@ math::mat33 math::mat33::operator-(void) const
 
 	return result;
 }
-math::vec3 math::mat33::operator*(const vec3 rhs) const
+math::vec3<double> math::mat33::operator*(const vec3<double> rhs) const
 {
-	return vec3(
+	return vec3<double>(
 			v[0]*rhs.v[0] + v[3]*rhs.v[1] + v[6] * rhs.v[2],
 			v[1]*rhs.v[0] + v[4]*rhs.v[1] + v[7] * rhs.v[2],
 			v[2]*rhs.v[0] + v[5]*rhs.v[1] + v[8] * rhs.v[2]);
 
 }
-math::vec3	math::mat33::GetRotatedVector3D(const vec3 & rhs) const
+math::vec3<double>	math::mat33::GetRotatedVector3D(const vec3<double> & rhs) const
 {
-	return vec3(
+	return vec3<double>(
 			v[0]*rhs.v[0] + v[4]*rhs.v[1] + v[8]*rhs.v[2],
 			v[1]*rhs.v[0] + v[5]*rhs.v[1] + v[9]*rhs.v[2],
 			v[2]*rhs.v[0] + v[6]*rhs.v[1] + v[10]*rhs.v[2]);
 }
-math::vec3	math::mat33::GetInverseRotatedVector3D(const vec3 & rhs) const
+math::vec3<double>	math::mat33::GetInverseRotatedVector3D(const vec3<double> & rhs) const
 {
 	//rotate .v[1] transpose:
-	return vec3(v[0]*rhs.v[0] + v[1]*rhs.v[1] + v[2]*rhs.v[2],
+	return vec3<double>(v[0]*rhs.v[0] + v[1]*rhs.v[1] + v[2]*rhs.v[2],
 			v[4]*rhs.v[0] + v[5]*rhs.v[1] + v[6]*rhs.v[2],
 			v[8]*rhs.v[0] + v[9]*rhs.v[1] + v[10]*rhs.v[2]);
 }
@@ -398,7 +398,7 @@ math::mat33	math::mat33::GetInverseTranspose(void) const
 
 	return result;
 }
-void		math::mat33::SetScale(const vec3 & scaleFactor)
+void		math::mat33::SetScale(const vec3<double> & scaleFactor)
 {
 	LoadIdentity();
 
@@ -412,9 +412,9 @@ void		math::mat33::SetUniformScale(const double scaleFactor)
 
 	v[0]=v[5]=v[10]=scaleFactor;
 }
-void		math::mat33::SetRotationAxis(const double angle, const vec3 & axis)
+void		math::mat33::SetRotationAxis(const double angle, const vec3<double> & axis)
 {
-	vec3 u=axis.GetNormalized();
+	vec3<double> u=axis.GetNormalized();
 
 	double sinAngle=(double)sin(M_PI*angle/180);
 	double cosAngle=(double)cos(M_PI*angle/180);
@@ -488,10 +488,10 @@ void		math::mat33::SetRotationEuler(const double angleX, const double angleY, co
 	v[9] = ( double )( crsp*sy-sr*cy );
 	v[10] = ( double )( cr*cp );
 }
-void		math::mat33::RotateVector3D(math::vec3 & rhs) const {
+void		math::mat33::RotateVector3D(math::vec3<double> & rhs) const {
 	rhs = GetRotatedVector3D(rhs);
 }
-void		math::mat33::InverseRotateVector3D(math::vec3 & rhs) const
+void		math::mat33::InverseRotateVector3D(math::vec3<double> & rhs) const
 {
 	rhs=GetInverseRotatedVector3D(rhs);
 }

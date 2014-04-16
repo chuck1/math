@@ -1,0 +1,139 @@
+\hypertarget{classmath_1_1vecbase}{
+\section{math::vecbase$<$ T, N $>$ Class Template Reference}
+\label{classmath_1_1vecbase}\index{math::vecbase@{math::vecbase}}
+}
+Inheritance diagram for math::vecbase$<$ T, N $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{classmath_1_1vecbase}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmath_1_1vecbase_a26c60dd255fe154d21df8d22d4e97e10}{
+typedef T {\bfseries Type}}
+\label{classmath_1_1vecbase_a26c60dd255fe154d21df8d22d4e97e10}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmath_1_1vecbase_ace789b2c8321e0d058b5cd143df2e439}{
+{\bfseries vecbase} (T const $\ast$const rhs)}
+\label{classmath_1_1vecbase_ace789b2c8321e0d058b5cd143df2e439}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a79960000898a0987a7579fc40fca4bbd}{
+void {\bfseries LoadZero} ()}
+\label{classmath_1_1vecbase_a79960000898a0987a7579fc40fca4bbd}
+
+\item 
+\hypertarget{classmath_1_1vecbase_ac8e12f447b29967af11fb9f830fa08c2}{
+double {\bfseries magnitude} () const }
+\label{classmath_1_1vecbase_ac8e12f447b29967af11fb9f830fa08c2}
+
+\item 
+\hypertarget{classmath_1_1vecbase_ab620e8c531da5d6c86634fcb108646c1}{
+void {\bfseries Normalize} ()}
+\label{classmath_1_1vecbase_ab620e8c531da5d6c86634fcb108646c1}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a7875c870c844f42aeaca952016a04bc7}{
+bool {\bfseries IsFinite} () const }
+\label{classmath_1_1vecbase_a7875c870c844f42aeaca952016a04bc7}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a74f465a86765df211b97c716bc7162dc}{
+bool {\bfseries IsNan} () const }
+\label{classmath_1_1vecbase_a74f465a86765df211b97c716bc7162dc}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a754b07a9163ae8746053ed8ca51e89c6}{
+void {\bfseries write} (FILE $\ast$file) const }
+\label{classmath_1_1vecbase_a754b07a9163ae8746053ed8ca51e89c6}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a9759523e7304173f8ae57f3a9a30b37a}{
+void {\bfseries read} (FILE $\ast$file)}
+\label{classmath_1_1vecbase_a9759523e7304173f8ae57f3a9a30b37a}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a80d2a8df6f5e4a6647531c98eb8fe595}{
+T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int i)}
+\label{classmath_1_1vecbase_a80d2a8df6f5e4a6647531c98eb8fe595}
+
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf vector algebra}\par
+{\em \label{_amgrpf3df6783d0cca6c1ea518af64ed4d647}
+ }\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmath_1_1vecbase_ae601a61c36ab5596610932ebe2f99f45}{
+T {\bfseries dot} (\hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ const \&rhs)}
+\label{classmath_1_1vecbase_ae601a61c36ab5596610932ebe2f99f45}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf binary operators}\par
+{\em \label{_amgrp04c8a55c25fdc9a3444da113de31256d}
+ }\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmath_1_1vecbase_aacfba6fee34bc6dfd105d955f675c74e}{
+\hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ \& {\bfseries operator+=} (const \hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ \&rhs)}
+\label{classmath_1_1vecbase_aacfba6fee34bc6dfd105d955f675c74e}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a874c46c228e890efcbaa703b3a86b8f7}{
+\hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ \& {\bfseries operator-\/=} (const \hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ \&rhs)}
+\label{classmath_1_1vecbase_a874c46c228e890efcbaa703b3a86b8f7}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a7a51537768ff2cde8b0a31fec39dee56}{
+\hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ {\bfseries operator$\ast$=} (const double rhs)}
+\label{classmath_1_1vecbase_a7a51537768ff2cde8b0a31fec39dee56}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a06d655b27d88c726a2f5e9f100bc5e6a}{
+\hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ {\bfseries operator/=} (const double rhs)}
+\label{classmath_1_1vecbase_a06d655b27d88c726a2f5e9f100bc5e6a}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf unary operators}\par
+{\em \label{_amgrp8839b6fa346915e1b72680f650c9b984}
+ }\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmath_1_1vecbase_af814a8cd89b21afa5a0a156e2bb3bf72}{
+\hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ \& {\bfseries minus} () const }
+\label{classmath_1_1vecbase_af814a8cd89b21afa5a0a156e2bb3bf72}
+
+\item 
+\hypertarget{classmath_1_1vecbase_a0a02cdaf7cbaf2c454a8e124312bed5e}{
+\hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ \& {\bfseries abs} ()}
+\label{classmath_1_1vecbase_a0a02cdaf7cbaf2c454a8e124312bed5e}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmath_1_1vecbase_ae357ff0254aaa64c7e72a93c64726d4c}{
+T {\bfseries v} \mbox{[}N\mbox{]}}
+\label{classmath_1_1vecbase_ae357ff0254aaa64c7e72a93c64726d4c}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmath_1_1vecbase_a277e440413457a2a9431d53cd7eee3e3}{
+bool {\bfseries operator$<$} (\hyperlink{classmath_1_1vecbase}{vecbase}$<$ T, N $>$ const \&rhs)}
+\label{classmath_1_1vecbase_a277e440413457a2a9431d53cd7eee3e3}
+
+\end{DoxyCompactItemize}
+\subsubsection*{template$<$typename T, int N$>$ class math::vecbase$<$ T, N $>$}
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+src/math/vecbase.h\end{DoxyCompactItemize}

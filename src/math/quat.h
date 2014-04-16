@@ -5,18 +5,16 @@
 #include <PxPhysicsAPI.h>
 #endif
 
-namespace math
-{
-	class vec3;
-	class mat44;
+#include <math/config.h>
 
+namespace math {
 	class quat {
 		public:
 			quat();
 			quat(double nx, double ny, double nz, double nw);
-			quat(double angleRadians, vec3 const & axis);
+			quat(double angleRadians, vec3<double> const & axis);
 			quat(quat const & v);
-			quat(vec3 const &, vec3 const &);
+			quat(vec3<double> const &, vec3<double> const &);
 			quat(mat44 const & m);
 
 			void	loadZero();
@@ -37,7 +35,7 @@ namespace math
 			  \brief converts this quaternion to angle-axis representation
 			 */
 
-			void		toRadiansAndUnitAxis(double& angle, vec3& axis) const;
+			void		toRadiansAndUnitAxis(double& angle, vec3<double>& axis) const;
 			double		getAngle() const;
 			double		getAngle(const quat& q) const;
 			double		magnitudeSquared() const;
@@ -46,12 +44,12 @@ namespace math
 			double		magnitude() const;
 			double		normalize();
 			quat		getConjugate() const;
-			vec3		getImaginaryPart() const;
-			vec3		getBasisVector0() const;
-			vec3		getBasisVector1() const;
-			vec3		getBasisVector2() const;
-			const vec3	rotate(const vec3& v) const;
-			const vec3	rotateInv(const vec3& v) const;
+			vec3<double>		getImaginaryPart() const;
+			vec3<double>		getBasisVector0() const;
+			vec3<double>		getBasisVector1() const;
+			vec3<double>		getBasisVector2() const;
+			const vec3<double>	rotate(const vec3<double>& v) const;
+			const vec3<double>	rotateInv(const vec3<double>& v) const;
 			quat&		operator=(const quat& p);
 			quat&		operator*= (const quat& q);
 			quat&		operator+= (const quat& q);
@@ -75,7 +73,7 @@ namespace math
 			}
 #endif
 
-			vec3 getOmega(double dt);
+			vec3<double> getOmega(double dt);
 
 			void		print();
 

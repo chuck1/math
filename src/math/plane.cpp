@@ -14,7 +14,7 @@
 
 #include <math/plane.h>
 
-void math::plane::SetFromPoints(const math::vec3 & p0, const math::vec3 & p1, const math::vec3 & p2)
+void math::plane::SetFromPoints(const math::vec3<double> & p0, const math::vec3<double> & p1, const math::vec3<double> & p2)
 {
 	n=(p1-p0).cross(p2-p0);
 
@@ -30,14 +30,14 @@ void math::plane::Normalize()
 	d/=nLength;
 }
 
-bool math::plane::Intersect3(const math::plane & p2, const math::plane & p3, math::vec3 & result)//find point of intersection of 3 planes
+bool math::plane::Intersect3(const math::plane & p2, const math::plane & p3, math::vec3<double> & result)//find point of intersection of 3 planes
 {
 	float denominator=n.dot((p2.n).cross(p3.n));
 											//scalar triple product of normals
 	if(denominator==0.0f)									//if zero
 		return false;										//no intersection
 
-	math::vec3 temp1, temp2, temp3;
+	math::vec3<double> temp1, temp2, temp3;
 	temp1=(p2.n.cross(p3.n))*d;
 	temp2=(p3.n.cross(n))*p2.d;
 	temp3=(n.cross(p2.n))*p3.d;
@@ -47,12 +47,12 @@ bool math::plane::Intersect3(const math::plane & p2, const math::plane & p3, mat
 	return true;
 }
 
-float math::plane::GetDistance(const math::vec3 & point) const
+float math::plane::GetDistance(const math::vec3<double> & point) const
 {
 	return point.dot(n) + d;
 }
 
-int math::plane::ClassifyPoint(const math::vec3 & point) const
+int math::plane::ClassifyPoint(const math::vec3<double> & point) const
 {
 	float distance = GetDistance(point);
 	

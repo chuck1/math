@@ -11,7 +11,9 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/CMakeCXXCompiler.cmake"
   "CMakeFiles/CMakeSystem.cmake"
   "CMakeLists.txt"
+  "Doxyfile.in"
   "src/math/config.h.in"
+<<<<<<< HEAD
   "/usr/share/cmake-2.8/Modules/CMakeCCompiler.cmake.in"
   "/usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c"
   "/usr/share/cmake-2.8/Modules/CMakeCInformation.cmake"
@@ -41,6 +43,26 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-2.8/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake-2.8/Modules/Platform/Linux.cmake"
   "/usr/share/cmake-2.8/Modules/Platform/UnixPaths.cmake"
+=======
+  "/usr/share/cmake/Modules/CMakeCInformation.cmake"
+  "/usr/share/cmake/Modules/CMakeCXXInformation.cmake"
+  "/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
+  "/usr/share/cmake/Modules/CMakeGenericSystem.cmake"
+  "/usr/share/cmake/Modules/CMakeParseArguments.cmake"
+  "/usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
+  "/usr/share/cmake/Modules/Compiler/GNU-C.cmake"
+  "/usr/share/cmake/Modules/Compiler/GNU-CXX.cmake"
+  "/usr/share/cmake/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake/Modules/ExternalProject.cmake"
+  "/usr/share/cmake/Modules/FindDoxygen.cmake"
+  "/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
+  "/usr/share/cmake/Modules/FindPackageMessage.cmake"
+  "/usr/share/cmake/Modules/Platform/Linux-GNU-C.cmake"
+  "/usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake"
+  "/usr/share/cmake/Modules/Platform/Linux-GNU.cmake"
+  "/usr/share/cmake/Modules/Platform/Linux.cmake"
+  "/usr/share/cmake/Modules/Platform/UnixPaths.cmake"
+>>>>>>> 4ce5c3c3aad8372c9006153666fc5521a3f6f7e7
   )
 
 # The corresponding makefile is:
@@ -56,6 +78,7 @@ SET(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 SET(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/doc.dir/DependInfo.cmake"
   "CMakeFiles/math.dir/DependInfo.cmake"
   "CMakeFiles/test_array.dir/DependInfo.cmake"
   )

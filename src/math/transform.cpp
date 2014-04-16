@@ -9,7 +9,7 @@ math::transform::transform():
 	q(1, 0, 0, 0)
 {
 }
-math::transform::transform(const vec3& position):
+math::transform::transform(const vec3<double>& position):
 	p(position),
 	q(0, 0, 0, 1)
 {
@@ -20,7 +20,7 @@ math::transform::transform(const quat& orientation):
 {
 	assert(orientation.isSane());
 }
-math::transform::transform(const math::vec3& p0, const math::quat& q0):
+math::transform::transform(const math::vec3<double>& p0, const math::quat& q0):
 	p(p0),
 	q(q0)
 {
@@ -30,7 +30,7 @@ math::transform::transform(const math::vec3& p0, const math::quat& q0):
 }
 math::transform::transform(mat44 const & m)
 {
-	p = m.GetTranslatedVector3D(math::vec3(0,0,0));
+	p = m.GetTranslatedVector3D(math::vec3<double>(0,0,0));
 	q = math::quat(m);
 }
 math::transform	math::transform::operator*(const transform& x) const
@@ -43,22 +43,22 @@ math::transform math::transform::getInverse() const
 	assert(isFinite());
 	return transform(q.rotateInv(-p),q.getConjugate());
 }
-math::vec3 math::transform::trans(vec3 const & input) const
+math::vec3<double> math::transform::trans(vec3<double> const & input) const
 {
 	assert(isFinite());
 	return q.rotate(input) + p;
 }
-math::vec3 math::transform::transInv(const vec3& input) const
+math::vec3<double> math::transform::transInv(const vec3<double>& input) const
 {
 	assert(isFinite());
 	return q.rotateInv(input-p);
 }
-math::vec3 math::transform::rotate(const vec3& input) const
+math::vec3<double> math::transform::rotate(const vec3<double>& input) const
 {
 	assert(isFinite());
 	return q.rotate(input);
 }
-math::vec3 math::transform::rotateInv(const vec3& input) const
+math::vec3<double> math::transform::rotateInv(const vec3<double>& input) const
 {
 	assert(isFinite());
 	return q.rotateInv(input);
@@ -92,16 +92,16 @@ math::transform math::transform::transformInv(const transform& src) const
 }
 math::transform		math::transform::createIdentity() 
 { 
-	return transform(vec3(0)); 
+	return transform(vec3<double>(0)); 
 }
 math::plane math::transform::trans(plane const & plane) const
 {
-	vec3 transformedNormal = rotate(plane.n);
+	vec3<double> transformedNormal = rotate(plane.n);
 	return math::plane(transformedNormal, plane.d - p.dot(transformedNormal));
 }
 math::plane math::transform::inverseTransform(math::plane const & plane) const
 {
-	vec3 transformedNormal = rotateInv(plane.n);
+	vec3<double> transformedNormal = rotateInv(plane.n);
 	return math::plane(transformedNormal, plane.d + p.dot(plane.n));
 }
 math::transform math::transform::getNormalized() const

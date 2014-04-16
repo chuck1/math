@@ -1,6 +1,10 @@
 SET(CMAKE_CXX_COMPILER "/usr/bin/c++")
 SET(CMAKE_CXX_COMPILER_ARG1 "")
 SET(CMAKE_CXX_COMPILER_ID "GNU")
+<<<<<<< HEAD
+=======
+SET(CMAKE_CXX_COMPILER_VERSION "4.4.7")
+>>>>>>> 4ce5c3c3aad8372c9006153666fc5521a3f6f7e7
 SET(CMAKE_CXX_PLATFORM_ID "Linux")
 
 SET(CMAKE_AR "/usr/bin/ar")
@@ -29,7 +33,11 @@ SET(CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES 1)
 # Save compiler ABI information.
 SET(CMAKE_CXX_SIZEOF_DATA_PTR "8")
 SET(CMAKE_CXX_COMPILER_ABI "ELF")
+<<<<<<< HEAD
 SET(CMAKE_CXX_LIBRARY_ARCHITECTURE "x86_64-linux-gnu")
+=======
+SET(CMAKE_CXX_LIBRARY_ARCHITECTURE "")
+>>>>>>> 4ce5c3c3aad8372c9006153666fc5521a3f6f7e7
 
 IF(CMAKE_CXX_SIZEOF_DATA_PTR)
   SET(CMAKE_SIZEOF_VOID_P "${CMAKE_CXX_SIZEOF_DATA_PTR}")
@@ -40,11 +48,19 @@ IF(CMAKE_CXX_COMPILER_ABI)
 ENDIF(CMAKE_CXX_COMPILER_ABI)
 
 IF(CMAKE_CXX_LIBRARY_ARCHITECTURE)
+<<<<<<< HEAD
   SET(CMAKE_LIBRARY_ARCHITECTURE "x86_64-linux-gnu")
+=======
+  SET(CMAKE_LIBRARY_ARCHITECTURE "")
+>>>>>>> 4ce5c3c3aad8372c9006153666fc5521a3f6f7e7
 ENDIF()
 
 SET(CMAKE_CXX_HAS_ISYSROOT "")
 
 
 SET(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;m;c")
+<<<<<<< HEAD
 SET(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/usr/local/lib;/home/charles/usr/lib;/usr/lib/gcc/x86_64-linux-gnu/4.7;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib;/home/charles/Programming/C++/external/PhysX/Lib/linux64")
+=======
+SET(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/x86_64-redhat-linux/4.4.7;/usr/lib64;/lib64;/nfs/stak/students/r/rymalc/usr/lib;/usr/lib")
+>>>>>>> 4ce5c3c3aad8372c9006153666fc5521a3f6f7e7
