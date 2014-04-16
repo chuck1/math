@@ -19,7 +19,6 @@ if(DOXYGEN_FOUND)
 		)
 endif(DOXYGEN_FOUND)
 
-find_package(dot)
 
 
 add_library(math
