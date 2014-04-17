@@ -64,6 +64,53 @@ project(test_array)
 add_executable(test_array test/array/main.cpp)
 target_link_libraries(test_array math)
 
+set(LIB_NAME math)
+set(PROJECT_NAME math)
+
+set(INSTALL_INCLUDE_DIR ${CMAKE_INSTALL_PREFIX}/include/math)
+set(INSTALL_CMAKE_DIR ${CMAKE_INSTALL_PREFIX}/lib/${LIB_NAME})
+
+MESSAGE("${INSTALL_INCLUDE_DIR}")
+MESSAGE("${INSTALL_CMAKE_DIR}")
+
+# The interesting stuff goes here
+# ===============================
+
+# Add all targets to the build-tree export set
+export(TARGETS ${LIB_NAME} FILE "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Targets.cmake")
+
+# Export the package for use from the build-tree
+# (this registers the build-tree with a global CMake-registry)
+export(PACKAGE ${PROJECT_NAME})
+
+# Create the FooBarConfig.cmake and FooBarConfigVersion files
+file(RELATIVE_PATH REL_INCLUDE_DIR "${INSTALL_CMAKE_DIR}" "${INSTALL_INCLUDE_DIR}")
+
+# ... for the build tree
+set(CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
+configure_file(
+	${PROJECT_NAME}Config.cmake.in
+	"${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+	@ONLY)
+
+# ... for the install tree
+set(CONF_INCLUDE_DIRS "\${FOOBAR_CMAKE_DIR}/${REL_INCLUDE_DIR}")
+configure_file(
+	${PROJECT_NAME}Config.cmake.in
+	"${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/${PROJECT_NAME}Config.cmake"
+	@ONLY)
+
+# ... for both
+configure_file(FooBarConfigVersion.cmake.in "${PROJECT_BINARY_DIR}/FooBarConfigVersion.cmake" @ONLY)
+
+# Install the FooBarConfig.cmake and FooBarConfigVersion.cmake
+install(FILES
+	"${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/FooBarConfig.cmake"
+	"${PROJECT_BINARY_DIR}/FooBarConfigVersion.cmake"
+	DESTINATION "${INSTALL_CMAKE_DIR}" COMPONENT dev)
+
+# Install the export set for use with the install-tree
+install(EXPORT ${PROJECT_NAME}Targets DESTINATION "${INSTALL_CMAKE_DIR}" COMPONENT dev)
 
 
 
