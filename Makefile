@@ -35,22 +35,19 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nfs/stak/students/r/rymalc/Documents/Programming/C++/math
+CMAKE_SOURCE_DIR = /home/charles/Programming/C++/math
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nfs/stak/students/r/rymalc/Documents/Programming/C++/math
+CMAKE_BINARY_DIR = /home/charles/Programming/C++/math
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
+	/usr/bin/cmake -i .
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -91,7 +88,7 @@ install/strip/fast: install/strip
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"dev\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -110,9 +107,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/charles/Programming/C++/math/CMakeFiles /home/charles/Programming/C++/math/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/stak/students/r/rymalc/Documents/Programming/C++/math/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/charles/Programming/C++/math/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -165,19 +162,6 @@ math/fast:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/build
 .PHONY : math/fast
 
-#=============================================================================
-# Target rules for targets named test_array
-
-# Build rule for target.
-test_array: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_array
-.PHONY : test_array
-
-# fast build rule for target.
-test_array/fast:
-	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/build
-.PHONY : test_array/fast
-
 src/math/color.o: src/math/color.cpp.o
 .PHONY : src/math/color.o
 
@@ -202,6 +186,30 @@ src/math/color.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/color.cpp.s
 .PHONY : src/math/color.cpp.s
 
+src/math/discrete/discrete.o: src/math/discrete/discrete.cpp.o
+.PHONY : src/math/discrete/discrete.o
+
+# target to build an object file
+src/math/discrete/discrete.cpp.o:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/discrete/discrete.cpp.o
+.PHONY : src/math/discrete/discrete.cpp.o
+
+src/math/discrete/discrete.i: src/math/discrete/discrete.cpp.i
+.PHONY : src/math/discrete/discrete.i
+
+# target to preprocess a source file
+src/math/discrete/discrete.cpp.i:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/discrete/discrete.cpp.i
+.PHONY : src/math/discrete/discrete.cpp.i
+
+src/math/discrete/discrete.s: src/math/discrete/discrete.cpp.s
+.PHONY : src/math/discrete/discrete.s
+
+# target to generate assembly for a file
+src/math/discrete/discrete.cpp.s:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/discrete/discrete.cpp.s
+.PHONY : src/math/discrete/discrete.cpp.s
+
 src/math/free.o: src/math/free.cpp.o
 .PHONY : src/math/free.o
 
@@ -225,6 +233,30 @@ src/math/free.s: src/math/free.cpp.s
 src/math/free.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/free.cpp.s
 .PHONY : src/math/free.cpp.s
+
+src/math/geo/height_map.o: src/math/geo/height_map.cpp.o
+.PHONY : src/math/geo/height_map.o
+
+# target to build an object file
+src/math/geo/height_map.cpp.o:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/geo/height_map.cpp.o
+.PHONY : src/math/geo/height_map.cpp.o
+
+src/math/geo/height_map.i: src/math/geo/height_map.cpp.i
+.PHONY : src/math/geo/height_map.i
+
+# target to preprocess a source file
+src/math/geo/height_map.cpp.i:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/geo/height_map.cpp.i
+.PHONY : src/math/geo/height_map.cpp.i
+
+src/math/geo/height_map.s: src/math/geo/height_map.cpp.s
+.PHONY : src/math/geo/height_map.s
+
+# target to generate assembly for a file
+src/math/geo/height_map.cpp.s:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/geo/height_map.cpp.s
+.PHONY : src/math/geo/height_map.cpp.s
 
 src/math/geo/polyhedron.o: src/math/geo/polyhedron.cpp.o
 .PHONY : src/math/geo/polyhedron.o
@@ -321,6 +353,30 @@ src/math/plane.s: src/math/plane.cpp.s
 src/math/plane.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/plane.cpp.s
 .PHONY : src/math/plane.cpp.s
+
+src/math/print.o: src/math/print.cpp.o
+.PHONY : src/math/print.o
+
+# target to build an object file
+src/math/print.cpp.o:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/print.cpp.o
+.PHONY : src/math/print.cpp.o
+
+src/math/print.i: src/math/print.cpp.i
+.PHONY : src/math/print.i
+
+# target to preprocess a source file
+src/math/print.cpp.i:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/print.cpp.i
+.PHONY : src/math/print.cpp.i
+
+src/math/print.s: src/math/print.cpp.s
+.PHONY : src/math/print.s
+
+# target to generate assembly for a file
+src/math/print.cpp.s:
+	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/print.cpp.s
+.PHONY : src/math/print.cpp.s
 
 src/math/quat.o: src/math/quat.cpp.o
 .PHONY : src/math/quat.o
@@ -466,30 +522,6 @@ src/math/vec4.cpp.s:
 	$(MAKE) -f CMakeFiles/math.dir/build.make CMakeFiles/math.dir/src/math/vec4.cpp.s
 .PHONY : src/math/vec4.cpp.s
 
-test/array/main.o: test/array/main.cpp.o
-.PHONY : test/array/main.o
-
-# target to build an object file
-test/array/main.cpp.o:
-	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/test/array/main.cpp.o
-.PHONY : test/array/main.cpp.o
-
-test/array/main.i: test/array/main.cpp.i
-.PHONY : test/array/main.i
-
-# target to preprocess a source file
-test/array/main.cpp.i:
-	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/test/array/main.cpp.i
-.PHONY : test/array/main.cpp.i
-
-test/array/main.s: test/array/main.cpp.s
-.PHONY : test/array/main.s
-
-# target to generate assembly for a file
-test/array/main.cpp.s:
-	$(MAKE) -f CMakeFiles/test_array.dir/build.make CMakeFiles/test_array.dir/test/array/main.cpp.s
-.PHONY : test/array/main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -504,13 +536,18 @@ help:
 	@echo "... list_install_components"
 	@echo "... math"
 	@echo "... rebuild_cache"
-	@echo "... test_array"
 	@echo "... src/math/color.o"
 	@echo "... src/math/color.i"
 	@echo "... src/math/color.s"
+	@echo "... src/math/discrete/discrete.o"
+	@echo "... src/math/discrete/discrete.i"
+	@echo "... src/math/discrete/discrete.s"
 	@echo "... src/math/free.o"
 	@echo "... src/math/free.i"
 	@echo "... src/math/free.s"
+	@echo "... src/math/geo/height_map.o"
+	@echo "... src/math/geo/height_map.i"
+	@echo "... src/math/geo/height_map.s"
 	@echo "... src/math/geo/polyhedron.o"
 	@echo "... src/math/geo/polyhedron.i"
 	@echo "... src/math/geo/polyhedron.s"
@@ -523,6 +560,9 @@ help:
 	@echo "... src/math/plane.o"
 	@echo "... src/math/plane.i"
 	@echo "... src/math/plane.s"
+	@echo "... src/math/print.o"
+	@echo "... src/math/print.i"
+	@echo "... src/math/print.s"
 	@echo "... src/math/quat.o"
 	@echo "... src/math/quat.i"
 	@echo "... src/math/quat.s"
@@ -541,9 +581,6 @@ help:
 	@echo "... src/math/vec4.o"
 	@echo "... src/math/vec4.i"
 	@echo "... src/math/vec4.s"
-	@echo "... test/array/main.o"
-	@echo "... test/array/main.i"
-	@echo "... test/array/main.s"
 .PHONY : help
 
 

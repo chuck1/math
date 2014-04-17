@@ -25,7 +25,7 @@ namespace math {
 			};
 			class EdgeWeighted: public Edge {
 				public:
-					w_;
+					double	w_;
 			};
 			class Graph {
 				public:
