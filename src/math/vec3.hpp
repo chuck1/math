@@ -6,8 +6,8 @@
 #endif
 
 
-#include <math/math.h>
-#include <math/vecbase.h>
+#include <math/math.hpp>
+#include <math/vecbase.hpp>
 
 namespace math {
 	template <typename T> class vec3: public math::vecbase<T,3> {

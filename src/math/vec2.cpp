@@ -9,9 +9,8 @@
 //	http://www.paulsprojects.net/NewBSDLicense.txt)
 //////////////////////////////////////////////////////////////////////////////////////////	
 
-#include <math/math.h>
-
-#include <math/vec2.h>
+#include <math/math.hpp>
+#include <math/vec2.hpp>
 
 void math::vec2::Normalize()
 {

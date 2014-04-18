@@ -5,10 +5,10 @@
 #include <tinyxml2.h>
 #endif
 
-#include <math/quat.h>
-#include <math/vec4.h>
-#include <math/transform.h>
-#include <math/color.h>
+#include <math/quat.hpp>
+#include <math/vec4.hpp>
+#include <math/transform.hpp>
+#include <math/color.hpp>
 
 namespace math {
 #ifdef TINYXML

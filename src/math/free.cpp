@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include <math/free.h>
-#include <math/vec3.h>
+#include <math/free.hpp>
+#include <math/vec3.hpp>
 
 #ifdef TINYXML
 int math::xml_parse_int(tinyxml2::XMLElement* element, int v) {

@@ -1,5 +1,5 @@
 #include <math/geo/height_map.hpp>
-#include <math/geo/polyhedron.h>
+#include <math/geo/polyhedron.hpp>
 
 
 math::geo::height_map::height_map(int nx, int ny) {

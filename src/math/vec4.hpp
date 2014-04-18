@@ -16,7 +16,7 @@
 #ifndef vec4_H
 #define vec4_H
 
-#include <math/config.h>
+#include <math/config.hpp>
 
 namespace math {
 	class vec4 {

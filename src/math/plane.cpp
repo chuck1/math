@@ -12,7 +12,7 @@
 //	http://www.paulsprojects.net/NewBSDLicense.txt)
 //////////////////////////////////////////////////////////////////////////////////////////	
 
-#include <math/plane.h>
+#include <math/plane.hpp>
 
 void math::plane::SetFromPoints(const math::vec3<double> & p0, const math::vec3<double> & p1, const math::vec3<double> & p2)
 {

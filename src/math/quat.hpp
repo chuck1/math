@@ -5,7 +5,7 @@
 #include <PxPhysicsAPI.h>
 #endif
 
-#include <math/config.h>
+#include <math/config.hpp>
 
 namespace math {
 	class quat {

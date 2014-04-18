@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include <math/geo/polyhedron.h>
+#include <math/geo/polyhedron.hpp>
 
 //math::geo::thin_cyl::cylinder(float 
 math::geo::sphere::sphere(float r, int slices, int stacks) {

@@ -1,14 +1,11 @@
 #ifndef __MATH_GEO_POLYHEDRON_H__
 #define __MATH_GEO_POLYHEDRON_H__
 
-#include <math/vec3.h>
+#include <math/vec3.hpp>
 
-namespace math
-{
-	namespace geo
-	{
-		class vertex
-		{
+namespace math {
+	namespace geo {
+		class vertex {
 			public:
 				vec3<double>	xyz;
 				vec3<double>	n;

@@ -1,7 +1,7 @@
 #ifndef __MATH_MAT44_H__
 #define __MATH_MAT44_H__
 
-#include <math/config.h>
+#include <math/config.hpp>
 
 namespace math {
 	class mat44 {

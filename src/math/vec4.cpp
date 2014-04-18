@@ -13,9 +13,9 @@
 //	http://www.paulsprojects.net/NewBSDLicense.txt)
 //////////////////////////////////////////////////////////////////////////////////////////	
 #include <stdio.h>
-#include <math/vec3.h>
-#include <math/vec4.h>
-#include <math/mat44.h>
+#include <math/vec3.hpp>
+#include <math/vec4.hpp>
+#include <math/mat44.hpp>
 
 math::vec4::vec4(const vec3<double> & rhs):
 	x(rhs.v[0]), y(rhs.v[1]), z(rhs.v[2]), w(1.0f)

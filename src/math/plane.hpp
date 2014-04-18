@@ -15,7 +15,7 @@
 #ifndef plane_H
 #define plane_H
 
-#include <math/vec3.h>
+#include <math/vec3.hpp>
 
 namespace math {
 	class plane {

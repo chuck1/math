@@ -5,9 +5,9 @@
 #include <PxPhysicsAPI.h>
 #endif
 
-#include <math/config.h>
-#include <math/vec3.h>
-#include <math/quat.h>
+#include <math/config.hpp>
+#include <math/vec3.hpp>
+#include <math/quat.hpp>
 
 
 namespace math {

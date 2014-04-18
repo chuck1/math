@@ -2,8 +2,8 @@
 #include <cmath>
 
 
-#include <math/color.h>
-#include <math/config.h>
+#include <math/color.hpp>
+#include <math/config.hpp>
 
 math::color::color() {
 	r = g = b = a = 0.0f;

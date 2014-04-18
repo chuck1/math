@@ -20,12 +20,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <math/vec3.h>
-#include <math/vec4.h>
-#include <math/transform.h>
-#include <math/mat44.h>
-#include <math/quat.h>
-#include <math/plane.h>
+#include <math/vec3.hpp>
+#include <math/vec4.hpp>
+#include <math/transform.hpp>
+#include <math/mat44.hpp>
+#include <math/quat.hpp>
+#include <math/plane.hpp>
 
 math::mat44::mat44(float e0, float e1, float e2, float e3,
 		float e4, float e5, float e6, float e7,

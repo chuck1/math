@@ -1,8 +1,8 @@
 #ifndef __MAT33_H__
 #define __MAT33_H__
 
-#include <math/config.h>
-#include <math/vecbase.h>
+#include <math/config.hpp>
+#include <math/vecbase.hpp>
 
 namespace math {
 	class mat33: public vecbase<double,9> {

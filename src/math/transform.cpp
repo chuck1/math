@@ -1,8 +1,8 @@
 #include <assert.h>
 
-#include <math/mat44.h>
-#include <math/plane.h>
-#include <math/transform.h>
+#include <math/mat44.hpp>
+#include <math/plane.hpp>
+#include <math/transform.hpp>
 
 math::transform::transform():
 	p(0, 0, 0),

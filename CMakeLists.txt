@@ -26,9 +26,6 @@ endforeach()
 
 
 
-
-
-
 set(PROJECT_SOURCE_DIR src)
 
 include_directories("${PROJECT_SOURCE_DIR}")
@@ -45,71 +42,12 @@ if(DOXYGEN_FOUND)
 		)
 endif(DOXYGEN_FOUND)
 
-# Source Files
-# ============
-
-file(GLOB_RECURSE SOURCES_ABS ${PROJECT_SOURCE_DIR}/*.cpp)
-foreach(s ${SOURCES_ABS})
-	#MESSAGE("${s} ${CMAKE_SOURCE_DIR}${PROJECT_SOURCE_DIR}")	
-	file(RELATIVE_PATH s ${CMAKE_SOURCE_DIR} ${s})
-	set(SOURCES ${SOURCES} ${s})
-endforeach()
-#MESSAGE("${SOURCES}")
-
-
-file(GLOB_RECURSE HEADERS_ABS ${PROJECT_SOURCE_DIR}/*.hpp)
-foreach(s ${HEADERS_ABS})
-	#MESSAGE("${s} ${CMAKE_SOURCE_DIR}${PROJECT_SOURCE_DIR}")	
-	file(RELATIVE_PATH s ${CMAKE_SOURCE_DIR}/${PROJECT_SOURCE_DIR} ${s})
-	set(HEADERS ${HEADERS} ${s})
-endforeach()
-#MESSAGE("${HEADERS}")
-
-
-add_library(math ${SOURCES})
-
-configure_file("${PROJECT_SOURCE_DIR}/math/config.hpp.in" "${PROJECT_SOURCE_DIR}/math/configpp.h")
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_DEBUG -g -std=c++0x -Wall -Werror -Wno-unused-local-typedefs -Wno-unknown-pragmas -rdynamic -pthread")
 
 
-
-#MESSAGE("${INSTALL_LIB_DIR}")
-#MESSAGE("${INSTALL_BIN_DIR}")
-#MESSAGE("${INSTALL_INCLUDE_DIR}")
-#MESSAGE("${INSTALL_CMAKE_DIR}")
-
-install(
-	TARGETS math
-	DESTINATION "${INSTALL_LIB_DIR}"
-	EXPORT ${PROJECT_name}Targets
-	RUNTIME DESTINATION "${INSTALL_BIN_DIR}" COMPONENT bin
-	LIBRARY DESTINATION "${INSTALL_LIB_DIR}" COMPONENT shlib
-	PUBLIC_HEADER DESTINATION "${INSTALL_INCLUDE_DIR}/math" COMPONENT dev
-)
-
-foreach(h ${HEADERS})
-	get_filename_component(f ${h} PATH)
-	#MESSAGE("${h} ${f}")
-	install(FILES ${PROJECT_SOURCE_DIR}/${h} DESTINATION include/${f})
-endforeach()
-
-#install(FILES ${PROJECT_SOURCE_DIR}/math/config.h	DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/math.h		DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/free.h		DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/vecbase.h DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/vec2.h DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/vec3.h DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/vec4.h DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/mat33.h DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/mat44.h DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/plane.h DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/color.h DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/quat.h DESTINATION		include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/transform.h DESTINATION	include/math/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/geo/polyhedron.h DESTINATION	include/math/geo/)
-#install(FILES ${PROJECT_SOURCE_DIR}/math/vclip/vclip.h DESTINATION	include/math/vclip)
-
+# common methods for static library
+# =================================
+include(../static_library.cmake)
 
 
 

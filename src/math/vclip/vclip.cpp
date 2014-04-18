@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <set>
 
-#include <math/vec2.h>
-#include <math/vec3.h>
+#include <math/vec2.hpp>
+#include <math/vec3.hpp>
 
-#include <math/vclip/vclip.h>
+#include <math/vclip/vclip.hpp>
 
 
 vclip::rc vclip::clip(edge* e, feature* feat0, std::set<feature*> feats)

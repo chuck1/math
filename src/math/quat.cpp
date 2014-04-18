@@ -1,12 +1,12 @@
 #include <cmath>
 #include <stdio.h>
 
-#include <math/config.h>
+#include <math/config.hpp>
 #include <math/except.hpp>
-#include <math/mat44.h>
-#include <math/free.h>
-#include <math/vec3.h>
-#include <math/quat.h>
+#include <math/mat44.hpp>
+#include <math/free.hpp>
+#include <math/vec3.hpp>
+#include <math/quat.hpp>
 
 
 #include <gal/except.h>
