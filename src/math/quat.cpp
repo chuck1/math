@@ -9,8 +9,6 @@
 #include <math/quat.hpp>
 
 
-#include <gal/except.h>
-
 math::quat::quat()
 {
 	loadZero();
@@ -56,7 +54,7 @@ math::quat::quat(math::vec3<double> const & u, math::vec3<double> const & v)
 		a.print();
 		b.print();
 		c.print();
-		throw gal::except();
+		throw;
 	}
 }
 math::quat::quat(mat44 const & m)
