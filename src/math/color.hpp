@@ -35,58 +35,58 @@ namespace math
 
 			//constructors
 			color();
-			color(float newR, float newG, float newB, float newA=0.0f,
+			color(double newR, double newG, double newB, double newA=0.0f,
 					char = type::e::CONST,
 					char = type::e::CONST,
 					char = type::e::CONST);
-			//color(const float * rhs);
+			//color(const double * rhs);
 			color(const color & rhs);
 			~color();
-			void		Set(float newR, float newG, float newB, float newA=0.0f);
+			void		Set(double newR, double newG, double newB, double newA=0.0f);
 			static color	rand();
-			void		SetR(float newR);
-			void		SetG(float newG);
-			void		SetB(float newB);
-			void		SetA(float newA);
-			float		GetR() const;
-			float		GetG() const;
-			float		GetB() const;
-			float		GetA() const;
+			void		SetR(double newR);
+			void		SetG(double newG);
+			void		SetB(double newB);
+			void		SetA(double newA);
+			double		GetR() const;
+			double		GetG() const;
+			double		GetB() const;
+			double		GetA() const;
 			void		ClampTo01(void);
 			void		SetBlack(void);
 			void		SetWhite(void);
-			void		SetGrey(float shade);
+			void		SetGrey(double shade);
 
-			color		lerp(const color & c2, float factor);
+			color		lerp(const color & c2, double factor);
 			color		operator+(const color & rhs) const;
 			color		operator-(const color & rhs) const;
 			color		operator*(const color & rhs) const;
 			color		operator/(const color & rhs) const;
-			color		operator*(const float rhs) const;
-			color		operator/(const float rhs) const;
-			friend color	operator*(float scaleFactor, const color & rhs);
+			color		operator*(const double rhs) const;
+			color		operator/(const double rhs) const;
+			friend color	operator*(double scaleFactor, const color & rhs);
 			bool		operator==(const color & rhs) const;
 			bool		operator!=(const color & rhs) const;
 			color		operator+=(const color & rhs);
 			color		operator-=(const color & rhs);
 			color		operator*=(const color & rhs);
 			color		operator/=(const color & rhs);
-			color		operator*=(const float rhs);
-			color		operator/=(const float rhs);
+			color		operator*=(const double rhs);
+			color		operator/=(const double rhs);
 			color		operator-(void) const;
 			color		operator+(void) const;
-			operator float* () const;
-			operator const float* () const;
+			operator double* () const;
+			operator const double* () const;
 			void		step(double);
 			void		print();
 		public:
-			float	r;
-			float	g;
-			float	b;
-			float	a;
-			float	fr;
-			float	fg;
-			float	fb;
+			double	r;
+			double	g;
+			double	b;
+			double	a;
+			double	fr;
+			double	fg;
+			double	fb;
 			char	tr;
 			char	tg;
 			char	tb;	

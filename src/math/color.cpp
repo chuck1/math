@@ -11,7 +11,7 @@ math::color::color() {
 	tr = tg = tb = type::e::CONST;
 }
 /*
-math::color::color(float newR, float newG, float newB, float newA) {
+math::color::color(double newR, double newG, double newB, double newA) {
 	r = newR;
 	g = newG;
 	b = newB;
@@ -23,7 +23,7 @@ math::color::color(float newR, float newG, float newB, float newA) {
 	tg = type::e::CONST;
 	tb = type::e::CONST;
 }*/
-math::color::color(float newr, float newg, float newb, float newA, char newtr, char newtg, char newtb) {
+math::color::color(double newr, double newg, double newb, double newA, char newtr, char newtg, char newtb) {
 
 	tr = newtr;
 	tg = newtg;
@@ -84,7 +84,7 @@ math::color::color(float newr, float newg, float newb, float newA, char newtr, c
 
 	a = newA;
 }
-/*math::color::color(const float * rhs) {
+/*math::color::color(const double * rhs) {
 	r = *rhs;
 	g = *(rhs+1);
 	b = *(rhs+2);
@@ -105,7 +105,7 @@ math::color::color(const color & rhs) {
 math::color::~color()
 {
 }
-void math::color::Set(float newR, float newG, float newB, float newA) {
+void math::color::Set(double newR, double newG, double newB, double newA) {
 	r=newR;
 	g=newG;
 	b=newB;
@@ -113,34 +113,34 @@ void math::color::Set(float newR, float newG, float newB, float newA) {
 }
 math::color math::color::rand() {
 	color ret;
-	ret.r = (float)(::rand() % 1000) / 1000.0f;
-	ret.g = (float)(::rand() % 1000) / 1000.0f;
-	ret.b = (float)(::rand() % 1000) / 1000.0f;
+	ret.r = (double)(::rand() % 1000) / 1000.0f;
+	ret.g = (double)(::rand() % 1000) / 1000.0f;
+	ret.b = (double)(::rand() % 1000) / 1000.0f;
 	ret.a = 1.0;
 	return ret;
 }
-void math::color::SetR(float newR) {
+void math::color::SetR(double newR) {
 	r = newR;
 }
-void math::color::SetG(float newG) {
+void math::color::SetG(double newG) {
 	g = newG;
 }
-void math::color::SetB(float newB) {
+void math::color::SetB(double newB) {
 	b = newB;
 }
-void math::color::SetA(float newA) {
+void math::color::SetA(double newA) {
 	a = newA;
 }
-float math::color::GetR() const {
+double math::color::GetR() const {
 	return r;
 }
-float math::color::GetG() const {
+double math::color::GetG() const {
 	return g;
 }
-float math::color::GetB() const {
+double math::color::GetB() const {
 	return b;
 }
-float math::color::GetA() const {
+double math::color::GetA() const {
 	return a;
 }
 void math::color::SetBlack(void) {
@@ -150,11 +150,11 @@ void math::color::SetWhite(void) {
 	r = g = b = 0.0f;
 	a = 1.0f;
 }
-void math::color::SetGrey(float shade) {
+void math::color::SetGrey(double shade) {
 	r = g = b = shade;
 	a = 1.0f;
 }
-math::color math::color::lerp(const color & c2, float factor)
+math::color math::color::lerp(const color & c2, double factor)
 {
 	return (*this) * (1.0f - factor) + c2 * factor;
 }
@@ -174,11 +174,11 @@ math::color math::color::operator/(const color & rhs) const
 {
 	return color(r/rhs.r, g/rhs.g, b/rhs.b, a/rhs.a);
 }
-math::color math::color::operator*(const float rhs) const
+math::color math::color::operator*(const double rhs) const
 {
 	return color(r*rhs, g*rhs, b*rhs, a*rhs);
 }
-math::color math::color::operator/(const float rhs) const
+math::color math::color::operator/(const double rhs) const
 {
 	return color(r/rhs, g/rhs, b/rhs, a/rhs);
 }
@@ -217,11 +217,11 @@ math::color math::color::operator/=(const color & rhs)
 {
 	(*this)=(*this)/rhs;	return (*this);
 }
-math::color math::color::operator*=(const float rhs)
+math::color math::color::operator*=(const double rhs)
 {
 	(*this)=(*this)*rhs;	return (*this);
 }
-math::color math::color::operator/=(const float rhs)
+math::color math::color::operator/=(const double rhs)
 {
 	(*this)=(*this)/rhs;
 	return (*this);
@@ -253,9 +253,9 @@ void	math::color::print() {
 	printf("%f %f %f %f %f %f %f %i %i %i\n",r,g,b,a,fr,fg,fb,tr,tg,tb);
 }
 
-float saw(float t, float f) {
-	float a = t*f;
-	float y = a - floor(a);
+double saw(double t, double f) {
+	double a = t*f;
+	double y = a - floor(a);
 	printf("saw: a = %f y = %f\n", a, y);
 	return y;
 }
@@ -300,14 +300,14 @@ void	math::color::step(double time) {
 	}
 
 }
-math::color operator*(float scaleFactor, const math::color & rhs)
+math::color operator*(double scaleFactor, const math::color & rhs)
 {
 	return rhs*scaleFactor;
 }
-math::color::operator float* () const {
-	return (float*)this;
+math::color::operator double* () const {
+	return (double*)this;
 }
-math::color::operator float const * () const {
-	return (float*)this;
+math::color::operator double const * () const {
+	return (double*)this;
 }
 
