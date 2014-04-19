@@ -8,6 +8,8 @@ General purpose math c++ library
 
     git clone github.com/chuck1/math.git
     cd math
-    cmake .
+    mkdir build
+    cd build
+    cmake ..
     make install
     make doc
