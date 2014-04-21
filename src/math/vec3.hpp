@@ -25,7 +25,11 @@ namespace math {
 			vec3(double const * const v): math::vecbase<double,3>(v) {}
 
 #ifdef PHYSX
-			vec3(physx::PxVec3 const & rhs);
+			vec3(physx::PxVec3 const & rhs) {
+				vecbase<T,3>::v[0] = rhs.x;
+				vecbase<T,3>::v[1] = rhs.y;
+				vecbase<T,3>::v[2] = rhs.z;
+			}
 #endif
 			/** @} */
 
@@ -246,11 +250,11 @@ namespace math {
 			operator const T* () const {return (const T*) this;}
 
 #ifdef PHYSX
-			operator physx::PxVec3() const { return physx::PxVec3(x,y,z); }
+			operator physx::PxVec3() const { return physx::PxVec3(x(),y(),z()); }
 			vec3<T>&		operator=(physx::PxVec3 const & rhs) {
-				v[0]=rhs.x;
-				v[1]=rhs.y;
-				v[2]=rhs.z;
+				vecbase<T,3>::v[0] = rhs.x;
+				vecbase<T,3>::v[1] = rhs.y;
+				vecbase<T,3>::v[2] = rhs.z;
 				return *this;
 			}
 #endif

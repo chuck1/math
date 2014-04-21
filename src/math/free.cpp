@@ -29,12 +29,12 @@ math::quat math::xml_parse_quat(tinyxml2::XMLElement* element, math::quat q) {
 	
 	if(element == NULL) return q;
 	
-	math::vec3 v	= xml_parse_vec3(element->FirstChildElement("v"), math::vec3(1.0,0.0,0.0));
-	float a		= xml_parse_float(element->FirstChildElement("a"), 0.0);
+	math::vec3<double> v = xml_parse_vec3(element->FirstChildElement("v"), math::vec3<double>(1.0,0.0,0.0));
+	float a = xml_parse_float(element->FirstChildElement("a"), 0.0);
 	
 	return math::quat(a, v);
 }       
-math::vec3 math::xml_parse_vec3(tinyxml2::XMLElement* element, math::vec3 v) {
+math::vec3<double> math::xml_parse_vec3(tinyxml2::XMLElement* element, math::vec3<double> v) {
 	
 	if( !element )
 	{
@@ -49,14 +49,14 @@ math::vec3 math::xml_parse_vec3(tinyxml2::XMLElement* element, math::vec3 v) {
 	int c = sscanf(buf, "%f,%f,%f", &x, &y, &z);
 	assert(c==3);
 
-	return math::vec3(x,y,z);
+	return math::vec3<double>(x,y,z);
 }
 math::transform math::xml_parse_transform(tinyxml2::XMLElement* element, math::transform pose) {
 	
 	if(element == NULL) return pose;
 	
-	pose.p = xml_parse_vec3(element->FirstChildElement("p"), math::vec3(0.0,0.0,0.0));
-	pose.q = xml_parse_quat(element->FirstChildElement("q"), math::quat(0.0, math::vec3(1.0,0.0,0.0)));
+	pose.p = xml_parse_vec3(element->FirstChildElement("p"), math::vec3<double>(0.0,0.0,0.0));
+	pose.q = xml_parse_quat(element->FirstChildElement("q"), math::quat(0.0, math::vec3<double>(1.0,0.0,0.0)));
 	
 	return pose;
 }

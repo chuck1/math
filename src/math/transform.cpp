@@ -109,12 +109,10 @@ math::transform math::transform::getNormalized() const
 	return transform(p, q.getNormalized());
 }
 #ifdef PHYSX
-math::transform::operator physx::PxTransform() const
-{
+math::transform::operator physx::PxTransform() const {
 	return physx::PxTransform(p,q);
 }
-math::transform&	math::transform::operator=(physx::PxTransform const & rhs)
-{
+math::transform&	math::transform::operator=(physx::PxTransform const & rhs) {
 	p = rhs.p;
 	q = rhs.q;
 

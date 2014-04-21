@@ -40,7 +40,7 @@ namespace math {
 #endif
 
 			vec3<double>	p;
-			quat	q;
+			quat		q;
 	};
 }
 
