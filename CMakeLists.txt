@@ -8,11 +8,8 @@ add_definitions(-DPHYSX -DTINYXML)
 
 # common methods for static library
 # =================================
-include(../cmake/static_library.cmake)
+include($ENV{HOME}/usr/lib/cmake/CMakeHelper/static_library.cmake)
 
-#project(test_array)
-#add_executable(test_array test/array/main.cpp)
-#target_link_libraries(test_array math)
-
+#add_subdirectory(test)
 
 
