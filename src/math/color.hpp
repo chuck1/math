@@ -1,28 +1,10 @@
-//////////////////////////////////////////////////////////////////////////////////////////
-//	color.h
-//	Class declaration for an RGBA color
-//	Downloaded from: www.paulsprojects.net
-//	Created:	20th July 2002
-//	Modified:	7th November 2002	-	Some speed improvements
-//									-	Removed clamping after adds etc. Do it yourself!
-//										To enable use with floating point color buffers
-//									-	Corrected lerp (reversed f and 1-f)
-//				13th December 2002	-	Added default parameter to alpha of Set()
-//									-	Added red, green, blue constant colors
-//
-//	Copyright (c) 2006, Paul Baker
-//	Distributed under the New BSD Licence. (See accompanying file License.txt or copy at
-//	http://www.paulsprojects.net/NewBSDLicense.txt)
-//////////////////////////////////////////////////////////////////////////////////////////	
-
 #ifndef color_H
 #define color_H
 
 #include <stdlib.h>
 
-namespace math
-{
-	class color {
+namespace math {
+	template <typename T> class color {
 		public:
 			struct type {
 				enum e: char {
@@ -64,7 +46,7 @@ namespace math
 			color		operator/(const color & rhs) const;
 			color		operator*(const double rhs) const;
 			color		operator/(const double rhs) const;
-			friend color	operator*(double scaleFactor, const color & rhs);
+			//friend color	operator*(double scaleFactor, const color & rhs);
 			bool		operator==(const color & rhs) const;
 			bool		operator!=(const color & rhs) const;
 			color		operator+=(const color & rhs);
@@ -92,16 +74,16 @@ namespace math
 			char	tb;	
 	};
 
-	const color white(	1.0f, 1.0f, 1.0f, 1.0f);
-	const color black(	0.0f, 0.0f, 0.0f, 1.0f);
+	const color<float> white(	1.0f, 1.0f, 1.0f, 1.0f);
+	const color<float> black(	0.0f, 0.0f, 0.0f, 1.0f);
 
-	const color red(	1.0f, 0.0f, 0.0f, 1.0f);
-	const color green(	0.0f, 1.0f, 0.0f, 1.0f);
-	const color blue(	0.0f, 0.0f, 1.0f, 1.0f);
+	const color<float> red(		1.0f, 0.0f, 0.0f, 1.0f);
+	const color<float> green(	0.0f, 1.0f, 0.0f, 1.0f);
+	const color<float> blue(	0.0f, 0.0f, 1.0f, 1.0f);
 
-	const color cyan(	0.0f, 1.0f, 1.0f, 1.0f);
-	const color magenta(	1.0f, 0.0f, 1.0f, 1.0f);
-	const color yellow(	1.0f, 1.0f, 0.0f, 1.0f);
+	const color<float> cyan(	0.0f, 1.0f, 1.0f, 1.0f);
+	const color<float> magenta(	1.0f, 0.0f, 1.0f, 1.0f);
+	const color<float> yellow(	1.0f, 1.0f, 0.0f, 1.0f);
 }
 
 #endif	//color_H

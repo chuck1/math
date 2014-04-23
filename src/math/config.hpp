@@ -9,12 +9,12 @@
  */
 namespace math {
 	template<typename> class vec3;
-	class vec4;
-	class mat33;
-	class mat44;
-	class quat;
-	class plane;
-	class transform;
+	template<typename> class vec4;
+	template<typename> class mat33;
+	template<typename> class mat44;
+	template<typename> class quat;
+	template<typename> class plane;
+	template<typename> class transform;
 
 	/** \brief exceptions
 	 */

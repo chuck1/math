@@ -19,21 +19,18 @@
 #include <math/config.hpp>
 
 namespace math {
-	class vec4 {
+	template <typename T> class vec4 {
 		public:
 			//constructors
-			vec4(void)	:	x(0.0f), y(0.0f), z(0.0f), w(0.0f)
-		{}
+			vec4(): x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
 
 			vec4(double newX, double newY, double newZ, double newW)	
 				:	x(newX), y(newY), z(newZ), w(newW)
 			{}
 
-			vec4(const double * rhs)	:	x(*rhs), y(*(rhs+1)), z(*(rhs+2)), w(*(rhs+3))
-		{}
+			vec4(const double * rhs)	:	x(*rhs), y(*(rhs+1)), z(*(rhs+2)), w(*(rhs+3)) {}
 
-			vec4(const vec4 & rhs):	x(rhs.x), y(rhs.y), z(rhs.z), w(rhs.w)
-		{}
+			vec4(const vec4 & rhs):	x(rhs.x), y(rhs.y), z(rhs.z), w(rhs.w) {}
 			//convert v3d to v4d
 			vec4(const vec3<double> & rhs);
 			vec4(const vec3<double> & rhs,double const & newW);
@@ -76,11 +73,11 @@ namespace math {
 			void RotateAxis(double angle, const vec3<double> & axis);
 			vec4 GetRotatedAxis(double angle, const vec3<double> & axis) const;
 			void	print();
-		
+
 			bool	isFinite() const;	
 			bool	isSane() const {return (!isNan() && isFinite());}
 			bool	isNan() const;
-			
+
 			vec4 lerp(const vec4 & v2, double factor) const
 			{	return (*this)*(1.0f-factor)+v2*factor;	}
 
@@ -126,7 +123,7 @@ namespace math {
 				{	x/=rhs; y/=rhs; z/=rhs; w/=rhs;	}
 			}
 
-			mat44 operator*(vec4 const & rhs);
+			mat44<T> operator*(vec4 const & rhs);
 
 			//unary operators
 			vec4 operator-(void) const {return vec4(-x, -y, -z, -w);}

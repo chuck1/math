@@ -8,14 +8,14 @@
 #include <math/config.hpp>
 
 namespace math {
-	class quat {
+	template <typename T> class quat {
 		public:
 			quat();
 			quat(double nx, double ny, double nz, double nw);
 			quat(double angleRadians, vec3<double> const & axis);
 			quat(quat const & v);
-			quat(vec3<double> const &, vec3<double> const &);
-			quat(mat44 const & m);
+			quat(vec3<T> const &, vec3<double> const &);
+			quat(mat44<T> const & m);
 
 			void	loadZero();
 

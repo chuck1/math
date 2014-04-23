@@ -9,8 +9,7 @@
 #include <math/quat.hpp>
 
 
-math::quat::quat()
-{
+math::quat::quat() {
 	loadZero();
 }
 math::quat::quat(double nx, double ny, double nz, double nw):

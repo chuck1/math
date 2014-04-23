@@ -9,15 +9,19 @@
 #include <math/vec3.hpp>
 #include <math/quat.hpp>
 
-
 namespace math {
-	class transform {
+	template<typename T> class transform {
 		public:
+			/** @name Constructors
+			 * @{
+			 */
 			transform(); 
-			explicit transform(const vec3<double>& position);
-			explicit transform(const quat& orientation);
-			transform(const vec3<double>& p0, const quat& q0);
-			explicit transform(const mat44& m);
+			transform(vec3<T> const & np);
+			transform(quat<T> const & nq);
+			transform(vec3<T>const & np, quat<T> const & nq);
+			transform(mat44<T> const & m);
+			/** @} */
+
 			transform	operator*(const transform& x) const;
 			transform	getInverse() const;
 			vec3<double>		trans(const vec3<double>& input) const;
@@ -30,8 +34,13 @@ namespace math {
 			bool		isFinite() const;
 			transform	transformInv(const transform& src) const;
 			static		transform createIdentity();
-			plane		trans(const plane& plane) const;
-			plane		inverseTransform(const plane& plane) const;
+			/** @name %Transform a %plane
+			 * @{
+			 */
+			plane<T>	trans(plane<T> const & plane) const;
+			plane<T>	inverseTransform(plane<T> const & plane) const;
+			/** @} */
+
 			transform	getNormalized() const;
 
 #ifdef PHYSX
@@ -39,8 +48,8 @@ namespace math {
 			transform&	operator=(physx::PxTransform const &);
 #endif
 
-			vec3<double>	p;
-			quat		q;
+			vec3<T>		p;
+			quat<T>		q;
 	};
 }
 

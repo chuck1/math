@@ -2,25 +2,25 @@
 #define __MATH_MAT44_H__
 
 #include <math/config.hpp>
+#include <math/vecbase.hpp>
 
 namespace math {
-	class mat44 {
+	template <typename T> class mat44: public math::matsqu<T,4> {
 		public:
-			mat44()
-			{	LoadIdentity();	}
+			mat44() { LoadIdentity(); }
 			mat44(
-				float, float, float, float, float, float, float, float,
-				float, float, float, float, float, float, float, float);
-			mat44(const float * rhs);
+				T, T, T, T, T, T, T, T,
+				T, T, T, T, T, T, T, T);
+			mat44(const T * rhs);
 			mat44(const mat44 & rhs);
-			mat44(const quat & q);
-			mat44(transform const &);
+			mat44(quat<T> const & q);
+			mat44(transform<T> const &);
 			~mat44() {}	//empty
 
-			void SetEntry(int position, float value);
-			float GetEntry(int position) const;
-			vec4 GetRow(int position) const;
-			vec4 GetColumn(int position) const;
+			void SetEntry(int position, T value);
+			T GetEntry(int position) const;
+			vec4<T> GetRow(int position) const;
+			vec4<T> GetColumn(int position) const;
 
 			void LoadIdentity(void);
 			void LoadZero(void);
@@ -29,9 +29,8 @@ namespace math {
 			mat44 operator+(const mat44 & rhs) const;
 			mat44 operator-(const mat44 & rhs) const;
 			mat44 operator*(const mat44 & rhs) const;
-			mat44 operator*(const float rhs) const;
-			mat44 operator/(const float rhs) const;
-			friend mat44 operator*(float scaleFactor, const mat44 & rhs);
+			mat44 operator*(const T rhs) const;
+			mat44 operator/(const T rhs) const;
 
 			bool operator==(const mat44 & rhs) const;
 			bool operator!=(const mat44 & rhs) const;
@@ -40,15 +39,15 @@ namespace math {
 			void operator+=(const mat44 & rhs);
 			void operator-=(const mat44 & rhs);
 			void operator*=(const mat44 & rhs);
-			void operator*=(const float rhs);
-			void operator/=(const float rhs);
+			void operator*=(const T rhs);
+			void operator/=(const T rhs);
 
 			//unary operators
 			mat44	operator-(void) const;
 			mat44	operator+(void) const {return (*this);}
 
 			//multiply a vector by this matrix
-			vec4	operator*(const vec4 rhs) const;
+			vec4<T>	operator*(const vec4<T> rhs) const;
 
 			//rotate a 3d vector by rotation part
 			void	RotateVector3D(vec3<double> & rhs) const;
@@ -82,18 +81,19 @@ namespace math {
 			//set to perform an operation on space - removes other entries
 			void	SetTranslation(vec3<double> const &);
 			void	SetScale(vec3<double> const &);
-			void	SetUniformScale(const float scaleFactor);
-			void	set_rotation(quat const &);
+			void	SetUniformScale(const T scaleFactor);
+			void	set_rotation(quat<T> const &);
 			void	SetRotationAxis(const double angle, const vec3<double> & axis);
-			void	SetRotationX(const double angle);
-			void	SetRotationY(const double angle);
-			void	SetRotationZ(const double angle);
+			void	SetRotationX(const T angle);
+			void	SetRotationY(const T angle);
+			void	SetRotationZ(const T angle);
 			void	SetRotationEuler(const double angleX, const double, const double angleZ);
-			void	SetPerspective(float, float, float, float, float, float);
-			void	SetPerspective(float fovy, float aspect, float n, float f);
-			void	SetOrtho(float left, float right, float bottom, float top, float n, float f);
-			
-			void	SetReflection(plane const &);
+			void	SetPerspective(T, T, T, T, T, T);
+			void	SetPerspective(T fovy, T aspect, T n, T f);
+			void	SetOrtho(T left, T right, T bottom, T top, T n, T f);
+			void	setLookAt(math::vec3<double> eye, math::vec3<double> center, math::vec3<double> up);
+
+			void	SetReflection(plane<T> const &);
 			void	print();
 			
 			//set parts of the matrix
@@ -101,16 +101,16 @@ namespace math {
 			void	SetRotationPartEuler(double const, double const, double const);
 			void	SetRotationPartEuler(vec3<double> const & rotations);
 			
-			//cast to pointer to a (float *) for glGetFloatv etc
-			operator float* () const {return (float*) this;}
-			operator const float* () const {return (const float*) this;}
+			//cast to pointer to a (T *) for glGetFloatv etc
+			operator T* () const {return (T*) this;}
+			operator const T* () const {return (const T*) this;}
 
 			//member variables
-			float entries[16];
+			//T entries[16];
 	};
 
-	mat44	perspective(float fovy, float aspect, float zn, float zf);
-	mat44	lookat(math::vec3<double> eye, math::vec3<double> center, math::vec3<double> up);
+	//mat44	perspective(T fovy, T aspect, T zn, T zf);
+	//mat44	lookat(math::vec3<double> eye, math::vec3<double> center, math::vec3<double> up);
 
 }
 
