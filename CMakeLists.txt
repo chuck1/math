@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.6)
 
 project(math)
 
-find_package(PHYSX)
+find_package(PhysX)
 if(${PHYSX_LIBRARIES})
 	add_definitions(-DPHYSX)
 endif()
