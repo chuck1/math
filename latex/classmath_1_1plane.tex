@@ -1,5 +1,5 @@
 \hypertarget{classmath_1_1plane}{
-\section{math::plane Class Reference}
+\section{math::plane$<$ T $>$ Class Template Reference}
 \label{classmath_1_1plane}\index{math::plane@{math::plane}}
 }
 \subsection*{Public Types}
@@ -13,107 +13,123 @@ enum \{ {\bfseries POINT\_\-ON\_\-PLANE} = 0,
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classmath_1_1plane_a256635e3ae08a3665d2ef9d0e9ea6c45}{
-{\bfseries plane} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ newNormal, float newIntercept)}
-\label{classmath_1_1plane_a256635e3ae08a3665d2ef9d0e9ea6c45}
+\hypertarget{classmath_1_1plane_abeb813bf61a05280b9249a04f52f2d35}{
+void {\bfseries setFromPoints} (const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ \&p0, const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ \&p1, const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ \&p2)}
+\label{classmath_1_1plane_abeb813bf61a05280b9249a04f52f2d35}
 
 \item 
-\hypertarget{classmath_1_1plane_a25c3bf9902eaff31c6b5bbf9a1b3322a}{
-{\bfseries plane} (const \hyperlink{classmath_1_1plane}{plane} \&rhs)}
-\label{classmath_1_1plane_a25c3bf9902eaff31c6b5bbf9a1b3322a}
+\hypertarget{classmath_1_1plane_a0a5b678ea4760a4ce66d74ffa4daa1b3}{
+void {\bfseries normalize} ()}
+\label{classmath_1_1plane_a0a5b678ea4760a4ce66d74ffa4daa1b3}
 
 \item 
-\hypertarget{classmath_1_1plane_a6ae1048272879cd5f747a7b76807e2e4}{
+\hypertarget{classmath_1_1plane_a1ceb4cac52134338f0676d8ef673cd25}{
+bool {\bfseries Intersect3} (\hyperlink{classmath_1_1plane}{math::plane}$<$ T $>$ const \&p2, \hyperlink{classmath_1_1plane}{math::plane}$<$ T $>$ const \&p3, \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ \&result)}
+\label{classmath_1_1plane_a1ceb4cac52134338f0676d8ef673cd25}
+
+\item 
+\hypertarget{classmath_1_1plane_a080c90391f1bbbcb0d6dd5f38f93dcef}{
+float {\bfseries GetDistance} (const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ \&point) const }
+\label{classmath_1_1plane_a080c90391f1bbbcb0d6dd5f38f93dcef}
+
+\item 
+\hypertarget{classmath_1_1plane_a8aaf4209abcb40bfb26d0758ca75b1dc}{
+int {\bfseries ClassifyPoint} (const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ \&point) const }
+\label{classmath_1_1plane_a8aaf4209abcb40bfb26d0758ca75b1dc}
+
+\item 
+\hypertarget{classmath_1_1plane_ad27986efeef8b0e84e49cc9d36d4df3e}{
+\hyperlink{classmath_1_1plane}{math::plane}$<$ T $>$ {\bfseries lerp} (\hyperlink{classmath_1_1plane}{math::plane}$<$ T $>$ const \&p2, float factor)}
+\label{classmath_1_1plane_ad27986efeef8b0e84e49cc9d36d4df3e}
+
+\item 
+\hypertarget{classmath_1_1plane_a528891f0e9a349866fea78db396286d8}{
+bool {\bfseries operator==} (\hyperlink{classmath_1_1plane}{math::plane}$<$ T $>$ const \&rhs) const }
+\label{classmath_1_1plane_a528891f0e9a349866fea78db396286d8}
+
+\item 
+\hypertarget{classmath_1_1plane_ae6777af8e7215c0bffa0d2f5ac327440}{
 void {\bfseries SetNormal} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&rhs)}
-\label{classmath_1_1plane_a6ae1048272879cd5f747a7b76807e2e4}
+\label{classmath_1_1plane_ae6777af8e7215c0bffa0d2f5ac327440}
 
 \item 
-\hypertarget{classmath_1_1plane_a7ed123f20808367fbeda9e75eaaa6766}{
+\hypertarget{classmath_1_1plane_a09293a1282b9165ae9fc65dde203472a}{
 void {\bfseries SetIntercept} (float newIntercept)}
-\label{classmath_1_1plane_a7ed123f20808367fbeda9e75eaaa6766}
+\label{classmath_1_1plane_a09293a1282b9165ae9fc65dde203472a}
 
 \item 
-\hypertarget{classmath_1_1plane_a8154d69fd029b14b49ca7d002a60e410}{
+\hypertarget{classmath_1_1plane_ac503982275c9e6d9d18291e9a9ff0cd3}{
 void {\bfseries SetFromPoints} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&p0, const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&p1, const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&p2)}
-\label{classmath_1_1plane_a8154d69fd029b14b49ca7d002a60e410}
+\label{classmath_1_1plane_ac503982275c9e6d9d18291e9a9ff0cd3}
 
 \item 
-\hypertarget{classmath_1_1plane_ad4e5835c002fa75c1f573d9a069ba466}{
+\hypertarget{classmath_1_1plane_a571118f6e3ae4af82eed83bdb4941704}{
 void {\bfseries CalculateIntercept} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&pointOnPlane)}
-\label{classmath_1_1plane_ad4e5835c002fa75c1f573d9a069ba466}
+\label{classmath_1_1plane_a571118f6e3ae4af82eed83bdb4941704}
 
 \item 
-\hypertarget{classmath_1_1plane_afea36d03496c252a22b98506d33117df}{
-void {\bfseries Normalize} (void)}
-\label{classmath_1_1plane_afea36d03496c252a22b98506d33117df}
+\hypertarget{classmath_1_1plane_a5ef9af94aece772731e1e00ece1002e7}{
+\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries getNormal} ()}
+\label{classmath_1_1plane_a5ef9af94aece772731e1e00ece1002e7}
 
 \item 
-\hypertarget{classmath_1_1plane_ae702f3a39206840b4ebc56e0fa855957}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries GetNormal} ()}
-\label{classmath_1_1plane_ae702f3a39206840b4ebc56e0fa855957}
+\hypertarget{classmath_1_1plane_a2353042f0f0be40568e351449491adeb}{
+float {\bfseries getIntercept} ()}
+\label{classmath_1_1plane_a2353042f0f0be40568e351449491adeb}
 
 \item 
-\hypertarget{classmath_1_1plane_ac8127f9e5b508ba2c51a3422122c2511}{
-float {\bfseries GetIntercept} ()}
-\label{classmath_1_1plane_ac8127f9e5b508ba2c51a3422122c2511}
-
-\item 
-\hypertarget{classmath_1_1plane_a92792c99386ff63af26afc04a2b153cf}{
-bool {\bfseries Intersect3} (const \hyperlink{classmath_1_1plane}{plane} \&p2, const \hyperlink{classmath_1_1plane}{plane} \&p3, \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&result)}
-\label{classmath_1_1plane_a92792c99386ff63af26afc04a2b153cf}
-
-\item 
-\hypertarget{classmath_1_1plane_af9691fa498bdabbec6cccf27bc53215d}{
-float {\bfseries GetDistance} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&point) const }
-\label{classmath_1_1plane_af9691fa498bdabbec6cccf27bc53215d}
-
-\item 
-\hypertarget{classmath_1_1plane_ab90dcc5fdb973b1a5115d48fb3cee00a}{
-int {\bfseries ClassifyPoint} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&point) const }
-\label{classmath_1_1plane_ab90dcc5fdb973b1a5115d48fb3cee00a}
-
-\item 
-\hypertarget{classmath_1_1plane_affa8cd87ad8b3da63511d526fd81a1a6}{
-\hyperlink{classmath_1_1plane}{plane} {\bfseries lerp} (const \hyperlink{classmath_1_1plane}{plane} \&p2, float factor)}
-\label{classmath_1_1plane_affa8cd87ad8b3da63511d526fd81a1a6}
-
-\item 
-\hypertarget{classmath_1_1plane_ac5c24435016da495c52e9a7ca9cc1f08}{
-bool {\bfseries operator==} (const \hyperlink{classmath_1_1plane}{plane} \&rhs) const }
-\label{classmath_1_1plane_ac5c24435016da495c52e9a7ca9cc1f08}
-
-\item 
-\hypertarget{classmath_1_1plane_a45108625f3dc606b7df31386cce2f1c2}{
+\hypertarget{classmath_1_1plane_af253279846f5efc0669db9a1b97114d1}{
 bool {\bfseries operator!=} (const \hyperlink{classmath_1_1plane}{plane} \&rhs) const }
-\label{classmath_1_1plane_a45108625f3dc606b7df31386cce2f1c2}
+\label{classmath_1_1plane_af253279846f5efc0669db9a1b97114d1}
 
 \item 
-\hypertarget{classmath_1_1plane_a4c9f64519742f6d7d0370a62101733c4}{
+\hypertarget{classmath_1_1plane_a6dcd61c1df10916b96859f81c4bd75ec}{
 \hyperlink{classmath_1_1plane}{plane} {\bfseries operator-\/} (void) const }
-\label{classmath_1_1plane_a4c9f64519742f6d7d0370a62101733c4}
+\label{classmath_1_1plane_a6dcd61c1df10916b96859f81c4bd75ec}
 
 \item 
-\hypertarget{classmath_1_1plane_a57123617c9e3bfaed24cc655205b17ed}{
+\hypertarget{classmath_1_1plane_a2397ab977d98ee414158194e4fb34b48}{
 \hyperlink{classmath_1_1plane}{plane} {\bfseries operator+} (void) const }
-\label{classmath_1_1plane_a57123617c9e3bfaed24cc655205b17ed}
+\label{classmath_1_1plane_a2397ab977d98ee414158194e4fb34b48}
 
 \end{DoxyCompactItemize}
+\begin{Indent}{\bf Constructor}\par
+{\em \label{_amgrp678d0a4421b60dc59999ac02837496a6}
+ }\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmath_1_1plane_abb3a4ec5475d7a160aa3422c97f83573}{
+{\bfseries plane} ()}
+\label{classmath_1_1plane_abb3a4ec5475d7a160aa3422c97f83573}
+
+\item 
+\hypertarget{classmath_1_1plane_ab52bd2dbe10818e2781dc192368e658e}{
+{\bfseries plane} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ newNormal, float newIntercept)}
+\label{classmath_1_1plane_ab52bd2dbe10818e2781dc192368e658e}
+
+\item 
+\hypertarget{classmath_1_1plane_a06d11b6eafb0002ae6cc077c96163b37}{
+{\bfseries plane} (const \hyperlink{classmath_1_1plane}{plane} \&rhs)}
+\label{classmath_1_1plane_a06d11b6eafb0002ae6cc077c96163b37}
+
+\end{DoxyCompactItemize}
+\end{Indent}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classmath_1_1plane_a129355068d9f4936770d76489205d446}{
+\hypertarget{classmath_1_1plane_a15a64c66b8d4c5edc9fa3f7669d35724}{
 \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries n}}
-\label{classmath_1_1plane_a129355068d9f4936770d76489205d446}
+\label{classmath_1_1plane_a15a64c66b8d4c5edc9fa3f7669d35724}
 
 \item 
-\hypertarget{classmath_1_1plane_a20a1f2d1caa4d5cb3d81f779bb4572b0}{
+\hypertarget{classmath_1_1plane_ab1b3df92d98361c35e540887f0be9828}{
 float {\bfseries d}}
-\label{classmath_1_1plane_a20a1f2d1caa4d5cb3d81f779bb4572b0}
+\label{classmath_1_1plane_ab1b3df92d98361c35e540887f0be9828}
 
 \end{DoxyCompactItemize}
+\subsubsection*{template$<$typename T$>$ class math::plane$<$ T $>$}
 
 
-The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
 \item 
-src/math/plane.hpp\item 
-src/math/plane.cpp\end{DoxyCompactItemize}
+src/math/plane.hpp\end{DoxyCompactItemize}

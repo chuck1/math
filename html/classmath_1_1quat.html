@@ -56,10 +56,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (double nx, double ny, double nz, double nw)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab60827cbd63dbc074028aa8efb4c1d35"></a><!-- doxytag: member="math::quat::quat" ref="ab60827cbd63dbc074028aa8efb4c1d35" args="(double angleRadians, vec3&lt; double &gt; const &amp;axis)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (double angleRadians, <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; const &amp;axis)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50c3ea09c2b0fab1ef18bb4f8ba0046f"></a><!-- doxytag: member="math::quat::quat" ref="a50c3ea09c2b0fab1ef18bb4f8ba0046f" args="(quat const &amp;v)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (<a class="el" href="classmath_1_1quat.html">quat</a> const &amp;v)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cd99ea6efabba81b98a0fbd2c4e2807"></a><!-- doxytag: member="math::quat::quat" ref="a6cd99ea6efabba81b98a0fbd2c4e2807" args="(vec3&lt; T &gt; const &amp;, vec3&lt; double &gt; const &amp;)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; const &amp;, <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; const &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89e584ce343bd15a132f91568034ace9"></a><!-- doxytag: member="math::quat::quat" ref="a89e584ce343bd15a132f91568034ace9" args="(math::quat&lt; T &gt; const &amp;v)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; const &amp;v)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a583ca69f15e7c569370d9ecffd157f08"></a><!-- doxytag: member="math::quat::quat" ref="a583ca69f15e7c569370d9ecffd157f08" args="(math::vec3&lt; double &gt; const &amp;u, math::vec3&lt; double &gt; const &amp;v)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; const &amp;u, <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; const &amp;v)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0bfec26e0c12bebd828a6a0b22e8607"></a><!-- doxytag: member="math::quat::quat" ref="aa0bfec26e0c12bebd828a6a0b22e8607" args="(mat44&lt; T &gt; const &amp;m)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (<a class="el" href="classmath_1_1mat44.html">mat44</a>&lt; T &gt; const &amp;m)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a717257da12352869f790b9917c2b702b"></a><!-- doxytag: member="math::quat::loadZero" ref="a717257da12352869f790b9917c2b702b" args="()" -->
@@ -67,85 +67,102 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>loadZero</b> ()</td><
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affa82799e59b2c74a7c9f1dd460ed6f9"></a><!-- doxytag: member="math::quat::isFinite" ref="affa82799e59b2c74a7c9f1dd460ed6f9" args="() const " -->
 bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isFinite</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2df407abaadb9e9ac174bc7cca1894f6"></a><!-- doxytag: member="math::quat::isUnit" ref="a2df407abaadb9e9ac174bc7cca1894f6" args="() const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmath_1_1quat.html#a2df407abaadb9e9ac174bc7cca1894f6">isUnit</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">returns true if finite and magnitude is close to unit <br/></td></tr>
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isUnit</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab749bbff5a04904e565f1c2645ea9721"></a><!-- doxytag: member="math::quat::isSane" ref="ab749bbff5a04904e565f1c2645ea9721" args="() const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmath_1_1quat.html#ab749bbff5a04904e565f1c2645ea9721">isSane</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">returns true if finite and magnitude is reasonably close to unit to allow for some accumulation of error vs isValid <br/></td></tr>
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isSane</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01c039d3a964b91799b77dd7fda830cb"></a><!-- doxytag: member="math::quat::toRadiansAndUnitAxis" ref="a01c039d3a964b91799b77dd7fda830cb" args="(double &amp;angle, vec3&lt; double &gt; &amp;axis) const " -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmath_1_1quat.html#a01c039d3a964b91799b77dd7fda830cb">toRadiansAndUnitAxis</a> (double &amp;angle, <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;axis) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">converts this quaternion to angle-axis representation <br/></td></tr>
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>toRadiansAndUnitAxis</b> (double &amp;angle, <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;axis) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c9eda8c3ebfc84060e5bf1af7f69c02"></a><!-- doxytag: member="math::quat::getAngle" ref="a7c9eda8c3ebfc84060e5bf1af7f69c02" args="() const " -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getAngle</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6841f849682401ee401b43a1bc2abed"></a><!-- doxytag: member="math::quat::getAngle" ref="aa6841f849682401ee401b43a1bc2abed" args="(const quat &amp;q) const " -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getAngle</b> (const <a class="el" href="classmath_1_1quat.html">quat</a> &amp;q) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add88aed99af3a2c89e216cf8391b2aff"></a><!-- doxytag: member="math::quat::getAngle" ref="add88aed99af3a2c89e216cf8391b2aff" args="(const math::quat&lt; T &gt; &amp;q) const " -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getAngle</b> (const <a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;q) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab10f6a19dac573de28ef8821fb285abd"></a><!-- doxytag: member="math::quat::magnitudeSquared" ref="ab10f6a19dac573de28ef8821fb285abd" args="() const " -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><b>magnitudeSquared</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54a9efdbff72391b267f040a1f363770"></a><!-- doxytag: member="math::quat::dot" ref="a54a9efdbff72391b267f040a1f363770" args="(const quat &amp;v) const " -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>dot</b> (const <a class="el" href="classmath_1_1quat.html">quat</a> &amp;v) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd8a29ba111f64abdcdad425516375bc"></a><!-- doxytag: member="math::quat::getNormalized" ref="acd8a29ba111f64abdcdad425516375bc" args="() const " -->
-<a class="el" href="classmath_1_1quat.html">quat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>getNormalized</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00831f313252fcac1ad596fa43c78625"></a><!-- doxytag: member="math::quat::dot" ref="a00831f313252fcac1ad596fa43c78625" args="(const math::quat&lt; T &gt; &amp;v) const " -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><b>dot</b> (const <a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;v) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2833be37ce750df20814786dc7923f0e"></a><!-- doxytag: member="math::quat::getNormalized" ref="a2833be37ce750df20814786dc7923f0e" args="() const " -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getNormalized</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70506b324aff1df7164d0c41189efc98"></a><!-- doxytag: member="math::quat::magnitude" ref="a70506b324aff1df7164d0c41189efc98" args="() const " -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><b>magnitude</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cffb626dac428532625923ea4e278ec"></a><!-- doxytag: member="math::quat::normalize" ref="a7cffb626dac428532625923ea4e278ec" args="()" -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><b>normalize</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd47aa399cfcc2498d18f4358b9b9cd5"></a><!-- doxytag: member="math::quat::getConjugate" ref="abd47aa399cfcc2498d18f4358b9b9cd5" args="() const " -->
-<a class="el" href="classmath_1_1quat.html">quat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>getConjugate</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a11490065a921ca4d2afa562ba74094"></a><!-- doxytag: member="math::quat::getImaginaryPart" ref="a5a11490065a921ca4d2afa562ba74094" args="() const " -->
-<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getImaginaryPart</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5998124ba92c68161992c53a465ef6b2"></a><!-- doxytag: member="math::quat::getBasisVector0" ref="a5998124ba92c68161992c53a465ef6b2" args="() const " -->
-<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getBasisVector0</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6f43651196f13664ad7dfbb0c10b9db"></a><!-- doxytag: member="math::quat::getBasisVector1" ref="ac6f43651196f13664ad7dfbb0c10b9db" args="() const " -->
-<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getBasisVector1</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03654b382e157ea5cd3760627cdb4aa8"></a><!-- doxytag: member="math::quat::getBasisVector2" ref="a03654b382e157ea5cd3760627cdb4aa8" args="() const " -->
-<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getBasisVector2</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7ffef38f419abe685da3aaed60955df"></a><!-- doxytag: member="math::quat::rotate" ref="ab7ffef38f419abe685da3aaed60955df" args="(const vec3&lt; double &gt; &amp;v) const " -->
-const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>rotate</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;v) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a353cb34c614b52458b01e9c6f670a23b"></a><!-- doxytag: member="math::quat::rotateInv" ref="a353cb34c614b52458b01e9c6f670a23b" args="(const vec3&lt; double &gt; &amp;v) const " -->
-const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>rotateInv</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;v) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48e1ed6e39b26ae68cb974c9a988a48a"></a><!-- doxytag: member="math::quat::operator=" ref="a48e1ed6e39b26ae68cb974c9a988a48a" args="(const quat &amp;p)" -->
-<a class="el" href="classmath_1_1quat.html">quat</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classmath_1_1quat.html">quat</a> &amp;p)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad513e1cf94dbf267ca96438b8daab96c"></a><!-- doxytag: member="math::quat::operator*=" ref="ad513e1cf94dbf267ca96438b8daab96c" args="(const quat &amp;q)" -->
-<a class="el" href="classmath_1_1quat.html">quat</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const <a class="el" href="classmath_1_1quat.html">quat</a> &amp;q)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06ce7926b99c59ec5f7a76b17fb25afd"></a><!-- doxytag: member="math::quat::operator+=" ref="a06ce7926b99c59ec5f7a76b17fb25afd" args="(const quat &amp;q)" -->
-<a class="el" href="classmath_1_1quat.html">quat</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="classmath_1_1quat.html">quat</a> &amp;q)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b4e165cac4e236d982a6875714d35eb"></a><!-- doxytag: member="math::quat::operator&#45;=" ref="a2b4e165cac4e236d982a6875714d35eb" args="(const quat &amp;q)" -->
-<a class="el" href="classmath_1_1quat.html">quat</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="classmath_1_1quat.html">quat</a> &amp;q)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70a3d5a7c1bbe37b9aad5d37569034a6"></a><!-- doxytag: member="math::quat::operator*=" ref="a70a3d5a7c1bbe37b9aad5d37569034a6" args="(const double s)" -->
-<a class="el" href="classmath_1_1quat.html">quat</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const double s)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5fb9d185a79aa41cfffe113f681be8e"></a><!-- doxytag: member="math::quat::operator*" ref="ae5fb9d185a79aa41cfffe113f681be8e" args="(const quat &amp;q) const " -->
-<a class="el" href="classmath_1_1quat.html">quat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classmath_1_1quat.html">quat</a> &amp;q) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a524b92bd8463f3262d7c8be5e439f3f5"></a><!-- doxytag: member="math::quat::operator+" ref="a524b92bd8463f3262d7c8be5e439f3f5" args="(const quat &amp;q) const " -->
-<a class="el" href="classmath_1_1quat.html">quat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classmath_1_1quat.html">quat</a> &amp;q) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae69bba247036e23346dbf296a51509dc"></a><!-- doxytag: member="math::quat::operator&#45;" ref="ae69bba247036e23346dbf296a51509dc" args="() const " -->
-<a class="el" href="classmath_1_1quat.html">quat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ea9666c97a538cf390c03a3341f80b3"></a><!-- doxytag: member="math::quat::operator&#45;" ref="a9ea9666c97a538cf390c03a3341f80b3" args="(const quat &amp;q) const " -->
-<a class="el" href="classmath_1_1quat.html">quat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classmath_1_1quat.html">quat</a> &amp;q) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ce94da0a070e4fe4841a45a37af6ba6"></a><!-- doxytag: member="math::quat::operator*" ref="a1ce94da0a070e4fe4841a45a37af6ba6" args="(double r) const " -->
-<a class="el" href="classmath_1_1quat.html">quat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (double r) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af52c75ff74b56765f47a81d96dc9aba8"></a><!-- doxytag: member="math::quat::getOmega" ref="af52c75ff74b56765f47a81d96dc9aba8" args="(double dt)" -->
-<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getOmega</b> (double dt)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a615c15b7025a89a806c6234d4df8b0d7"></a><!-- doxytag: member="math::quat::getConjugate" ref="a615c15b7025a89a806c6234d4df8b0d7" args="() const " -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getConjugate</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afba077b1b6f2b2e2ff2a8c07f4730e88"></a><!-- doxytag: member="math::quat::getImaginaryPart" ref="afba077b1b6f2b2e2ff2a8c07f4730e88" args="() const " -->
+<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getImaginaryPart</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeec8b1f98358d060cd94bb98ba2b2591"></a><!-- doxytag: member="math::quat::getBasisVector0" ref="aeec8b1f98358d060cd94bb98ba2b2591" args="() const " -->
+<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getBasisVector0</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2325a65c3acf083d03e9aed1822394a8"></a><!-- doxytag: member="math::quat::getBasisVector1" ref="a2325a65c3acf083d03e9aed1822394a8" args="() const " -->
+<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getBasisVector1</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad4d54268923961972cf2e19fdc07d02d"></a><!-- doxytag: member="math::quat::getBasisVector2" ref="ad4d54268923961972cf2e19fdc07d02d" args="() const " -->
+<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getBasisVector2</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae46cd63304b65093ff933fb127478b7f"></a><!-- doxytag: member="math::quat::rotate" ref="ae46cd63304b65093ff933fb127478b7f" args="(const math::vec3&lt; double &gt; &amp;v) const " -->
+const <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>rotate</b> (const <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; &amp;v) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8512dc9b0cbc5932636feff7205d8c82"></a><!-- doxytag: member="math::quat::rotateInv" ref="a8512dc9b0cbc5932636feff7205d8c82" args="(const math::vec3&lt; double &gt; &amp;v) const " -->
+const <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>rotateInv</b> (const <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; &amp;v) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4700bbf090d1e16d0bd159cca9ed9165"></a><!-- doxytag: member="math::quat::operator=" ref="a4700bbf090d1e16d0bd159cca9ed9165" args="(const math::quat&lt; T &gt; &amp;p)" -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;p)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6626f36aa7619c604dff07d86474e6cb"></a><!-- doxytag: member="math::quat::operator*=" ref="a6626f36aa7619c604dff07d86474e6cb" args="(const math::quat&lt; T &gt; &amp;q)" -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const <a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;q)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9add363c0e1a518cf8fa6c27cabbc13"></a><!-- doxytag: member="math::quat::operator+=" ref="af9add363c0e1a518cf8fa6c27cabbc13" args="(const math::quat&lt; T &gt; &amp;q)" -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;q)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a144a751de05d7e3856a4c0f3d0a8a4de"></a><!-- doxytag: member="math::quat::operator&#45;=" ref="a144a751de05d7e3856a4c0f3d0a8a4de" args="(const math::quat&lt; T &gt; &amp;q)" -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;q)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a860283f2b49380f0479b939dfcb04543"></a><!-- doxytag: member="math::quat::operator*=" ref="a860283f2b49380f0479b939dfcb04543" args="(const double s)" -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const double s)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae56c2a245dce77fe578551c28072a863"></a><!-- doxytag: member="math::quat::operator*" ref="ae56c2a245dce77fe578551c28072a863" args="(const math::quat&lt; T &gt; &amp;q) const " -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;q) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5e1bc730fc8d6176f3cb80c81eea952"></a><!-- doxytag: member="math::quat::operator+" ref="af5e1bc730fc8d6176f3cb80c81eea952" args="(const math::quat&lt; T &gt; &amp;q) const " -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;q) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2bcf2f426dcee4c50f0eafb31eeee9f6"></a><!-- doxytag: member="math::quat::operator&#45;" ref="a2bcf2f426dcee4c50f0eafb31eeee9f6" args="() const " -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac06bb24f8158fcca13605ac497c4b2f6"></a><!-- doxytag: member="math::quat::operator&#45;" ref="ac06bb24f8158fcca13605ac497c4b2f6" args="(const math::quat&lt; T &gt; &amp;q) const " -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; &amp;q) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6214d28d9c15963acbb9cc7513a682a5"></a><!-- doxytag: member="math::quat::operator*" ref="a6214d28d9c15963acbb9cc7513a682a5" args="(double r) const " -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (double r) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64e81f63f89c4b43c981e218ce808fd5"></a><!-- doxytag: member="math::quat::createIdentity" ref="a64e81f63f89c4b43c981e218ce808fd5" args="()" -->
+<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>createIdentity</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3bd342a3da3dd15fa2fc9b183a2c44e3"></a><!-- doxytag: member="math::quat::print" ref="a3bd342a3da3dd15fa2fc9b183a2c44e3" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaff302277219c07a8231956ae321ef79"></a><!-- doxytag: member="math::quat::createIdentity" ref="aaff302277219c07a8231956ae321ef79" args="()" -->
-static <a class="el" href="classmath_1_1quat.html">quat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>createIdentity</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae314fa8c4ac586c9048e10e804c318f1"></a><!-- doxytag: member="math::quat::getOmega" ref="ae314fa8c4ac586c9048e10e804c318f1" args="(double dt)" -->
+<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getOmega</b> (double dt)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec2acb1b693c9be5e6ba4918284aa0b5"></a><!-- doxytag: member="math::quat::quat" ref="aec2acb1b693c9be5e6ba4918284aa0b5" args="(T nx, T ny, T nz, T nw)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (T nx, T ny, T nz, T nw)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a550f7a8cec2250fc8c40d7d3879cb07c"></a><!-- doxytag: member="math::quat::quat" ref="a550f7a8cec2250fc8c40d7d3879cb07c" args="(T angleRadians, vec3&lt; T &gt; const &amp;axis)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (T angleRadians, <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; const &amp;axis)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a17ae805087d52d28ce24aeb5c0c2e0"></a><!-- doxytag: member="math::quat::quat" ref="a5a17ae805087d52d28ce24aeb5c0c2e0" args="(vec3&lt; T &gt; const &amp;, vec3&lt; T &gt; const &amp;)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>quat</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; const &amp;, <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; const &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81ac4c1bf899e340d2c53856902aab26"></a><!-- doxytag: member="math::quat::slerp" ref="a81ac4c1bf899e340d2c53856902aab26" args="(math::quat&lt; T &gt; q1, float u)" -->
+<a class="el" href="classmath_1_1quat.html">quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmath_1_1quat.html#a81ac4c1bf899e340d2c53856902aab26">slerp</a> (<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; q1, float u)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">returns true if finite and magnitude is reasonably close to unit to allow for some accumulation of error vs isValid <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32e61ba1bbbdc8d836391297ea8d4d4a"></a><!-- doxytag: member="math::quat::toRadiansAndUnitAxis" ref="a32e61ba1bbbdc8d836391297ea8d4d4a" args="(T &amp;angle, vec3&lt; T &gt; &amp;axis) const " -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmath_1_1quat.html#a32e61ba1bbbdc8d836391297ea8d4d4a">toRadiansAndUnitAxis</a> (T &amp;angle, <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;axis) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">converts this quaternion to angle-axis representation <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2435a22376cf5c74aa3e9bf45cbfb0be"></a><!-- doxytag: member="math::quat::rotate" ref="a2435a22376cf5c74aa3e9bf45cbfb0be" args="(const vec3&lt; T &gt; &amp;v) const " -->
+const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>rotate</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;v) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8945faa17ebc4eb51175015336fb090"></a><!-- doxytag: member="math::quat::rotateInv" ref="ad8945faa17ebc4eb51175015336fb090" args="(const vec3&lt; T &gt; &amp;v) const " -->
+const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>rotateInv</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;v) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4000ef6a410644de9ceb2173ecec0c10"></a><!-- doxytag: member="math::quat::operator*=" ref="a4000ef6a410644de9ceb2173ecec0c10" args="(const T s)" -->
+<a class="el" href="classmath_1_1quat.html">quat</a>&lt; T &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const T s)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2d729a5ae4a0f174ca48c380ec0b3a9"></a><!-- doxytag: member="math::quat::operator*" ref="ac2d729a5ae4a0f174ca48c380ec0b3a9" args="(T r) const " -->
+<a class="el" href="classmath_1_1quat.html">quat</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (T r) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86bc81aaca830d5f1b48abf3b6ea2d65"></a><!-- doxytag: member="math::quat::getOmega" ref="a86bc81aaca830d5f1b48abf3b6ea2d65" args="(T dt)" -->
+<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getOmega</b> (T dt)</td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac697346ca2f6990c351bec68311230e2"></a><!-- doxytag: member="math::quat::w" ref="ac697346ca2f6990c351bec68311230e2" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>w</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb5b48747708a7d84fcf70f839921111"></a><!-- doxytag: member="math::quat::x" ref="afb5b48747708a7d84fcf70f839921111" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fa879fe9d7900cd1e0f16c985b20c6e"></a><!-- doxytag: member="math::quat::y" ref="a7fa879fe9d7900cd1e0f16c985b20c6e" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80d9762c9a32939a1196086cccae7400"></a><!-- doxytag: member="math::quat::z" ref="a80d9762c9a32939a1196086cccae7400" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>z</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3360a02faef7fc2d651e869fb93a5da3"></a><!-- doxytag: member="math::quat::w" ref="a3360a02faef7fc2d651e869fb93a5da3" args="" -->
+T&nbsp;</td><td class="memItemRight" valign="bottom"><b>w</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0499c45096e2d9959223f8ea40fdf89"></a><!-- doxytag: member="math::quat::x" ref="ad0499c45096e2d9959223f8ea40fdf89" args="" -->
+T&nbsp;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53b91f2b4131a20e371481d820977654"></a><!-- doxytag: member="math::quat::y" ref="a53b91f2b4131a20e371481d820977654" args="" -->
+T&nbsp;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa55d4e696355a19234af1c557840f75"></a><!-- doxytag: member="math::quat::z" ref="aaa55d4e696355a19234af1c557840f75" args="" -->
+T&nbsp;</td><td class="memItemRight" valign="bottom"><b>z</b></td></tr>
 </table>
 <h3>template&lt;typename T&gt;<br/>
  class math::quat&lt; T &gt;</h3>
 
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/math/<a class="el" href="quat_8hpp_source.html">quat.hpp</a></li>
-<li>src/math/quat.cpp</li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -162,7 +179,7 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><b>z</b></td></tr>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on 23 Apr 2014 for math by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on 24 Apr 2014 for math by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

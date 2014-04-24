@@ -55,38 +55,98 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00012"></a>00012 <span class="keyword">namespace </span>math {
 <a name="l00013"></a><a class="code" href="classmath_1_1transform.html">00013</a>         <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class </span><a class="code" href="classmath_1_1transform.html">transform</a> {
 <a name="l00014"></a>00014                 <span class="keyword">public</span>:
-<a name="l00018"></a>00018                         <a class="code" href="classmath_1_1transform.html">transform</a>(); 
-<a name="l00019"></a>00019                         <a class="code" href="classmath_1_1transform.html">transform</a>(<a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a> <span class="keyword">const</span> &amp; np);
-<a name="l00020"></a>00020                         <a class="code" href="classmath_1_1transform.html">transform</a>(<a class="code" href="classmath_1_1quat.html">quat&lt;T&gt;</a> <span class="keyword">const</span> &amp; nq);
-<a name="l00021"></a>00021                         <a class="code" href="classmath_1_1transform.html">transform</a>(<a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a><span class="keyword">const</span> &amp; np, <a class="code" href="classmath_1_1quat.html">quat&lt;T&gt;</a> <span class="keyword">const</span> &amp; nq);
-<a name="l00022"></a>00022                         <a class="code" href="classmath_1_1transform.html">transform</a>(<a class="code" href="classmath_1_1mat44.html">mat44&lt;T&gt;</a> <span class="keyword">const</span> &amp; m);
-<a name="l00025"></a>00025                         <a class="code" href="classmath_1_1transform.html">transform</a>       operator*(<span class="keyword">const</span> <a class="code" href="classmath_1_1transform.html">transform</a>&amp; x) <span class="keyword">const</span>;
-<a name="l00026"></a>00026                         <a class="code" href="classmath_1_1transform.html">transform</a>       getInverse() <span class="keyword">const</span>;
-<a name="l00027"></a>00027                         <a class="code" href="classmath_1_1vec3.html">vec3&lt;double&gt;</a>            trans(<span class="keyword">const</span> <a class="code" href="classmath_1_1vec3.html">vec3&lt;double&gt;</a>&amp; input) <span class="keyword">const</span>;
-<a name="l00028"></a>00028                         <a class="code" href="classmath_1_1vec3.html">vec3&lt;double&gt;</a>            transInv(<span class="keyword">const</span> <a class="code" href="classmath_1_1vec3.html">vec3&lt;double&gt;</a>&amp; input) <span class="keyword">const</span>;
-<a name="l00029"></a>00029                         <a class="code" href="classmath_1_1vec3.html">vec3&lt;double&gt;</a>            rotate(<span class="keyword">const</span> <a class="code" href="classmath_1_1vec3.html">vec3&lt;double&gt;</a>&amp; input) <span class="keyword">const</span>;
-<a name="l00030"></a>00030                         <a class="code" href="classmath_1_1vec3.html">vec3&lt;double&gt;</a>            rotateInv(<span class="keyword">const</span> <a class="code" href="classmath_1_1vec3.html">vec3&lt;double&gt;</a>&amp; input) <span class="keyword">const</span>;
-<a name="l00031"></a>00031                         <a class="code" href="classmath_1_1transform.html">transform</a>       trans(<span class="keyword">const</span> <a class="code" href="classmath_1_1transform.html">transform</a>&amp; src) <span class="keyword">const</span>;
-<a name="l00032"></a>00032                         <span class="keywordtype">bool</span>            isValid() <span class="keyword">const</span>;
-<a name="l00033"></a>00033                         <span class="keywordtype">bool</span>            isSane() <span class="keyword">const</span>;
-<a name="l00034"></a>00034                         <span class="keywordtype">bool</span>            isFinite() <span class="keyword">const</span>;
-<a name="l00035"></a>00035                         <a class="code" href="classmath_1_1transform.html">transform</a>       transformInv(<span class="keyword">const</span> <a class="code" href="classmath_1_1transform.html">transform</a>&amp; src) <span class="keyword">const</span>;
-<a name="l00036"></a>00036                         <span class="keyword">static</span>          <a class="code" href="classmath_1_1transform.html">transform</a> createIdentity();
-<a name="l00040"></a>00040                         <a class="code" href="classmath_1_1plane.html">plane&lt;T&gt;</a>        trans(<a class="code" href="classmath_1_1plane.html">plane&lt;T&gt;</a> <span class="keyword">const</span> &amp; <a class="code" href="classmath_1_1plane.html">plane</a>) <span class="keyword">const</span>;
-<a name="l00041"></a>00041                         <a class="code" href="classmath_1_1plane.html">plane&lt;T&gt;</a>        inverseTransform(<a class="code" href="classmath_1_1plane.html">plane&lt;T&gt;</a> <span class="keyword">const</span> &amp; plane) <span class="keyword">const</span>;
-<a name="l00044"></a>00044                         <a class="code" href="classmath_1_1transform.html">transform</a>       getNormalized() <span class="keyword">const</span>;
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="preprocessor">#ifdef PHYSX</span>
-<a name="l00047"></a>00047 <span class="preprocessor"></span>                        operator physx::PxTransform() <span class="keyword">const</span>;
-<a name="l00048"></a>00048                         <a class="code" href="classmath_1_1transform.html">transform</a>&amp;      operator=(physx::PxTransform <span class="keyword">const</span> &amp;);
-<a name="l00049"></a>00049 <span class="preprocessor">#endif</span>
-<a name="l00050"></a>00050 <span class="preprocessor"></span>
-<a name="l00051"></a>00051                         <a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a>         p;
-<a name="l00052"></a>00052                         <a class="code" href="classmath_1_1quat.html">quat&lt;T&gt;</a>         q;
-<a name="l00053"></a>00053         };
-<a name="l00054"></a>00054 }
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="preprocessor">#endif</span>
+<a name="l00018"></a>00018                         <a class="code" href="classmath_1_1transform.html">transform</a>(): p(0, 0, 0), q(1, 0, 0, 0) {}
+<a name="l00019"></a>00019                         <a class="code" href="classmath_1_1transform.html">transform</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a>&amp; np): p(np), q(0, 0, 0, 1) {}
+<a name="l00020"></a>00020                         <a class="code" href="classmath_1_1transform.html">transform</a>(<a class="code" href="classmath_1_1quat.html">quat&lt;T&gt;</a> <span class="keyword">const</span> &amp; nq): p(0, 0, 0), q(nq) {
+<a name="l00021"></a>00021                                 assert(nq.isSane());
+<a name="l00022"></a>00022                         }
+<a name="l00023"></a>00023                         <a class="code" href="classmath_1_1transform.html">transform</a>(<a class="code" href="classmath_1_1vec3.html">math::vec3&lt;T&gt;</a> <span class="keyword">const</span> &amp; p0, <a class="code" href="classmath_1_1quat.html">math::quat&lt;T&gt;</a> <span class="keyword">const</span> &amp; q0): p(p0), q(q0) {
+<a name="l00024"></a>00024                                 <span class="keywordflow">if</span>(!q.isSane()) {
+<a name="l00025"></a>00025                                         q = <a class="code" href="classmath_1_1quat.html">quat&lt;T&gt;</a>();
+<a name="l00026"></a>00026                                 }
+<a name="l00027"></a>00027                         }
+<a name="l00028"></a>00028                         <a class="code" href="classmath_1_1transform.html">transform</a>(<a class="code" href="classmath_1_1mat44.html">mat44&lt;T&gt;</a> <span class="keyword">const</span> &amp; m)
+<a name="l00029"></a>00029                         {
+<a name="l00030"></a>00030                                 p = m.GetTranslatedVector3D(<a class="code" href="classmath_1_1vec3.html">math::vec3&lt;T&gt;</a>(0,0,0));
+<a name="l00031"></a>00031                                 q = <a class="code" href="classmath_1_1quat.html">math::quat&lt;T&gt;</a>(m);
+<a name="l00032"></a>00032                         }
+<a name="l00035"></a>00035                         <a class="code" href="classmath_1_1transform.html">math::transform&lt;T&gt;</a>      operator*(<span class="keyword">const</span> <a class="code" href="classmath_1_1transform.html">transform</a>&amp; x)<span class="keyword"> const </span>{
+<a name="l00036"></a>00036                                 assert(x.isSane());
+<a name="l00037"></a>00037                                 <span class="keywordflow">return</span> <a class="code" href="classmath_1_1transform.html">transform</a>(x);
+<a name="l00038"></a>00038                         }
+<a name="l00039"></a>00039                         <a class="code" href="classmath_1_1transform.html">math::transform&lt;T&gt;</a>      getInverse()<span class="keyword"> const </span>{
+<a name="l00040"></a>00040                                 assert(isFinite());
+<a name="l00041"></a>00041                                 <span class="keywordflow">return</span> <a class="code" href="classmath_1_1transform.html">transform</a>(q.rotateInv(-p),q.getConjugate());
+<a name="l00042"></a>00042                         }
+<a name="l00043"></a>00043 
+<a name="l00047"></a>00047                         <a class="code" href="classmath_1_1vec3.html">math::vec3&lt;T&gt;</a>           trans(<a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a> <span class="keyword">const</span> &amp; input)<span class="keyword"> const </span>{
+<a name="l00048"></a>00048                                 assert(isFinite());
+<a name="l00049"></a>00049                                 <span class="keywordflow">return</span> q.rotate(input) + p;
+<a name="l00050"></a>00050                         }
+<a name="l00051"></a>00051                         <a class="code" href="classmath_1_1vec3.html">math::vec3&lt;T&gt;</a>           transInv(<span class="keyword">const</span> <a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a>&amp; input)<span class="keyword"> const </span>{
+<a name="l00052"></a>00052                                 assert(isFinite());
+<a name="l00053"></a>00053                                 <span class="keywordflow">return</span> q.rotateInv(input-p);
+<a name="l00054"></a>00054                         }
+<a name="l00055"></a>00055                         <a class="code" href="classmath_1_1vec3.html">math::vec3&lt;T&gt;</a>           rotate(<span class="keyword">const</span> <a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a>&amp; input)<span class="keyword"> const </span>{
+<a name="l00056"></a>00056                                 assert(isFinite());
+<a name="l00057"></a>00057                                 <span class="keywordflow">return</span> q.rotate(input);
+<a name="l00058"></a>00058                         }
+<a name="l00059"></a>00059                         <a class="code" href="classmath_1_1vec3.html">math::vec3&lt;T&gt;</a>           rotateInv(<span class="keyword">const</span> <a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a>&amp; input)<span class="keyword"> const </span>{
+<a name="l00060"></a>00060                                 assert(isFinite());
+<a name="l00061"></a>00061                                 <span class="keywordflow">return</span> q.rotateInv(input);
+<a name="l00062"></a>00062                         }
+<a name="l00063"></a>00063                         <a class="code" href="classmath_1_1transform.html">math::transform&lt;T&gt;</a>      trans(<span class="keyword">const</span> <a class="code" href="classmath_1_1transform.html">transform</a>&amp; src)<span class="keyword"> const </span>{
+<a name="l00064"></a>00064                                 assert(src.isSane());
+<a name="l00065"></a>00065                                 assert(isSane());
+<a name="l00066"></a>00066                                 <span class="comment">// src = [srct, srcr] -&gt; [r*srct + t, r*srcr]</span>
+<a name="l00067"></a>00067                                 <span class="keywordflow">return</span> <a class="code" href="classmath_1_1transform.html">transform</a>(q.rotate(src.p) + p, q*src.q);
+<a name="l00068"></a>00068                         }
+<a name="l00069"></a>00069                         <a class="code" href="classmath_1_1transform.html">math::transform&lt;T&gt;</a>      transInv(<a class="code" href="classmath_1_1transform.html">transform</a> <span class="keyword">const</span> &amp; src)<span class="keyword"> const </span>{
+<a name="l00070"></a>00070                                 assert(src.isSane());
+<a name="l00071"></a>00071                                 assert(isFinite());
+<a name="l00072"></a>00072                                 <span class="comment">// src = [srct, srcr] -&gt; [r^-1*(srct-t), r^-1*srcr]</span>
+<a name="l00073"></a>00073                                 <a class="code" href="classmath_1_1quat.html">math::quat&lt;T&gt;</a> qinv = q.getConjugate();
+<a name="l00074"></a>00074                                 <span class="keywordflow">return</span> <a class="code" href="classmath_1_1transform.html">transform</a>(qinv.rotate(src.p - p), qinv*src.q);
+<a name="l00075"></a>00075                         }
+<a name="l00076"></a>00076                         <a class="code" href="classmath_1_1plane.html">math::plane&lt;T&gt;</a>          trans(<a class="code" href="classmath_1_1plane.html">plane&lt;T&gt;</a> <span class="keyword">const</span> &amp; <a class="code" href="classmath_1_1plane.html">plane</a>)<span class="keyword"> const </span>{
+<a name="l00077"></a>00077                                 <a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a> transformedNormal = rotate(plane.n);
+<a name="l00078"></a>00078                                 <span class="keywordflow">return</span> <a class="code" href="classmath_1_1plane.html">math::plane&lt;T&gt;</a>(transformedNormal, plane.d - p.dot(transformedNormal));
+<a name="l00079"></a>00079                         }
+<a name="l00080"></a>00080                         <a class="code" href="classmath_1_1plane.html">math::plane&lt;T&gt;</a>          transInverse(<a class="code" href="classmath_1_1plane.html">math::plane&lt;T&gt;</a> <span class="keyword">const</span> &amp; plane)<span class="keyword"> const </span>{
+<a name="l00081"></a>00081                                 <a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a> transformedNormal = rotateInv(plane.n);
+<a name="l00082"></a>00082                                 <span class="keywordflow">return</span> <a class="code" href="classmath_1_1plane.html">math::plane&lt;T&gt;</a>(transformedNormal, plane.d + p.dot(plane.n));
+<a name="l00083"></a>00083                         }
+<a name="l00086"></a>00086                         <span class="keywordtype">bool</span>                    isValid()<span class="keyword"> const </span>{
+<a name="l00087"></a>00087                                 <span class="keywordflow">return</span> p.IsFinite() &amp;&amp; q.isFinite() &amp;&amp; q.isUnit();
+<a name="l00088"></a>00088                         }
+<a name="l00089"></a>00089                         <span class="keywordtype">bool</span>                    isSane()<span class="keyword"> const </span>{
+<a name="l00090"></a>00090                                 <span class="keywordflow">return</span> isFinite() &amp;&amp; q.isSane();
+<a name="l00091"></a>00091                         }
+<a name="l00092"></a>00092                         <span class="keywordtype">bool</span>                    isFinite()<span class="keyword"> const </span>{
+<a name="l00093"></a>00093                                 <span class="keywordflow">return</span> p.IsFinite() &amp;&amp; q.isFinite();
+<a name="l00094"></a>00094                         }
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096                         <a class="code" href="classmath_1_1transform.html">math::transform&lt;T&gt;</a>      getNormalized()<span class="keyword"> const </span>{
+<a name="l00097"></a>00097                                 <span class="keywordflow">return</span> <a class="code" href="classmath_1_1transform.html">transform</a>(p, q.getNormalized());
+<a name="l00098"></a>00098                         }
+<a name="l00099"></a>00099 <span class="preprocessor">#ifdef PHYSX</span>
+<a name="l00100"></a>00100 <span class="preprocessor"></span>                        operator physx::PxTransform()<span class="keyword"> const </span>{
+<a name="l00101"></a>00101                                 <span class="keywordflow">return</span> physx::PxTransform(p,q);
+<a name="l00102"></a>00102                         }
+<a name="l00103"></a>00103                         <a class="code" href="classmath_1_1transform.html">math::transform&lt;T&gt;</a>&amp;     operator=(physx::PxTransform <span class="keyword">const</span> &amp; rhs) {
+<a name="l00104"></a>00104                                 p = rhs.p;
+<a name="l00105"></a>00105                                 q = rhs.q;
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107                                 <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00108"></a>00108                         }
+<a name="l00109"></a>00109 <span class="preprocessor">#endif</span>
+<a name="l00110"></a>00110 <span class="preprocessor"></span>
+<a name="l00111"></a>00111                         <a class="code" href="classmath_1_1vec3.html">vec3&lt;T&gt;</a>         p;
+<a name="l00112"></a>00112                         <a class="code" href="classmath_1_1quat.html">quat&lt;T&gt;</a>         q;
+<a name="l00113"></a>00113         };
+<a name="l00114"></a>00114 }
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116 <span class="preprocessor">#endif</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -102,7 +162,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on 23 Apr 2014 for math by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on 24 Apr 2014 for math by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

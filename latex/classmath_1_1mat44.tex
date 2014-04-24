@@ -11,9 +11,14 @@ Inheritance diagram for math::mat44$<$ T $>$::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classmath_1_1mat44_a1130dbd465b9d6d47fb5ee2f12ed23f0}{
-{\bfseries mat44} (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)}
-\label{classmath_1_1mat44_a1130dbd465b9d6d47fb5ee2f12ed23f0}
+\hypertarget{classmath_1_1mat44_a0d36a6c15c0245d0aafc83b82b2874a1}{
+{\bfseries mat44} (T e0, T e1, T e2, T e3, T e4, T e5, T e6, T e7, T e8, T e9, T e10, T e11, T e12, T e13, T e14, T e15)}
+\label{classmath_1_1mat44_a0d36a6c15c0245d0aafc83b82b2874a1}
+
+\item 
+\hypertarget{classmath_1_1mat44_ada529375ae13a1165b6db99c93568374}{
+{\bfseries mat44} (const \hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ \&rhs)}
+\label{classmath_1_1mat44_ada529375ae13a1165b6db99c93568374}
 
 \item 
 \hypertarget{classmath_1_1mat44_ad21b555ef817572be46000ece4b87a1a}{
@@ -21,99 +26,84 @@ Inheritance diagram for math::mat44$<$ T $>$::\begin{figure}[H]
 \label{classmath_1_1mat44_ad21b555ef817572be46000ece4b87a1a}
 
 \item 
-\hypertarget{classmath_1_1mat44_a9d291f8d0a8f45914266395a59747c6b}{
-{\bfseries mat44} (const \hyperlink{classmath_1_1mat44}{mat44} \&rhs)}
-\label{classmath_1_1mat44_a9d291f8d0a8f45914266395a59747c6b}
+\hypertarget{classmath_1_1mat44_ad7675a88c81bba453cdc8d123ee4f840}{
+{\bfseries mat44} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&q)}
+\label{classmath_1_1mat44_ad7675a88c81bba453cdc8d123ee4f840}
 
 \item 
-\hypertarget{classmath_1_1mat44_a0214f4c0946a0c322a3873348ba260ba}{
-{\bfseries mat44} (\hyperlink{classmath_1_1quat}{quat}$<$ T $>$ const \&q)}
-\label{classmath_1_1mat44_a0214f4c0946a0c322a3873348ba260ba}
+\hypertarget{classmath_1_1mat44_ae6f87134a89b4bb265bd1059a3577ee8}{
+{\bfseries mat44} (\hyperlink{classmath_1_1transform}{math::transform}$<$ T $>$ const \&t)}
+\label{classmath_1_1mat44_ae6f87134a89b4bb265bd1059a3577ee8}
 
 \item 
-\hypertarget{classmath_1_1mat44_a33f5451d462044844a2e581541fa80c0}{
-{\bfseries mat44} (\hyperlink{classmath_1_1transform}{transform}$<$ T $>$ const \&)}
-\label{classmath_1_1mat44_a33f5451d462044844a2e581541fa80c0}
+\hypertarget{classmath_1_1mat44_a5375b3aadd48a16d8c6b6f2278f11ede}{
+T \& {\bfseries v} (int r, int c)}
+\label{classmath_1_1mat44_a5375b3aadd48a16d8c6b6f2278f11ede}
 
 \item 
-\hypertarget{classmath_1_1mat44_a2ccdbfc7e205429f50c98babcb1187d8}{
-void {\bfseries SetEntry} (int position, T value)}
-\label{classmath_1_1mat44_a2ccdbfc7e205429f50c98babcb1187d8}
+\hypertarget{classmath_1_1mat44_aa2736fef9d6069a2856ce7c9ff019ff9}{
+void {\bfseries set\_\-rotation} (\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ const \&q)}
+\label{classmath_1_1mat44_aa2736fef9d6069a2856ce7c9ff019ff9}
 
 \item 
-\hypertarget{classmath_1_1mat44_a9533b8b54e9a0d7fed4a63645348f84b}{
-T {\bfseries GetEntry} (int position) const }
-\label{classmath_1_1mat44_a9533b8b54e9a0d7fed4a63645348f84b}
+\hypertarget{classmath_1_1mat44_a504bde6ba007bbf3d0754dcdac5fcf6d}{
+\hyperlink{classmath_1_1vec4}{math::vec4}$<$ T $>$ {\bfseries getRow} (int r) const }
+\label{classmath_1_1mat44_a504bde6ba007bbf3d0754dcdac5fcf6d}
 
 \item 
-\hypertarget{classmath_1_1mat44_a604cea86b7b71cd14ad28f534886eec3}{
-\hyperlink{classmath_1_1vec4}{vec4}$<$ T $>$ {\bfseries GetRow} (int position) const }
-\label{classmath_1_1mat44_a604cea86b7b71cd14ad28f534886eec3}
+\hypertarget{classmath_1_1mat44_a041050c88d4c8dd34510dd315cfb3e3d}{
+\hyperlink{classmath_1_1vec4}{math::vec4}$<$ T $>$ {\bfseries getColumn} (int c) const }
+\label{classmath_1_1mat44_a041050c88d4c8dd34510dd315cfb3e3d}
 
 \item 
-\hypertarget{classmath_1_1mat44_aaf0e6b80e5b56bfcdaf4321054935249}{
-\hyperlink{classmath_1_1vec4}{vec4}$<$ T $>$ {\bfseries GetColumn} (int position) const }
-\label{classmath_1_1mat44_aaf0e6b80e5b56bfcdaf4321054935249}
+\hypertarget{classmath_1_1mat44_afd9925dcf5d7ef9ec929b9d801bf4664}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries operator+} (const \hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_afd9925dcf5d7ef9ec929b9d801bf4664}
 
 \item 
-\hypertarget{classmath_1_1mat44_a4b24914ce71486394ed4dad05c2c7515}{
-void {\bfseries LoadIdentity} (void)}
-\label{classmath_1_1mat44_a4b24914ce71486394ed4dad05c2c7515}
+\hypertarget{classmath_1_1mat44_a6654255b231c92172d58b9c46dfbf6c4}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries operator-\/} (const \hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_a6654255b231c92172d58b9c46dfbf6c4}
 
 \item 
-\hypertarget{classmath_1_1mat44_afb3f26027d06fd1879942ddf3ce0f766}{
-void {\bfseries LoadZero} (void)}
-\label{classmath_1_1mat44_afb3f26027d06fd1879942ddf3ce0f766}
+\hypertarget{classmath_1_1mat44_a8fc9f46654403e9d218dbddd4dc2227b}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries operator$\ast$} (const \hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_a8fc9f46654403e9d218dbddd4dc2227b}
 
 \item 
-\hypertarget{classmath_1_1mat44_ad54828d267d7e0d994bbd8e46fa7fd7b}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries operator+} (const \hyperlink{classmath_1_1mat44}{mat44} \&rhs) const }
-\label{classmath_1_1mat44_ad54828d267d7e0d994bbd8e46fa7fd7b}
+\hypertarget{classmath_1_1mat44_aa7a3e1de27d2a91e838b8bc5b08978f5}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries operator$\ast$} (const T rhs) const }
+\label{classmath_1_1mat44_aa7a3e1de27d2a91e838b8bc5b08978f5}
 
 \item 
-\hypertarget{classmath_1_1mat44_ae31338e54349a6bb9976c7ebdaaf2580}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries operator-\/} (const \hyperlink{classmath_1_1mat44}{mat44} \&rhs) const }
-\label{classmath_1_1mat44_ae31338e54349a6bb9976c7ebdaaf2580}
+\hypertarget{classmath_1_1mat44_a62c4961f112c59ff12801ff101bc8f85}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries operator/} (const T rhs) const }
+\label{classmath_1_1mat44_a62c4961f112c59ff12801ff101bc8f85}
 
 \item 
-\hypertarget{classmath_1_1mat44_a4ce5cc4349579cac111597f9d7e19b4d}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries operator$\ast$} (const \hyperlink{classmath_1_1mat44}{mat44} \&rhs) const }
-\label{classmath_1_1mat44_a4ce5cc4349579cac111597f9d7e19b4d}
+\hypertarget{classmath_1_1mat44_a2a0608c179aece3a7d191abc34df98a5}{
+bool {\bfseries operator==} (const \hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_a2a0608c179aece3a7d191abc34df98a5}
 
 \item 
-\hypertarget{classmath_1_1mat44_a79a39257eda9a0a2dfb5d724b54fa220}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries operator$\ast$} (const T rhs) const }
-\label{classmath_1_1mat44_a79a39257eda9a0a2dfb5d724b54fa220}
+\hypertarget{classmath_1_1mat44_a10026cea05fdc44a7f7df95ac89f6b50}{
+bool {\bfseries operator!=} (const \hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_a10026cea05fdc44a7f7df95ac89f6b50}
 
 \item 
-\hypertarget{classmath_1_1mat44_a9a7c3faf1f878a5d121b2c2cc6388bc9}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries operator/} (const T rhs) const }
-\label{classmath_1_1mat44_a9a7c3faf1f878a5d121b2c2cc6388bc9}
+\hypertarget{classmath_1_1mat44_a64eccf8dfc1eecebfe2e5c47ce7fb11d}{
+void {\bfseries operator+=} (const \hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ \&rhs)}
+\label{classmath_1_1mat44_a64eccf8dfc1eecebfe2e5c47ce7fb11d}
 
 \item 
-\hypertarget{classmath_1_1mat44_a9e7d0e0f7d1c347c9ff4b5a51ec514e7}{
-bool {\bfseries operator==} (const \hyperlink{classmath_1_1mat44}{mat44} \&rhs) const }
-\label{classmath_1_1mat44_a9e7d0e0f7d1c347c9ff4b5a51ec514e7}
+\hypertarget{classmath_1_1mat44_a423005059114cf33f951ab6f6fc9f034}{
+void {\bfseries operator-\/=} (const \hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ \&rhs)}
+\label{classmath_1_1mat44_a423005059114cf33f951ab6f6fc9f034}
 
 \item 
-\hypertarget{classmath_1_1mat44_a35b01d1482c920d54fecee8dea27137e}{
-bool {\bfseries operator!=} (const \hyperlink{classmath_1_1mat44}{mat44} \&rhs) const }
-\label{classmath_1_1mat44_a35b01d1482c920d54fecee8dea27137e}
-
-\item 
-\hypertarget{classmath_1_1mat44_a17307056c74a98b0663904d602b3bb43}{
-void {\bfseries operator+=} (const \hyperlink{classmath_1_1mat44}{mat44} \&rhs)}
-\label{classmath_1_1mat44_a17307056c74a98b0663904d602b3bb43}
-
-\item 
-\hypertarget{classmath_1_1mat44_ad6f05f63f3d4b0c357c954ad6a95473f}{
-void {\bfseries operator-\/=} (const \hyperlink{classmath_1_1mat44}{mat44} \&rhs)}
-\label{classmath_1_1mat44_ad6f05f63f3d4b0c357c954ad6a95473f}
-
-\item 
-\hypertarget{classmath_1_1mat44_ad148a7f58b1ddefe306871bb45b9db24}{
-void {\bfseries operator$\ast$=} (const \hyperlink{classmath_1_1mat44}{mat44} \&rhs)}
-\label{classmath_1_1mat44_ad148a7f58b1ddefe306871bb45b9db24}
+\hypertarget{classmath_1_1mat44_a4b19d824403e0a5e0f711ee743bb7687}{
+void {\bfseries operator$\ast$=} (const \hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ \&rhs)}
+\label{classmath_1_1mat44_a4b19d824403e0a5e0f711ee743bb7687}
 
 \item 
 \hypertarget{classmath_1_1mat44_a94e0057189c9ab80a4210e86b37d2450}{
@@ -126,59 +116,34 @@ void {\bfseries operator/=} (const T rhs)}
 \label{classmath_1_1mat44_ad77cac714b0e06705bf46a61527edf4e}
 
 \item 
-\hypertarget{classmath_1_1mat44_a678c4c500c35a6ac7c9cbfa07544b82f}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries operator-\/} (void) const }
-\label{classmath_1_1mat44_a678c4c500c35a6ac7c9cbfa07544b82f}
+\hypertarget{classmath_1_1mat44_ad35246c0bf38cdc6cc9767031586d95d}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries operator-\/} () const }
+\label{classmath_1_1mat44_ad35246c0bf38cdc6cc9767031586d95d}
 
 \item 
-\hypertarget{classmath_1_1mat44_afaa3ec8ef1b6425899cd054530152b6f}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries operator+} (void) const }
-\label{classmath_1_1mat44_afaa3ec8ef1b6425899cd054530152b6f}
+\hypertarget{classmath_1_1mat44_a6adefbdab306368c53e157174cb61248}{
+\hyperlink{classmath_1_1vec4}{math::vec4}$<$ T $>$ {\bfseries operator$\ast$} (const \hyperlink{classmath_1_1vec4}{vec4}$<$ T $>$ rhs) const }
+\label{classmath_1_1mat44_a6adefbdab306368c53e157174cb61248}
 
 \item 
-\hypertarget{classmath_1_1mat44_a900b2ae1460e40680251cfff5d94b204}{
-\hyperlink{classmath_1_1vec4}{vec4}$<$ T $>$ {\bfseries operator$\ast$} (const \hyperlink{classmath_1_1vec4}{vec4}$<$ T $>$ rhs) const }
-\label{classmath_1_1mat44_a900b2ae1460e40680251cfff5d94b204}
+\hypertarget{classmath_1_1mat44_a533e8195b855ca849794fd0f07a6ef78}{
+\hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ {\bfseries GetRotatedVector3D} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_a533e8195b855ca849794fd0f07a6ef78}
 
 \item 
-\hypertarget{classmath_1_1mat44_ab9a5739e491dea7860248150e052cfc9}{
-void {\bfseries RotateVector3D} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&rhs) const }
-\label{classmath_1_1mat44_ab9a5739e491dea7860248150e052cfc9}
+\hypertarget{classmath_1_1mat44_a278377764b33cc33ab5e08d8b24a4821}{
+\hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ {\bfseries GetInverseRotatedVector3D} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_a278377764b33cc33ab5e08d8b24a4821}
 
 \item 
-\hypertarget{classmath_1_1mat44_a47e1b4c2b8a7402cbe2f810d9ad17e48}{
-void {\bfseries InverseRotateVector3D} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&rhs) const }
-\label{classmath_1_1mat44_a47e1b4c2b8a7402cbe2f810d9ad17e48}
+\hypertarget{classmath_1_1mat44_ab01b2b5b923321768db4322b8b9c96cb}{
+\hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ {\bfseries GetTranslatedVector3D} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_ab01b2b5b923321768db4322b8b9c96cb}
 
 \item 
-\hypertarget{classmath_1_1mat44_aef14aa49d3b4d63a891b7058516e9cb3}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries GetRotatedVector3D} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&rhs) const }
-\label{classmath_1_1mat44_aef14aa49d3b4d63a891b7058516e9cb3}
-
-\item 
-\hypertarget{classmath_1_1mat44_a5cae23cf2b5f880e955b0a61590e9ccc}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries GetInverseRotatedVector3D} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&rhs) const }
-\label{classmath_1_1mat44_a5cae23cf2b5f880e955b0a61590e9ccc}
-
-\item 
-\hypertarget{classmath_1_1mat44_ad89781736c0f006bb60be5683e5a707b}{
-void {\bfseries TranslateVector3D} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&) const }
-\label{classmath_1_1mat44_ad89781736c0f006bb60be5683e5a707b}
-
-\item 
-\hypertarget{classmath_1_1mat44_afd776d21e9157bf6d874aa14c0e340b6}{
-void {\bfseries InverseTranslateVector3D} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&) const }
-\label{classmath_1_1mat44_afd776d21e9157bf6d874aa14c0e340b6}
-
-\item 
-\hypertarget{classmath_1_1mat44_a00b596b2c158263d4f5ee44f6bf314ae}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries GetTranslatedVector3D} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&rhs) const }
-\label{classmath_1_1mat44_a00b596b2c158263d4f5ee44f6bf314ae}
-
-\item 
-\hypertarget{classmath_1_1mat44_a3a507ad33927391da88d2aaa928b15e6}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries GetInverseTranslatedVector3D} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&rhs) const }
-\label{classmath_1_1mat44_a3a507ad33927391da88d2aaa928b15e6}
+\hypertarget{classmath_1_1mat44_ac1150e292e3e7640ae856c1918d26f4b}{
+\hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ {\bfseries GetInverseTranslatedVector3D} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_ac1150e292e3e7640ae856c1918d26f4b}
 
 \item 
 \hypertarget{classmath_1_1mat44_a0c01cca98e876ad0c8f5c125dfe1feaf}{
@@ -186,9 +151,9 @@ void {\bfseries Invert} (void)}
 \label{classmath_1_1mat44_a0c01cca98e876ad0c8f5c125dfe1feaf}
 
 \item 
-\hypertarget{classmath_1_1mat44_a0feaba4758ed52bac10f26fd799e2de3}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries GetInverse} (void) const }
-\label{classmath_1_1mat44_a0feaba4758ed52bac10f26fd799e2de3}
+\hypertarget{classmath_1_1mat44_a8fc8d1acc1ce9c9a3d6e79f072c1f8be}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries getInverse} (void) const }
+\label{classmath_1_1mat44_a8fc8d1acc1ce9c9a3d6e79f072c1f8be}
 
 \item 
 \hypertarget{classmath_1_1mat44_adc6ecd07ee39f9fe10513df7f30155dd}{
@@ -196,54 +161,49 @@ void {\bfseries Transpose} (void)}
 \label{classmath_1_1mat44_adc6ecd07ee39f9fe10513df7f30155dd}
 
 \item 
-\hypertarget{classmath_1_1mat44_aa51cb99def454576932a5162256d517a}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries GetTranspose} (void) const }
-\label{classmath_1_1mat44_aa51cb99def454576932a5162256d517a}
+\hypertarget{classmath_1_1mat44_a166e19fb7bb1d2b0d382df6fcf4acd49}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries getTranspose} () const }
+\label{classmath_1_1mat44_a166e19fb7bb1d2b0d382df6fcf4acd49}
 
 \item 
-\hypertarget{classmath_1_1mat44_a6460a465e3d8ae718f1e5abe95c9e25c}{
-void {\bfseries InvertTranspose} (void)}
-\label{classmath_1_1mat44_a6460a465e3d8ae718f1e5abe95c9e25c}
+\hypertarget{classmath_1_1mat44_acc0eff54e102c8bd36f1b44f35cfcb14}{
+void {\bfseries invertTranspose} ()}
+\label{classmath_1_1mat44_acc0eff54e102c8bd36f1b44f35cfcb14}
 
 \item 
-\hypertarget{classmath_1_1mat44_aa022f83245b05ffe83bf8e4ee5138f00}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries GetInverseTranspose} (void) const }
-\label{classmath_1_1mat44_aa022f83245b05ffe83bf8e4ee5138f00}
+\hypertarget{classmath_1_1mat44_ad08177a40c473bb105ec238b261c169e}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries getInverseTranspose} () const }
+\label{classmath_1_1mat44_ad08177a40c473bb105ec238b261c169e}
 
 \item 
-\hypertarget{classmath_1_1mat44_a3fb20ac063bbc5921bcaeb3ac92ab35b}{
-void {\bfseries SetCoordinateTransform} (\hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ const, \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ const)}
-\label{classmath_1_1mat44_a3fb20ac063bbc5921bcaeb3ac92ab35b}
+\hypertarget{classmath_1_1mat44_a963c9290cea832685907da31e219b6eb}{
+void {\bfseries AffineInvert} ()}
+\label{classmath_1_1mat44_a963c9290cea832685907da31e219b6eb}
 
 \item 
-\hypertarget{classmath_1_1mat44_a7c09a54e77d1277e1f341d0a0ab88011}{
-void {\bfseries AffineInvert} (void)}
-\label{classmath_1_1mat44_a7c09a54e77d1277e1f341d0a0ab88011}
+\hypertarget{classmath_1_1mat44_a09248f74f03a4f958fcb2eb2d9248d5c}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries getAffineInverse} () const }
+\label{classmath_1_1mat44_a09248f74f03a4f958fcb2eb2d9248d5c}
 
 \item 
-\hypertarget{classmath_1_1mat44_a5bb524e4b19475c5a36bad44689b557a}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries GetAffineInverse} (void) const }
-\label{classmath_1_1mat44_a5bb524e4b19475c5a36bad44689b557a}
+\hypertarget{classmath_1_1mat44_a072fc6e2765647db343c50dd43d9adc7}{
+void {\bfseries affineInvertTranspose} (void)}
+\label{classmath_1_1mat44_a072fc6e2765647db343c50dd43d9adc7}
 
 \item 
-\hypertarget{classmath_1_1mat44_aee84b07ad0b747d0aef09a975713f3a3}{
-void {\bfseries AffineInvertTranspose} (void)}
-\label{classmath_1_1mat44_aee84b07ad0b747d0aef09a975713f3a3}
+\hypertarget{classmath_1_1mat44_a82657344cf63e2449ff593540308dbdb}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries getAffineInverseTranspose} (void) const }
+\label{classmath_1_1mat44_a82657344cf63e2449ff593540308dbdb}
 
 \item 
-\hypertarget{classmath_1_1mat44_a5a619a1605d048b1e01d904cd0dc31d7}{
-\hyperlink{classmath_1_1mat44}{mat44} {\bfseries GetAffineInverseTranspose} (void) const }
-\label{classmath_1_1mat44_a5a619a1605d048b1e01d904cd0dc31d7}
+\hypertarget{classmath_1_1mat44_a7bdd641b2350683a0860333f9323d1dc}{
+void {\bfseries SetTranslation} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&translation)}
+\label{classmath_1_1mat44_a7bdd641b2350683a0860333f9323d1dc}
 
 \item 
-\hypertarget{classmath_1_1mat44_a47696d5728bb8a42d4e38923b3be9708}{
-void {\bfseries SetTranslation} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ const \&)}
-\label{classmath_1_1mat44_a47696d5728bb8a42d4e38923b3be9708}
-
-\item 
-\hypertarget{classmath_1_1mat44_a311b3320b1cbaaeb2189b2db1883fec7}{
-void {\bfseries SetScale} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ const \&)}
-\label{classmath_1_1mat44_a311b3320b1cbaaeb2189b2db1883fec7}
+\hypertarget{classmath_1_1mat44_ab97cc4f94a1fa7824ae4127037a404d4}{
+void {\bfseries SetScale} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&scaleFactor)}
+\label{classmath_1_1mat44_ab97cc4f94a1fa7824ae4127037a404d4}
 
 \item 
 \hypertarget{classmath_1_1mat44_a6a0d5ddb6df2dc6568f0d6a95f302d3b}{
@@ -251,14 +211,9 @@ void {\bfseries SetUniformScale} (const T scaleFactor)}
 \label{classmath_1_1mat44_a6a0d5ddb6df2dc6568f0d6a95f302d3b}
 
 \item 
-\hypertarget{classmath_1_1mat44_a7f7ea68fd2c7b30804204cc70d713d52}{
-void {\bfseries set\_\-rotation} (\hyperlink{classmath_1_1quat}{quat}$<$ T $>$ const \&)}
-\label{classmath_1_1mat44_a7f7ea68fd2c7b30804204cc70d713d52}
-
-\item 
-\hypertarget{classmath_1_1mat44_a157b37473ff94c7487d69d0f72c14f5a}{
-void {\bfseries SetRotationAxis} (const double angle, const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&axis)}
-\label{classmath_1_1mat44_a157b37473ff94c7487d69d0f72c14f5a}
+\hypertarget{classmath_1_1mat44_abd4331ba43db126428b868fe4d8fe259}{
+void {\bfseries SetRotationAxis} (const T angle, const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&axis)}
+\label{classmath_1_1mat44_abd4331ba43db126428b868fe4d8fe259}
 
 \item 
 \hypertarget{classmath_1_1mat44_a8a3e080f62685e9df01d1fb07249d11d}{
@@ -276,14 +231,14 @@ void {\bfseries SetRotationZ} (const T angle)}
 \label{classmath_1_1mat44_a5707e8c3e1f52ba05809b210103bbe8a}
 
 \item 
-\hypertarget{classmath_1_1mat44_a7885a6c4037a8dc93e2f630bf419ac9a}{
-void {\bfseries SetRotationEuler} (const double angleX, const double, const double angleZ)}
-\label{classmath_1_1mat44_a7885a6c4037a8dc93e2f630bf419ac9a}
+\hypertarget{classmath_1_1mat44_a06461181117c5c083bd4a2941b1a70fc}{
+void {\bfseries SetRotationEuler} (const T angleX, const T angleY, const T angleZ)}
+\label{classmath_1_1mat44_a06461181117c5c083bd4a2941b1a70fc}
 
 \item 
-\hypertarget{classmath_1_1mat44_a9294493b17f600d38346d6d683ddd918}{
-void {\bfseries SetPerspective} (T, T, T, T, T, T)}
-\label{classmath_1_1mat44_a9294493b17f600d38346d6d683ddd918}
+\hypertarget{classmath_1_1mat44_ab8eb695a7a330941ffeab9a17c14e36c}{
+void {\bfseries SetPerspective} (T left, T right, T bottom, T top, T n, T f)}
+\label{classmath_1_1mat44_ab8eb695a7a330941ffeab9a17c14e36c}
 
 \item 
 \hypertarget{classmath_1_1mat44_afd9ae3ec67c631724edca366a6b518cf}{
@@ -296,34 +251,64 @@ void {\bfseries SetOrtho} (T left, T right, T bottom, T top, T n, T f)}
 \label{classmath_1_1mat44_a6978c6c7b4303eb2defcbaecf24892b3}
 
 \item 
-\hypertarget{classmath_1_1mat44_a8a983b0ba8e01e1a5461ef53fe4d98c6}{
-void {\bfseries setLookAt} (\hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ eye, \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ center, \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ up)}
-\label{classmath_1_1mat44_a8a983b0ba8e01e1a5461ef53fe4d98c6}
+\hypertarget{classmath_1_1mat44_a539b0943a34a8946341aef1581c94f99}{
+void {\bfseries SetTranslationPart} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&translation)}
+\label{classmath_1_1mat44_a539b0943a34a8946341aef1581c94f99}
 
 \item 
-\hypertarget{classmath_1_1mat44_adac3ed3f879878f367e9d49e3ab16e05}{
-void {\bfseries SetReflection} (\hyperlink{classmath_1_1plane}{plane}$<$ T $>$ const \&)}
-\label{classmath_1_1mat44_adac3ed3f879878f367e9d49e3ab16e05}
+\hypertarget{classmath_1_1mat44_ae4de5a2608b6cd1fbd64e47191900855}{
+void {\bfseries SetRotationPartEuler} (const T angleX, const T angleY, const T angleZ)}
+\label{classmath_1_1mat44_ae4de5a2608b6cd1fbd64e47191900855}
 
 \item 
-\hypertarget{classmath_1_1mat44_abde01621efccb6954077023e33b4f1c0}{
-void {\bfseries print} ()}
-\label{classmath_1_1mat44_abde01621efccb6954077023e33b4f1c0}
+\hypertarget{classmath_1_1mat44_afeb47bdf4c2f9079dda4716e345e9358}{
+void {\bfseries RotateVector3D} (\hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_afeb47bdf4c2f9079dda4716e345e9358}
 
 \item 
-\hypertarget{classmath_1_1mat44_adfefea95fc901a16a54def48636aa52d}{
-void {\bfseries SetTranslationPart} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ const \&)}
-\label{classmath_1_1mat44_adfefea95fc901a16a54def48636aa52d}
+\hypertarget{classmath_1_1mat44_acfd656b0d4115099a8ea6411d7c55d03}{
+void {\bfseries InverseRotateVector3D} (\hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_acfd656b0d4115099a8ea6411d7c55d03}
 
 \item 
-\hypertarget{classmath_1_1mat44_a2929e412449d245d485011605bd22b84}{
-void {\bfseries SetRotationPartEuler} (double const, double const, double const)}
-\label{classmath_1_1mat44_a2929e412449d245d485011605bd22b84}
+\hypertarget{classmath_1_1mat44_a9321b1478f4c1de099e9dfc604e41b71}{
+void {\bfseries TranslateVector3D} (\hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_a9321b1478f4c1de099e9dfc604e41b71}
 
 \item 
-\hypertarget{classmath_1_1mat44_a3e2319531f33cb187cdb6a521b2bcd50}{
-void {\bfseries SetRotationPartEuler} (\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ const \&rotations)}
-\label{classmath_1_1mat44_a3e2319531f33cb187cdb6a521b2bcd50}
+\hypertarget{classmath_1_1mat44_a3817d0738f95e0fbeb4a2ac4f2c06f06}{
+void {\bfseries InverseTranslateVector3D} (\hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&rhs) const }
+\label{classmath_1_1mat44_a3817d0738f95e0fbeb4a2ac4f2c06f06}
+
+\item 
+\hypertarget{classmath_1_1mat44_ae3d93b898c20f49db047fc30a3906f1c}{
+void {\bfseries SetRotationPartEuler} (const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ \&rotations)}
+\label{classmath_1_1mat44_ae3d93b898c20f49db047fc30a3906f1c}
+
+\item 
+\hypertarget{classmath_1_1mat44_aa3298c349d51a34e310600bab30566f3}{
+\hyperlink{classmath_1_1mat44}{mat44}$<$ T $>$ {\bfseries lookat} (\hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ eye, \hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ center, \hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ up)}
+\label{classmath_1_1mat44_aa3298c349d51a34e310600bab30566f3}
+
+\item 
+\hypertarget{classmath_1_1mat44_a7be4cb55b2bfb126ee6e75a56fdcf0d9}{
+void {\bfseries SetReflection} (\hyperlink{classmath_1_1plane}{math::plane}$<$ T $>$ const \&p)}
+\label{classmath_1_1mat44_a7be4cb55b2bfb126ee6e75a56fdcf0d9}
+
+\item 
+\hypertarget{classmath_1_1mat44_a9da35ea22f94f53ebc721397652e9fe3}{
+void {\bfseries SetCoordinateTransform} (\hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ const x, \hyperlink{classmath_1_1vec3}{math::vec3}$<$ T $>$ const y)}
+\label{classmath_1_1mat44_a9da35ea22f94f53ebc721397652e9fe3}
+
+\item 
+\hypertarget{classmath_1_1mat44_a2ccdbfc7e205429f50c98babcb1187d8}{
+void {\bfseries SetEntry} (int position, T value)}
+\label{classmath_1_1mat44_a2ccdbfc7e205429f50c98babcb1187d8}
+
+\item 
+\hypertarget{classmath_1_1mat44_afaa3ec8ef1b6425899cd054530152b6f}{
+\hyperlink{classmath_1_1mat44}{mat44} {\bfseries operator+} (void) const }
+\label{classmath_1_1mat44_afaa3ec8ef1b6425899cd054530152b6f}
 
 \item 
 \hypertarget{classmath_1_1mat44_a20dcec664e454262299ac5b873002b76}{
@@ -340,7 +325,6 @@ void {\bfseries SetRotationPartEuler} (\hyperlink{classmath_1_1vec3}{vec3}$<$ do
 
 
 
-The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
 \item 
-src/math/mat44.hpp\item 
-src/math/mat44.cpp\end{DoxyCompactItemize}
+src/math/mat44.hpp\end{DoxyCompactItemize}

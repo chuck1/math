@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>math: math::plane Class Reference</title>
+<title>math: math::plane&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -48,7 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="contents">
-<h1>math::plane Class Reference</h1><!-- doxytag: class="math::plane" -->
+<h1>math::plane&lt; T &gt; Class Template Reference</h1><!-- doxytag: class="math::plane" -->
 <p><a href="classmath_1_1plane-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
@@ -57,49 +57,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <b>POINT_BEHIND_PLANE</b> = 2
  }</td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a256635e3ae08a3665d2ef9d0e9ea6c45"></a><!-- doxytag: member="math::plane::plane" ref="a256635e3ae08a3665d2ef9d0e9ea6c45" args="(vec3&lt; double &gt; newNormal, float newIntercept)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>plane</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; newNormal, float newIntercept)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25c3bf9902eaff31c6b5bbf9a1b3322a"></a><!-- doxytag: member="math::plane::plane" ref="a25c3bf9902eaff31c6b5bbf9a1b3322a" args="(const plane &amp;rhs)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>plane</b> (const <a class="el" href="classmath_1_1plane.html">plane</a> &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ae1048272879cd5f747a7b76807e2e4"></a><!-- doxytag: member="math::plane::SetNormal" ref="a6ae1048272879cd5f747a7b76807e2e4" args="(const vec3&lt; double &gt; &amp;rhs)" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abeb813bf61a05280b9249a04f52f2d35"></a><!-- doxytag: member="math::plane::setFromPoints" ref="abeb813bf61a05280b9249a04f52f2d35" args="(const math::vec3&lt; double &gt; &amp;p0, const math::vec3&lt; double &gt; &amp;p1, const math::vec3&lt; double &gt; &amp;p2)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFromPoints</b> (const <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; &amp;p0, const <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; &amp;p1, const <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; &amp;p2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a5b678ea4760a4ce66d74ffa4daa1b3"></a><!-- doxytag: member="math::plane::normalize" ref="a0a5b678ea4760a4ce66d74ffa4daa1b3" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>normalize</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ceb4cac52134338f0676d8ef673cd25"></a><!-- doxytag: member="math::plane::Intersect3" ref="a1ceb4cac52134338f0676d8ef673cd25" args="(math::plane&lt; T &gt; const &amp;p2, math::plane&lt; T &gt; const &amp;p3, math::vec3&lt; double &gt; &amp;result)" -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>Intersect3</b> (<a class="el" href="classmath_1_1plane.html">math::plane</a>&lt; T &gt; const &amp;p2, <a class="el" href="classmath_1_1plane.html">math::plane</a>&lt; T &gt; const &amp;p3, <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; &amp;result)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a080c90391f1bbbcb0d6dd5f38f93dcef"></a><!-- doxytag: member="math::plane::GetDistance" ref="a080c90391f1bbbcb0d6dd5f38f93dcef" args="(const math::vec3&lt; double &gt; &amp;point) const " -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetDistance</b> (const <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; &amp;point) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8aaf4209abcb40bfb26d0758ca75b1dc"></a><!-- doxytag: member="math::plane::ClassifyPoint" ref="a8aaf4209abcb40bfb26d0758ca75b1dc" args="(const math::vec3&lt; double &gt; &amp;point) const " -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><b>ClassifyPoint</b> (const <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; double &gt; &amp;point) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad27986efeef8b0e84e49cc9d36d4df3e"></a><!-- doxytag: member="math::plane::lerp" ref="ad27986efeef8b0e84e49cc9d36d4df3e" args="(math::plane&lt; T &gt; const &amp;p2, float factor)" -->
+<a class="el" href="classmath_1_1plane.html">math::plane</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>lerp</b> (<a class="el" href="classmath_1_1plane.html">math::plane</a>&lt; T &gt; const &amp;p2, float factor)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a528891f0e9a349866fea78db396286d8"></a><!-- doxytag: member="math::plane::operator==" ref="a528891f0e9a349866fea78db396286d8" args="(math::plane&lt; T &gt; const &amp;rhs) const " -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classmath_1_1plane.html">math::plane</a>&lt; T &gt; const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6777af8e7215c0bffa0d2f5ac327440"></a><!-- doxytag: member="math::plane::SetNormal" ref="ae6777af8e7215c0bffa0d2f5ac327440" args="(const vec3&lt; double &gt; &amp;rhs)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetNormal</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ed123f20808367fbeda9e75eaaa6766"></a><!-- doxytag: member="math::plane::SetIntercept" ref="a7ed123f20808367fbeda9e75eaaa6766" args="(float newIntercept)" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09293a1282b9165ae9fc65dde203472a"></a><!-- doxytag: member="math::plane::SetIntercept" ref="a09293a1282b9165ae9fc65dde203472a" args="(float newIntercept)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetIntercept</b> (float newIntercept)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8154d69fd029b14b49ca7d002a60e410"></a><!-- doxytag: member="math::plane::SetFromPoints" ref="a8154d69fd029b14b49ca7d002a60e410" args="(const vec3&lt; double &gt; &amp;p0, const vec3&lt; double &gt; &amp;p1, const vec3&lt; double &gt; &amp;p2)" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac503982275c9e6d9d18291e9a9ff0cd3"></a><!-- doxytag: member="math::plane::SetFromPoints" ref="ac503982275c9e6d9d18291e9a9ff0cd3" args="(const vec3&lt; double &gt; &amp;p0, const vec3&lt; double &gt; &amp;p1, const vec3&lt; double &gt; &amp;p2)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetFromPoints</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;p0, const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;p1, const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;p2)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad4e5835c002fa75c1f573d9a069ba466"></a><!-- doxytag: member="math::plane::CalculateIntercept" ref="ad4e5835c002fa75c1f573d9a069ba466" args="(const vec3&lt; double &gt; &amp;pointOnPlane)" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a571118f6e3ae4af82eed83bdb4941704"></a><!-- doxytag: member="math::plane::CalculateIntercept" ref="a571118f6e3ae4af82eed83bdb4941704" args="(const vec3&lt; double &gt; &amp;pointOnPlane)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>CalculateIntercept</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;pointOnPlane)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afea36d03496c252a22b98506d33117df"></a><!-- doxytag: member="math::plane::Normalize" ref="afea36d03496c252a22b98506d33117df" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Normalize</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae702f3a39206840b4ebc56e0fa855957"></a><!-- doxytag: member="math::plane::GetNormal" ref="ae702f3a39206840b4ebc56e0fa855957" args="()" -->
-<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetNormal</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8127f9e5b508ba2c51a3422122c2511"></a><!-- doxytag: member="math::plane::GetIntercept" ref="ac8127f9e5b508ba2c51a3422122c2511" args="()" -->
-float&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetIntercept</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92792c99386ff63af26afc04a2b153cf"></a><!-- doxytag: member="math::plane::Intersect3" ref="a92792c99386ff63af26afc04a2b153cf" args="(const plane &amp;p2, const plane &amp;p3, vec3&lt; double &gt; &amp;result)" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>Intersect3</b> (const <a class="el" href="classmath_1_1plane.html">plane</a> &amp;p2, const <a class="el" href="classmath_1_1plane.html">plane</a> &amp;p3, <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;result)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9691fa498bdabbec6cccf27bc53215d"></a><!-- doxytag: member="math::plane::GetDistance" ref="af9691fa498bdabbec6cccf27bc53215d" args="(const vec3&lt; double &gt; &amp;point) const " -->
-float&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetDistance</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;point) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab90dcc5fdb973b1a5115d48fb3cee00a"></a><!-- doxytag: member="math::plane::ClassifyPoint" ref="ab90dcc5fdb973b1a5115d48fb3cee00a" args="(const vec3&lt; double &gt; &amp;point) const " -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><b>ClassifyPoint</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; &amp;point) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affa8cd87ad8b3da63511d526fd81a1a6"></a><!-- doxytag: member="math::plane::lerp" ref="affa8cd87ad8b3da63511d526fd81a1a6" args="(const plane &amp;p2, float factor)" -->
-<a class="el" href="classmath_1_1plane.html">plane</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>lerp</b> (const <a class="el" href="classmath_1_1plane.html">plane</a> &amp;p2, float factor)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5c24435016da495c52e9a7ca9cc1f08"></a><!-- doxytag: member="math::plane::operator==" ref="ac5c24435016da495c52e9a7ca9cc1f08" args="(const plane &amp;rhs) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classmath_1_1plane.html">plane</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45108625f3dc606b7df31386cce2f1c2"></a><!-- doxytag: member="math::plane::operator!=" ref="a45108625f3dc606b7df31386cce2f1c2" args="(const plane &amp;rhs) const " -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ef9af94aece772731e1e00ece1002e7"></a><!-- doxytag: member="math::plane::getNormal" ref="a5ef9af94aece772731e1e00ece1002e7" args="()" -->
+<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getNormal</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2353042f0f0be40568e351449491adeb"></a><!-- doxytag: member="math::plane::getIntercept" ref="a2353042f0f0be40568e351449491adeb" args="()" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><b>getIntercept</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af253279846f5efc0669db9a1b97114d1"></a><!-- doxytag: member="math::plane::operator!=" ref="af253279846f5efc0669db9a1b97114d1" args="(const plane &amp;rhs) const " -->
 bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classmath_1_1plane.html">plane</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c9f64519742f6d7d0370a62101733c4"></a><!-- doxytag: member="math::plane::operator&#45;" ref="a4c9f64519742f6d7d0370a62101733c4" args="(void) const " -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dcd61c1df10916b96859f81c4bd75ec"></a><!-- doxytag: member="math::plane::operator&#45;" ref="a6dcd61c1df10916b96859f81c4bd75ec" args="(void) const " -->
 <a class="el" href="classmath_1_1plane.html">plane</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (void) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57123617c9e3bfaed24cc655205b17ed"></a><!-- doxytag: member="math::plane::operator+" ref="a57123617c9e3bfaed24cc655205b17ed" args="(void) const " -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2397ab977d98ee414158194e4fb34b48"></a><!-- doxytag: member="math::plane::operator+" ref="a2397ab977d98ee414158194e4fb34b48" args="(void) const " -->
 <a class="el" href="classmath_1_1plane.html">plane</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (void) const </td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constructor</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="amgrp678d0a4421b60dc59999ac02837496a6"></a> </p>
+<br/><br/></div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb3a4ec5475d7a160aa3422c97f83573"></a><!-- doxytag: member="math::plane::plane" ref="abb3a4ec5475d7a160aa3422c97f83573" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>plane</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab52bd2dbe10818e2781dc192368e658e"></a><!-- doxytag: member="math::plane::plane" ref="ab52bd2dbe10818e2781dc192368e658e" args="(vec3&lt; double &gt; newNormal, float newIntercept)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>plane</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt; newNormal, float newIntercept)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06d11b6eafb0002ae6cc077c96163b37"></a><!-- doxytag: member="math::plane::plane" ref="a06d11b6eafb0002ae6cc077c96163b37" args="(const plane &amp;rhs)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>plane</b> (const <a class="el" href="classmath_1_1plane.html">plane</a> &amp;rhs)</td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a129355068d9f4936770d76489205d446"></a><!-- doxytag: member="math::plane::n" ref="a129355068d9f4936770d76489205d446" args="" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15a64c66b8d4c5edc9fa3f7669d35724"></a><!-- doxytag: member="math::plane::n" ref="a15a64c66b8d4c5edc9fa3f7669d35724" args="" -->
 <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>n</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20a1f2d1caa4d5cb3d81f779bb4572b0"></a><!-- doxytag: member="math::plane::d" ref="a20a1f2d1caa4d5cb3d81f779bb4572b0" args="" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1b3df92d98361c35e540887f0be9828"></a><!-- doxytag: member="math::plane::d" ref="ab1b3df92d98361c35e540887f0be9828" args="" -->
 float&nbsp;</td><td class="memItemRight" valign="bottom"><b>d</b></td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<h3>template&lt;typename T&gt;<br/>
+ class math::plane&lt; T &gt;</h3>
+
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/math/<a class="el" href="plane_8hpp_source.html">plane.hpp</a></li>
-<li>src/math/plane.cpp</li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -116,7 +125,7 @@ float&nbsp;</td><td class="memItemRight" valign="bottom"><b>d</b></td></tr>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on 23 Apr 2014 for math by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on 24 Apr 2014 for math by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

@@ -15,14 +15,14 @@
 \label{classmath_1_1quat_ab60827cbd63dbc074028aa8efb4c1d35}
 
 \item 
-\hypertarget{classmath_1_1quat_a50c3ea09c2b0fab1ef18bb4f8ba0046f}{
-{\bfseries quat} (\hyperlink{classmath_1_1quat}{quat} const \&v)}
-\label{classmath_1_1quat_a50c3ea09c2b0fab1ef18bb4f8ba0046f}
+\hypertarget{classmath_1_1quat_a89e584ce343bd15a132f91568034ace9}{
+{\bfseries quat} (\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ const \&v)}
+\label{classmath_1_1quat_a89e584ce343bd15a132f91568034ace9}
 
 \item 
-\hypertarget{classmath_1_1quat_a6cd99ea6efabba81b98a0fbd2c4e2807}{
-{\bfseries quat} (\hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ const \&, \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ const \&)}
-\label{classmath_1_1quat_a6cd99ea6efabba81b98a0fbd2c4e2807}
+\hypertarget{classmath_1_1quat_a583ca69f15e7c569370d9ecffd157f08}{
+{\bfseries quat} (\hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ const \&u, \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ const \&v)}
+\label{classmath_1_1quat_a583ca69f15e7c569370d9ecffd157f08}
 
 \item 
 \hypertarget{classmath_1_1quat_aa0bfec26e0c12bebd828a6a0b22e8607}{
@@ -41,28 +41,28 @@ bool {\bfseries isFinite} () const }
 
 \item 
 \hypertarget{classmath_1_1quat_a2df407abaadb9e9ac174bc7cca1894f6}{
-bool \hyperlink{classmath_1_1quat_a2df407abaadb9e9ac174bc7cca1894f6}{isUnit} () const }
+bool {\bfseries isUnit} () const }
 \label{classmath_1_1quat_a2df407abaadb9e9ac174bc7cca1894f6}
 
-\begin{DoxyCompactList}\small\item\em returns true if finite and magnitude is close to unit \item\end{DoxyCompactList}\item 
+\item 
 \hypertarget{classmath_1_1quat_ab749bbff5a04904e565f1c2645ea9721}{
-bool \hyperlink{classmath_1_1quat_ab749bbff5a04904e565f1c2645ea9721}{isSane} () const }
+bool {\bfseries isSane} () const }
 \label{classmath_1_1quat_ab749bbff5a04904e565f1c2645ea9721}
 
-\begin{DoxyCompactList}\small\item\em returns true if finite and magnitude is reasonably close to unit to allow for some accumulation of error vs isValid \item\end{DoxyCompactList}\item 
+\item 
 \hypertarget{classmath_1_1quat_a01c039d3a964b91799b77dd7fda830cb}{
-void \hyperlink{classmath_1_1quat_a01c039d3a964b91799b77dd7fda830cb}{toRadiansAndUnitAxis} (double \&angle, \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&axis) const }
+void {\bfseries toRadiansAndUnitAxis} (double \&angle, \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&axis) const }
 \label{classmath_1_1quat_a01c039d3a964b91799b77dd7fda830cb}
 
-\begin{DoxyCompactList}\small\item\em converts this quaternion to angle-\/axis representation \item\end{DoxyCompactList}\item 
+\item 
 \hypertarget{classmath_1_1quat_a7c9eda8c3ebfc84060e5bf1af7f69c02}{
 double {\bfseries getAngle} () const }
 \label{classmath_1_1quat_a7c9eda8c3ebfc84060e5bf1af7f69c02}
 
 \item 
-\hypertarget{classmath_1_1quat_aa6841f849682401ee401b43a1bc2abed}{
-double {\bfseries getAngle} (const \hyperlink{classmath_1_1quat}{quat} \&q) const }
-\label{classmath_1_1quat_aa6841f849682401ee401b43a1bc2abed}
+\hypertarget{classmath_1_1quat_add88aed99af3a2c89e216cf8391b2aff}{
+double {\bfseries getAngle} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&q) const }
+\label{classmath_1_1quat_add88aed99af3a2c89e216cf8391b2aff}
 
 \item 
 \hypertarget{classmath_1_1quat_ab10f6a19dac573de28ef8821fb285abd}{
@@ -70,14 +70,14 @@ double {\bfseries magnitudeSquared} () const }
 \label{classmath_1_1quat_ab10f6a19dac573de28ef8821fb285abd}
 
 \item 
-\hypertarget{classmath_1_1quat_a54a9efdbff72391b267f040a1f363770}{
-double {\bfseries dot} (const \hyperlink{classmath_1_1quat}{quat} \&v) const }
-\label{classmath_1_1quat_a54a9efdbff72391b267f040a1f363770}
+\hypertarget{classmath_1_1quat_a00831f313252fcac1ad596fa43c78625}{
+double {\bfseries dot} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&v) const }
+\label{classmath_1_1quat_a00831f313252fcac1ad596fa43c78625}
 
 \item 
-\hypertarget{classmath_1_1quat_acd8a29ba111f64abdcdad425516375bc}{
-\hyperlink{classmath_1_1quat}{quat} {\bfseries getNormalized} () const }
-\label{classmath_1_1quat_acd8a29ba111f64abdcdad425516375bc}
+\hypertarget{classmath_1_1quat_a2833be37ce750df20814786dc7923f0e}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ {\bfseries getNormalized} () const }
+\label{classmath_1_1quat_a2833be37ce750df20814786dc7923f0e}
 
 \item 
 \hypertarget{classmath_1_1quat_a70506b324aff1df7164d0c41189efc98}{
@@ -90,137 +90,183 @@ double {\bfseries normalize} ()}
 \label{classmath_1_1quat_a7cffb626dac428532625923ea4e278ec}
 
 \item 
-\hypertarget{classmath_1_1quat_abd47aa399cfcc2498d18f4358b9b9cd5}{
-\hyperlink{classmath_1_1quat}{quat} {\bfseries getConjugate} () const }
-\label{classmath_1_1quat_abd47aa399cfcc2498d18f4358b9b9cd5}
+\hypertarget{classmath_1_1quat_a615c15b7025a89a806c6234d4df8b0d7}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ {\bfseries getConjugate} () const }
+\label{classmath_1_1quat_a615c15b7025a89a806c6234d4df8b0d7}
 
 \item 
-\hypertarget{classmath_1_1quat_a5a11490065a921ca4d2afa562ba74094}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries getImaginaryPart} () const }
-\label{classmath_1_1quat_a5a11490065a921ca4d2afa562ba74094}
+\hypertarget{classmath_1_1quat_afba077b1b6f2b2e2ff2a8c07f4730e88}{
+\hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ {\bfseries getImaginaryPart} () const }
+\label{classmath_1_1quat_afba077b1b6f2b2e2ff2a8c07f4730e88}
 
 \item 
-\hypertarget{classmath_1_1quat_a5998124ba92c68161992c53a465ef6b2}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries getBasisVector0} () const }
-\label{classmath_1_1quat_a5998124ba92c68161992c53a465ef6b2}
+\hypertarget{classmath_1_1quat_aeec8b1f98358d060cd94bb98ba2b2591}{
+\hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ {\bfseries getBasisVector0} () const }
+\label{classmath_1_1quat_aeec8b1f98358d060cd94bb98ba2b2591}
 
 \item 
-\hypertarget{classmath_1_1quat_ac6f43651196f13664ad7dfbb0c10b9db}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries getBasisVector1} () const }
-\label{classmath_1_1quat_ac6f43651196f13664ad7dfbb0c10b9db}
+\hypertarget{classmath_1_1quat_a2325a65c3acf083d03e9aed1822394a8}{
+\hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ {\bfseries getBasisVector1} () const }
+\label{classmath_1_1quat_a2325a65c3acf083d03e9aed1822394a8}
 
 \item 
-\hypertarget{classmath_1_1quat_a03654b382e157ea5cd3760627cdb4aa8}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries getBasisVector2} () const }
-\label{classmath_1_1quat_a03654b382e157ea5cd3760627cdb4aa8}
+\hypertarget{classmath_1_1quat_ad4d54268923961972cf2e19fdc07d02d}{
+\hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ {\bfseries getBasisVector2} () const }
+\label{classmath_1_1quat_ad4d54268923961972cf2e19fdc07d02d}
 
 \item 
-\hypertarget{classmath_1_1quat_ab7ffef38f419abe685da3aaed60955df}{
-const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries rotate} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&v) const }
-\label{classmath_1_1quat_ab7ffef38f419abe685da3aaed60955df}
+\hypertarget{classmath_1_1quat_ae46cd63304b65093ff933fb127478b7f}{
+const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ {\bfseries rotate} (const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ \&v) const }
+\label{classmath_1_1quat_ae46cd63304b65093ff933fb127478b7f}
 
 \item 
-\hypertarget{classmath_1_1quat_a353cb34c614b52458b01e9c6f670a23b}{
-const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries rotateInv} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ \&v) const }
-\label{classmath_1_1quat_a353cb34c614b52458b01e9c6f670a23b}
+\hypertarget{classmath_1_1quat_a8512dc9b0cbc5932636feff7205d8c82}{
+const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ {\bfseries rotateInv} (const \hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ \&v) const }
+\label{classmath_1_1quat_a8512dc9b0cbc5932636feff7205d8c82}
 
 \item 
-\hypertarget{classmath_1_1quat_a48e1ed6e39b26ae68cb974c9a988a48a}{
-\hyperlink{classmath_1_1quat}{quat} \& {\bfseries operator=} (const \hyperlink{classmath_1_1quat}{quat} \&p)}
-\label{classmath_1_1quat_a48e1ed6e39b26ae68cb974c9a988a48a}
+\hypertarget{classmath_1_1quat_a4700bbf090d1e16d0bd159cca9ed9165}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \& {\bfseries operator=} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&p)}
+\label{classmath_1_1quat_a4700bbf090d1e16d0bd159cca9ed9165}
 
 \item 
-\hypertarget{classmath_1_1quat_ad513e1cf94dbf267ca96438b8daab96c}{
-\hyperlink{classmath_1_1quat}{quat} \& {\bfseries operator$\ast$=} (const \hyperlink{classmath_1_1quat}{quat} \&q)}
-\label{classmath_1_1quat_ad513e1cf94dbf267ca96438b8daab96c}
+\hypertarget{classmath_1_1quat_a6626f36aa7619c604dff07d86474e6cb}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \& {\bfseries operator$\ast$=} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&q)}
+\label{classmath_1_1quat_a6626f36aa7619c604dff07d86474e6cb}
 
 \item 
-\hypertarget{classmath_1_1quat_a06ce7926b99c59ec5f7a76b17fb25afd}{
-\hyperlink{classmath_1_1quat}{quat} \& {\bfseries operator+=} (const \hyperlink{classmath_1_1quat}{quat} \&q)}
-\label{classmath_1_1quat_a06ce7926b99c59ec5f7a76b17fb25afd}
+\hypertarget{classmath_1_1quat_af9add363c0e1a518cf8fa6c27cabbc13}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \& {\bfseries operator+=} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&q)}
+\label{classmath_1_1quat_af9add363c0e1a518cf8fa6c27cabbc13}
 
 \item 
-\hypertarget{classmath_1_1quat_a2b4e165cac4e236d982a6875714d35eb}{
-\hyperlink{classmath_1_1quat}{quat} \& {\bfseries operator-\/=} (const \hyperlink{classmath_1_1quat}{quat} \&q)}
-\label{classmath_1_1quat_a2b4e165cac4e236d982a6875714d35eb}
+\hypertarget{classmath_1_1quat_a144a751de05d7e3856a4c0f3d0a8a4de}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \& {\bfseries operator-\/=} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&q)}
+\label{classmath_1_1quat_a144a751de05d7e3856a4c0f3d0a8a4de}
 
 \item 
-\hypertarget{classmath_1_1quat_a70a3d5a7c1bbe37b9aad5d37569034a6}{
-\hyperlink{classmath_1_1quat}{quat} \& {\bfseries operator$\ast$=} (const double s)}
-\label{classmath_1_1quat_a70a3d5a7c1bbe37b9aad5d37569034a6}
+\hypertarget{classmath_1_1quat_a860283f2b49380f0479b939dfcb04543}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \& {\bfseries operator$\ast$=} (const double s)}
+\label{classmath_1_1quat_a860283f2b49380f0479b939dfcb04543}
 
 \item 
-\hypertarget{classmath_1_1quat_ae5fb9d185a79aa41cfffe113f681be8e}{
-\hyperlink{classmath_1_1quat}{quat} {\bfseries operator$\ast$} (const \hyperlink{classmath_1_1quat}{quat} \&q) const }
-\label{classmath_1_1quat_ae5fb9d185a79aa41cfffe113f681be8e}
+\hypertarget{classmath_1_1quat_ae56c2a245dce77fe578551c28072a863}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ {\bfseries operator$\ast$} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&q) const }
+\label{classmath_1_1quat_ae56c2a245dce77fe578551c28072a863}
 
 \item 
-\hypertarget{classmath_1_1quat_a524b92bd8463f3262d7c8be5e439f3f5}{
-\hyperlink{classmath_1_1quat}{quat} {\bfseries operator+} (const \hyperlink{classmath_1_1quat}{quat} \&q) const }
-\label{classmath_1_1quat_a524b92bd8463f3262d7c8be5e439f3f5}
+\hypertarget{classmath_1_1quat_af5e1bc730fc8d6176f3cb80c81eea952}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ {\bfseries operator+} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&q) const }
+\label{classmath_1_1quat_af5e1bc730fc8d6176f3cb80c81eea952}
 
 \item 
-\hypertarget{classmath_1_1quat_ae69bba247036e23346dbf296a51509dc}{
-\hyperlink{classmath_1_1quat}{quat} {\bfseries operator-\/} () const }
-\label{classmath_1_1quat_ae69bba247036e23346dbf296a51509dc}
+\hypertarget{classmath_1_1quat_a2bcf2f426dcee4c50f0eafb31eeee9f6}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ {\bfseries operator-\/} () const }
+\label{classmath_1_1quat_a2bcf2f426dcee4c50f0eafb31eeee9f6}
 
 \item 
-\hypertarget{classmath_1_1quat_a9ea9666c97a538cf390c03a3341f80b3}{
-\hyperlink{classmath_1_1quat}{quat} {\bfseries operator-\/} (const \hyperlink{classmath_1_1quat}{quat} \&q) const }
-\label{classmath_1_1quat_a9ea9666c97a538cf390c03a3341f80b3}
+\hypertarget{classmath_1_1quat_ac06bb24f8158fcca13605ac497c4b2f6}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ {\bfseries operator-\/} (const \hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ \&q) const }
+\label{classmath_1_1quat_ac06bb24f8158fcca13605ac497c4b2f6}
 
 \item 
-\hypertarget{classmath_1_1quat_a1ce94da0a070e4fe4841a45a37af6ba6}{
-\hyperlink{classmath_1_1quat}{quat} {\bfseries operator$\ast$} (double r) const }
-\label{classmath_1_1quat_a1ce94da0a070e4fe4841a45a37af6ba6}
+\hypertarget{classmath_1_1quat_a6214d28d9c15963acbb9cc7513a682a5}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ {\bfseries operator$\ast$} (double r) const }
+\label{classmath_1_1quat_a6214d28d9c15963acbb9cc7513a682a5}
 
 \item 
-\hypertarget{classmath_1_1quat_af52c75ff74b56765f47a81d96dc9aba8}{
-\hyperlink{classmath_1_1vec3}{vec3}$<$ double $>$ {\bfseries getOmega} (double dt)}
-\label{classmath_1_1quat_af52c75ff74b56765f47a81d96dc9aba8}
+\hypertarget{classmath_1_1quat_a64e81f63f89c4b43c981e218ce808fd5}{
+\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ {\bfseries createIdentity} ()}
+\label{classmath_1_1quat_a64e81f63f89c4b43c981e218ce808fd5}
 
 \item 
 \hypertarget{classmath_1_1quat_a3bd342a3da3dd15fa2fc9b183a2c44e3}{
 void {\bfseries print} ()}
 \label{classmath_1_1quat_a3bd342a3da3dd15fa2fc9b183a2c44e3}
 
-\end{DoxyCompactItemize}
-\subsection*{Static Public Member Functions}
-\begin{DoxyCompactItemize}
 \item 
-\hypertarget{classmath_1_1quat_aaff302277219c07a8231956ae321ef79}{
-static \hyperlink{classmath_1_1quat}{quat} {\bfseries createIdentity} ()}
-\label{classmath_1_1quat_aaff302277219c07a8231956ae321ef79}
+\hypertarget{classmath_1_1quat_ae314fa8c4ac586c9048e10e804c318f1}{
+\hyperlink{classmath_1_1vec3}{math::vec3}$<$ double $>$ {\bfseries getOmega} (double dt)}
+\label{classmath_1_1quat_ae314fa8c4ac586c9048e10e804c318f1}
+
+\item 
+\hypertarget{classmath_1_1quat_aec2acb1b693c9be5e6ba4918284aa0b5}{
+{\bfseries quat} (T nx, T ny, T nz, T nw)}
+\label{classmath_1_1quat_aec2acb1b693c9be5e6ba4918284aa0b5}
+
+\item 
+\hypertarget{classmath_1_1quat_a550f7a8cec2250fc8c40d7d3879cb07c}{
+{\bfseries quat} (T angleRadians, \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ const \&axis)}
+\label{classmath_1_1quat_a550f7a8cec2250fc8c40d7d3879cb07c}
+
+\item 
+\hypertarget{classmath_1_1quat_a5a17ae805087d52d28ce24aeb5c0c2e0}{
+{\bfseries quat} (\hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ const \&, \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ const \&)}
+\label{classmath_1_1quat_a5a17ae805087d52d28ce24aeb5c0c2e0}
+
+\item 
+\hypertarget{classmath_1_1quat_a81ac4c1bf899e340d2c53856902aab26}{
+\hyperlink{classmath_1_1quat}{quat}$<$ T $>$ \hyperlink{classmath_1_1quat_a81ac4c1bf899e340d2c53856902aab26}{slerp} (\hyperlink{classmath_1_1quat}{math::quat}$<$ T $>$ q1, float u)}
+\label{classmath_1_1quat_a81ac4c1bf899e340d2c53856902aab26}
+
+\begin{DoxyCompactList}\small\item\em returns true if finite and magnitude is reasonably close to unit to allow for some accumulation of error vs isValid \item\end{DoxyCompactList}\item 
+\hypertarget{classmath_1_1quat_a32e61ba1bbbdc8d836391297ea8d4d4a}{
+void \hyperlink{classmath_1_1quat_a32e61ba1bbbdc8d836391297ea8d4d4a}{toRadiansAndUnitAxis} (T \&angle, \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&axis) const }
+\label{classmath_1_1quat_a32e61ba1bbbdc8d836391297ea8d4d4a}
+
+\begin{DoxyCompactList}\small\item\em converts this quaternion to angle-\/axis representation \item\end{DoxyCompactList}\item 
+\hypertarget{classmath_1_1quat_a2435a22376cf5c74aa3e9bf45cbfb0be}{
+const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ {\bfseries rotate} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&v) const }
+\label{classmath_1_1quat_a2435a22376cf5c74aa3e9bf45cbfb0be}
+
+\item 
+\hypertarget{classmath_1_1quat_ad8945faa17ebc4eb51175015336fb090}{
+const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ {\bfseries rotateInv} (const \hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ \&v) const }
+\label{classmath_1_1quat_ad8945faa17ebc4eb51175015336fb090}
+
+\item 
+\hypertarget{classmath_1_1quat_a4000ef6a410644de9ceb2173ecec0c10}{
+\hyperlink{classmath_1_1quat}{quat}$<$ T $>$ \& {\bfseries operator$\ast$=} (const T s)}
+\label{classmath_1_1quat_a4000ef6a410644de9ceb2173ecec0c10}
+
+\item 
+\hypertarget{classmath_1_1quat_ac2d729a5ae4a0f174ca48c380ec0b3a9}{
+\hyperlink{classmath_1_1quat}{quat}$<$ T $>$ {\bfseries operator$\ast$} (T r) const }
+\label{classmath_1_1quat_ac2d729a5ae4a0f174ca48c380ec0b3a9}
+
+\item 
+\hypertarget{classmath_1_1quat_a86bc81aaca830d5f1b48abf3b6ea2d65}{
+\hyperlink{classmath_1_1vec3}{vec3}$<$ T $>$ {\bfseries getOmega} (T dt)}
+\label{classmath_1_1quat_a86bc81aaca830d5f1b48abf3b6ea2d65}
 
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classmath_1_1quat_ac697346ca2f6990c351bec68311230e2}{
-double {\bfseries w}}
-\label{classmath_1_1quat_ac697346ca2f6990c351bec68311230e2}
+\hypertarget{classmath_1_1quat_a3360a02faef7fc2d651e869fb93a5da3}{
+T {\bfseries w}}
+\label{classmath_1_1quat_a3360a02faef7fc2d651e869fb93a5da3}
 
 \item 
-\hypertarget{classmath_1_1quat_afb5b48747708a7d84fcf70f839921111}{
-double {\bfseries x}}
-\label{classmath_1_1quat_afb5b48747708a7d84fcf70f839921111}
+\hypertarget{classmath_1_1quat_ad0499c45096e2d9959223f8ea40fdf89}{
+T {\bfseries x}}
+\label{classmath_1_1quat_ad0499c45096e2d9959223f8ea40fdf89}
 
 \item 
-\hypertarget{classmath_1_1quat_a7fa879fe9d7900cd1e0f16c985b20c6e}{
-double {\bfseries y}}
-\label{classmath_1_1quat_a7fa879fe9d7900cd1e0f16c985b20c6e}
+\hypertarget{classmath_1_1quat_a53b91f2b4131a20e371481d820977654}{
+T {\bfseries y}}
+\label{classmath_1_1quat_a53b91f2b4131a20e371481d820977654}
 
 \item 
-\hypertarget{classmath_1_1quat_a80d9762c9a32939a1196086cccae7400}{
-double {\bfseries z}}
-\label{classmath_1_1quat_a80d9762c9a32939a1196086cccae7400}
+\hypertarget{classmath_1_1quat_aaa55d4e696355a19234af1c557840f75}{
+T {\bfseries z}}
+\label{classmath_1_1quat_aaa55d4e696355a19234af1c557840f75}
 
 \end{DoxyCompactItemize}
 \subsubsection*{template$<$typename T$>$ class math::quat$<$ T $>$}
 
 
 
-The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
 \item 
-src/math/quat.hpp\item 
-src/math/quat.cpp\end{DoxyCompactItemize}
+src/math/quat.hpp\end{DoxyCompactItemize}

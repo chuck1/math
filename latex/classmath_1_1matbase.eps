@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 473.373
+%%BoundingBox: 0 0 500 236.686
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 1.05625 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 2.1125 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
 /rows 4 def
-/cols 1 def
+/cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -175,7 +175,9 @@ boxfont setfont
 1 boundaspect scale
 (math::matbase< T, R, C >) cw
 (math::vecbase< T, R *C >) cw
+(math::matsqu< T, 3 >) cw
 (math::matsqu< T, 4 >) cw
+(math::mat33< T >) cw
 (math::mat44< T >) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
@@ -188,22 +190,32 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (math::matbase< T, R, C >) 0 2 box
- (math::vecbase< T, R *C >) 0 3 box
- (math::matsqu< T, 4 >) 0 1 box
- (math::mat44< T >) 0 0 box
+ (math::matbase< T, R, C >) 0.5 2 box
+ (math::vecbase< T, R *C >) 0.5 3 box
+ (math::matsqu< T, 3 >) 0 1 box
+ (math::matsqu< T, 4 >) 1 1 box
+ (math::mat33< T >) 0 0 box
+ (math::mat44< T >) 1 0 box
 
 % ----- relations -----
 
 solid
-0 0 2 out
+0 0.5 2 out
 solid
-1 0 3 in
+1 0.5 3 in
 solid
-1 0 1.25 out
+1 0.5 1.25 out
+solid
+0 1 2 conn
 solid
 0 0 1.75 in
 solid
 1 0 0.25 out
 solid
+0 1 1.75 in
+solid
+1 1 0.25 out
+solid
 0 0 0.75 in
+solid
+0 1 0.75 in

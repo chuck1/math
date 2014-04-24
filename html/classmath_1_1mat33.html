@@ -48,13 +48,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="contents">
-<h1>math::mat33&lt; T &gt; Class Template Reference</h1><!-- doxytag: class="math::mat33" --><!-- doxytag: inherits="vecbase&lt; T, 9 &gt;" --><div class="dynheader">
+<h1>math::mat33&lt; T &gt; Class Template Reference</h1><!-- doxytag: class="math::mat33" --><!-- doxytag: inherits="matsqu&lt; T, 3 &gt;" --><div class="dynheader">
 Inheritance diagram for math::mat33&lt; T &gt;:</div>
 <div class="dynsection">
  <div class="center">
   <img src="classmath_1_1mat33.gif" usemap="#math::mat33&lt; T &gt;_map" alt=""/>
   <map id="math::mat33&lt; T &gt;_map" name="math::mat33&lt; T &gt;_map">
-<area href="classmath_1_1vecbase.html" alt="math::vecbase&lt; T, 9 &gt;" shape="rect" coords="0,0,139,24"/>
+<area href="classmath_1_1matsqu.html" alt="math::matsqu&lt; T, 3 &gt;" shape="rect" coords="0,112,161,136"/>
+<area href="classmath_1_1matbase.html" alt="math::matbase&lt; T, R, C &gt;" shape="rect" coords="0,56,161,80"/>
+<area href="classmath_1_1vecbase.html" alt="math::vecbase&lt; T, R *C &gt;" shape="rect" coords="0,0,161,24"/>
 </map>
  </div>
 </div>
@@ -64,188 +66,74 @@ Inheritance diagram for math::mat33&lt; T &gt;:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab00020cb1e714e31f4b5d81a02e085d7"></a><!-- doxytag: member="math::mat33::mat33" ref="ab00020cb1e714e31f4b5d81a02e085d7" args="(T e0, T e1, T e2, T e3, T e4, T e5, T e6, T e7, T e8)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>mat33</b> (T e0, T e1, T e2, T e3, T e4, T e5, T e6, T e7, T e8)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2436300451351d4aae2d318aca1c340"></a><!-- doxytag: member="math::mat33::mat33" ref="ac2436300451351d4aae2d318aca1c340" args="(const math::mat33 &amp;rhs)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>mat33</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef2112cfd5ededeeb390a91691a6f469"></a><!-- doxytag: member="math::mat33::mat33" ref="aef2112cfd5ededeeb390a91691a6f469" args="(math::mat33&lt; T &gt; const &amp;rhs)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>mat33</b> (<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt; const &amp;rhs)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac084f09a588f7c9a1e8874d0b9970339"></a><!-- doxytag: member="math::mat33::mat33" ref="ac084f09a588f7c9a1e8874d0b9970339" args="(const T *rhs)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>mat33</b> (const T *rhs)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0603d861a667d254189af5023032854a"></a><!-- doxytag: member="math::mat33::mat33" ref="a0603d861a667d254189af5023032854a" args="(vec3&lt; T &gt; const &amp;rhs)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>mat33</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; const &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8e0d8e83ec53242150b93da7ac13a67"></a><!-- doxytag: member="math::mat33::SetDiagonal" ref="af8e0d8e83ec53242150b93da7ac13a67" args="(T x, T y, T z)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetDiagonal</b> (T x, T y, T z)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99744c8d99219cc5d69c8561cbc3eed6"></a><!-- doxytag: member="math::mat33::setRotation" ref="a99744c8d99219cc5d69c8561cbc3eed6" args="(math::quat const &amp;q)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setRotation</b> (<a class="el" href="classmath_1_1quat.html">math::quat</a> const &amp;q)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0523c2ae9382877a5b1525438e144040"></a><!-- doxytag: member="math::mat33::SetEntry" ref="a0523c2ae9382877a5b1525438e144040" args="(int position, T value)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetEntry</b> (int position, T value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a307e6a177baf2bf0bd7f46a0353bd8c4"></a><!-- doxytag: member="math::mat33::GetEntry" ref="a307e6a177baf2bf0bd7f46a0353bd8c4" args="(int position) const " -->
-T&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetEntry</b> (int position) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a580aec1372905592ff3e30d6856176ea"></a><!-- doxytag: member="math::mat33::GetRow" ref="a580aec1372905592ff3e30d6856176ea" args="(int position) const " -->
-<a class="el" href="classmath_1_1vec4.html">math::vec4</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetRow</b> (int position) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2431b06b4a92a848788196320fc1170"></a><!-- doxytag: member="math::mat33::GetColumn" ref="aa2431b06b4a92a848788196320fc1170" args="(int position) const " -->
-<a class="el" href="classmath_1_1vec4.html">math::vec4</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetColumn</b> (int position) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a660442aa3d0f1758ebdbbcb86e5566ef"></a><!-- doxytag: member="math::mat33::LoadIdentity" ref="a660442aa3d0f1758ebdbbcb86e5566ef" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>LoadIdentity</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c1e7268261a38f819464ccd6cedb80b"></a><!-- doxytag: member="math::mat33::LoadZero" ref="a1c1e7268261a38f819464ccd6cedb80b" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>LoadZero</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9de3b92c041bcb43f6fba0c122cfe62e"></a><!-- doxytag: member="math::mat33::operator+" ref="a9de3b92c041bcb43f6fba0c122cfe62e" args="(const math::mat33 &amp;rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20d0b77386c4bfa1d55d4c5bf4fd1cfb"></a><!-- doxytag: member="math::mat33::operator&#45;" ref="a20d0b77386c4bfa1d55d4c5bf4fd1cfb" args="(const math::mat33 &amp;rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ed187770f2bdb867e466ad6c7aed258"></a><!-- doxytag: member="math::mat33::operator*" ref="a0ed187770f2bdb867e466ad6c7aed258" args="(const math::mat33 &amp;rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5dc23803bb63cbd1867a83b66c5c9b3"></a><!-- doxytag: member="math::mat33::operator*" ref="ac5dc23803bb63cbd1867a83b66c5c9b3" args="(const T rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const T rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44d0f147c5d3e7fcff6bcb751581e488"></a><!-- doxytag: member="math::mat33::operator/" ref="a44d0f147c5d3e7fcff6bcb751581e488" args="(const T rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const T rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4b0b3852474d826fb681b529e2c94a0"></a><!-- doxytag: member="math::mat33::operator*" ref="ab4b0b3852474d826fb681b529e2c94a0" args="(T scaleFactor, const math::mat33 &amp;rhs)" -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (T scaleFactor, const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe5577b76afad2f4be3c52a5708735fd"></a><!-- doxytag: member="math::mat33::operator==" ref="afe5577b76afad2f4be3c52a5708735fd" args="(const math::mat33 &amp;rhs) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a190273063afd779438fdb702eb4b0a01"></a><!-- doxytag: member="math::mat33::operator!=" ref="a190273063afd779438fdb702eb4b0a01" args="(const math::mat33 &amp;rhs) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af885ad7231268e6d9047935749a058b2"></a><!-- doxytag: member="math::mat33::operator+=" ref="af885ad7231268e6d9047935749a058b2" args="(const math::mat33 &amp;rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62585fd156948bcb3ad1bb83f663bad3"></a><!-- doxytag: member="math::mat33::operator&#45;=" ref="a62585fd156948bcb3ad1bb83f663bad3" args="(const math::mat33 &amp;rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65cabca229ddaf84b9c9f20a52e83983"></a><!-- doxytag: member="math::mat33::operator*=" ref="a65cabca229ddaf84b9c9f20a52e83983" args="(const math::mat33 &amp;rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a> &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16d436cab3d8f47d53eb193294167545"></a><!-- doxytag: member="math::mat33::operator*=" ref="a16d436cab3d8f47d53eb193294167545" args="(const T rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const T rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf60baf7884b4c0f2c4f18ea71365a17"></a><!-- doxytag: member="math::mat33::operator/=" ref="aaf60baf7884b4c0f2c4f18ea71365a17" args="(const T rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const T rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a326632eb3ae37c3a80fad7d29888a244"></a><!-- doxytag: member="math::mat33::operator&#45;" ref="a326632eb3ae37c3a80fad7d29888a244" args="(void) const " -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (void) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91561f2df87f6cfbac30dcc4b7d44441"></a><!-- doxytag: member="math::mat33::setDiagonal" ref="a91561f2df87f6cfbac30dcc4b7d44441" args="(T x, T y, T z)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setDiagonal</b> (T x, T y, T z)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66471f4f680e0f9e269e574ee3ff294f"></a><!-- doxytag: member="math::mat33::setRotation" ref="a66471f4f680e0f9e269e574ee3ff294f" args="(math::quat&lt; T &gt; const &amp;q)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setRotation</b> (<a class="el" href="classmath_1_1quat.html">math::quat</a>&lt; T &gt; const &amp;q)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae141013ac49eba050977b854bfc782bd"></a><!-- doxytag: member="math::mat33::getRow" ref="ae141013ac49eba050977b854bfc782bd" args="(int position) const " -->
+<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getRow</b> (int position) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af742078fad284c80d0ea6366c417ad8c"></a><!-- doxytag: member="math::mat33::getColumn" ref="af742078fad284c80d0ea6366c417ad8c" args="(int position) const " -->
+<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getColumn</b> (int position) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13ec1c970e65b3b77cc1bda61e11e405"></a><!-- doxytag: member="math::mat33::loadIdentity" ref="a13ec1c970e65b3b77cc1bda61e11e405" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>loadIdentity</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8e29cb75a9d3a5ac7465701b0d085e7"></a><!-- doxytag: member="math::mat33::operator+" ref="ab8e29cb75a9d3a5ac7465701b0d085e7" args="(math::mat33&lt; T &gt; const &amp;rhs) const " -->
+<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt; const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ff7982969708087c4e9d742ed4b82a9"></a><!-- doxytag: member="math::mat33::operator&#45;" ref="a7ff7982969708087c4e9d742ed4b82a9" args="(math::mat33&lt; T &gt; const &amp;rhs) const " -->
+<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt; const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a539a075bdab7142f1287ad913fb51df6"></a><!-- doxytag: member="math::mat33::operator*" ref="a539a075bdab7142f1287ad913fb51df6" args="(math::mat33&lt; T &gt; const &amp;rhs) const " -->
+<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt; const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa27d6f8275975ebe240ffc3d673170ea"></a><!-- doxytag: member="math::mat33::operator*" ref="aa27d6f8275975ebe240ffc3d673170ea" args="(T const &amp;rhs) const " -->
+<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (T const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa01273af4a19fc9b1b8ab062c776b64a"></a><!-- doxytag: member="math::mat33::operator/" ref="aa01273af4a19fc9b1b8ab062c776b64a" args="(T const &amp;rhs) const " -->
+<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (T const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85cd630c71cdad7cedaa76ed5bb833d5"></a><!-- doxytag: member="math::mat33::operator==" ref="a85cd630c71cdad7cedaa76ed5bb833d5" args="(math::mat33&lt; T &gt; const &amp;rhs) const " -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt; const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a771bf672147d8f7302cce640d741707c"></a><!-- doxytag: member="math::mat33::operator!=" ref="a771bf672147d8f7302cce640d741707c" args="(const math::mat33&lt; T &gt; &amp;rhs) const " -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt; &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3cbf3b0094900d864ece681203dc2fa5"></a><!-- doxytag: member="math::mat33::operator+=" ref="a3cbf3b0094900d864ece681203dc2fa5" args="(const math::mat33&lt; T &gt; &amp;rhs)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt; &amp;rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b29d96ee8269f39ff96b425940531cd"></a><!-- doxytag: member="math::mat33::operator&#45;=" ref="a6b29d96ee8269f39ff96b425940531cd" args="(const math::mat33&lt; T &gt; &amp;rhs)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt; &amp;rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3aab4bd5fa08664ba84f231684493c36"></a><!-- doxytag: member="math::mat33::operator*=" ref="a3aab4bd5fa08664ba84f231684493c36" args="(const math::mat33&lt; T &gt; &amp;rhs)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const <a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt; &amp;rhs)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31a1e0240ed69565f6806484bc299de5"></a><!-- doxytag: member="math::mat33::operator*" ref="a31a1e0240ed69565f6806484bc299de5" args="(const vec3&lt; T &gt; rhs) const " -->
 <a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3390e04503571a1b5e50b5517814f65c"></a><!-- doxytag: member="math::mat33::GetRotatedVector3D" ref="a3390e04503571a1b5e50b5517814f65c" args="(const vec3&lt; T &gt; &amp;rhs) const " -->
-<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetRotatedVector3D</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aafa7b03d0198ac63318db01a7e492ca4"></a><!-- doxytag: member="math::mat33::GetInverseRotatedVector3D" ref="aafa7b03d0198ac63318db01a7e492ca4" args="(const vec3&lt; T &gt; &amp;rhs) const " -->
-<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetInverseRotatedVector3D</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb76a471993284b321afcf34018597cb"></a><!-- doxytag: member="math::mat33::Invert" ref="adb76a471993284b321afcf34018597cb" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Invert</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af16584a9c1c5f7f0f3f75364f2356756"></a><!-- doxytag: member="math::mat33::GetInverse" ref="af16584a9c1c5f7f0f3f75364f2356756" args="(void) const " -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetInverse</b> (void) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fd3a7e4f4d6458cc67570a7f007b3d9"></a><!-- doxytag: member="math::mat33::Transpose" ref="a0fd3a7e4f4d6458cc67570a7f007b3d9" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Transpose</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1025261eddde345ca648a079d6be4ed0"></a><!-- doxytag: member="math::mat33::GetTranspose" ref="a1025261eddde345ca648a079d6be4ed0" args="(void) const " -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetTranspose</b> (void) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a818490de753ccec391254bf46500b62d"></a><!-- doxytag: member="math::mat33::InvertTranspose" ref="a818490de753ccec391254bf46500b62d" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InvertTranspose</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98aa72afbe839ab1b1fe6518db0ca2bb"></a><!-- doxytag: member="math::mat33::GetInverseTranspose" ref="a98aa72afbe839ab1b1fe6518db0ca2bb" args="(void) const " -->
-<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetInverseTranspose</b> (void) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0284100c7d1b14fbba752d2af0a0d17c"></a><!-- doxytag: member="math::mat33::SetScale" ref="a0284100c7d1b14fbba752d2af0a0d17c" args="(const vec3&lt; T &gt; &amp;scaleFactor)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetScale</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;scaleFactor)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c11604597c76d78840aa36a72db3ffe"></a><!-- doxytag: member="math::mat33::SetUniformScale" ref="a3c11604597c76d78840aa36a72db3ffe" args="(const T scaleFactor)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetUniformScale</b> (const T scaleFactor)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e3436cfb380ebf5a5bab4c716fd09d4"></a><!-- doxytag: member="math::mat33::SetRotationAxis" ref="a8e3436cfb380ebf5a5bab4c716fd09d4" args="(const T angle, const vec3&lt; T &gt; &amp;axis)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationAxis</b> (const T angle, const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;axis)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac85087803d562d566c0fd223fd4dcefc"></a><!-- doxytag: member="math::mat33::SetRotationX" ref="ac85087803d562d566c0fd223fd4dcefc" args="(const T angle)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationX</b> (const T angle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1256da6ae3e29025fb05d1178026b2b3"></a><!-- doxytag: member="math::mat33::SetRotationY" ref="a1256da6ae3e29025fb05d1178026b2b3" args="(const T angle)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationY</b> (const T angle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89da4d2ddbe2c09a2d7b71a6be104d52"></a><!-- doxytag: member="math::mat33::SetRotationZ" ref="a89da4d2ddbe2c09a2d7b71a6be104d52" args="(const T angle)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationZ</b> (const T angle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4aba4c80be0d58634de824e2f92bdbe7"></a><!-- doxytag: member="math::mat33::SetRotationEuler" ref="a4aba4c80be0d58634de824e2f92bdbe7" args="(const T angleX, const T angleY, const T angleZ)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationEuler</b> (const T angleX, const T angleY, const T angleZ)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e702a6ba47193f532f0fa9605617ff7"></a><!-- doxytag: member="math::mat33::RotateVector3D" ref="a2e702a6ba47193f532f0fa9605617ff7" args="(math::vec3&lt; T &gt; &amp;rhs) const " -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>RotateVector3D</b> (<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2572c609a3da7b07288e46152c80591"></a><!-- doxytag: member="math::mat33::InverseRotateVector3D" ref="ab2572c609a3da7b07288e46152c80591" args="(math::vec3&lt; T &gt; &amp;rhs) const " -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InverseRotateVector3D</b> (<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade4559e0eb4c2010c684a696ef505996"></a><!-- doxytag: member="math::mat33::print" ref="ade4559e0eb4c2010c684a696ef505996" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30361eb215e6d73fcb223996a6883944"></a><!-- doxytag: member="math::mat33::mat33" ref="a30361eb215e6d73fcb223996a6883944" args="(T, T, T, T, T, T, T, T, T)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>mat33</b> (T, T, T, T, T, T, T, T, T)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac084f09a588f7c9a1e8874d0b9970339"></a><!-- doxytag: member="math::mat33::mat33" ref="ac084f09a588f7c9a1e8874d0b9970339" args="(const T *rhs)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>mat33</b> (const T *rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5634ed3694705153727fee89c234b7aa"></a><!-- doxytag: member="math::mat33::mat33" ref="a5634ed3694705153727fee89c234b7aa" args="(const mat33 &amp;rhs)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>mat33</b> (const <a class="el" href="classmath_1_1mat33.html">mat33</a> &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab976d226b8aac840c4e7452a113ecfee"></a><!-- doxytag: member="math::mat33::mat33" ref="ab976d226b8aac840c4e7452a113ecfee" args="(vec3&lt; T &gt; const &amp;)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>mat33</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; const &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0523c2ae9382877a5b1525438e144040"></a><!-- doxytag: member="math::mat33::SetEntry" ref="a0523c2ae9382877a5b1525438e144040" args="(int position, T value)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetEntry</b> (int position, T value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a307e6a177baf2bf0bd7f46a0353bd8c4"></a><!-- doxytag: member="math::mat33::GetEntry" ref="a307e6a177baf2bf0bd7f46a0353bd8c4" args="(int position) const " -->
-T&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetEntry</b> (int position) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b76d14aa180633b32a4a0cd709ebc7c"></a><!-- doxytag: member="math::mat33::GetRow" ref="a4b76d14aa180633b32a4a0cd709ebc7c" args="(int position) const " -->
-<a class="el" href="classmath_1_1vec4.html">vec4</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetRow</b> (int position) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba7966bd8ef554be3375c426f04cb246"></a><!-- doxytag: member="math::mat33::GetColumn" ref="aba7966bd8ef554be3375c426f04cb246" args="(int position) const " -->
-<a class="el" href="classmath_1_1vec4.html">vec4</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetColumn</b> (int position) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a660442aa3d0f1758ebdbbcb86e5566ef"></a><!-- doxytag: member="math::mat33::LoadIdentity" ref="a660442aa3d0f1758ebdbbcb86e5566ef" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>LoadIdentity</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c1e7268261a38f819464ccd6cedb80b"></a><!-- doxytag: member="math::mat33::LoadZero" ref="a1c1e7268261a38f819464ccd6cedb80b" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>LoadZero</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38c3585711ea740d52cab0a71e98509b"></a><!-- doxytag: member="math::mat33::SetDiagonal" ref="a38c3585711ea740d52cab0a71e98509b" args="(T, T, T)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetDiagonal</b> (T, T, T)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a346e895657bf2b7191a9df8f05651222"></a><!-- doxytag: member="math::mat33::operator+" ref="a346e895657bf2b7191a9df8f05651222" args="(const mat33 &amp;rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classmath_1_1mat33.html">mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a891f33955c62e8f56e7a2c7fa9a24eb4"></a><!-- doxytag: member="math::mat33::operator&#45;" ref="a891f33955c62e8f56e7a2c7fa9a24eb4" args="(const mat33 &amp;rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classmath_1_1mat33.html">mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3cc8ed93fa12ac7b3aca308e35ee7452"></a><!-- doxytag: member="math::mat33::operator*" ref="a3cc8ed93fa12ac7b3aca308e35ee7452" args="(const mat33 &amp;rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classmath_1_1mat33.html">mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53b34fda949e14d7c5bbcfb36b85c5e1"></a><!-- doxytag: member="math::mat33::operator*" ref="a53b34fda949e14d7c5bbcfb36b85c5e1" args="(const T rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const T rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78927b50c410db93e25e7a2a5211e48b"></a><!-- doxytag: member="math::mat33::operator/" ref="a78927b50c410db93e25e7a2a5211e48b" args="(const T rhs) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const T rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4ab097b29c8b6220cbd4d818801b47c"></a><!-- doxytag: member="math::mat33::operator==" ref="ac4ab097b29c8b6220cbd4d818801b47c" args="(const mat33 &amp;rhs) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classmath_1_1mat33.html">mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3122cbccf13b34a629fa63be3d58a73f"></a><!-- doxytag: member="math::mat33::operator!=" ref="a3122cbccf13b34a629fa63be3d58a73f" args="(const mat33 &amp;rhs) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classmath_1_1mat33.html">mat33</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35115637f4fe2977f570a24d0df4294a"></a><!-- doxytag: member="math::mat33::operator+=" ref="a35115637f4fe2977f570a24d0df4294a" args="(const mat33 &amp;rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="classmath_1_1mat33.html">mat33</a> &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb35c3ef4dcd5c67bfe03cba1724082c"></a><!-- doxytag: member="math::mat33::operator&#45;=" ref="acb35c3ef4dcd5c67bfe03cba1724082c" args="(const mat33 &amp;rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="classmath_1_1mat33.html">mat33</a> &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6aaf6d6a1e6123be504805110a46f2ac"></a><!-- doxytag: member="math::mat33::operator*=" ref="a6aaf6d6a1e6123be504805110a46f2ac" args="(const mat33 &amp;rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const <a class="el" href="classmath_1_1mat33.html">mat33</a> &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16d436cab3d8f47d53eb193294167545"></a><!-- doxytag: member="math::mat33::operator*=" ref="a16d436cab3d8f47d53eb193294167545" args="(const T rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const T rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf60baf7884b4c0f2c4f18ea71365a17"></a><!-- doxytag: member="math::mat33::operator/=" ref="aaf60baf7884b4c0f2c4f18ea71365a17" args="(const T rhs)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const T rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a203a9ff845754e1683e5bbc7b3f728e0"></a><!-- doxytag: member="math::mat33::operator&#45;" ref="a203a9ff845754e1683e5bbc7b3f728e0" args="(void) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (void) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd6801139091e9cbe8142c30c5bb5199"></a><!-- doxytag: member="math::mat33::operator+" ref="abd6801139091e9cbe8142c30c5bb5199" args="(void) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (void) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2371f91ef75ac80067bda4606c134e86"></a><!-- doxytag: member="math::mat33::operator*" ref="a2371f91ef75ac80067bda4606c134e86" args="(const vec3&lt; T &gt; rhs) const " -->
-<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a953a5828e33dd6832d781c5714377734"></a><!-- doxytag: member="math::mat33::RotateVector3D" ref="a953a5828e33dd6832d781c5714377734" args="(vec3&lt; T &gt; &amp;rhs) const " -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>RotateVector3D</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee13690c5e370dc2cf8fb2562d9b5724"></a><!-- doxytag: member="math::mat33::InverseRotateVector3D" ref="aee13690c5e370dc2cf8fb2562d9b5724" args="(vec3&lt; T &gt; &amp;rhs) const " -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InverseRotateVector3D</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55a87fdcb6c3b13f3dda1e44f2631bcc"></a><!-- doxytag: member="math::mat33::GetRotatedVector3D" ref="a55a87fdcb6c3b13f3dda1e44f2631bcc" args="(const vec3&lt; T &gt; &amp;rhs) const " -->
-<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetRotatedVector3D</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a361ca97e1655e1d5902ebe87803c2dbd"></a><!-- doxytag: member="math::mat33::GetInverseRotatedVector3D" ref="a361ca97e1655e1d5902ebe87803c2dbd" args="(const vec3&lt; T &gt; &amp;rhs) const " -->
-<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetInverseRotatedVector3D</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb76a471993284b321afcf34018597cb"></a><!-- doxytag: member="math::mat33::Invert" ref="adb76a471993284b321afcf34018597cb" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Invert</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4abc5e21e03bfaab8308e8601a6c42ae"></a><!-- doxytag: member="math::mat33::GetInverse" ref="a4abc5e21e03bfaab8308e8601a6c42ae" args="(void) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetInverse</b> (void) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fd3a7e4f4d6458cc67570a7f007b3d9"></a><!-- doxytag: member="math::mat33::Transpose" ref="a0fd3a7e4f4d6458cc67570a7f007b3d9" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Transpose</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a691659ea97f3ae5ad9dc372f4d4f08d6"></a><!-- doxytag: member="math::mat33::GetTranspose" ref="a691659ea97f3ae5ad9dc372f4d4f08d6" args="(void) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetTranspose</b> (void) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a818490de753ccec391254bf46500b62d"></a><!-- doxytag: member="math::mat33::InvertTranspose" ref="a818490de753ccec391254bf46500b62d" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InvertTranspose</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad21471ced0f17f1c4c3b3f345b1c5855"></a><!-- doxytag: member="math::mat33::GetInverseTranspose" ref="ad21471ced0f17f1c4c3b3f345b1c5855" args="(void) const " -->
-<a class="el" href="classmath_1_1mat33.html">mat33</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetInverseTranspose</b> (void) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebaa2d870af1562c130f27c3b3f7d548"></a><!-- doxytag: member="math::mat33::SetTranslation" ref="aebaa2d870af1562c130f27c3b3f7d548" args="(vec3&lt; T &gt; const &amp;)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetTranslation</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; const &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2e3fd233ad0d1bca6c993a96a22be85"></a><!-- doxytag: member="math::mat33::SetScale" ref="ae2e3fd233ad0d1bca6c993a96a22be85" args="(vec3&lt; T &gt; const &amp;)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetScale</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; const &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c11604597c76d78840aa36a72db3ffe"></a><!-- doxytag: member="math::mat33::SetUniformScale" ref="a3c11604597c76d78840aa36a72db3ffe" args="(const T scaleFactor)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetUniformScale</b> (const T scaleFactor)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa553dc6ad37cddc30dfc5fe030211c1"></a><!-- doxytag: member="math::mat33::setRotation" ref="afa553dc6ad37cddc30dfc5fe030211c1" args="(quat const &amp;)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setRotation</b> (<a class="el" href="classmath_1_1quat.html">quat</a> const &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e3436cfb380ebf5a5bab4c716fd09d4"></a><!-- doxytag: member="math::mat33::SetRotationAxis" ref="a8e3436cfb380ebf5a5bab4c716fd09d4" args="(const T angle, const vec3&lt; T &gt; &amp;axis)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationAxis</b> (const T angle, const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;axis)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac85087803d562d566c0fd223fd4dcefc"></a><!-- doxytag: member="math::mat33::SetRotationX" ref="ac85087803d562d566c0fd223fd4dcefc" args="(const T angle)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationX</b> (const T angle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1256da6ae3e29025fb05d1178026b2b3"></a><!-- doxytag: member="math::mat33::SetRotationY" ref="a1256da6ae3e29025fb05d1178026b2b3" args="(const T angle)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationY</b> (const T angle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89da4d2ddbe2c09a2d7b71a6be104d52"></a><!-- doxytag: member="math::mat33::SetRotationZ" ref="a89da4d2ddbe2c09a2d7b71a6be104d52" args="(const T angle)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationZ</b> (const T angle)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25340365b68fe7c9c0770e6ae1f32ddd"></a><!-- doxytag: member="math::mat33::SetRotationEuler" ref="a25340365b68fe7c9c0770e6ae1f32ddd" args="(const T angleX, const T, const T angleZ)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationEuler</b> (const T angleX, const T, const T angleZ)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade4559e0eb4c2010c684a696ef505996"></a><!-- doxytag: member="math::mat33::print" ref="ade4559e0eb4c2010c684a696ef505996" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a698a06538a131424dc187998d4ecdd63"></a><!-- doxytag: member="math::mat33::SetRotationPartEuler" ref="a698a06538a131424dc187998d4ecdd63" args="(vec3&lt; T &gt; const &amp;rotations)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationPartEuler</b> (<a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; const &amp;rotations)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb59ea70e98766225e62a8387bb226b2"></a><!-- doxytag: member="math::mat33::getRotatedVector3D" ref="abb59ea70e98766225e62a8387bb226b2" args="(const vec3&lt; T &gt; &amp;rhs) const " -->
+<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getRotatedVector3D</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb611d48183298eae28cf4f7bba747df"></a><!-- doxytag: member="math::mat33::getInverseRotatedVector3D" ref="aeb611d48183298eae28cf4f7bba747df" args="(const vec3&lt; T &gt; &amp;rhs) const " -->
+<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getInverseRotatedVector3D</b> (const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4669d8706bdfcd57647c98d6ba52128b"></a><!-- doxytag: member="math::mat33::invert" ref="a4669d8706bdfcd57647c98d6ba52128b" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>invert</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec8b7fb7359e71e6b75cb2d0f26f17b3"></a><!-- doxytag: member="math::mat33::getInverse" ref="aec8b7fb7359e71e6b75cb2d0f26f17b3" args="() const " -->
+<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getInverse</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa65877efa975cdfdc28379d819eb2d68"></a><!-- doxytag: member="math::mat33::transpose" ref="aa65877efa975cdfdc28379d819eb2d68" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>transpose</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1317114d3719757e234616986c9eecf"></a><!-- doxytag: member="math::mat33::getTranspose" ref="ac1317114d3719757e234616986c9eecf" args="(void) const " -->
+<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTranspose</b> (void) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2a0de13e9b6e61892d6d4f5d0db90d6"></a><!-- doxytag: member="math::mat33::invertTranspose" ref="ae2a0de13e9b6e61892d6d4f5d0db90d6" args="(void)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>invertTranspose</b> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a314e156440bf0db6dc26192f0059992a"></a><!-- doxytag: member="math::mat33::getInverseTranspose" ref="a314e156440bf0db6dc26192f0059992a" args="(void) const " -->
+<a class="el" href="classmath_1_1mat33.html">math::mat33</a>&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getInverseTranspose</b> (void) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4f9f3ede459490b1c44a35abab4a54f"></a><!-- doxytag: member="math::mat33::setRotationAxis" ref="ac4f9f3ede459490b1c44a35abab4a54f" args="(const T angle, const vec3&lt; T &gt; &amp;axis)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setRotationAxis</b> (const T angle, const <a class="el" href="classmath_1_1vec3.html">vec3</a>&lt; T &gt; &amp;axis)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad90a375f88206f2aa1571703a5b2adc8"></a><!-- doxytag: member="math::mat33::setRotationX" ref="ad90a375f88206f2aa1571703a5b2adc8" args="(const T angle)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setRotationX</b> (const T angle)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa586fc1b0b2e6c0310a92a181799830d"></a><!-- doxytag: member="math::mat33::setRotationY" ref="aa586fc1b0b2e6c0310a92a181799830d" args="(const T angle)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setRotationY</b> (const T angle)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41c805f2e577826071e5cb95ebe6b8c7"></a><!-- doxytag: member="math::mat33::setRotationZ" ref="a41c805f2e577826071e5cb95ebe6b8c7" args="(const T angle)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setRotationZ</b> (const T angle)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee554b3afc31de39404cede72b659e75"></a><!-- doxytag: member="math::mat33::setRotationEuler" ref="aee554b3afc31de39404cede72b659e75" args="(const T angleX, const T angleY, const T angleZ)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setRotationEuler</b> (const T angleX, const T angleY, const T angleZ)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4e344f4a07bc0eb5c003cef663e9cc2"></a><!-- doxytag: member="math::mat33::rotateVector3D" ref="af4e344f4a07bc0eb5c003cef663e9cc2" args="(math::vec3&lt; T &gt; &amp;rhs) const " -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>rotateVector3D</b> (<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa5aa7bf812c1edf162c90a937f77d92"></a><!-- doxytag: member="math::mat33::inverseRotateVector3D" ref="aaa5aa7bf812c1edf162c90a937f77d92" args="(math::vec3&lt; T &gt; &amp;rhs) const " -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>inverseRotateVector3D</b> (<a class="el" href="classmath_1_1vec3.html">math::vec3</a>&lt; T &gt; &amp;rhs) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1b3ef329d70bffaae957a7e871ea29a"></a><!-- doxytag: member="math::mat33::operator T *" ref="ad1b3ef329d70bffaae957a7e871ea29a" args="() const " -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>operator T *</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a727616b6c5fa235e4e48b61e41996fb1"></a><!-- doxytag: member="math::mat33::operator const T *" ref="a727616b6c5fa235e4e48b61e41996fb1" args="() const " -->
@@ -272,7 +160,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetRotationPartEuler<
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on 23 Apr 2014 for math by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on 24 Apr 2014 for math by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

@@ -54,15 +54,54 @@ Inheritance diagram for math::matbase&lt; T, R, C &gt;:</div>
  <div class="center">
   <img src="classmath_1_1matbase.gif" usemap="#math::matbase&lt; T, R, C &gt;_map" alt=""/>
   <map id="math::matbase&lt; T, R, C &gt;_map" name="math::matbase&lt; T, R, C &gt;_map">
-<area href="classmath_1_1vecbase.html" alt="math::vecbase&lt; T, R *C &gt;" shape="rect" coords="0,0,161,24"/>
-<area href="classmath_1_1matsqu.html" alt="math::matsqu&lt; T, 4 &gt;" shape="rect" coords="0,112,161,136"/>
-<area href="classmath_1_1mat44.html" alt="math::mat44&lt; T &gt;" shape="rect" coords="0,168,161,192"/>
+<area href="classmath_1_1vecbase.html" alt="math::vecbase&lt; T, R *C &gt;" shape="rect" coords="85,0,246,24"/>
+<area href="classmath_1_1matsqu.html" alt="math::matsqu&lt; T, 3 &gt;" shape="rect" coords="0,112,161,136"/>
+<area href="classmath_1_1matsqu.html" alt="math::matsqu&lt; T, 4 &gt;" shape="rect" coords="171,112,332,136"/>
+<area href="classmath_1_1mat33.html" alt="math::mat33&lt; T &gt;" shape="rect" coords="0,168,161,192"/>
+<area href="classmath_1_1mat44.html" alt="math::mat44&lt; T &gt;" shape="rect" coords="171,168,332,192"/>
 </map>
  </div>
 </div>
 
 <p><a href="classmath_1_1matbase-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac89f35bb51c718bd42cc7032891708e0"></a><!-- doxytag: member="math::matbase::matbase" ref="ac89f35bb51c718bd42cc7032891708e0" args="(math::matbase&lt; T, R, C &gt; const &amp;rhs)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>matbase</b> (<a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt; const &amp;rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af068cbc67739326385ac9eabf8552839"></a><!-- doxytag: member="math::matbase::matbase" ref="af068cbc67739326385ac9eabf8552839" args="(const T *rhs)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>matbase</b> (const T *rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2cb6c5e339162b340a5f90046dc9dab"></a><!-- doxytag: member="math::matbase::v" ref="ab2cb6c5e339162b340a5f90046dc9dab" args="(int i, int j)" -->
+T &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>v</b> (int i, int j)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fbb44c1ab780ab8a2c193153e333348"></a><!-- doxytag: member="math::matbase::getRow" ref="a5fbb44c1ab780ab8a2c193153e333348" args="(int r) const " -->
+<a class="el" href="classmath_1_1vecbase.html">math::vecbase</a>&lt; T, C &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getRow</b> (int r) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a834d61043d4e8170822cd6a5031b3edd"></a><!-- doxytag: member="math::matbase::getColumn" ref="a834d61043d4e8170822cd6a5031b3edd" args="(int c) const " -->
+<a class="el" href="classmath_1_1vecbase.html">math::vecbase</a>&lt; T, R &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getColumn</b> (int c) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0ef1811c4e2d846e48848f6e1aa5f6e"></a><!-- doxytag: member="math::matbase::operator+" ref="ab0ef1811c4e2d846e48848f6e1aa5f6e" args="(math::matbase&lt; T, R, C &gt; const &amp;rhs) const " -->
+<a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt; const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2de40f2f97e4a9dff5c1af3cc47fdc5"></a><!-- doxytag: member="math::matbase::operator&#45;" ref="ac2de40f2f97e4a9dff5c1af3cc47fdc5" args="(math::matbase&lt; T, R, C &gt; const &amp;rhs) const " -->
+<a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt; const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af15e75eb262bfb3f4afdd561f2b38f30"></a><!-- doxytag: member="math::matbase::operator*" ref="af15e75eb262bfb3f4afdd561f2b38f30" args="(math::matbase&lt; T, C, R &gt; const &amp;rhs) const " -->
+<a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, R &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, C, R &gt; const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2cddf6b59ecc1e0868a85dac9e99d93"></a><!-- doxytag: member="math::matbase::operator==" ref="ad2cddf6b59ecc1e0868a85dac9e99d93" args="(math::matbase&lt; T, R, C &gt; const &amp;rhs) const " -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt; const &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa103abdbe2d3c8026543c277e58251bc"></a><!-- doxytag: member="math::matbase::operator!=" ref="aa103abdbe2d3c8026543c277e58251bc" args="(const math::matbase&lt; T, R, C &gt; &amp;rhs) const " -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt; &amp;rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4540659a324baac820e5c7edccefa621"></a><!-- doxytag: member="math::matbase::operator+=" ref="a4540659a324baac820e5c7edccefa621" args="(const math::matbase&lt; T, R, C &gt; &amp;rhs)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt; &amp;rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a90bd1ca9d1b8667867255eadab0cb1b8"></a><!-- doxytag: member="math::matbase::operator&#45;=" ref="a90bd1ca9d1b8667867255eadab0cb1b8" args="(const math::matbase&lt; T, R, C &gt; &amp;rhs)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt; &amp;rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d5264e6f6fc9d3383c876fab45a04c0"></a><!-- doxytag: member="math::matbase::operator*=" ref="a5d5264e6f6fc9d3383c876fab45a04c0" args="(const math::matbase&lt; T, R, C &gt; &amp;rhs)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const <a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt; &amp;rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac698cb1efc036bbb1864463e34a0abb5"></a><!-- doxytag: member="math::matbase::operator*=" ref="ac698cb1efc036bbb1864463e34a0abb5" args="(const T rhs)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const T rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1c0e4c5303a59d32623b717c5d4f486"></a><!-- doxytag: member="math::matbase::operator/=" ref="ae1c0e4c5303a59d32623b717c5d4f486" args="(const T rhs)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const T rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0238006bac3f0ce7cffa87e03ae9f23"></a><!-- doxytag: member="math::matbase::operator&#45;" ref="ad0238006bac3f0ce7cffa87e03ae9f23" args="() const " -->
+<a class="el" href="classmath_1_1matbase.html">math::matbase</a>&lt; T, R, C &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41a279dda215d552a1069fbc8a3c69ab"></a><!-- doxytag: member="math::matbase::operator*" ref="a41a279dda215d552a1069fbc8a3c69ab" args="(const vecbase&lt; T, C &gt; rhs) const " -->
+<a class="el" href="classmath_1_1vecbase.html">math::vecbase</a>&lt; T, R &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, C &gt; rhs) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47da58f9b0b64ecf5f1473a15ad11ce8"></a><!-- doxytag: member="math::matbase::print" ref="a47da58f9b0b64ecf5f1473a15ad11ce8" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
 </table>
 <h3>template&lt;typename T, int R, int C&gt;<br/>
  class math::matbase&lt; T, R, C &gt;</h3>
@@ -85,7 +124,7 @@ Inheritance diagram for math::matbase&lt; T, R, C &gt;:</div>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on 23 Apr 2014 for math by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on 24 Apr 2014 for math by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
