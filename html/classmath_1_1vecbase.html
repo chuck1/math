@@ -66,12 +66,10 @@ Inheritance diagram for math::vecbase&lt; T, N &gt;:</div>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26c60dd255fe154d21df8d22d4e97e10"></a><!-- doxytag: member="math::vecbase::Type" ref="a26c60dd255fe154d21df8d22d4e97e10" args="" -->
 typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><b>Type</b></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace789b2c8321e0d058b5cd143df2e439"></a><!-- doxytag: member="math::vecbase::vecbase" ref="ace789b2c8321e0d058b5cd143df2e439" args="(T const *const rhs)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>vecbase</b> (T const *const rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79960000898a0987a7579fc40fca4bbd"></a><!-- doxytag: member="math::vecbase::LoadZero" ref="a79960000898a0987a7579fc40fca4bbd" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>LoadZero</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8e12f447b29967af11fb9f830fa08c2"></a><!-- doxytag: member="math::vecbase::magnitude" ref="ac8e12f447b29967af11fb9f830fa08c2" args="() const " -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>magnitude</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09ea04e19618e27e57faf11d94d7c59c"></a><!-- doxytag: member="math::vecbase::loadZero" ref="a09ea04e19618e27e57faf11d94d7c59c" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>loadZero</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99cd9e1263bd57dff1b580586c7193ba"></a><!-- doxytag: member="math::vecbase::magnitude" ref="a99cd9e1263bd57dff1b580586c7193ba" args="() const " -->
+T&nbsp;</td><td class="memItemRight" valign="bottom"><b>magnitude</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab620e8c531da5d6c86634fcb108646c1"></a><!-- doxytag: member="math::vecbase::Normalize" ref="ab620e8c531da5d6c86634fcb108646c1" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Normalize</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7875c870c844f42aeaca952016a04bc7"></a><!-- doxytag: member="math::vecbase::IsFinite" ref="a7875c870c844f42aeaca952016a04bc7" args="() const " -->
@@ -86,6 +84,15 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>read</b> (FILE *file)
 T &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int i)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe9e88db645742e98774a1a946dbaef5"></a><!-- doxytag: member="math::vecbase::print" ref="abe9e88db645742e98774a1a946dbaef5" args="() const " -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>print</b> () const </td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constructors</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="amgrp559a25fdb98a7d1fd1c3771ac568d5e9"></a> </p>
+<br/><br/></div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1564ba1323c81cd57cf169a95392c7e8"></a><!-- doxytag: member="math::vecbase::vecbase" ref="a1564ba1323c81cd57cf169a95392c7e8" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>vecbase</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab43c3f6756f33a67566089ade789e6e7"></a><!-- doxytag: member="math::vecbase::vecbase" ref="ab43c3f6756f33a67566089ade789e6e7" args="(vecbase&lt; T, N &gt; const &amp;rhs)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>vecbase</b> (<a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt; const &amp;rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace789b2c8321e0d058b5cd143df2e439"></a><!-- doxytag: member="math::vecbase::vecbase" ref="ace789b2c8321e0d058b5cd143df2e439" args="(T const *const rhs)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>vecbase</b> (T const *const rhs)</td></tr>
 <tr><td colspan="2"><div class="groupHeader">comparison</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="amgrp347cd68a17ba31d02e83262794a3c9e3"></a> </p>
 <br/><br/></div></td></tr>
@@ -105,10 +112,10 @@ T&nbsp;</td><td class="memItemRight" valign="bottom"><b>dot</b> (<a class="el" h
 <a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt; &amp;rhs)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a874c46c228e890efcbaa703b3a86b8f7"></a><!-- doxytag: member="math::vecbase::operator&#45;=" ref="a874c46c228e890efcbaa703b3a86b8f7" args="(const vecbase&lt; T, N &gt; &amp;rhs)" -->
 <a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt; &amp;rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a51537768ff2cde8b0a31fec39dee56"></a><!-- doxytag: member="math::vecbase::operator*=" ref="a7a51537768ff2cde8b0a31fec39dee56" args="(const double rhs)" -->
-<a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const double rhs)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06d655b27d88c726a2f5e9f100bc5e6a"></a><!-- doxytag: member="math::vecbase::operator/=" ref="a06d655b27d88c726a2f5e9f100bc5e6a" args="(const double rhs)" -->
-<a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const double rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd3625bf7668ae19cd1e3c46ed155c74"></a><!-- doxytag: member="math::vecbase::operator*=" ref="abd3625bf7668ae19cd1e3c46ed155c74" args="(const T rhs)" -->
+<a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const T rhs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a792a888a68713a1a63fe6af0149ce11c"></a><!-- doxytag: member="math::vecbase::operator/=" ref="a792a888a68713a1a63fe6af0149ce11c" args="(const T rhs)" -->
+<a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const T rhs)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aedb460222d2c0cbf6a9221df060fbea5"></a><!-- doxytag: member="math::vecbase::Add" ref="aedb460222d2c0cbf6a9221df060fbea5" args="(const vecbase&lt; T, N &gt; &amp;v2, vecbase&lt; T, N &gt; &amp;result)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Add</b> (const <a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt; &amp;v2, <a class="el" href="classmath_1_1vecbase.html">vecbase</a>&lt; T, N &gt; &amp;result)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8dd9dcfbea3f70b15b7171afd8fde3b9"></a><!-- doxytag: member="math::vecbase::Subtract" ref="a8dd9dcfbea3f70b15b7171afd8fde3b9" args="(const vecbase&lt; T, N &gt; &amp;v2, vecbase&lt; T, N &gt; &amp;result)" -->

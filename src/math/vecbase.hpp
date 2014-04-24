@@ -174,12 +174,101 @@ namespace math {
 	};
 
 	template <typename T, int R, int C> class matbase: public vecbase<T,R*C> {
-		T&	v(int i, int j) {
-			return v[i*C + j];
-		}
+		public:
+			matbase(math::matbase<T,R,C> const & rhs): math::matbase<T,R,C>(rhs) {
+				memcpy(v, rhs.v, R*C*sizeof(T));
+			}
+			matbase(const T * rhs) {
+				memcpy(v, rhs, R*C*sizeof(T));
+			}
+
+			T&	v(int i, int j) {
+				return v[i*C + j];
+			}
+
+			math::matbase<T,R,C>		operator/(const T rhs) const {
+				if (rhs==0.0f || rhs==1.0f)
+					return (*this);
+
+				T temp=1/rhs;
+
+				return (*this)*temp;
+			}
+			bool				operator==(math::matbase<T,R,C> const & rhs) const {
+				for(int i=0; i<16; i++)
+				{
+					if(v[i]!=rhs.v[i])
+						return false;
+				}
+				return true;
+			}
+			bool		operator!=(const math::matbase<T,R,C> & rhs) const {
+				return !((*this)==rhs);
+			}
+			void		operator+=(const math::matbase<T,R,C> & rhs) {
+				(*this)=(*this)+rhs;
+			}
+			void		operator-=(const math::matbase<T,R,C> & rhs)
+			{
+				for(int i = 0; i < 9; ++i) v[i] *= rhs.v[i];
+			}
+			void		operator*=(const math::matbase<T,R,C> & rhs) {
+				(*this) = (*this) * rhs;
+			}
+			void		operator*=(const T rhs) {
+				for(int i = 0; i < 9; ++i) v[i] *= rhs;
+			}
+			void		operator/=(const T rhs)
+			{
+				(*this)=(*this)/rhs;
+			}
+			math::matbase<T,R,C>	operator-() const {
+				math::matbase<T,R,C> result(*this);
+
+				for(int i=0; i<16; i++)
+					result.v[i]=-result.v[i];
+
+				return result;
+			}
+			math::vecbase<T,R>		operator*(const vecbase<T,C> rhs) const {
+				math::vecbase<T,R> ret;
+
+				for(int r = 0; r < R; r++) {
+					ret[r] = 0;
+					for(int c = 0; c < C; c++) {
+						ret[r] += v(r,c) * rhs[c];
+					}
+				}
+				return ret;
+			}
+			void		print() {
+				for(int r = 0; r < R; ++r)
+				{
+					for(int c = 0; c < C; ++c)
+					{
+						printf("%f ",v(r,c));
+					}
+					printf("\n");
+				}
+			}
+
 	};
 	template <typename T, int N> class matsqu: public matbase<T,N,N> {
 		public:
+			matsqu() {
+				loadIdentity();
+			}
+			matsqu(math::matsqu<T,N> const & rhs): math::matbase<T,N,N>(rhs) {
+				//memcpy(v, rhs.v, 9*sizeof(T));
+			}
+
+			void		loadIdentity() {
+				vecbase<T,N*N>::loadZero();
+				for(int i = 0; i < N; i++) {
+					matbase<T,N,N>::v(i,i) = 1.0;
+				}
+			}
+
 			/** @brief determinant */
 			T	det() {
 				int** perm;
