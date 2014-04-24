@@ -13,18 +13,26 @@ namespace math {
 		public:
 			typedef T Type;
 		public:
-			// constructor
+			/** @name Constructors
+			 * @{
+			 */
 			vecbase() {}
+			vecbase(vecbase<T,N> const & rhs) {
+				for(int i = 0; i < N; ++i) {
+					v[i] = rhs.v[i];
+				}
+			}
 			vecbase(T const * const rhs) {
 				memcpy(v, rhs, N * sizeof(T));
 			}
-			void	LoadZero() {
+			/** @} */
+			void	loadZero() {
 				for(int i = 0; i < N; ++i) {
 					v[i] = 0;
 				}
 			}
-			double	magnitude() const {
-				double a;
+			T	magnitude() const {
+				T a;
 				for(int i = 0; i < N; ++i) {
 					a += v[i]*v[i];
 				}
@@ -32,7 +40,7 @@ namespace math {
 			}
 			void	Normalize() {
 				
-				double length = magnitude();
+				T length = magnitude();
 				
 				if(length==1.0f) return;
 				
@@ -41,7 +49,7 @@ namespace math {
 					throw;
 				}
 				
-				double scalefactor = 1.0f/length;
+				T scalefactor = 1.0f/length;
 				
 				(*this) *= scalefactor;
 			}
@@ -107,14 +115,14 @@ namespace math {
 				}
 				return *this;
 			}
-			vecbase<T,N>	operator*=(const double rhs) {
+			vecbase<T,N>	operator*=(const T rhs) {
 				for(int i = 0; i < N; ++i) {
 					v[i] *= rhs;
 				}
 				return *this;
 
 			}
-			vecbase<T,N>	operator/=(const double rhs) {
+			vecbase<T,N>	operator/=(const T rhs) {
 				for(int i = 0; i < N; ++i) {
 					v[i] /= rhs;
 				}
