@@ -5,11 +5,9 @@ class feature;
 class vertex;
 class face;
 
-class plane
-{
+class plane {
 	public:
-		plane(feature* feat0,feature* feat1)
-		{
+		plane(feature* feat0,feature* feat1) {
 
 		}
 		float	dist(math::vec3<double> v)

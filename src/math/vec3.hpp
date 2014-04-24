@@ -15,7 +15,7 @@ namespace math {
 			/** @name constructors
 			 * @{
 			 */
-			vec3() { vecbase<T,3>::LoadZero(); }
+			vec3() { vecbase<T,3>::loadZero(); }
 			vec3(math::vec3<T> const & rhs): math::vecbase<double,3>(rhs) {}
 			vec3(double const & nx, double const & ny, double const & nz) {
 				vecbase<T,3>::v[0] = nx;

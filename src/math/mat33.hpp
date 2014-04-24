@@ -29,13 +29,12 @@ namespace math {
 				matsqu<T,3>::v(2,2) = rhs.v[2];
 			}
 			void		setDiagonal(T x, T y, T z) {
-				loadZero();
-				v(0,0) = x;
-				v(1,1) = y;
-				v(2,2) = z;
+				matsqu<T,3>::loadZero();
+				matsqu<T,3>::v(0,0) = x;
+				matsqu<T,3>::v(1,1) = y;
+				matsqu<T,3>::v(2,2) = z;
 			}
-			void		setRotation(math::quat<T> const & q)
-			{
+			void		setRotation(math::quat<T> const & q) {
 				const T x = q.x;
 				const T y = q.y;
 				const T z = q.z;
@@ -57,109 +56,45 @@ namespace math {
 				const T yw = y2*w;
 				const T zw = z2*w;
 
-				v[0] = 1.0f - yy - zz;
-				v[1] = xy + zw;
-				v[2] = xz - yw;
+				matsqu<T,3>::v(0,0) = 1.0f - yy - zz;
+				matsqu<T,3>::v(0,1) = xy + zw;
+				matsqu<T,3>::v(0,2) = xz - yw;
 
-				v[3] = xy - zw;
-				v[4] = 1.0f - xx - zz;
-				v[5] = yz + xw;
+				matsqu<T,3>::v(1,0) = xy - zw;
+				matsqu<T,3>::v(1,1) = 1.0f - xx - zz;
+				matsqu<T,3>::v(1,2) = yz + xw;
 
-				v[6] = xz + yw;
-				v[7] = yz - xw;
-				v[8] = 1.0f - xx - yy;
+				matsqu<T,3>::v(2,0) = xz + yw;
+				matsqu<T,3>::v(2,1) = yz - xw;
+				matsqu<T,3>::v(2,2) = 1.0f - xx - yy;
 			}
-			void		setEntry(int position, T value) {
-				if(position>=0 && position<=15)
-					v[position]=value;
+			math::vec3<T>		getRow(int position) const {
+				math::vec3<T> ret(matsqu<T,3>::getRow());
+				return ret;
 			}
-			T		getEntry(int position) const {
-				if(position>=0 && position<=15)
-					return v[position];
-
-				return 0.0f;
+			math::vec3<T>		getColumn(int position) const {
+				math::vec3<T> ret(matsqu<T,3>::getColumn());
+				return ret;
 			}
-			math::vec4<T>	getRow(int position) const
-			{
-				if(position==0)
-					return vec4(v[0], v[4], v[8], v[12]);
-
-				if(position==1)
-					return vec4(v[1], v[5], v[9], v[13]);
-
-				if(position==2)
-					return vec4(v[2], v[6], v[10], v[14]);
-
-				if(position==3)
-					return vec4(v[3], v[7], v[11], v[15]);
-
-				return vec4(0.0f, 0.0f, 0.0f, 0.0f);
+			void		loadIdentity() {
+				matsqu<T,3>::loadZero();
+				matsqu<T,3>::v(0,0) = 1.0;
+				matsqu<T,3>::v(1,1) = 1.0;
+				matsqu<T,3>::v(2,2) = 1.0;
 			}
-			math::vec4<T>	getColumn(int position) const {
-				if(position==0)
-					return vec4(v[0], v[1], v[2], v[3]);
-
-				if(position==1)
-					return vec4(v[4], v[5], v[6], v[7]);
-
-				if(position==2)
-					return vec4(v[8], v[9], v[10], v[11]);
-
-				if(position==3)
-					return vec4(v[12], v[13], v[14], v[15]);
-
-				return vec4(0.0f, 0.0f, 0.0f, 0.0f);
-			}
-			void		loadIdentity(void)
-			{
-				memset(v, 0, 9*sizeof(T));
-				v[0]=1.0f;
-				v[4]=1.0f;
-				v[8]=1.0f;
-			}
-			void		loadZero(void)
-			{
-				memset(v, 0, 9*sizeof(T));
-			}
-
 			math::mat33<T>		operator+(math::mat33<T> const & rhs) const {
-				math::mat33 m;
-				for(int i = 0; i < 9; ++i) m.v[i] = v[i] + rhs.v[i];
-				return m;
+				return matbase<T,3,3>::operator+(rhs);
 			}
 			math::mat33<T>		operator-(math::mat33<T> const & rhs) const {
-				math::mat33 m;
-				for(int i = 0; i < 9; ++i) m.v[i] = v[i] - rhs.v[i];
-				return m;
+				return matbase<T,3,3>::operator-(rhs);
 			}
 			math::mat33<T>		operator*(math::mat33<T> const & rhs) const {
-				return math::mat33(
-						v[0]*rhs.v[0] + v[3] * rhs.v[1] + v[6] * rhs.v[2],
-						v[1]*rhs.v[0] + v[4] * rhs.v[1] + v[7] * rhs.v[2],
-						v[2]*rhs.v[0] + v[5] * rhs.v[1] + v[8] * rhs.v[2],
-						v[0]*rhs.v[3] + v[3] * rhs.v[4] + v[6] * rhs.v[5],
-						v[1]*rhs.v[3] + v[4] * rhs.v[4] + v[7] * rhs.v[5],
-						v[2]*rhs.v[3] + v[5] * rhs.v[4] + v[8] * rhs.v[5],
-						v[0]*rhs.v[6] + v[3] * rhs.v[7] + v[6] * rhs.v[8],
-						v[1]*rhs.v[6] + v[4] * rhs.v[7] + v[7] * rhs.v[8],
-						v[2]*rhs.v[6] + v[5] * rhs.v[7] + v[8] * rhs.v[8]);
+				return math::matbase<T,3,3>::operator*(rhs);
 			}
-			math::mat33<T>		operator*(const T rhs) const {
-				math::mat33 m;
-				for(int i = 0; i < 9; ++i) m.v[i] = v[i]*rhs;
-
-				return math::mat33(
-						v[0]*rhs,
-						v[1]*rhs,
-						v[2]*rhs,
-						v[3]*rhs,
-						v[4]*rhs,
-						v[5]*rhs,
-						v[6]*rhs,
-						v[7]*rhs,
-						v[8]*rhs);
+			math::mat33<T>		operator*(T const & rhs) const {
+				return vecbase<T,9>::operator*(rhs);
 			}
-			math::mat33<T>		operator/(const T rhs) const {
+			math::mat33<T>		operator/(T const & rhs) const {
 				if (rhs==0.0f || rhs==1.0f)
 					return (*this);
 
@@ -168,22 +103,16 @@ namespace math {
 				return (*this)*temp;
 			}
 			bool			operator==(math::mat33<T> const & rhs) const {
-				for(int i=0; i<16; i++)
-				{
-					if(v[i]!=rhs.v[i])
-						return false;
-				}
-				return true;
+				return math::vecbase<T,9>::operator==(rhs);
 			}
-			bool		operator!=(const math::mat33<T> & rhs) const {
-				return math::matsqu<T,3>operator!=(rhs);
+			bool			operator!=(const math::mat33<T> & rhs) const {
+				return math::vecbase<T,9>::operator!=(rhs);
 			}
-			void		operator+=(const math::mat33<T> & rhs) {
-				math::matsqu<T,3>operator+=(rhs);
+			void			operator+=(const math::mat33<T> & rhs) {
+				math::matsqu<T,3>::operator+=(rhs);
 			}
-			void		operator-=(const math::mat33<T> & rhs)
-			{
-				math::matsqu<T,3>operator-=(rhs);
+			void			operator-=(const math::mat33<T> & rhs) {
+				math::matsqu<T,3>::operator-=(rhs);
 			}
 			void		operator*=(const math::mat33<T> & rhs) {
 				(*this) = (*this) * rhs;
@@ -195,23 +124,21 @@ namespace math {
 
 			math::vec3<T>		getRotatedVector3D(const vec3<T> & rhs) const
 			{
-				return vec3<T>(
-						v[0]*rhs.v[0] + v[4]*rhs.v[1] + v[8]*rhs.v[2],
-						v[1]*rhs.v[0] + v[5]*rhs.v[1] + v[9]*rhs.v[2],
-						v[2]*rhs.v[0] + v[6]*rhs.v[1] + v[10]*rhs.v[2]);
+				return operator*(rhs);
+//						v(0]*rhs.v[0] + v[4]*rhs.v[1] + v[8]*rhs.v[2],
+//						v(1]*rhs.v[0] + v[5]*rhs.v[1] + v[9]*rhs.v[2],
+//						v(2]*rhs.v[0] + v[6]*rhs.v[1] + v[10]*rhs.v[2]);
 			}
 			math::vec3<T>		getInverseRotatedVector3D(const vec3<T> & rhs) const
 			{
 				//rotate .v[1] transpose:
-				return vec3<T>(v[0]*rhs.v[0] + v[1]*rhs.v[1] + v[2]*rhs.v[2],
-						v[4]*rhs.v[0] + v[5]*rhs.v[1] + v[6]*rhs.v[2],
-						v[8]*rhs.v[0] + v[9]*rhs.v[1] + v[10]*rhs.v[2]);
+				return getTranspose() * rhs;
 			}
 			void			invert() {
 				*this = getInverse();
 			}
 			math::mat33<T>		getInverse() const {
-				math::mat33 result=GetInverseTranspose();
+				math::mat33<T> result = getInverseTranspose();
 
 				result.Transpose();
 
@@ -221,17 +148,17 @@ namespace math {
 				*this = getTranspose();
 			}
 			math::mat33<T>		getTranspose(void) const {
-				return math::mat33(
-						v[ 0], v[ 3], v[6],
-						v[ 1], v[ 4], v[7],
-						v[ 2], v[ 5], v[8]);
+				return math::mat33<T>(
+						vecbase<T,9>::v[0], vecbase<T,9>::v[3], vecbase<T,9>::v[6],
+						vecbase<T,9>::v[1], vecbase<T,9>::v[4], vecbase<T,9>::v[7],
+						vecbase<T,9>::v[2], vecbase<T,9>::v[5], vecbase<T,9>::v[8]);
 			}
 			void			invertTranspose(void) {
-				*this=GetInverseTranspose();
+				*this = getInverseTranspose();
 			}
 			math::mat33<T>		getInverseTranspose(void) const {
-				math::mat33 result;
-
+				math::mat33<T> result;
+				/*
 				T tmp[12];												//temporary pair storage
 				T det;													//determinant
 
@@ -326,20 +253,8 @@ namespace math {
 				}
 
 				result=result/det;
-
+				*/
 				return result;
-			}
-			void		setScale(const vec3<T> & scaleFactor) {
-				LoadIdentity();
-
-				v[0]  = scaleFactor.v[0];
-				v[5]  = scaleFactor.v[1];
-				v[10] = scaleFactor.v[2];
-			}
-			void		setUniformScale(const T scaleFactor) {
-				LoadIdentity();
-
-				v[0]=v[5]=v[10]=scaleFactor;
 			}
 			void		setRotationAxis(const T angle, const vec3<T> & axis) {
 				vec3<T> u=axis.GetNormalized();
@@ -348,46 +263,46 @@ namespace math {
 				T cosAngle=(T)cos(M_PI*angle/180);
 				T oneMinusCosAngle=1.0f-cosAngle;
 
-				LoadIdentity();
+				loadIdentity();
 
-				v[0]  = (u.v[0])*(u.v[0]) + cosAngle*(1-(u.v[0])*(u.v[0]));
-				v[4]  = (u.v[0])*(u.v[1])*(oneMinusCosAngle) - sinAngle*u.v[2];
-				v[8]  = (u.v[0])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[1];
+				vecbase<T,9>::v[0]  = (u.v[0])*(u.v[0]) + cosAngle*(1-(u.v[0])*(u.v[0]));
+				vecbase<T,9>::v[4]  = (u.v[0])*(u.v[1])*(oneMinusCosAngle) - sinAngle*u.v[2];
+				vecbase<T,9>::v[8]  = (u.v[0])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[1];
 
-				v[1]  = (u.v[0])*(u.v[1])*(oneMinusCosAngle) + sinAngle*u.v[2];
-				v[5]  = (u.v[1])*(u.v[1]) + cosAngle*(1-(u.v[1])*(u.v[1]));
-				v[9]  = (u.v[1])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[0];
+				vecbase<T,9>::v[1]  = (u.v[0])*(u.v[1])*(oneMinusCosAngle) + sinAngle*u.v[2];
+				vecbase<T,9>::v[5]  = (u.v[1])*(u.v[1]) + cosAngle*(1-(u.v[1])*(u.v[1]));
+				vecbase<T,9>::v[9]  = (u.v[1])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[0];
 
-				v[2]  = (u.v[0])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[1];
-				v[6]  = (u.v[1])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[0];
-				v[10] = (u.v[2])*(u.v[2]) + cosAngle*(1-(u.v[2])*(u.v[2]));
+				vecbase<T,9>::v[2]  = (u.v[0])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[1];
+				vecbase<T,9>::v[6]  = (u.v[1])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[0];
+				vecbase<T,9>::v[10] = (u.v[2])*(u.v[2]) + cosAngle*(1-(u.v[2])*(u.v[2]));
 			}
 			void		setRotationX(const T angle) {
-				LoadIdentity();
+				loadIdentity();
 
-				v[5]=(T)cos(M_PI*angle/180);
-				v[6]=(T)sin(M_PI*angle/180);
+				vecbase<T,9>::v[4] = (T)cos(M_PI*angle/180);
+				vecbase<T,9>::v[5] = (T)sin(M_PI*angle/180);
 
-				v[9]=-v[6];
-				v[10]=v[5];
+				vecbase<T,9>::v[6] = -vecbase<T,9>::v[6];
+				vecbase<T,9>::v[7]= vecbase<T,9>::v[5];
 			}
 			void		setRotationY(const T angle) {
-				LoadIdentity();
+				loadIdentity();
 
-				v[0]=(T)cos(M_PI*angle/180);
-				v[2]=-(T)sin(M_PI*angle/180);
+				vecbase<T,9>::v[0]=(T)cos(M_PI*angle/180);
+				vecbase<T,9>::v[2]=-(T)sin(M_PI*angle/180);
 
-				v[8]=-v[2];
-				v[10]=v[0];
+				vecbase<T,9>::v[6]=-vecbase<T,9>::v[2];
+				vecbase<T,9>::v[8]=vecbase<T,9>::v[0];
 			}
 			void		setRotationZ(const T angle) {
-				LoadIdentity();
+				loadIdentity();
 
-				v[0]=(T)cos(M_PI*angle/180);
-				v[1]=(T)sin(M_PI*angle/180);
+				vecbase<T,9>::v[0]=(T)cos(M_PI*angle/180);
+				vecbase<T,9>::v[1]=(T)sin(M_PI*angle/180);
 
-				v[4]=-v[1];
-				v[5]=v[0];
+				vecbase<T,9>::v[3]=-vecbase<T,9>::v[1];
+				vecbase<T,9>::v[4]=vecbase<T,9>::v[0];
 			}
 			void		setRotationEuler(const T angleX, const T angleY, const T angleZ) {
 				T cr = cos( M_PI*angleX/180 );
@@ -397,20 +312,20 @@ namespace math {
 				T cy = cos( M_PI*angleZ/180 );
 				T sy = sin( M_PI*angleZ/180 );
 
-				v[0] = ( T )( cp*cy );
-				v[1] = ( T )( cp*sy );
-				v[2] = ( T )( -sp );
+				vecbase<T,9>::v[0] = ( T )( cp*cy );
+				vecbase<T,9>::v[1] = ( T )( cp*sy );
+				vecbase<T,9>::v[2] = ( T )( -sp );
 
 				T srsp = sr*sp;
 				T crsp = cr*sp;
 
-				v[4] = ( T )( srsp*cy-cr*sy );
-				v[5] = ( T )( srsp*sy+cr*cy );
-				v[6] = ( T )( sr*cp );
+				vecbase<T,9>::v[3] = ( T )( srsp*cy-cr*sy );
+				vecbase<T,9>::v[4] = ( T )( srsp*sy+cr*cy );
+				vecbase<T,9>::v[5] = ( T )( sr*cp );
 
-				v[8] = ( T )( crsp*cy+sr*sy );
-				v[9] = ( T )( crsp*sy-sr*cy );
-				v[10] = ( T )( cr*cp );
+				vecbase<T,9>::v[6] = ( T )( crsp*cy+sr*sy );
+				vecbase<T,9>::v[7] = ( T )( crsp*sy-sr*cy );
+				vecbase<T,9>::v[8] = ( T )( cr*cp );
 			}
 			void		rotateVector3D(math::vec3<T> & rhs) const {
 				rhs = GetRotatedVector3D(rhs);

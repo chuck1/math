@@ -186,13 +186,48 @@ namespace math {
 				return v[i*C + j];
 			}
 
-			math::matbase<T,R,C>		operator/(const T rhs) const {
-				if (rhs==0.0f || rhs==1.0f)
-					return (*this);
 
-				T temp=1/rhs;
 
-				return (*this)*temp;
+			math::vecbase<T,C>	getRow(int r) const {
+				math::vecbase<T,C> ret;
+				for(int c = 0; c < C; c++) {
+					ret[c] = v(r,c);
+				}
+				return ret;
+			}
+			math::vecbase<T,R>	getColumn(int c) const {
+				math::vecbase<T,R> ret;
+				for(int r = 0; r < R; r++) {
+					ret[r] = v(r,c);
+				}
+				return ret;
+			}
+
+			
+
+			math::matbase<T,R,C>		operator+(math::matbase<T,R,C> const & rhs) const {
+				math::matbase<T,R,C> m;
+				for(int i = 0; i < 9; ++i) m.v[i] = v[i] + rhs.v[i];
+				return m;
+			}
+			math::matbase<T,R,C>		operator-(math::matbase<T,R,C> const & rhs) const {
+				math::matbase<T,R,C> m;
+				for(int i = 0; i < 9; ++i) m.v[i] = v[i] - rhs.v[i];
+				return m;
+			}
+
+			math::matbase<T,R,R>		operator*(math::matbase<T,C,R> const & rhs) const {
+				math::matbase<T,R,C> m;
+
+				for(int r = 0; r < R; r++) {
+					for(int c = 0; c < C; c++) {
+						for(int c1 = 0; c1 < C; c1++) {
+							m.v(r,c) = v(r,c1) * rhs.v(c1,r);
+						}
+
+					}
+				}
+
 			}
 			bool				operator==(math::matbase<T,R,C> const & rhs) const {
 				for(int i=0; i<16; i++)
