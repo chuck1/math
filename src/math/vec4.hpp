@@ -17,9 +17,10 @@
 #define vec4_H
 
 #include <math/config.hpp>
+#include <math/vecbase.hpp>
 
 namespace math {
-	template <typename T> class vec4: public vecbase<T,4> {
+	template<typename T> class vec4: public vecbase<T,4> {
 		public:
 			T&		w() { return vecbase<T,4>::v[0]; }
 			T&		x() { return vecbase<T,4>::v[1]; }

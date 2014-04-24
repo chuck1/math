@@ -8,7 +8,7 @@
 #include <math/vec3.hpp>
 #include <math/quat.hpp>
 
-
+/*
 math::quat::quat() {
 	loadZero();
 }
@@ -265,10 +265,10 @@ const math::vec3<double> math::quat::rotate(const math::vec3<double>& v) const
 		 (vy*w2 + (z * vx - x * vz)*w + y*dot2), 
 		 (vz*w2 + (x * vy - y * vx)*w + z*dot2)
 		);
-	/*
+	
 	   const math::vec3<double> qv(x,y,z);
 	   return (v*(w*w-0.5f) + (qv.cross(v))*w + qv*(qv.dot(v)))*2;
-	   */
+	 
 }
 const math::vec3<double> math::quat::rotateInv(const math::vec3<double>& v) const
 {
@@ -374,4 +374,5 @@ math::vec3<double> math::quat::getOmega(double dt) {
 
 	return omega;
 }
+*/
 

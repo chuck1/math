@@ -26,7 +26,7 @@
 #include <math/mat44.hpp>
 #include <math/quat.hpp>
 #include <math/plane.hpp>
-
+/*
 math::mat44::mat44(float e0, float e1, float e2, float e3,
 		float e4, float e5, float e6, float e7,
 		float e8, float e9, float e10, float e11,
@@ -864,7 +864,7 @@ void	math::mat44::SetReflection(math::plane const & p)
 
 	math::mat44 RA = I - math::vec4(n,0) * math::vec4(n,0) * 2.0;
 
-	//*this = A * RA * A.GetInverse();
+	//this = A * RA * A.GetInverse();
 	*this = A.GetInverse() * RA * A;
 }
 void	math::mat44::print()
@@ -899,5 +899,5 @@ void	math::mat44::SetCoordinateTransform(math::vec3<double> const x, math::vec3<
 	*this = m;
 }
 
-
+*/
 
