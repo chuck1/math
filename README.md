@@ -4,7 +4,7 @@ General purpose math c++ library
 
 - linear and quaternion algebra
 
-[website](http://chuck1.github.io/math)
+[documentation](http://chuck1.github.io/math/html/index.html)
 
 ## installation
 
