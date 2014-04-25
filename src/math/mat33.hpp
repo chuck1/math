@@ -24,9 +24,9 @@ namespace math {
 			mat33(const T * rhs): math::matsqu<T,3>(rhs) {}
 			mat33(vec3<T> const & rhs) {
 				loadIdentity();
-				matsqu<T,3>::v(0,0) = rhs.v[0];
-				matsqu<T,3>::v(1,1) = rhs.v[1];
-				matsqu<T,3>::v(2,2) = rhs.v[2];
+				matsqu<T,3>::v(0,0) = rhs.v_[0];
+				matsqu<T,3>::v(1,1) = rhs.v_[1];
+				matsqu<T,3>::v(2,2) = rhs.v_[2];
 			}
 			void		setDiagonal(T x, T y, T z) {
 				matsqu<T,3>::loadZero();
@@ -82,6 +82,7 @@ namespace math {
 				matsqu<T,3>::v(1,1) = 1.0;
 				matsqu<T,3>::v(2,2) = 1.0;
 			}
+			/** @name Binary Operators @{ */
 			math::mat33<T>		operator+(math::mat33<T> const & rhs) const {
 				return matbase<T,3,3>::operator+(rhs);
 			}
@@ -89,6 +90,9 @@ namespace math {
 				return matbase<T,3,3>::operator-(rhs);
 			}
 			math::mat33<T>		operator*(math::mat33<T> const & rhs) const {
+				return math::matbase<T,3,3>::operator*(rhs);
+			}
+			math::vec3<T>		operator*(math::vec3<T> const & rhs) const {
 				return math::matbase<T,3,3>::operator*(rhs);
 			}
 			math::mat33<T>		operator*(T const & rhs) const {
@@ -102,6 +106,7 @@ namespace math {
 
 				return (*this)*temp;
 			}
+			/** @} */
 			bool			operator==(math::mat33<T> const & rhs) const {
 				return math::vecbase<T,9>::operator==(rhs);
 			}
@@ -117,10 +122,12 @@ namespace math {
 			void		operator*=(const math::mat33<T> & rhs) {
 				(*this) = (*this) * rhs;
 			}
-			math::vec3<T>		operator*(const vec3<T> rhs) const {
-				return math::matsqu<T,3>::operator*(rhs);
+			/** @name Unary Operators @{ */
+			math::mat33<T>&		operator-() {
+				matsqu<T,3>::operator-();
+				return *this;
 			}
-
+			/** @} */
 
 			math::vec3<T>		getRotatedVector3D(const vec3<T> & rhs) const
 			{

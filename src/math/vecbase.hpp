@@ -106,9 +106,7 @@ namespace math {
 			}
 			/** @} */
 
-			/** @name binary operators
-			 * @{
-			 */
+			/** @name Self-Assignment operators @{ */
 			vecbase<T,N>&	operator+=(const vecbase<T,N> & rhs) {
 				for(int i = 0; i < N; ++i) {
 					v_[i] += rhs.v_[i];
@@ -121,25 +119,47 @@ namespace math {
 				}
 				return *this;
 			}
-			vecbase<T,N>	operator*=(const T rhs) {
+			vecbase<T,N>&	operator*=(const T rhs) {
 				for(int i = 0; i < N; ++i) {
 					v_[i] *= rhs;
 				}
 				return *this;
 
 			}
-			vecbase<T,N>	operator/=(const T rhs) {
+			vecbase<T,N>&	operator/=(const T rhs) {
 				for(int i = 0; i < N; ++i) {
 					v_[i] /= rhs;
 				}
 				return *this;
 			}
-			void		Add(const vecbase<T,N> & v2, vecbase<T,N> & result) {
+			/** @} */
+			/** @name Binary Operators @{ */
+			vecbase<T,N>	operator+(const vecbase<T,N> & rhs) const {
+				vecbase<T,N> ret(*this);
+				ret += rhs;
+				return ret;
+			}
+			vecbase<T,N>	operator-(const vecbase<T,N> & rhs) const {
+				vecbase<T,N> ret(*this);
+				ret -= rhs;
+				return ret;
+			}
+			vecbase<T,N>	operator*(const T rhs) const {
+				vecbase<T,N> ret(*this);
+				ret *= rhs;
+				return ret;
+			}
+			vecbase<T,N>	operator/(const T rhs) const {
+				vecbase<T,N> ret(*this);
+				ret /= rhs;
+				return ret;
+			}
+			void		Add(const vecbase<T,N> & v2, vecbase<T,N> & result) const {
 				for(int i = 0; i < N; ++i) {
 					result.v[i]=v[i]+v2.v[i];
 				}
 			}
-			void		Subtract(const vecbase<T,N> & v2, vecbase<T,N> & result) {
+			void		Subtract(const vecbase<T,N> & v2, vecbase<T,N> & result) const {
 				for(int i = 0; i < N; ++i) {
 					result.v[i]=v[i]-v2.v[i];
 				}
@@ -151,15 +171,20 @@ namespace math {
 			 */
 			vecbase<T,N>&	minus() {
 				for(int i = 0; i < N; ++i) {
-					v[i] = -v[i];
+					v_[i] = -v_[i];
 				}
 				return *this;
 			}
 			vecbase<T,N>&	abs() {
 				for(int i = 0; i < N; ++i) {
-					v[i] = fabs(v[i]);
+					v_[i] = fabs(v_[i]);
 				}
 				return *this;
+			}
+			vecbase<T,N>	operator-() const {
+				vecbase<T,N> ret(*this);
+				ret.minus();
+				return ret;
 			}
 			/** @} */
 
@@ -171,7 +196,7 @@ namespace math {
 		protected:
 			bool	operator<(vecbase<T,N> const & rhs) {
 				for(int i = 0; i < N; i++) {
-					if(v[i] >= rhs.v[i]) return false;
+					if(v_[i] >= rhs.v_[i]) return false;
 				}
 				return true;
 			}
@@ -183,9 +208,8 @@ namespace math {
 		public:
 			/** @name Constructor @{ */
 			matbase() {}
-			matbase(math::matbase<T,R,C> const & rhs): math::vecbase<T,R*C>(rhs) {
-				//memcpy(v, rhs.v, R*C*sizeof(T));
-			}
+			matbase(math::vecbase<T,R*C> const & rhs): math::vecbase<T,R*C>(rhs) {}
+			matbase(math::matbase<T,R,C> const & rhs): math::vecbase<T,R*C>(rhs) {}
 			matbase(const T * rhs): vecbase<T,R*C>(rhs) {
 				//memcpy(v, rhs, R*C*sizeof(T));
 			}
@@ -212,14 +236,15 @@ namespace math {
 				}
 				return ret;
 			}
+			/** @name Binary Operators @{ */
 			math::matbase<T,R,C>		operator+(math::matbase<T,R,C> const & rhs) const {
 				math::matbase<T,R,C> m;
-				for(int i = 0; i < 9; ++i) m.v[i] = v[i] + rhs.v[i];
+				for(int i = 0; i < 9; ++i) m.v_[i] = v(i) + rhs.v_[i];
 				return m;
 			}
 			math::matbase<T,R,C>		operator-(math::matbase<T,R,C> const & rhs) const {
 				math::matbase<T,R,C> m;
-				for(int i = 0; i < 9; ++i) m.v[i] = v[i] - rhs.v[i];
+				for(int i = 0; i < 9; ++i) m.v_[i] = v(i) - rhs.v_[i];
 				return m;
 			}
 			math::matbase<T,R,R>		operator*(math::matbase<T,C,R> const & rhs) const {
@@ -234,6 +259,20 @@ namespace math {
 					}
 				}
 
+			}
+			math::vecbase<T,R>		operator*(const vecbase<T,C> rhs) const {
+				math::vecbase<T,R> ret;
+
+				for(int r = 0; r < R; r++) {
+					ret.v_[r] = 0;
+					for(int c = 0; c < C; c++) {
+						ret.v_[r] += v(r,c) * rhs.v_[c];
+					}
+				}
+				return ret;
+			}
+			math::matbase<T,R,C>		operator*(T const & rhs) const {
+				return vecbase<T,R*C>::operator*(rhs);
 			}
 			bool				operator==(math::matbase<T,R,C> const & rhs) const {
 				for(int i=0; i<16; i++)
@@ -251,14 +290,15 @@ namespace math {
 			}
 			void		operator-=(const math::matbase<T,R,C> & rhs)
 			{
-				for(int i = 0; i < 9; ++i) v[i] *= rhs.v[i];
+				for(int i = 0; i < 9; ++i) v(i) *= rhs.v_[i];
 			}
 			void		operator*=(const math::matbase<T,R,C> & rhs) {
 				(*this) = (*this) * rhs;
 			}
 			void		operator*=(const T rhs) {
-				for(int i = 0; i < 9; ++i) v[i] *= rhs;
+				for(int i = 0; i < 9; ++i) v(i) *= rhs;
 			}
+
 			void		operator/=(const T rhs)
 			{
 				(*this)=(*this)/rhs;
@@ -267,21 +307,11 @@ namespace math {
 				math::matbase<T,R,C> result(*this);
 
 				for(int i=0; i<16; i++)
-					result.v[i]=-result.v[i];
+					result.v_[i]=-result.v_[i];
 
 				return result;
 			}
-			math::vecbase<T,R>		operator*(const vecbase<T,C> rhs) const {
-				math::vecbase<T,R> ret;
-
-				for(int r = 0; r < R; r++) {
-					ret[r] = 0;
-					for(int c = 0; c < C; c++) {
-						ret[r] += v(r,c) * rhs[c];
-					}
-				}
-				return ret;
-			}
+			
 			void		print() {
 				for(int r = 0; r < R; ++r)
 				{
@@ -299,6 +329,7 @@ namespace math {
 			matsqu() {
 				loadIdentity();
 			}
+			matsqu(math::matbase<T,N,N> const & rhs): math::matbase<T,N,N>(rhs) {}
 			matsqu(math::matsqu<T,N> const & rhs): math::matbase<T,N,N>(rhs) {
 				//memcpy(v, rhs.v, 9*sizeof(T));
 			}
@@ -309,9 +340,13 @@ namespace math {
 					matbase<T,N,N>::v(i,i) = 1.0;
 				}
 			}
-
+			/** @name Binary Operators @{ */
+			matsqu<T,N>	operator*(T const & rhs) const {
+				return matbase<T,N,N>::operator*(rhs);
+			}
+			/** @} */
 			/** @brief determinant */
-			T	det() {
+			T	det() const {
 				int** perm;
 				int* sig;
 				math::discrete::permutations(perm, sig, N);
@@ -325,9 +360,10 @@ namespace math {
 					}
 					res += sig[i] * prod;
 				}
+				return res;
 			}
 			/** @brief determinant of subset */
-			T	det(int* a, int* b, int n) {
+			T	det(int* a, int* b, int n) const {
 				int** perm;
 				int* sig;
 				math::discrete::permutations(perm, sig, N);
@@ -347,7 +383,7 @@ namespace math {
 
 	};
 
-}
+	}
 
 
 #endif
