@@ -18,6 +18,6 @@ add_definitions(-DTINYXML)
 # =================================
 include($ENV{HOME}/usr/lib/cmake/CMakeHelper/static_library.cmake)
 
-#add_subdirectory(test)
+add_subdirectory(test)
 
 
