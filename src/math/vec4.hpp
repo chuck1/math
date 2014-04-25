@@ -22,24 +22,24 @@
 namespace math {
 	template<typename T> class vec4: public vecbase<T,4> {
 		public:
-			T&		w() { return vecbase<T,4>::v[0]; }
-			T&		x() { return vecbase<T,4>::v[1]; }
-			T&		y() { return vecbase<T,4>::v[2]; }
-			T&		z() { return vecbase<T,4>::v[3]; }
+			T&		w() { return vecbase<T,4>::v_[0]; }
+			T&		x() { return vecbase<T,4>::v_[1]; }
+			T&		y() { return vecbase<T,4>::v_[2]; }
+			T&		z() { return vecbase<T,4>::v_[3]; }
 			
 			/** @name Constructors
 			 * @{
 			 */
 			vec4(const vec3<T> & rhs) {
-				x() = rhs.v[0];
-				y() = rhs.v[1];
-				z() = rhs.v[2];
+				x() = rhs.v_[0];
+				y() = rhs.v_[1];
+				z() = rhs.v_[2];
 				w() = 1.0f;
 			}
 			vec4(vec3<T> const & rhs,T const & newW) {
-				x() = rhs.v[0];
-				y() = rhs.v[1];
-				z() = rhs.v[2];
+				x() = rhs.v_[0];
+				y() = rhs.v_[1];
+				z() = rhs.v_[2];
 				w() = newW;
 			}
 			vec4() { vecbase<T,4>::loadZero(); }
@@ -129,10 +129,10 @@ namespace math {
 
 				return ret;
 			}
-			void	print()
+		/*	void	print()
 			{
 				printf("%f %f %f %f\n",x,y,z,w);
-			}
+			}*/
 
 			//constructors
 			//convert v3d to v4d

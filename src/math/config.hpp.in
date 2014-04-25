@@ -3,6 +3,8 @@
 
 #define MATH_DEBUG_1_FUNCTION printf("%s\n", __PRETTY_FUNCTION__);
 
+#define TINYXML2 @TinyXML2_FOUND@
+
 #include <exception>
 
 /** \brief %the %math library
@@ -15,8 +17,12 @@ namespace math {
 	template<typename> class quat;
 	template<typename> class plane;
 	template<typename> class transform;
-	template<typename> class color;
 
+	/** @brief %Color */
+	namespace Color {
+		template<typename> class color;
+	}
+	
 	/** @brief %Exceptions */
 	namespace except {
 	}
@@ -43,4 +49,6 @@ namespace math {
 }
 
 #endif
+
+
 

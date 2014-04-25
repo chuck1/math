@@ -18,17 +18,17 @@ namespace math {
 			vec3() { vecbase<T,3>::loadZero(); }
 			vec3(math::vec3<T> const & rhs): math::vecbase<double,3>(rhs) {}
 			vec3(double const & nx, double const & ny, double const & nz) {
-				vecbase<T,3>::v[0] = nx;
-				vecbase<T,3>::v[1] = ny;
-				vecbase<T,3>::v[2] = nz;
+				vecbase<T,3>::v_[0] = nx;
+				vecbase<T,3>::v_[1] = ny;
+				vecbase<T,3>::v_[2] = nz;
 			}
 			vec3(double const * const v): math::vecbase<double,3>(v) {}
 
 #ifdef PHYSX
 			vec3(physx::PxVec3 const & rhs) {
-				vecbase<T,3>::v[0] = rhs.x;
-				vecbase<T,3>::v[1] = rhs.y;
-				vecbase<T,3>::v[2] = rhs.z;
+				vecbase<T,3>::v_[0] = rhs.x;
+				vecbase<T,3>::v_[1] = rhs.y;
+				vecbase<T,3>::v_[2] = rhs.z;
 			}
 #endif
 			/** @} */
@@ -50,9 +50,7 @@ namespace math {
 			T const &	y() const { return math::vecbase<T,3>::v[1]; }
 			/***/
 			T const &	z() const { return math::vecbase<T,3>::v[2]; }
-
 			/**@}*/
-
 			//vector algebra
 			T	dot(math::vec3<T> const & rhs) const {
 				return vecbase<T,3>::dot(rhs);

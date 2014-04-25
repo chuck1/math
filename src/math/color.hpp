@@ -1,5 +1,5 @@
-#ifndef color_H
-#define color_H
+#ifndef color_HPP
+#define color_HPP
 
 #include <cstdlib>
 #include <cstdio>
@@ -18,10 +18,13 @@ namespace math {
 					};
 				};
 
+				/** @name Constructor
+				 * @{
+				 */
 				color() {
 					r = g = b = a = 0.0f;
-					fr = fg = fb = 0.0;
-					tr = tg = tb = type::e::CONST;
+					//fr = fg = fb = 0.0;
+					//tr = tg = tb = type::e::CONST;
 				}
 				color(double newR, double newG, double newB, double newA) {
 					r = newR;
@@ -29,87 +32,13 @@ namespace math {
 					b = newB;
 					a = newA;
 				}
-				color(double newr, double newg, double newb, double newA, char newtr, char newtg, char newtb) {
-
-					tr = newtr;
-					tg = newtg;
-					tb = newtb;
-
-					switch(tr)
-					{
-						case type::e::SINE:
-							r = 0.0;
-							fr = newr;
-							break;
-						case type::e::SAW:
-							r = 0.0;
-							fr = newr;
-							break;
-						case type::e::CONST:
-						default:
-							r = newr;
-							fr = 0.0;
-							break;
-
-					}
-					switch(tb)
-					{
-						case type::e::SINE:
-							b = 0.0;
-							fb = newb;
-							break;
-						case type::e::SAW:
-							b = 0.0;
-							fb = newb;
-							break;
-						case type::e::CONST:
-						default:
-
-							b = newb;
-							fb = 0.0;
-							break;
-
-					}
-					switch(tr)
-					{
-						case type::e::SINE:
-							g = 0.0;
-							fg = newg;
-							break;
-						case type::e::SAW:
-							g = 0.0;
-							fg = newg;
-							break;
-						case type::e::CONST:
-						default:
-							g = newg;
-							fg = 0.0;
-							break;
-
-					}
-
-					a = newA;
-				}
-				/*math::color::color(const double * rhs) {
-				  r = *rhs;
-				  g = *(rhs+1);
-				  b = *(rhs+2);
-				  a = *(rhs+3);
-				  }*/
 				color(const color & rhs) {
 					r = rhs.r;
 					g = rhs.g;
 					b = rhs.b;
 					a = rhs.a;
-					fr = rhs.fr;
-					fg = rhs.fg;
-					fb = rhs.fb;
-					tr = rhs.tr;
-					tg = rhs.tg;
-					tb = rhs.tb;
 				}
-
-
+				/** @} */
 				~color()
 				{
 				}
@@ -239,7 +168,7 @@ namespace math {
 					if(a<0.0f) a=0.0f;
 				}
 				void			print() {
-					printf("%f %f %f %f %f %f %f %i %i %i\n",r,g,b,a,fr,fg,fb,tr,tg,tb);
+					printf("%f %f %f %f\n",r,g,b,a);
 				}
 
 				double			saw(double t, double f) {
@@ -248,9 +177,10 @@ namespace math {
 					printf("saw: a = %f y = %f\n", a, y);
 					return y;
 				}
+				/*
 				void			step(double time) {
 					//MATH_DEBUG_1_FUNCTION;
-
+					
 					switch(tr) {
 						case type::e::CONST:
 							break;
@@ -286,6 +216,8 @@ namespace math {
 					}
 
 				}
+				*/
+
 				math::Color::color<T>		operator*(double f) {
 					math::Color::color<T> ret(*this);
 					ret *= f;
@@ -304,14 +236,14 @@ namespace math {
 				double	g;
 				double	b;
 				double	a;
-				double	fr;
-				double	fg;
-				double	fb;
-				char	tr;
-				char	tg;
-				char	tb;	
+				//double	fr;
+				//double	fg;
+				//double	fb;
+				//char	tr;
+				//char	tg;
+				//char	tb;	
 		};
-
+		/*
 		const color<float> white(	1.0f, 1.0f, 1.0f, 1.0f);
 		const color<float> black(	0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -322,6 +254,18 @@ namespace math {
 		const color<float> cyan(	0.0f, 1.0f, 1.0f, 1.0f);
 		const color<float> magenta(	1.0f, 0.0f, 1.0f, 1.0f);
 		const color<float> yellow(	1.0f, 1.0f, 0.0f, 1.0f);
+		*/
+		const color<double> white(	1.0f, 1.0f, 1.0f, 1.0f);
+		const color<double> black(	0.0f, 0.0f, 0.0f, 1.0f);
+
+		const color<double> red(	1.0f, 0.0f, 0.0f, 1.0f);
+		const color<double> green(	0.0f, 1.0f, 0.0f, 1.0f);
+		const color<double> blue(	0.0f, 0.0f, 1.0f, 1.0f);
+
+		const color<double> cyan(	0.0f, 1.0f, 1.0f, 1.0f);
+		const color<double> magenta(	1.0f, 0.0f, 1.0f, 1.0f);
+		const color<double> yellow(	1.0f, 1.0f, 0.0f, 1.0f);
+
 	}
 }
 

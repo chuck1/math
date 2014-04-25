@@ -19,22 +19,22 @@ namespace math {
 			vecbase() {}
 			vecbase(vecbase<T,N> const & rhs) {
 				for(int i = 0; i < N; ++i) {
-					v[i] = rhs.v[i];
+					v_[i] = rhs.v_[i];
 				}
 			}
 			vecbase(T const * const rhs) {
-				memcpy(v, rhs, N * sizeof(T));
+				memcpy(v_, rhs, N * sizeof(T));
 			}
 			/** @} */
 			void	loadZero() {
 				for(int i = 0; i < N; ++i) {
-					v[i] = 0;
+					v_[i] = 0;
 				}
 			}
 			T	magnitude() const {
 				T a;
 				for(int i = 0; i < N; ++i) {
-					a += v[i]*v[i];
+					a += v_[i] * v_[i];
 				}
 				return sqrt(a);
 			}
@@ -53,26 +53,32 @@ namespace math {
 				
 				(*this) *= scalefactor;
 			}
-			bool	IsFinite() const {
+			bool		isFinite() const {
 				for(int i = 0; i < N; ++i) {
-					if(isinf(v[i])) return false;
+					if(isinf(v_[i])) return false;
 				}
 				return true;
 			}
-			bool	IsNan() const {
-				if(isnan(v[0])) return true;
-				if(isnan(v[1])) return true;
-				if(isnan(v[2])) return true;
+			bool		isNan() const {
+				for(int i = 0; i < N; i++) {
+					if(isnan(v_[i])) return true;
+				}
 				return false;
 			}
-			void	write(FILE* file) const {
-				fwrite(v, sizeof(T), N, file);
+			void		write(FILE* file) const {
+				fwrite(v_, sizeof(T), N, file);
 			}
-			void	read(FILE* file) {
-				fread(v, sizeof(T), N, file);
+			void		read(FILE* file) {
+				fread(v_, sizeof(T), N, file);
 			}
-			T&	operator[](int i) { return v[i]; }
-
+			/** @name Accessors @{ */
+			T&		v(int i) {
+				return v_[i];
+			}
+			T const &	v(int i) const {
+				return v_[i];
+			}
+			/** @{ */
 			/** @name comparison
 			 * @{
 			 */
@@ -94,7 +100,7 @@ namespace math {
 			T	dot(vecbase<T,N> const & rhs) const {
 				T res = 0;
 				for(int i = 0; i < N; ++i) {
-					res += v[i] * rhs.v[i];
+					res += v_[i] * rhs.v_[i];
 				}
 				return res;
 			}
@@ -105,26 +111,26 @@ namespace math {
 			 */
 			vecbase<T,N>&	operator+=(const vecbase<T,N> & rhs) {
 				for(int i = 0; i < N; ++i) {
-					v[i] += rhs.v[i];
+					v_[i] += rhs.v_[i];
 				}
 				return *this;
 			}
 			vecbase<T,N>&	operator-=(const vecbase<T,N> & rhs) {
 				for(int i = 0; i < N; ++i) {
-					v[i] -= rhs.v[i];
+					v_[i] -= rhs.v_[i];
 				}
 				return *this;
 			}
 			vecbase<T,N>	operator*=(const T rhs) {
 				for(int i = 0; i < N; ++i) {
-					v[i] *= rhs;
+					v_[i] *= rhs;
 				}
 				return *this;
 
 			}
 			vecbase<T,N>	operator/=(const T rhs) {
 				for(int i = 0; i < N; ++i) {
-					v[i] /= rhs;
+					v_[i] /= rhs;
 				}
 				return *this;
 			}
@@ -159,7 +165,7 @@ namespace math {
 
 			void	print() const {
 				for(int i = 0; i < N; i++) {
-					::math::print(v[i]);
+					::math::print(v_[i]);
 				}
 			}
 		protected:
@@ -170,24 +176,28 @@ namespace math {
 				return true;
 			}
 		public:
-			T	v[N];
+			T	v_[N];
 	};
-
+	/** @brief Two-Dimensional Matrix */
 	template <typename T, int R, int C> class matbase: public vecbase<T,R*C> {
 		public:
-			matbase(math::matbase<T,R,C> const & rhs): math::matbase<T,R,C>(rhs) {
-				memcpy(v, rhs.v, R*C*sizeof(T));
+			/** @name Constructor @{ */
+			matbase() {}
+			matbase(math::matbase<T,R,C> const & rhs): math::vecbase<T,R*C>(rhs) {
+				//memcpy(v, rhs.v, R*C*sizeof(T));
 			}
-			matbase(const T * rhs) {
-				memcpy(v, rhs, R*C*sizeof(T));
+			matbase(const T * rhs): vecbase<T,R*C>(rhs) {
+				//memcpy(v, rhs, R*C*sizeof(T));
 			}
-
-			T&	v(int i, int j) {
-				return v[i*C + j];
+			/** @} */
+			/** @name Accessors @{ */
+			T&		v(int i, int j) {
+				return math::vecbase<T,R*C>::v_[i*C + j];
 			}
-
-
-
+			T const &	v(int i, int j) const {
+				return math::vecbase<T,R*C>::v_[i*C + j];
+			}
+			/** @} */
 			math::vecbase<T,C>	getRow(int r) const {
 				math::vecbase<T,C> ret;
 				for(int c = 0; c < C; c++) {
@@ -202,9 +212,6 @@ namespace math {
 				}
 				return ret;
 			}
-
-			
-
 			math::matbase<T,R,C>		operator+(math::matbase<T,R,C> const & rhs) const {
 				math::matbase<T,R,C> m;
 				for(int i = 0; i < 9; ++i) m.v[i] = v[i] + rhs.v[i];
@@ -215,7 +222,6 @@ namespace math {
 				for(int i = 0; i < 9; ++i) m.v[i] = v[i] - rhs.v[i];
 				return m;
 			}
-
 			math::matbase<T,R,R>		operator*(math::matbase<T,C,R> const & rhs) const {
 				math::matbase<T,R,C> m;
 

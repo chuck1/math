@@ -15,67 +15,69 @@
 
 #include <cmath>
 
-namespace math
-{
-	class vec2
-	{
+namespace math {
+	template<typename T> class vec2 {
 		public:
-			//constructors
-			vec2(void):
-				x(0.0f), y(0.0f)
-		{}
+			/** @name Constructors
+			 * @{
+			 */
+			vec2(void): x(0.0f), y(0.0f) {}
+			vec2(float newX, float newY): x(newX), y(newY) {}
+			vec2(const float * rhs): x(*rhs), y((*rhs)+1) {}
+			vec2(const vec2 & rhs): x(rhs.x), y(rhs.y) {}
+			/** @} */
+			~vec2() {}
+			void Set(float newX, float newY) {
+				x = newX;
+				y = newY;
+			}
 
-			vec2(float newX, float newY):
-				x(newX), y(newY)
-		{}
+			void		normalize() {
+				float length;
+				float scalefactor;
+				length=GetLength();
 
-			vec2(const float * rhs):
-				x(*rhs), y((*rhs)+1)
-		{}
+				if(length==1 || length==0)			//return if length is 1 or 0
+					return;
 
-			vec2(const vec2 & rhs):
-				x(rhs.x), y(rhs.y)
-		{}
+				scalefactor = 1.0f/length;
+				x *= scalefactor;
+				y *= scalefactor;
+			}
+			math::vec2<T>		GetNormalized() const
+			{
+				vec2 result(*this);
 
-			~vec2() {}	//empty
+				result.Normalize();
 
-			void Set(float newX, float newY)
-			{	x=newX;	y=newY;	}
+				return result;
+			}
+			bool			operator==(const math::vec2<T> & rhs) const
+			{
+				if(x==rhs.x && y==rhs.y)
+					return true;
 
-			//Accessors kept for compatibility
-			void SetX(float newX) {x = newX;}
-			void SetY(float newY) {y = newY;}
-
-			float GetX() const {return x;}	//public accessor functions
-			float GetY() const {return y;}	//inline, const
-
-			void LoadZero(void);
-			void LoadOne(void);					//fill with (1, 1)
-
-			void Normalize();
-			vec2 GetNormalized() const;
-
-			float GetLength() const
-			{	return (float)sqrt((x*x)+(y*y));	}
-
-			float GetSquaredLength() const
-			{	return (x*x)+(y*y);	}
-
+				return false;
+			}
+			float GetLength() const {
+				return (float)sqrt((x*x)+(y*y));
+			}
+			float GetSquaredLength() const {
+				return (x*x)+(y*y);
+			}
 			//linear interpolate
-			vec2 lerp(const vec2 & v2, float factor) const
-			{	return (*this)*(1.0f-factor) + v2*factor;	}
-
-			vec2 QuadraticInterpolate(const vec2 & v2, const vec2 & v3, float factor) const
-			{	return (*this)*(1.0f-factor)*(1.0f-factor) + 2*v2*factor*(1.0f-factor) + v3*factor*factor;}
-
+			vec2 lerp(const vec2 & v2, float factor) const {
+				return (*this)*(1.0f-factor) + v2*factor;
+			}
+			vec2 QuadraticInterpolate(const vec2 & v2, const vec2 & v3, float factor) const {
+				return (*this)*(1.0f-factor)*(1.0f-factor) + 2*v2*factor*(1.0f-factor) + v3*factor*factor;
+			}
 			//overloaded operators
 			//binary operators
 			vec2 operator+(const vec2 & rhs) const
 			{	return vec2(x + rhs.x, y + rhs.y);	}
-
 			vec2 operator-(const vec2 & rhs) const
 			{	return vec2(x - rhs.x, y - rhs.y);	}
-
 			vec2 operator*(const float rhs) const
 			{	return vec2(x*rhs, y*rhs);	}
 
@@ -83,27 +85,25 @@ namespace math
 			{	return (rhs==0) ? vec2(0.0f, 0.0f) : vec2(x / rhs, y / rhs);	}
 
 			//multiply by a float, eg 3*v
-			friend vec2 operator*(float scaleFactor, const vec2 & rhs);
-
-			bool operator==(const vec2 & rhs) const;
-			bool operator!=(const vec2 & rhs) const
-			{	return !((*this)==rhs);	}
-
+			bool		operator!=(const vec2 & rhs) const {
+				return !((*this)==rhs);
+			}
 			//self-add etc
-			void operator+=(const vec2 & rhs)
-			{	x+=rhs.x;	y+=rhs.y;}
-
-			void operator-=(const vec2 & rhs)
-			{	x-=rhs.x;	y-=rhs.y;}
-
-			void operator*=(const float rhs)
-			{	x*=rhs;	y*=rhs;	}
-
-			void operator/=(const float rhs)
-			{	if(rhs==0.0f)
-				return;
-				else
-				{	x/=rhs; y/=rhs;	}
+			void operator+=(const vec2 & rhs) {
+				x+=rhs.x;	y+=rhs.y;
+			}
+			void operator-=(const vec2 & rhs) {
+				x-=rhs.x;	y-=rhs.y;
+			}
+			void operator*=(const float rhs) {
+				x*=rhs;	y*=rhs;
+			}
+			void operator/=(const float rhs) {
+				if(rhs==0.0f) {
+					return;
+				} else {
+					x/=rhs; y/=rhs;
+				}
 			}
 
 

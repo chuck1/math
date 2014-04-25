@@ -27,9 +27,9 @@ namespace math {
 				const double a = angleRadians * 0.5f;
 				const double s = sin(a);
 				w = cos(a);
-				x = unitAxis.v[0] * s;
-				y = unitAxis.v[1] * s;
-				z = unitAxis.v[2] * s;
+				x = unitAxis.v_[0] * s;
+				y = unitAxis.v_[1] * s;
+				z = unitAxis.v_[2] * s;
 			}
 			quat(math::quat<T> const & v): w(v.w), x(v.x), y(v.y), z(v.z) {}
 			quat(math::vec3<double> const & u, math::vec3<double> const & v) {
@@ -41,9 +41,9 @@ namespace math {
 
 				math::vec3<double> c = a.cross(b);
 
-				x = c.v[0];
-				y = c.v[1];
-				z = c.v[2];
+				x = c.v_[0];
+				y = c.v_[1];
+				z = c.v_[2];
 
 				w = a.dot(b);
 
@@ -247,19 +247,16 @@ namespace math {
 						(-x * w2)       + y*z2,
 						(w * w2) - 1.0f + z*z2);
 			}
-			const math::vec3<double> rotate(const math::vec3<double>& v) const
-			{
-				const double vx = 2.0f*v.v[0];
-				const double vy = 2.0f*v.v[1];
-				const double vz = 2.0f*v.v[2];
-				const double w2 = w*w-0.5f;
+			const math::vec3<double> rotate(const math::vec3<double>& v) const {
+				const double vx = 2.0f * v.v_[0];
+				const double vy = 2.0f * v.v_[1];
+				const double vz = 2.0f * v.v_[2];
+				const double w2 = w * w - 0.5f;
 				const double dot2 = (x*vx + y*vy +z*vz);
-				return math::vec3<double>
-					(
-					 (vx*w2 + (y * vz - z * vy)*w + x*dot2), 
-					 (vy*w2 + (z * vx - x * vz)*w + y*dot2), 
-					 (vz*w2 + (x * vy - y * vx)*w + z*dot2)
-					);
+				return math::vec3<double>(
+						(vx*w2 + (y * vz - z * vy)*w + x*dot2), 
+						(vy*w2 + (z * vx - x * vz)*w + y*dot2), 
+						(vz*w2 + (x * vy - y * vx)*w + z*dot2));
 				/*
 				   const math::vec3<double> qv(x,y,z);
 				   return (v*(w*w-0.5f) + (qv.cross(v))*w + qv*(qv.dot(v)))*2;
@@ -267,10 +264,10 @@ namespace math {
 			}
 			const math::vec3<double> rotateInv(const math::vec3<double>& v) const
 			{
-				const double vx = 2.0f*v.v[0];
-				const double vy = 2.0f*v.v[1];
-				const double vz = 2.0f*v.v[2];
-				const double w2 = w*w-0.5f;
+				const double vx = 2.0f * v.v_[0];
+				const double vy = 2.0f * v.v_[1];
+				const double vz = 2.0f * v.v_[2];
+				const double w2 = w * w - 0.5f;
 				const double dot2 = (x*vx + y*vy +z*vz);
 				return math::vec3<double>
 					(
@@ -359,25 +356,11 @@ namespace math {
 					omega = v * getAngle() / dt;
 				}
 
-				if(omega.IsNan()) throw;
+				if(omega.isNan()) throw;
 
 				return omega;
 			}
 
-
-
-
-
-
-
-
-
-
-
-
-			quat(T nx, T ny, T nz, T nw);
-			quat(T angleRadians, vec3<T> const & axis);
-			quat(vec3<T> const &, vec3<T> const &);
 
 			/**
 			  \brief returns true if finite and magnitude is reasonably
@@ -402,11 +385,6 @@ namespace math {
 			  \brief converts this quaternion to angle-axis representation
 			  */
 
-			void		toRadiansAndUnitAxis(T& angle, vec3<T>& axis) const;
-			const vec3<T>	rotate(const vec3<T>& v) const;
-			const vec3<T>	rotateInv(const vec3<T>& v) const;
-			quat<T>&		operator*= (const T s);
-			quat<T>		operator*(T r) const;
 #ifdef PHYSX
 
 			operator physx::PxQuat() const { return physx::PxQuat(x,y,z,w); }
@@ -418,9 +396,6 @@ namespace math {
 				return *this;
 			}
 #endif
-
-			vec3<T> getOmega(T dt);
-
 
 			T w,x,y,z;
 	};

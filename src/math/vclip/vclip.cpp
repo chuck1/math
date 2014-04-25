@@ -11,7 +11,7 @@ vclip::rc vclip::clip(edge* e, feature* feat0, std::set<feature*> feats)
 {
 	// clip e against planes p
 
-	math::vec2 l_(0,1);
+	math::vec2<double> l_(0,1);
 	float l = 0;
 
 	// make global
@@ -19,7 +19,7 @@ vclip::rc vclip::clip(edge* e, feature* feat0, std::set<feature*> feats)
 
 	feature* N = 0;
 
-	math::vec2 d;
+	math::vec2<double> d;
 
 	// for each plane
 	for( auto it = feats.begin(); it != feats.end(); ++it )

@@ -9,7 +9,10 @@
 namespace math {
 	template <typename T> class mat44: public math::matsqu<T,4> {
 		public:
-			mat44() { matsqu<T,4>::loadIdentity(); }
+			/** @name Constructors @{ */
+			mat44() {
+				matsqu<T,4>::loadIdentity();
+			}
 			mat44(T e0, T e1, T e2, T e3, T e4, T e5, T e6, T e7, T e8, T e9, T e10, T e11, T e12, T e13, T e14, T e15) {
 				matbase<T,4,4>::v(0,0) = e0;
 				matbase<T,4,4>::v(0,1) = e1;
@@ -28,8 +31,8 @@ namespace math {
 				matbase<T,4,4>::v(3,2) = e14;
 				matbase<T,4,4>::v(3,3) = e15;
 			}
-			mat44(const mat44<T> & rhs): matbase<T,4,4>(rhs) {}
-			mat44(const T * rhs): matbase<T,4,4>(rhs) {}
+			mat44(const mat44<T> & rhs): matsqu<T,4>(rhs) {}
+			mat44(const T * rhs): matsqu<T,4>(rhs) {}
 			mat44(const math::quat<T> & q) {
 				const T x = q.x;
 				const T y = q.y;
@@ -69,16 +72,21 @@ namespace math {
 				matbase<T,4,4>::v(3,2) = 0.0f;
 				matbase<T,4,4>::v(3,3) = 1.0f;
 			}
-			mat44(math::transform<T> const & t)
-			{
+			mat44(math::transform<T> const & t) {
 				matsqu<T,4>::loadIdentity();
 
 				set_rotation(t.q);
 				SetTranslationPart(t.p);
 			}
+			/** @} */
+			/** @name Accessors @{ */
 			T&		v(int r, int c) {
 				return matbase<T,4,4>::v(r,c);
 			}
+			T const &	v(int r, int c) const {
+				return matbase<T,4,4>::v(r,c);
+			}
+			/** @} */
 			void		set_rotation(math::quat<T> const & q)
 			{
 				const T x = q.x;
@@ -452,19 +460,17 @@ namespace math {
 						-(matbase<T,4,4>::v(2,0)*matbase<T,4,4>::v(3,0)+matbase<T,4,4>::v(2,1)*matbase<T,4,4>::v(3,1)+matbase<T,4,4>::v(2,2)*matbase<T,4,4>::v(3,2)),
 						0.0f, 0.0f, 0.0f, 1.0f);
 			}
-			void		SetTranslation(const vec3<T> & translation)
-			{
+			void		SetTranslation(const vec3<T> & translation) {
 				matsqu<T,4>::loadIdentity();
 
 				SetTranslationPart(translation);
 			}
-			void		SetScale(const vec3<T> & scaleFactor)
-			{
+			void		SetScale(const vec3<T> & scaleFactor) {
 				matsqu<T,4>::loadIdentity();
 
-				matbase<T,4,4>::v(0,0)=scaleFactor.v[0];
-				matbase<T,4,4>::v(1,1)=scaleFactor.v[1];
-				matbase<T,4,4>::v(2,2)=scaleFactor.v[2];
+				matbase<T,4,4>::v(0,0) = scaleFactor.v_[0];
+				matbase<T,4,4>::v(1,1) = scaleFactor.v_[1];
+				matbase<T,4,4>::v(2,2) = scaleFactor.v_[2];
 			}
 			void		SetUniformScale(const T scaleFactor)
 			{
@@ -598,14 +604,12 @@ namespace math {
 				matbase<T,4,4>::v(3,1)=-(top+bottom)/(top-bottom);
 				matbase<T,4,4>::v(3,2)=-(f+n)/(f-n);
 			}
-			void		SetTranslationPart(const vec3<T> & translation)
-			{
-				matbase<T,4,4>::v(3,0)=translation.v[0];
-				matbase<T,4,4>::v(3,1)=translation.v[1];
-				matbase<T,4,4>::v(3,2)=translation.v[2];
+			void		SetTranslationPart(const vec3<T> & translation) {
+				matbase<T,4,4>::v(3,0) = translation.v_[0];
+				matbase<T,4,4>::v(3,1) = translation.v_[1];
+				matbase<T,4,4>::v(3,2) = translation.v_[2];
 			}
-			void		SetRotationPartEuler(const T angleX, const T angleY, const T angleZ)
-			{
+			void		SetRotationPartEuler(const T angleX, const T angleY, const T angleZ) {
 				T cr = cos( M_PI*angleX/180 );
 				T sr = sin( M_PI*angleX/180 );
 				T cp = cos( M_PI*angleY/180 );

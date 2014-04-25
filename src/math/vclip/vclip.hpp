@@ -49,11 +49,9 @@ class vertex: public feature
 		std::set<feature*>	e;
 		math::vec3<double>		v;
 };
-math::vec3<double>	edge::at(float l)
-{
+math::vec3<double>	edge::at(float l) {
 	return h->v - t->v;
 }
-
 
 
 class vclip
