@@ -9,7 +9,11 @@
 namespace math {
 	template <typename T> class mat44: public math::matsqu<T,4> {
 		public:
-			mat44() { matsqu<T,4>::loadIdentity(); }
+			/** @name Constructors @{ */
+			mat44() {
+				matsqu<T,4>::loadIdentity();
+			}
+			mat44(matsqu<T,4> const & rhs): matsqu<T,4>(rhs) {}
 			mat44(T e0, T e1, T e2, T e3, T e4, T e5, T e6, T e7, T e8, T e9, T e10, T e11, T e12, T e13, T e14, T e15) {
 				matbase<T,4,4>::v(0,0) = e0;
 				matbase<T,4,4>::v(0,1) = e1;
@@ -28,8 +32,8 @@ namespace math {
 				matbase<T,4,4>::v(3,2) = e14;
 				matbase<T,4,4>::v(3,3) = e15;
 			}
-			mat44(const mat44<T> & rhs): matbase<T,4,4>(rhs) {}
-			mat44(const T * rhs): matbase<T,4,4>(rhs) {}
+			mat44(const mat44<T> & rhs): matsqu<T,4>(rhs) {}
+			mat44(const T * rhs): matsqu<T,4>(rhs) {}
 			mat44(const math::quat<T> & q) {
 				const T x = q.x;
 				const T y = q.y;
@@ -69,16 +73,21 @@ namespace math {
 				matbase<T,4,4>::v(3,2) = 0.0f;
 				matbase<T,4,4>::v(3,3) = 1.0f;
 			}
-			mat44(math::transform<T> const & t)
-			{
+			mat44(math::transform<T> const & t) {
 				matsqu<T,4>::loadIdentity();
 
 				set_rotation(t.q);
 				SetTranslationPart(t.p);
 			}
+			/** @} */
+			/** @name Accessors @{ */
 			T&		v(int r, int c) {
 				return matbase<T,4,4>::v(r,c);
 			}
+			T const &	v(int r, int c) const {
+				return matbase<T,4,4>::v(r,c);
+			}
+			/** @} */
 			void		set_rotation(math::quat<T> const & q)
 			{
 				const T x = q.x;
@@ -213,8 +222,8 @@ namespace math {
 						v(0,2)*rhs.v(3,0)+v(1,2)*rhs.v(3,1)+v(2,2)*rhs.v(3,2)+v(3,2)*rhs.v(3,3),
 						v(0,3)*rhs.v(3,0)+v(1,3)*rhs.v(3,1)+v(2,3)*rhs.v(3,2)+v(3,3)*rhs.v(3,3));
 			}
-			mat44<T> operator*(const T rhs) const {
-				return matbase<T,4,4>::operator*(rhs);
+			mat44<T> operator*(T const & rhs) const {
+				return matsqu<T,4>::operator*(rhs);
 			}
 			mat44<T> operator/(const T rhs) const
 			{
@@ -223,7 +232,7 @@ namespace math {
 
 				T temp=1/rhs;
 
-				return (*this)*temp;
+				return (*this) * temp;
 			}
 			bool operator==(const mat44<T> & rhs) const {
 				return vecbase<T,16>::operator==(rhs);
@@ -270,25 +279,25 @@ namespace math {
 			}
 			math::vec3<T>	GetRotatedVector3D(const vec3<T> & rhs) const {
 				return vec3<T>(
-						matbase<T,4,4>::v(0,0)*rhs.v[0] + matbase<T,4,4>::v(1,0)*rhs.v[1] + matbase<T,4,4>::v(2,0) *rhs.v[2],
-						matbase<T,4,4>::v(0,1)*rhs.v[0] + matbase<T,4,4>::v(1,1)*rhs.v[1] + matbase<T,4,4>::v(2,1) *rhs.v[2],
-						matbase<T,4,4>::v(0,2)*rhs.v[0] + matbase<T,4,4>::v(1,2)*rhs.v[1] + matbase<T,4,4>::v(2,2)*rhs.v[2]);
+						matbase<T,4,4>::v(0,0)*rhs.v_[0] + matbase<T,4,4>::v(1,0)*rhs.v_[1] + matbase<T,4,4>::v(2,0) * rhs.v_[2],
+						matbase<T,4,4>::v(0,1)*rhs.v_[0] + matbase<T,4,4>::v(1,1)*rhs.v_[1] + matbase<T,4,4>::v(2,1) * rhs.v_[2],
+						matbase<T,4,4>::v(0,2)*rhs.v_[0] + matbase<T,4,4>::v(1,2)*rhs.v_[1] + matbase<T,4,4>::v(2,2) * rhs.v_[2]);
 			}
 			math::vec3<T>	GetInverseRotatedVector3D(const vec3<T> & rhs) const
 			{
 				//rotate by transpose:
 				return vec3<T>(
-						matbase<T,4,4>::v(0,0)*rhs.v[0] + matbase<T,4,4>::v(0,1)*rhs.v[1] + matbase<T,4,4>::v(0,2) *rhs.v[2],
-						matbase<T,4,4>::v(1,0)*rhs.v[0] + matbase<T,4,4>::v(1,1)*rhs.v[1] + matbase<T,4,4>::v(1,2) *rhs.v[2],
-						matbase<T,4,4>::v(2,0)*rhs.v[0] + matbase<T,4,4>::v(2,1)*rhs.v[1] + matbase<T,4,4>::v(2,2)*rhs.v[2]);
+						matbase<T,4,4>::v(0,0) * rhs.v_[0] + matbase<T,4,4>::v(0,1) * rhs.v_[1] + matbase<T,4,4>::v(0,2) * rhs.v_[2],
+						matbase<T,4,4>::v(1,0) * rhs.v_[0] + matbase<T,4,4>::v(1,1) * rhs.v_[1] + matbase<T,4,4>::v(1,2) * rhs.v_[2],
+						matbase<T,4,4>::v(2,0) * rhs.v_[0] + matbase<T,4,4>::v(2,1) * rhs.v_[1] + matbase<T,4,4>::v(2,2) * rhs.v_[2]);
 			}
 			math::vec3<T>	GetTranslatedVector3D(const vec3<T> & rhs) const {
 
-				return vec3<T>(rhs.v[0]+matbase<T,4,4>::v(3,0), rhs.v[1]+matbase<T,4,4>::v(3,1), rhs.v[2]+matbase<T,4,4>::v(3,2));
+				return vec3<T>(rhs.v_[0] + matbase<T,4,4>::v(3,0), rhs.v_[1]+matbase<T,4,4>::v(3,1), rhs.v_[2] + matbase<T,4,4>::v(3,2));
 			}
 			math::vec3<T>	GetInverseTranslatedVector3D(const vec3<T> & rhs) const
 			{
-				return vec3<T>(rhs.v[0]-matbase<T,4,4>::v(3,0), rhs.v[1]-matbase<T,4,4>::v(3,1), rhs.v[2]-matbase<T,4,4>::v(3,2));
+				return vec3<T>(rhs.v_[0] - matbase<T,4,4>::v(3,0), rhs.v_[1] - matbase<T,4,4>::v(3,1), rhs.v_[2] - matbase<T,4,4>::v(3,2));
 			}
 			void		Invert(void) {
 				*this = getInverse();
@@ -333,32 +342,16 @@ namespace math {
 				tmp[9] = matbase<T,4,4>::v(2,2) * matbase<T,4,4>::v(3,0);
 				tmp[10] = matbase<T,4,4>::v(2,0) * matbase<T,4,4>::v(3,1);
 				tmp[11] = matbase<T,4,4>::v(2,1) * matbase<T,4,4>::v(3,0);
-
+				
 				//calculate first 8 elements (cofactors)
-				result.SetEntry(0,		tmp[0]*matbase<T,4,4>::v(1,1) + tmp[3]*matbase<T,4,4>::v(1,2) + tmp[4]*matbase<T,4,4>::v(1,3)
-						-	tmp[1]*matbase<T,4,4>::v(1,1) - tmp[2]*matbase<T,4,4>::v(1,2) - tmp[5]*matbase<T,4,4>::v(1,3));
-
-				result.SetEntry(1,		tmp[1]*matbase<T,4,4>::v(1,0) + tmp[6]*matbase<T,4,4>::v(1,2) + tmp[9]*matbase<T,4,4>::v(1,3)
-						-	tmp[0]*matbase<T,4,4>::v(1,0) - tmp[7]*matbase<T,4,4>::v(1,2) - tmp[8]*matbase<T,4,4>::v(1,3));
-
-				result.SetEntry(2,		tmp[2]*matbase<T,4,4>::v(1,0) + tmp[7]*matbase<T,4,4>::v(1,1) + tmp[10]*matbase<T,4,4>::v(1,3)
-						-	tmp[3]*matbase<T,4,4>::v(1,0) - tmp[6]*matbase<T,4,4>::v(1,1) - tmp[11]*matbase<T,4,4>::v(1,3));
-
-				result.SetEntry(3,		tmp[5]*matbase<T,4,4>::v(1,0) + tmp[8]*matbase<T,4,4>::v(1,1) + tmp[11]*matbase<T,4,4>::v(1,2)
-						-	tmp[4]*matbase<T,4,4>::v(1,0) - tmp[9]*matbase<T,4,4>::v(1,1) - tmp[10]*matbase<T,4,4>::v(1,2));
-
-				result.SetEntry(4,		tmp[1]*matbase<T,4,4>::v(0,1) + tmp[2]*matbase<T,4,4>::v(0,2) + tmp[5]*matbase<T,4,4>::v(0,3)
-						-	tmp[0]*matbase<T,4,4>::v(0,1) - tmp[3]*matbase<T,4,4>::v(0,2) - tmp[4]*matbase<T,4,4>::v(0,3));
-
-				result.SetEntry(5,		tmp[0]*matbase<T,4,4>::v(0,0) + tmp[7]*matbase<T,4,4>::v(0,2) + tmp[8]*matbase<T,4,4>::v(0,3)
-						-	tmp[1]*matbase<T,4,4>::v(0,0) - tmp[6]*matbase<T,4,4>::v(0,2) - tmp[9]*matbase<T,4,4>::v(0,3));
-
-				result.SetEntry(6,		tmp[3]*matbase<T,4,4>::v(0,0) + tmp[6]*matbase<T,4,4>::v(0,1) + tmp[11]*matbase<T,4,4>::v(0,3)
-						-	tmp[2]*matbase<T,4,4>::v(0,0) - tmp[7]*matbase<T,4,4>::v(0,1) - tmp[10]*matbase<T,4,4>::v(0,3));
-
-				result.SetEntry(7,		tmp[4]*matbase<T,4,4>::v(0,0) + tmp[9]*matbase<T,4,4>::v(0,1) + tmp[10]*matbase<T,4,4>::v(0,2)
-						-	tmp[5]*matbase<T,4,4>::v(0,0) - tmp[8]*matbase<T,4,4>::v(0,1) - tmp[11]*matbase<T,4,4>::v(0,2));
-
+				result.v(0,0) = tmp[0] * v(1,1) + tmp[3] * v(1,2) + tmp[4]*v(1,3) - tmp[1]*v(1,1) - tmp[2]*v(1,2) - tmp[5]*v(1,3);
+				result.v(0,1) = tmp[1] * v(1,0) + tmp[6] * v(1,2) + tmp[9]*v(1,3) - tmp[0]*v(1,0) - tmp[7]*v(1,2) - tmp[8]*v(1,3);
+				result.v(0,2) = tmp[2] * v(1,0) + tmp[7] * v(1,1) + tmp[10]*v(1,3) - tmp[3]*v(1,0) - tmp[6]*v(1,1) - tmp[11]*v(1,3);
+				result.v(0,3) = tmp[5] * v(1,0) + tmp[8] * v(1,1) + tmp[11]*v(1,2) - tmp[4]*v(1,0) - tmp[9]*v(1,1) - tmp[10]*v(1,2);
+				result.v(1,0) = tmp[1] * v(0,1) + tmp[2] * v(0,2) + tmp[5]*v(0,3) - tmp[0]*v(0,1) - tmp[3]*v(0,2) - tmp[4]*v(0,3);
+				result.v(1,1) = tmp[0] * v(0,0) + tmp[7] * v(0,2) + tmp[8]*v(0,3) - tmp[1]*v(0,0) - tmp[6]*v(0,2) - tmp[9]*v(0,3);
+				result.v(1,2) = tmp[3] * v(0,0) + tmp[6] * v(0,1) + tmp[11]*v(0,3) - tmp[2]*v(0,0) - tmp[7]*v(0,1) - tmp[10]*v(0,3);
+				result.v(1,3) = tmp[4] * v(0,0) + tmp[9] * v(0,1) + tmp[10]*v(0,2) - tmp[5]*v(0,0) - tmp[8]*v(0,1) - tmp[11]*v(0,2);
 				//calculate pairs for second 8 elements (cofactors)
 				tmp[0] = matbase<T,4,4>::v(0,2)*matbase<T,4,4>::v(1,3);
 				tmp[1] = matbase<T,4,4>::v(0,3)*matbase<T,4,4>::v(1,2);
@@ -374,36 +367,23 @@ namespace math {
 				tmp[11] = matbase<T,4,4>::v(0,1)*matbase<T,4,4>::v(1,0);
 
 				//calculate second 8 elements (cofactors)
-				result.SetEntry(8,		tmp[0]*matbase<T,4,4>::v(3,1) + tmp[3]*matbase<T,4,4>::v(3,2) + tmp[4]*matbase<T,4,4>::v(3,3)
-						-	tmp[1]*matbase<T,4,4>::v(3,1) - tmp[2]*matbase<T,4,4>::v(3,2) - tmp[5]*matbase<T,4,4>::v(3,3));
-
-				result.SetEntry(9,		tmp[1]*matbase<T,4,4>::v(3,0) + tmp[6]*matbase<T,4,4>::v(3,2) + tmp[9]*matbase<T,4,4>::v(3,3)
-						-	tmp[0]*matbase<T,4,4>::v(3,0) - tmp[7]*matbase<T,4,4>::v(3,2) - tmp[8]*matbase<T,4,4>::v(3,3));
-
-				result.SetEntry(10,		tmp[2]*matbase<T,4,4>::v(3,0) + tmp[7]*matbase<T,4,4>::v(3,1) + tmp[10]*matbase<T,4,4>::v(3,3)
-						-	tmp[3]*matbase<T,4,4>::v(3,0) - tmp[6]*matbase<T,4,4>::v(3,1) - tmp[11]*matbase<T,4,4>::v(3,3));
-
-				result.SetEntry(11,		tmp[5]*matbase<T,4,4>::v(3,0) + tmp[8]*matbase<T,4,4>::v(3,1) + tmp[11]*matbase<T,4,4>::v(3,2)
-						-	tmp[4]*matbase<T,4,4>::v(3,0) - tmp[9]*matbase<T,4,4>::v(3,1) - tmp[10]*matbase<T,4,4>::v(3,2));
-
-				result.SetEntry(12,		tmp[2]*matbase<T,4,4>::v(2,2) + tmp[5]*matbase<T,4,4>::v(2,3) + tmp[1]*matbase<T,4,4>::v(2,1)
-						-	tmp[4]*matbase<T,4,4>::v(2,3) - tmp[0]*matbase<T,4,4>::v(2,1) - tmp[3]*matbase<T,4,4>::v(2,2));
-
-				result.SetEntry(13,		tmp[8]*matbase<T,4,4>::v(2,3) + tmp[0]*matbase<T,4,4>::v(2,0) + tmp[7]*matbase<T,4,4>::v(2,2)
-						-	tmp[6]*matbase<T,4,4>::v(2,2) - tmp[9]*matbase<T,4,4>::v(2,3) - tmp[1]*matbase<T,4,4>::v(2,0));
-
-				result.SetEntry(14,		tmp[6]*matbase<T,4,4>::v(2,1) + tmp[11]*matbase<T,4,4>::v(2,3) + tmp[3]*matbase<T,4,4>::v(2,0)
-						-	tmp[10]*matbase<T,4,4>::v(2,3) - tmp[2]*matbase<T,4,4>::v(2,0) - tmp[7]*matbase<T,4,4>::v(2,1));
-
-				result.SetEntry(15,		tmp[10]*matbase<T,4,4>::v(2,2) + tmp[4]*matbase<T,4,4>::v(2,0) + tmp[9]*matbase<T,4,4>::v(2,1)
-						-	tmp[8]*matbase<T,4,4>::v(2,1) - tmp[11]*matbase<T,4,4>::v(2,2) - tmp[5]*matbase<T,4,4>::v(2,0));
+				result.v(2,0) = tmp[0]*v(3,1) + tmp[3]*v(3,2) + tmp[4]*v(3,3)-tmp[1]*v(3,1) - tmp[2]*v(3,2) - tmp[5]*v(3,3);
+				result.v(2,1) = tmp[1]*v(3,0) + tmp[6]*v(3,2) + tmp[9]*v(3,3)-tmp[0]*v(3,0) - tmp[7]*v(3,2) - tmp[8]*v(3,3);
+				result.v(2,2) = tmp[2]*v(3,0) + tmp[7]*v(3,1) + tmp[10]*v(3,3)-tmp[3]*v(3,0) - tmp[6]*v(3,1) - tmp[11]*v(3,3);
+				result.v(2,3) = tmp[5]*v(3,0) + tmp[8]*v(3,1) + tmp[11]*v(3,2)-tmp[4]*v(3,0) - tmp[9]*v(3,1) - tmp[10]*v(3,2);
+				result.v(3,0) = tmp[2]*v(2,2) + tmp[5]*v(2,3) + tmp[1]*v(2,1)-tmp[4]*v(2,3) - tmp[0]*v(2,1) - tmp[3]*v(2,2);
+				result.v(3,1) = tmp[8]*v(2,3) + tmp[0]*v(2,0) + tmp[7]*v(2,2)-tmp[6]*v(2,2) - tmp[9]*v(2,3) - tmp[1]*v(2,0);
+				result.v(3,2) = tmp[6]*v(2,1) + tmp[11]*v(2,3) + tmp[3]*v(2,0)-tmp[10]*v(2,3) - tmp[2]*v(2,0) - tmp[7]*v(2,1);
+				result.v(3,3) = tmp[10]*v(2,2) + tmp[4]*v(2,0) + tmp[9]*v(2,1)-tmp[8]*v(2,1) - tmp[11]*v(2,2) - tmp[5]*v(2,0);
 
 				// calculate determinant
-				det	=	 matbase<T,4,4>::v(0,0)*result.GetEntry(0)
+				det = matsqu<T,4>::det();
+/*
+				det =	matbase<T,4,4>::v(0,0)*result.GetEntry(0)
 					+matbase<T,4,4>::v(0,1)*result.GetEntry(1)
 					+matbase<T,4,4>::v(0,2)*result.GetEntry(2)
 					+matbase<T,4,4>::v(0,3)*result.GetEntry(3);
-
+*/
 				if(det==0.0f)
 				{
 					mat44<T> id;
@@ -452,19 +432,17 @@ namespace math {
 						-(matbase<T,4,4>::v(2,0)*matbase<T,4,4>::v(3,0)+matbase<T,4,4>::v(2,1)*matbase<T,4,4>::v(3,1)+matbase<T,4,4>::v(2,2)*matbase<T,4,4>::v(3,2)),
 						0.0f, 0.0f, 0.0f, 1.0f);
 			}
-			void		SetTranslation(const vec3<T> & translation)
-			{
+			void		SetTranslation(const vec3<T> & translation) {
 				matsqu<T,4>::loadIdentity();
 
 				SetTranslationPart(translation);
 			}
-			void		SetScale(const vec3<T> & scaleFactor)
-			{
+			void		SetScale(const vec3<T> & scaleFactor) {
 				matsqu<T,4>::loadIdentity();
 
-				matbase<T,4,4>::v(0,0)=scaleFactor.v[0];
-				matbase<T,4,4>::v(1,1)=scaleFactor.v[1];
-				matbase<T,4,4>::v(2,2)=scaleFactor.v[2];
+				matbase<T,4,4>::v(0,0) = scaleFactor.v_[0];
+				matbase<T,4,4>::v(1,1) = scaleFactor.v_[1];
+				matbase<T,4,4>::v(2,2) = scaleFactor.v_[2];
 			}
 			void		SetUniformScale(const T scaleFactor)
 			{
@@ -598,14 +576,12 @@ namespace math {
 				matbase<T,4,4>::v(3,1)=-(top+bottom)/(top-bottom);
 				matbase<T,4,4>::v(3,2)=-(f+n)/(f-n);
 			}
-			void		SetTranslationPart(const vec3<T> & translation)
-			{
-				matbase<T,4,4>::v(3,0)=translation.v[0];
-				matbase<T,4,4>::v(3,1)=translation.v[1];
-				matbase<T,4,4>::v(3,2)=translation.v[2];
+			void		SetTranslationPart(const vec3<T> & translation) {
+				matbase<T,4,4>::v(3,0) = translation.v_[0];
+				matbase<T,4,4>::v(3,1) = translation.v_[1];
+				matbase<T,4,4>::v(3,2) = translation.v_[2];
 			}
-			void		SetRotationPartEuler(const T angleX, const T angleY, const T angleZ)
-			{
+			void		SetRotationPartEuler(const T angleX, const T angleY, const T angleZ) {
 				T cr = cos( M_PI*angleX/180 );
 				T sr = sin( M_PI*angleX/180 );
 				T cp = cos( M_PI*angleY/180 );
@@ -661,10 +637,10 @@ namespace math {
 				//printf("u\n");
 				//u.print();
 
-				mat44 M(
-						s.v[0],  u.v[0],  -f.v[0] , 0.0f,
-						s.v[1],  u.v[1],  -f.v[1] , 0.0f,
-						s.v[2],  u.v[2],  -f.v[2] , 0.0f,
+				mat44<T> M(
+						s.v_[0],  u.v_[0],  -f.v_[0] , 0.0f,
+						s.v_[1],  u.v_[1],  -f.v_[1] , 0.0f,
+						s.v_[2],  u.v_[2],  -f.v_[2] , 0.0f,
 						0.0f, 0.0f, 0.0f, 1.0f);
 
 				//	M.print();
@@ -722,7 +698,6 @@ namespace math {
 
 						~mat44() {}	//empty
 
-			void SetEntry(int position, T value);
 
 			//unary operators
 			mat44	operator+(void) const {return (*this);}

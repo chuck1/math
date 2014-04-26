@@ -8,6 +8,7 @@
 
 #include <math/math.hpp>
 #include <math/vecbase.hpp>
+#include <math/quat.hpp>
 
 namespace math {
 	template <typename T> class vec3: public math::vecbase<T,3> {
@@ -16,43 +17,39 @@ namespace math {
 			 * @{
 			 */
 			vec3() { vecbase<T,3>::loadZero(); }
+			vec3(math::vecbase<T,3> const & rhs): math::vecbase<double,3>(rhs) {}
 			vec3(math::vec3<T> const & rhs): math::vecbase<double,3>(rhs) {}
 			vec3(double const & nx, double const & ny, double const & nz) {
-				vecbase<T,3>::v[0] = nx;
-				vecbase<T,3>::v[1] = ny;
-				vecbase<T,3>::v[2] = nz;
+				vecbase<T,3>::v_[0] = nx;
+				vecbase<T,3>::v_[1] = ny;
+				vecbase<T,3>::v_[2] = nz;
 			}
-			vec3(double const * const v): math::vecbase<double,3>(v) {}
-
+			vec3(double const * const rhs): math::vecbase<double,3>(rhs) {}
 #ifdef PHYSX
 			vec3(physx::PxVec3 const & rhs) {
-				vecbase<T,3>::v[0] = rhs.x;
-				vecbase<T,3>::v[1] = rhs.y;
-				vecbase<T,3>::v[2] = rhs.z;
+				vecbase<T,3>::v_[0] = rhs.x;
+				vecbase<T,3>::v_[1] = rhs.y;
+				vecbase<T,3>::v_[2] = rhs.z;
 			}
 #endif
 			/** @} */
-
 			~vec3() {}	//empty
-
 			/** @name accessors
 			 * @{
 			 */
 			/***/
-			T&		x() { return math::vecbase<T,3>::v[0]; }
+			T&		x() { return math::vecbase<T,3>::v_[0]; }
 			/***/
-			T&		y() { return math::vecbase<T,3>::v[1]; }
+			T&		y() { return math::vecbase<T,3>::v_[1]; }
 			/***/
-			T&		z() { return math::vecbase<T,3>::v[2]; }
+			T&		z() { return math::vecbase<T,3>::v_[2]; }
 			/***/
-			T const &	x() const { return math::vecbase<T,3>::v[0]; }
+			T const &	x() const { return math::vecbase<T,3>::v_[0]; }
 			/***/
-			T const &	y() const { return math::vecbase<T,3>::v[1]; }
+			T const &	y() const { return math::vecbase<T,3>::v_[1]; }
 			/***/
-			T const &	z() const { return math::vecbase<T,3>::v[2]; }
-
+			T const &	z() const { return math::vecbase<T,3>::v_[2]; }
 			/**@}*/
-
 			//vector algebra
 			T	dot(math::vec3<T> const & rhs) const {
 				return vecbase<T,3>::dot(rhs);
@@ -131,32 +128,38 @@ namespace math {
 
 				(*this)=GetRotatedZ(angle);
 			}
+			
 			math::vec3<T> GetRotatedAxis(double angle, const math::vec3<T> & axis) const {
 
 				if(angle==0.0) return (*this);
-
+				/*
 				math::vec3<T> u = axis.GetNormalized();
-
+				
 				math::vec3<T> rotMatrixRow0, rotMatrixRow1, rotMatrixRow2;
-
+				
 				float sinAngle=(float)sin(M_PI*angle/180);
 				float cosAngle=(float)cos(M_PI*angle/180);
 				float oneMinusCosAngle=1.0f-cosAngle;
+				
+				rotMatrixRow0.v_[0]=(u.v[0])*(u.v[0]) + cosAngle*(1-(u.v[0])*(u.v[0]));
+				rotMatrixRow0.v_[1]=(u.v[0])*(u.v[1])*(oneMinusCosAngle) - sinAngle*u.v[2];
+				rotMatrixRow0.v_[2]=(u.v[0])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[1];
 
-				rotMatrixRow0.v[0]=(u.v[0])*(u.v[0]) + cosAngle*(1-(u.v[0])*(u.v[0]));
-				rotMatrixRow0.v[1]=(u.v[0])*(u.v[1])*(oneMinusCosAngle) - sinAngle*u.v[2];
-				rotMatrixRow0.v[2]=(u.v[0])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[1];
+				rotMatrixRow1.v_[0]=(u.v[0])*(u.v[1])*(oneMinusCosAngle) + sinAngle*u.v[2];
+				rotMatrixRow1.v_[1]=(u.v[1])*(u.v[1]) + cosAngle*(1-(u.v[1])*(u.v[1]));
+				rotMatrixRow1.v_[2]=(u.v[1])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[0];
 
-				rotMatrixRow1.v[0]=(u.v[0])*(u.v[1])*(oneMinusCosAngle) + sinAngle*u.v[2];
-				rotMatrixRow1.v[1]=(u.v[1])*(u.v[1]) + cosAngle*(1-(u.v[1])*(u.v[1]));
-				rotMatrixRow1.v[2]=(u.v[1])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[0];
-
-				rotMatrixRow2.v[0]=(u.v[0])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[1];
-				rotMatrixRow2.v[1]=(u.v[1])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[0];
-				rotMatrixRow2.v[2]=(u.v[2])*(u.v[2]) + cosAngle*(1-(u.v[2])*(u.v[2]));
+				rotMatrixRow2.v_[0]=(u.v[0])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[1];
+				rotMatrixRow2.v_[1]=(u.v[1])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[0];
+				rotMatrixRow2.v_[2]=(u.v[2])*(u.v[2]) + cosAngle*(1-(u.v[2])*(u.v[2]));
 
 				return math::vec3<T>( dot(rotMatrixRow0), dot(rotMatrixRow1), dot(rotMatrixRow2));
+				*/
+				math::quat<T> q(angle, axis);
+				
+				return q.rotate(*this);
 			}
+			
 			//pack to [0,1] for color
 			void		PackTo01() {
 				vecbase<T,3>::Normalize();
@@ -252,9 +255,9 @@ namespace math {
 #ifdef PHYSX
 			operator physx::PxVec3() const { return physx::PxVec3(x(),y(),z()); }
 			vec3<T>&		operator=(physx::PxVec3 const & rhs) {
-				vecbase<T,3>::v[0] = rhs.x;
-				vecbase<T,3>::v[1] = rhs.y;
-				vecbase<T,3>::v[2] = rhs.z;
+				vecbase<T,3>::v_[0] = rhs.x;
+				vecbase<T,3>::v_[1] = rhs.y;
+				vecbase<T,3>::v_[2] = rhs.z;
 				return *this;
 			}
 #endif

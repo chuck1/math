@@ -22,24 +22,24 @@
 namespace math {
 	template<typename T> class vec4: public vecbase<T,4> {
 		public:
-			T&		w() { return vecbase<T,4>::v[0]; }
-			T&		x() { return vecbase<T,4>::v[1]; }
-			T&		y() { return vecbase<T,4>::v[2]; }
-			T&		z() { return vecbase<T,4>::v[3]; }
+			T&		w() { return vecbase<T,4>::v_[0]; }
+			T&		x() { return vecbase<T,4>::v_[1]; }
+			T&		y() { return vecbase<T,4>::v_[2]; }
+			T&		z() { return vecbase<T,4>::v_[3]; }
 			
 			/** @name Constructors
 			 * @{
 			 */
 			vec4(const vec3<T> & rhs) {
-				x() = rhs.v[0];
-				y() = rhs.v[1];
-				z() = rhs.v[2];
+				x() = rhs.v_[0];
+				y() = rhs.v_[1];
+				z() = rhs.v_[2];
 				w() = 1.0f;
 			}
 			vec4(vec3<T> const & rhs,T const & newW) {
-				x() = rhs.v[0];
-				y() = rhs.v[1];
-				z() = rhs.v[2];
+				x() = rhs.v_[0];
+				y() = rhs.v_[1];
+				z() = rhs.v_[2];
 				w() = newW;
 			}
 			vec4() { vecbase<T,4>::loadZero(); }
@@ -115,10 +115,10 @@ namespace math {
 			/** @} */
 
 			operator math::vec3<T>() {
-				if(w==0.0f || w==1.0f)
-					return math::vec3<T>(x, y, z);
+				if(w()==0.0f || w()==1.0f)
+					return math::vec3<T>(x(), y(), z());
 				else
-					return math::vec3<T>(x/w, y/w, z/w);
+					return math::vec3<T>(x()/w(), y()/w(), z()/w());
 			}
 			math::mat44<T>	operator*(math::vec4<T> const & rhs) {
 				math::mat44<T> ret(
@@ -129,10 +129,10 @@ namespace math {
 
 				return ret;
 			}
-			void	print()
+		/*	void	print()
 			{
 				printf("%f %f %f %f\n",x,y,z,w);
-			}
+			}*/
 
 			//constructors
 			//convert v3d to v4d
@@ -140,25 +140,10 @@ namespace math {
 
 			~vec4() {}	//empty
 
-			void Set(T newX, T newY, T newZ, T newW)
-			{	x=newX;	y=newY;	z=newZ; w=newW;	}
-
-			//accessors kept for compatability
-			void SetX(T newX) {x = newX;}
-			void SetY(T newY) {y = newY;}
-			void SetZ(T newZ) {z = newZ;}
-			void SetW(T newW) {w = newW;}
-
-			T GetX() const {return x;}	//public accessor functions
-			T GetY() const {return y;}	//inline, const
-			T GetZ() const {return z;}
-			T GetW() const {return w;}
-
-			void LoadZero(void)
-			{	x=0.0f; y=0.0f; z=0.0f; w=0.0f;	}
-
-			void LoadOne(void)
-			{	x=1.0f; y=1.0f; z=1.0f; w=1.0f;	}
+/*			void LoadZero() {
+				x=0.0f; y=0.0f; z=0.0f; w=0.0f;
+			}
+			void LoadOne() {	x=1.0f; y=1.0f; z=1.0f; w=1.0f;	}*/
 
 
 			//vector algebra
@@ -192,8 +177,10 @@ namespace math {
 
 		
 			//self-add etc
-			void operator+=(const vec4 & rhs)
-			{	x+=rhs.x; y+=rhs.y; z+=rhs.z; w+=rhs.w;	}
+			vec4<T>&	operator+=(const vec4 & rhs) {
+				vecbase<T,4>::operator+=(rhs);
+				return *this;
+			}
 
 			void operator-=(const vec4 & rhs)
 			{	x-=rhs.x; y-=rhs.y; z-=rhs.z; w-=rhs.w;	}

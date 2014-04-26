@@ -19,31 +19,31 @@ namespace math {
 				loadZero();
 			}
 			quat(double nx, double ny, double nz, double nw): w(nw),x(nx),y(ny),z(nz) {}
-			quat(double angleRadians, vec3<double> const & axis) {
-				vec3<double> unitAxis(axis);
+			quat(double angleRadians, vec3<T> const & axis) {
+				vec3<T> unitAxis(axis);
 
 				unitAxis.Normalize();
 
 				const double a = angleRadians * 0.5f;
 				const double s = sin(a);
 				w = cos(a);
-				x = unitAxis.v[0] * s;
-				y = unitAxis.v[1] * s;
-				z = unitAxis.v[2] * s;
+				x = unitAxis.v_[0] * s;
+				y = unitAxis.v_[1] * s;
+				z = unitAxis.v_[2] * s;
 			}
 			quat(math::quat<T> const & v): w(v.w), x(v.x), y(v.y), z(v.z) {}
-			quat(math::vec3<double> const & u, math::vec3<double> const & v) {
-				math::vec3<double> a(u);
-				math::vec3<double> b(v);
+			quat(math::vec3<T> const & u, math::vec3<T> const & v) {
+				math::vec3<T> a(u);
+				math::vec3<T> b(v);
 
 				a.Normalize();
 				b.Normalize();
 
-				math::vec3<double> c = a.cross(b);
+				math::vec3<T> c = a.cross(b);
 
-				x = c.v[0];
-				y = c.v[1];
-				z = c.v[2];
+				x = c.v_[0];
+				y = c.v_[1];
+				z = c.v_[2];
 
 				w = a.dot(b);
 
@@ -56,21 +56,21 @@ namespace math {
 				}
 			}
 			quat(mat44<T> const & m) {
-				double m00 = m.entries[0];
-				double m01 = m.entries[1];
-				double m02 = m.entries[2];
-				double m10 = m.entries[4];
-				double m11 = m.entries[5];
-				double m12 = m.entries[6];
-				double m20 = m.entries[8];
-				double m21 = m.entries[9];
-				double m22 = m.entries[10];
+				T m00 = m.v(0,0);
+				T m01 = m.v(0,1);
+				T m02 = m.v(0,2);
+				T m10 = m.v(1,0);
+				T m11 = m.v(1,1);
+				T m12 = m.v(1,2);
+				T m20 = m.v(2,0);
+				T m21 = m.v(2,1);
+				T m22 = m.v(2,2);
 
-				double tr = m00 + m11 + m22;
+				T tr = m00 + m11 + m22;
 
 				if (tr > 0)
 				{ 
-					double S = sqrt(tr+1.0) * 2; // S=4*qw 
+					T S = sqrt(tr+1.0) * 2; // S=4*qw 
 					w = 0.25 * S;
 					x = (m21 - m12) / S;
 					y = (m02 - m20) / S; 
@@ -78,7 +78,7 @@ namespace math {
 				}
 				else if ((m00 > m11)&(m00 > m22))
 				{ 
-					double S = sqrt(1.0 + m00 - m11 - m22) * 2; // S=4*qx 
+					T S = sqrt(1.0 + m00 - m11 - m22) * 2; // S=4*qx 
 					w = (m21 - m12) / S;
 					x = 0.25 * S;
 					y = (m01 + m10) / S; 
@@ -86,7 +86,7 @@ namespace math {
 				}
 				else if (m11 > m22)
 				{ 
-					double S = sqrt(1.0 + m11 - m00 - m22) * 2; // S=4*qy
+					T S = sqrt(1.0 + m11 - m00 - m22) * 2; // S=4*qy
 					w = (m02 - m20) / S;
 					x = (m01 + m10) / S; 
 					y = 0.25 * S;
@@ -94,7 +94,7 @@ namespace math {
 				}
 				else
 				{ 
-					double S = sqrt(1.0 + m22 - m00 - m11) * 2; // S=4*qz
+					T S = sqrt(1.0 + m22 - m00 - m11) * 2; // S=4*qz
 					w = (m10 - m01) / S;
 					x = (m02 + m20) / S;
 					y = (m12 + m21) / S;
@@ -114,12 +114,12 @@ namespace math {
 			}
 			bool		isUnit() const
 			{
-				const double unitTolerance = 1e-4;
+				const T unitTolerance = 1e-4;
 				return isFinite() && (std::abs(magnitude()-1) < unitTolerance);
 			}
 			bool		isSane() const
 			{
-				const double unitTolerance = double(1e-4);
+				const T unitTolerance = T(1e-4);
 				if(!isFinite()) return false;
 
 				if(std::abs(magnitude()-1) < unitTolerance) {
@@ -129,23 +129,23 @@ namespace math {
 					return false;
 				}
 			}
-			void		toRadiansAndUnitAxis(double& angle, vec3<double>& axis) const
+			void		toRadiansAndUnitAxis(T& angle, vec3<T>& axis) const
 			{
-				const double Epsilon = (double(1.0e-8f));
-				const double s2 = x*x+y*y+z*z;
+				const T Epsilon = (T(1.0e-8f));
+				const T s2 = x*x+y*y+z*z;
 				if(s2 < (Epsilon*Epsilon)) {
 					angle = 0;
-					axis = vec3<double>(1,0,0);
+					axis = vec3<T>(1,0,0);
 				} else {
-					const double s = math::recipsqrt(s2);
-					axis = vec3<double>(x,y,z) * s; 
+					const T s = math::recipsqrt(s2);
+					axis = vec3<T>(x,y,z) * s; 
 					angle = (std::abs(w) < Epsilon) ? M_PI : atan((s2*s)/w) * 2;
 				}
 
 			}
-			double		getAngle() const
+			T		getAngle() const
 			{
-				const double unitTolerance = 1e-6;
+				const T unitTolerance = 1e-6;
 
 				if(w > 1.0) {
 					if(fabs(w - 1.0) < unitTolerance) {
@@ -172,35 +172,35 @@ namespace math {
 					throw;
 				}
 
-				return acos(w) * double(2);
+				return acos(w) * T(2);
 			}
-			double		getAngle(const math::quat<T>& q) const
+			T		getAngle(const math::quat<T>& q) const
 			{
-				return acos(dot(q)) * double(2);
+				return acos(dot(q)) * T(2);
 			}
-			double		magnitudeSquared() const
+			T		magnitudeSquared() const
 			{
 				return x*x + y*y + z*z + w*w;
 			}
-			double		dot(const math::quat<T>& v) const
+			T		dot(const math::quat<T>& v) const
 			{
 				return x * v.x + y * v.y + z * v.z  + w * v.w;
 			}
 			math::quat<T>	getNormalized() const
 			{
-				const double s = 1.0f / magnitude();
+				const T s = 1.0f / magnitude();
 				return math::quat<T>(x*s, y*s, z*s, w*s);
 			}
-			double		magnitude() const
+			T		magnitude() const
 			{
 				return sqrt(magnitudeSquared());
 			}
-			double		normalize()
+			T		normalize()
 			{
-				const double mag = magnitude();
+				const T mag = magnitude();
 				if(mag)
 				{
-					const double imag = 1.0f / mag;
+					const T imag = 1.0f / mag;
 
 					x *= imag;
 					y *= imag;
@@ -213,81 +213,78 @@ namespace math {
 			{
 				return math::quat<T>(-x,-y,-z,w);
 			}
-			math::vec3<double>	getImaginaryPart() const
+			math::vec3<T>	getImaginaryPart() const
 			{
-				return math::vec3<double>(x,y,z);
+				return math::vec3<T>(x,y,z);
 			}
-			math::vec3<double>	getBasisVector0()	const
+			math::vec3<T>	getBasisVector0()	const
 			{	
-				//		return rotate(math::vec3<double>(1,0,0));
-				const double x2 = x*2.0f;
-				const double w2 = w*2.0f;
-				return math::vec3<double>(
+				//		return rotate(math::vec3<T>(1,0,0));
+				const T x2 = x*2.0f;
+				const T w2 = w*2.0f;
+				return math::vec3<T>(
 						(w * w2) - 1.0f + x*x2,
 						(z * w2)        + y*x2,
 						(-y * w2)       + z*x2);
 			}
-			math::vec3<double> getBasisVector1()	const 
+			math::vec3<T> getBasisVector1()	const 
 			{	
-				//		return rotate(math::vec3<double>(0,1,0));
-				const double y2 = y*2.0f;
-				const double w2 = w*2.0f;
-				return math::vec3<double>(
+				//		return rotate(math::vec3<T>(0,1,0));
+				const T y2 = y*2.0f;
+				const T w2 = w*2.0f;
+				return math::vec3<T>(
 						(-z * w2)       + x*y2,
 						(w * w2) - 1.0f + y*y2,
 						(x * w2)        + z*y2);
 			}
-			math::vec3<double> getBasisVector2() const	
+			math::vec3<T> getBasisVector2() const	
 			{	
-				//		return rotate(math::vec3<double>(0,0,1));
-				const double z2 = z*2.0f;
-				const double w2 = w*2.0f;
-				return math::vec3<double>(
+				//		return rotate(math::vec3<T>(0,0,1));
+				const T z2 = z*2.0f;
+				const T w2 = w*2.0f;
+				return math::vec3<T>(
 						(y * w2)        + x*z2,
 						(-x * w2)       + y*z2,
 						(w * w2) - 1.0f + z*z2);
 			}
-			const math::vec3<double> rotate(const math::vec3<double>& v) const
-			{
-				const double vx = 2.0f*v.v[0];
-				const double vy = 2.0f*v.v[1];
-				const double vz = 2.0f*v.v[2];
-				const double w2 = w*w-0.5f;
-				const double dot2 = (x*vx + y*vy +z*vz);
-				return math::vec3<double>
-					(
-					 (vx*w2 + (y * vz - z * vy)*w + x*dot2), 
-					 (vy*w2 + (z * vx - x * vz)*w + y*dot2), 
-					 (vz*w2 + (x * vy - y * vx)*w + z*dot2)
-					);
+			const math::vec3<T> rotate(const math::vec3<T>& v) const {
+				const T vx = 2.0f * v.v_[0];
+				const T vy = 2.0f * v.v_[1];
+				const T vz = 2.0f * v.v_[2];
+				const T w2 = w * w - 0.5f;
+				const T dot2 = (x*vx + y*vy +z*vz);
+				return math::vec3<T>(
+						(vx*w2 + (y * vz - z * vy)*w + x*dot2), 
+						(vy*w2 + (z * vx - x * vz)*w + y*dot2), 
+						(vz*w2 + (x * vy - y * vx)*w + z*dot2));
 				/*
-				   const math::vec3<double> qv(x,y,z);
+				   const math::vec3<T> qv(x,y,z);
 				   return (v*(w*w-0.5f) + (qv.cross(v))*w + qv*(qv.dot(v)))*2;
 				   */
 			}
-			const math::vec3<double> rotateInv(const math::vec3<double>& v) const
+			const math::vec3<T> rotateInv(const math::vec3<T>& v) const
 			{
-				const double vx = 2.0f*v.v[0];
-				const double vy = 2.0f*v.v[1];
-				const double vz = 2.0f*v.v[2];
-				const double w2 = w*w-0.5f;
-				const double dot2 = (x*vx + y*vy +z*vz);
-				return math::vec3<double>
+				const T vx = 2.0f * v.v_[0];
+				const T vy = 2.0f * v.v_[1];
+				const T vz = 2.0f * v.v_[2];
+				const T w2 = w * w - 0.5f;
+				const T dot2 = (x*vx + y*vy +z*vz);
+				return math::vec3<T>
 					(
 					 (vx*w2 - (y * vz - z * vy)*w + x*dot2), 
 					 (vy*w2 - (z * vx - x * vz)*w + y*dot2), 
 					 (vz*w2 - (x * vy - y * vx)*w + z*dot2)
 					);
-				//		const math::vec3<double> qv(x,y,z);
+				//		const math::vec3<T> qv(x,y,z);
 				//		return (v*(w*w-0.5f) - (qv.cross(v))*w + qv*(qv.dot(v)))*2;
 			}
 			math::quat<T>&	operator=(const math::quat<T>& p) {
 				x = p.x; y = p.y; z = p.z; w = p.w;	return *this;		
 			}
 			math::quat<T>& operator*= (const math::quat<T>& q) {
-				const double tx = w*q.x + q.w*x + y*q.z - q.y*z;
-				const double ty = w*q.y + q.w*y + z*q.x - q.z*x;
-				const double tz = w*q.z + q.w*z + x*q.y - q.x*y;
+				const T tx = w*q.x + q.w*x + y*q.z - q.y*z;
+				const T ty = w*q.y + q.w*y + z*q.x - q.z*x;
+				const T tz = w*q.z + q.w*z + x*q.y - q.x*y;
 
 				w = w*q.w - q.x*x - y*q.y - q.z*z;
 				x = tx;
@@ -310,7 +307,7 @@ namespace math {
 				w-=q.w;
 				return *this;
 			}
-			math::quat<T>& operator*= (const double s) {
+			math::quat<T>& operator*= (const T s) {
 				x*=s;
 				y*=s;
 				z*=s;
@@ -335,7 +332,7 @@ namespace math {
 			{
 				return math::quat<T>(x-q.x,y-q.y,z-q.z,w-q.w);
 			}
-			math::quat<T> operator*(double r) const {
+			math::quat<T> operator*(T r) const {
 				return math::quat<T>(x*r,y*r,z*r,w*r);
 			}
 			math::quat<T> createIdentity() {
@@ -344,10 +341,10 @@ namespace math {
 			void print() {
 				printf("%f %f %f %f\n", x, y, z, w);
 			}
-			math::vec3<double> getOmega(double dt) {
-				vec3<double> v = getImaginaryPart();
+			math::vec3<T> getOmega(T dt) {
+				vec3<T> v = getImaginaryPart();
 
-				vec3<double> omega;
+				vec3<T> omega;
 
 				if (v.magnitude() > 1.0) {
 					printf("%e\n",v.magnitude() - 1.0);
@@ -359,25 +356,11 @@ namespace math {
 					omega = v * getAngle() / dt;
 				}
 
-				if(omega.IsNan()) throw;
+				if(omega.isNan()) throw;
 
 				return omega;
 			}
 
-
-
-
-
-
-
-
-
-
-
-
-			quat(T nx, T ny, T nz, T nw);
-			quat(T angleRadians, vec3<T> const & axis);
-			quat(vec3<T> const &, vec3<T> const &);
 
 			/**
 			  \brief returns true if finite and magnitude is reasonably
@@ -402,11 +385,6 @@ namespace math {
 			  \brief converts this quaternion to angle-axis representation
 			  */
 
-			void		toRadiansAndUnitAxis(T& angle, vec3<T>& axis) const;
-			const vec3<T>	rotate(const vec3<T>& v) const;
-			const vec3<T>	rotateInv(const vec3<T>& v) const;
-			quat<T>&		operator*= (const T s);
-			quat<T>		operator*(T r) const;
 #ifdef PHYSX
 
 			operator physx::PxQuat() const { return physx::PxQuat(x,y,z,w); }
@@ -418,9 +396,6 @@ namespace math {
 				return *this;
 			}
 #endif
-
-			vec3<T> getOmega(T dt);
-
 
 			T w,x,y,z;
 	};

@@ -3,25 +3,52 @@
 
 #define MATH_DEBUG_1_FUNCTION printf("%s\n", __PRETTY_FUNCTION__);
 
+#define TINYXML2 @TinyXML2_FOUND@
+
 #include <exception>
 
 /** \brief %the %math library
  */
 namespace math {
 	template<typename> class vec3;
-	class vec4;
-	class mat33;
-	class mat44;
-	class quat;
-	class plane;
-	class transform;
+	template<typename> class vec4;
+	template<typename> class mat33;
+	template<typename> class mat44;
+	template<typename> class quat;
+	template<typename> class plane;
+	template<typename> class transform;
 
-	/** \brief exceptions
-	 */
+	/** @brief %Color */
+	namespace Color {
+		template<typename> class color;
+	}
+	
+	/** @brief %Exceptions */
 	namespace except {
 	}
 
+	/** @brief %vclip
+	 *
+	 * vclip algorithm for convex polygon collision detection
+	 */
+	namespace vclip {
+	}
+
+	/** @brief %Geometry
+	 *
+	 * class for the construction of polyhedrons
+	 * 
+	 * @todo use these classes in the vclip algorithm
+	 */
+	namespace geo {
+		class vertex;
+		class tri;
+		class quad;
+		class polyhedron;
+	}
 }
 
 #endif
+
+
 

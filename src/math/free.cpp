@@ -7,7 +7,7 @@
 float	math::recipsqrt(float const & f) {
 	return ( sqrt(f)/f );
 }
-void math::hexdump(void* v, size_t s) {
+void	math::hexdump(void* v, size_t s) {
 
 	unsigned char* c = (unsigned char*)v;
 	unsigned char* end = c + s;
@@ -18,6 +18,5 @@ void math::hexdump(void* v, size_t s) {
 	}
 	printf("\n");
 }
-
 
 
