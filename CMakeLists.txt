@@ -16,7 +16,7 @@ add_definitions(-DTINYXML)
 
 # common methods for static library
 # =================================
-include($ENV{HOME}/usr/lib/cmake/CMakeHelper/static_library.cmake)
+include($ENV{HOME}/usr/lib/cmake/CMakeHelper/static/library.cmake)
 
 #add_subdirectory(test)
 
