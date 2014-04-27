@@ -10,6 +10,8 @@
 
 namespace math {
 #ifdef TINYXML2
+
+	
 	namespace Xml {
 		template<typename T> T				parse_int(tinyxml2::XMLElement* element, int v) {
 
@@ -21,41 +23,47 @@ namespace math {
 
 			return v;
 		}
-		template<typename T> T				parse_float(tinyxml2::XMLElement* element, float f) {
+		template<typename T> T				parse_float(tinyxml2::XMLElement* element, T f) {
 
 			if(element == NULL) return f;
 
 			char const * buf = element->GetText();
 
-			int c = sscanf(buf, "%f", &f);
-			assert(c==1);
+			scan(buf, f);
 
 			return f;
 		}
-		template<typename T> math::vec3<T>		parse_vec3(tinyxml2::XMLElement* element, math::vec3<double> v) {
-
-			if( !element )
-			{
-
-				return v;
-			}
-
+		template<typename T> math::vec3<T>		parse_vec3(tinyxml2::XMLElement* element, math::vec3<T> v) {
+			
+			if(!element) return v;
+			
 			float x, y, z;
-
+			
 			char const * buf = element->GetText();
 
 			int c = sscanf(buf, "%f,%f,%f", &x, &y, &z);
 			assert(c==3);
-
-			return math::vec3<double>(x,y,z);
+			
+			math::vec3<T> ret(x,y,z);
+			
+			if(!ret.isSane()) {
+				ret.print();
+				exit(0);
+			}
+			
+			return ret;
 		}
 		template<typename T> math::quat<T>		parse_quat(tinyxml2::XMLElement* element, math::quat<T> q) {
 
 			if(element == NULL) return q;
 
-			math::vec3<T> v = parse_vec3<T>(element->FirstChildElement("v"), math::vec3<double>(1.0,0.0,0.0));
+			math::vec3<T> v = parse_vec3<T>(element->FirstChildElement("v"), math::vec3<T>(1.0,0.0,0.0));
 
-			float a = parse_float<T>(element->FirstChildElement("a"), 0.0);
+			T a = parse_float<T>(element->FirstChildElement("a"), 0.0);
+
+			printf("xml parse quat\n");
+			v.print();
+			printf("%f\n", a);
 
 			return math::quat<T>(a, v);
 		}       
@@ -64,8 +72,8 @@ namespace math {
 
 			if(element == NULL) return pose;
 
-			pose.p = parse_vec3<double>(element->FirstChildElement("p"), math::vec3<T>(0.0,0.0,0.0));
-			pose.q = parse_quat<double>(element->FirstChildElement("q"), math::quat<T>(0.0, math::vec3<T>(1.0,0.0,0.0)));
+			pose.p = parse_vec3<T>(element->FirstChildElement("p"), math::vec3<T>(0.0,0.0,0.0));
+			pose.q = parse_quat<T>(element->FirstChildElement("q"), math::quat<T>(0.0, math::vec3<T>(1.0,0.0,0.0)));
 
 			return pose;
 		}
@@ -73,7 +81,7 @@ namespace math {
 
 			if(element == NULL) return color;
 
-			float r,g,b,a;
+			T r,g,b,a;
 
 			char const * buf = NULL;
 
@@ -82,35 +90,35 @@ namespace math {
 
 			if(strcmp(buf, "red") == 0)
 			{
-				color = math::Color::red;
+				color = math::Color::red<T>();
 			}
 			else if(strcmp(buf, "green") == 0)
 			{
-				color = math::Color::green;
+				color = math::Color::green<T>();
 			}
 			else if(strcmp(buf, "blue") == 0)
 			{
-				color = math::Color::blue;
+				color = math::Color::blue<T>();
 			}
 			else if(strcmp(buf, "cyan") == 0)
 			{
-				color = math::Color::cyan;
+				color = math::Color::cyan<T>();
 			}
 			else if(strcmp(buf, "magenta") == 0)
 			{
-				color = math::Color::magenta;
+				color = math::Color::magenta<T>();
 			}
 			else if(strcmp(buf, "yellow") == 0)
 			{
-				color = math::Color::yellow;
+				color = math::Color::yellow<T>();
 			}
 			else if(strcmp(buf, "white") == 0)
 			{
-				color = math::Color::white;
+				color = math::Color::white<T>();
 			}
 			else if(strcmp(buf, "black") == 0)
 			{
-				color = math::Color::black;
+				color = math::Color::black<T>();
 			}
 			else if(strcmp(buf, "rand") == 0) {
 				color.rand();

@@ -18,18 +18,24 @@ namespace math {
 			quat() {
 				loadZero();
 			}
-			quat(double nx, double ny, double nz, double nw): w(nw),x(nx),y(ny),z(nz) {}
-			quat(double angleRadians, vec3<T> const & axis) {
+			quat(T nx, T ny, T nz, T nw): w(nw),x(nx),y(ny),z(nz) {}
+			quat(T angleRadians, vec3<T> const & axis) {
 				vec3<T> unitAxis(axis);
-
+			
+	printf("unit "); unitAxis.print();
 				unitAxis.Normalize();
-
-				const double a = angleRadians * 0.5f;
-				const double s = sin(a);
+				
+				printf("axis "); axis.print();
+				printf("unit "); unitAxis.print();
+				
+				const T a = angleRadians * 0.5f;
+				const T s = sin(a);
 				w = cos(a);
 				x = unitAxis.v_[0] * s;
 				y = unitAxis.v_[1] * s;
 				z = unitAxis.v_[2] * s;
+				
+				assert(isSane());
 			}
 			quat(math::quat<T> const & v): w(v.w), x(v.x), y(v.y), z(v.z) {}
 			quat(math::vec3<T> const & u, math::vec3<T> const & v) {
@@ -112,22 +118,22 @@ namespace math {
 					&& std::isfinite(z)
 					&& std::isfinite(w);
 			}
-			bool		isUnit() const
-			{
+			bool		isNan() const {
+				if(isnan(x)) return true;
+				if(isnan(y)) return true;
+				if(isnan(z)) return true;
+				if(isnan(w)) return true;
+				return false;
+			}
+			bool		isUnit() const {
 				const T unitTolerance = 1e-4;
 				return isFinite() && (std::abs(magnitude()-1) < unitTolerance);
 			}
-			bool		isSane() const
-			{
-				const T unitTolerance = T(1e-4);
+			bool		isSane() const {
 				if(!isFinite()) return false;
-
-				if(std::abs(magnitude()-1) < unitTolerance) {
-					return true;
-				} else {
-					printf("%lf\n", magnitude()-1);
-					return false;
-				}
+				if(isNan()) return false;
+				if(!isUnit()) return false;
+				return true;
 			}
 			void		toRadiansAndUnitAxis(T& angle, vec3<T>& axis) const
 			{
@@ -209,8 +215,7 @@ namespace math {
 				}
 				return mag;
 			}
-			math::quat<T>	getConjugate() const
-			{
+			math::quat<T>	getConjugate() const {
 				return math::quat<T>(-x,-y,-z,w);
 			}
 			math::vec3<T>	getImaginaryPart() const
@@ -368,14 +373,14 @@ namespace math {
 			  */
 
 
-			quat<T>		slerp(math::quat<T> q1, float u) {
+			quat<T>		slerp(math::quat<T> q1, T u) {
 				math::quat<T> q0(*this);
 
 				q0.normalize();
 				q1.normalize();
 
 				math::quat<T> z = q0 * q1.getConjugate();
-				float t = acos(z.w);
+				T t = acos(z.w);
 
 				math::quat<T> q =  q0 * (sin((1-u)*t) / sin(t)) + q1 * (sin(u*t) / sin(t));
 

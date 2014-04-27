@@ -26,7 +26,7 @@ namespace math {
 					//fr = fg = fb = 0.0;
 					//tr = tg = tb = type::e::CONST;
 				}
-				color(double newR, double newG, double newB, double newA) {
+				color(T newR, T newG, T newB, T newA) {
 					r = newR;
 					g = newG;
 					b = newB;
@@ -42,7 +42,7 @@ namespace math {
 				~color()
 				{
 				}
-				void		set(double newR, double newG, double newB, double newA) {
+				void		set(T newR, T newG, T newB, T newA) {
 					r=newR;
 					g=newG;
 					b=newB;
@@ -50,35 +50,11 @@ namespace math {
 				}
 				math::Color::color<T>	rand() {
 					color ret;
-					ret.r = (double)(::rand() % 1000) / 1000.0f;
-					ret.g = (double)(::rand() % 1000) / 1000.0f;
-					ret.b = (double)(::rand() % 1000) / 1000.0f;
+					ret.r = (T)(::rand() % 1000) / 1000.0f;
+					ret.g = (T)(::rand() % 1000) / 1000.0f;
+					ret.b = (T)(::rand() % 1000) / 1000.0f;
 					ret.a = 1.0;
 					return ret;
-				}
-				void		setR(double newR) {
-					r = newR;
-				}
-				void		setG(double newG) {
-					g = newG;
-				}
-				void		setB(double newB) {
-					b = newB;
-				}
-				void		setA(double newA) {
-					a = newA;
-				}
-				double		getR() const {
-					return r;
-				}
-				double		getG() const {
-					return g;
-				}
-				double		getB() const {
-					return b;
-				}
-				double		getA() const {
-					return a;
 				}
 				void		setBlack() {
 					r = g = b = a = 1.0f;
@@ -87,12 +63,12 @@ namespace math {
 					r = g = b = 0.0f;
 					a = 1.0f;
 				}
-				void		setGrey(double shade) {
+				void		setGrey(T shade) {
 					r = g = b = shade;
 					a = 1.0f;
 				}
-				math::Color::color<T>		lerp(const color & c2, double factor) {
-					return (*this) * (1.0f - factor) + c2 * factor;
+				math::Color::color<T>		lerp(const color & c2, T factor) {
+					return ((*this) * (1.0f - factor) + c2 * factor);
 				}
 				math::Color::color<T>		operator+(const color & rhs) const {
 					return color(r+rhs.r, g+rhs.g, b+rhs.b, a+rhs.a);
@@ -106,10 +82,10 @@ namespace math {
 				math::Color::color<T>		operator/(const color & rhs) const {
 					return color(r/rhs.r, g/rhs.g, b/rhs.b, a/rhs.a);
 				}
-				math::Color::color<T>		operator*(const double rhs) const {
+				math::Color::color<T>		operator*(const T rhs) const {
 					return color(r*rhs, g*rhs, b*rhs, a*rhs);
 				}
-				math::Color::color<T>		operator/(const double rhs) const {
+				math::Color::color<T>		operator/(const T rhs) const {
 					return color(r/rhs, g/rhs, b/rhs, a/rhs);
 				}
 				bool			operator ==(math::Color::color<T> const & rhs) const {
@@ -141,10 +117,10 @@ namespace math {
 				math::Color::color<T>		operator/=(const color & rhs) {
 					(*this)=(*this)/rhs;	return (*this);
 				}
-				math::Color::color<T>		operator*=(const double rhs) {
+				math::Color::color<T>		operator*=(const T rhs) {
 					(*this)=(*this)*rhs;	return (*this);
 				}
-				math::Color::color<T>		operator/=(const double rhs) {
+				math::Color::color<T>		operator/=(const T rhs) {
 					(*this)=(*this)/rhs;
 					return (*this);
 				}
@@ -171,14 +147,14 @@ namespace math {
 					printf("%f %f %f %f\n",r,g,b,a);
 				}
 
-				double			saw(double t, double f) {
-					double a = t*f;
-					double y = a - floor(a);
+				T			saw(T t, T f) {
+					T a = t*f;
+					T y = a - floor(a);
 					printf("saw: a = %f y = %f\n", a, y);
 					return y;
 				}
 				/*
-				void			step(double time) {
+				void			step(T time) {
 					//MATH_DEBUG_1_FUNCTION;
 					
 					switch(tr) {
@@ -218,54 +194,40 @@ namespace math {
 				}
 				*/
 
-				math::Color::color<T>		operator*(double f) {
+				math::Color::color<T>		operator*(T f) {
 					math::Color::color<T> ret(*this);
 					ret *= f;
 					return ret;
 				}
-				operator double* () const {
-					return (double*)this;
+				operator T* () const {
+					return (T*)this;
 				}
-				operator double const * () const {
-					return (double*)this;
+				operator T const * () const {
+					return (T*)this;
 				}
 
 				//constructors
 			public:
-				double	r;
-				double	g;
-				double	b;
-				double	a;
-				//double	fr;
-				//double	fg;
-				//double	fb;
+				T	r;
+				T	g;
+				T	b;
+				T	a;
+				//T	fr;
+				//T	fg;
+				//T	fb;
 				//char	tr;
 				//char	tg;
 				//char	tb;	
 		};
-		/*
-		const color<float> white(	1.0f, 1.0f, 1.0f, 1.0f);
-		const color<float> black(	0.0f, 0.0f, 0.0f, 1.0f);
 
-		const color<float> red(		1.0f, 0.0f, 0.0f, 1.0f);
-		const color<float> green(	0.0f, 1.0f, 0.0f, 1.0f);
-		const color<float> blue(	0.0f, 0.0f, 1.0f, 1.0f);
-
-		const color<float> cyan(	0.0f, 1.0f, 1.0f, 1.0f);
-		const color<float> magenta(	1.0f, 0.0f, 1.0f, 1.0f);
-		const color<float> yellow(	1.0f, 1.0f, 0.0f, 1.0f);
-		*/
-		const color<double> white(	1.0f, 1.0f, 1.0f, 1.0f);
-		const color<double> black(	0.0f, 0.0f, 0.0f, 1.0f);
-
-		const color<double> red(	1.0f, 0.0f, 0.0f, 1.0f);
-		const color<double> green(	0.0f, 1.0f, 0.0f, 1.0f);
-		const color<double> blue(	0.0f, 0.0f, 1.0f, 1.0f);
-
-		const color<double> cyan(	0.0f, 1.0f, 1.0f, 1.0f);
-		const color<double> magenta(	1.0f, 0.0f, 1.0f, 1.0f);
-		const color<double> yellow(	1.0f, 1.0f, 0.0f, 1.0f);
-
+		template<typename T> color<T> white() { return color<T>(		1.0, 1.0, 1.0, 1.0); }
+		template<typename T> color<T> black() { return color<T>(		0.0, 0.0, 0.0, 1.0); }
+		template<typename T> color<T> red() { return color<T>(		1.0, 0.0, 0.0, 1.0); }
+		template<typename T> color<T> green() { return color<T>(		0.0, 1.0, 0.0, 1.0); }
+		template<typename T> color<T> blue() { return color<T>(		0.0, 0.0, 1.0, 1.0); }
+		template<typename T> color<T> cyan() { return color<T>(		0.0, 1.0, 1.0, 1.0); }
+		template<typename T> color<T> magenta() { return color<T>(	1.0, 0.0, 1.0, 1.0); }
+		template<typename T> color<T> yellow() { return color<T>(	1.0, 1.0, 0.0, 1.0); }
 	}
 }
 
