@@ -1,9 +1,12 @@
 #ifndef __MATH_VECBASE__
 #define __MATH_VECBASE__
 
+
 #include <cstdio>
 #include <cstring>
 #include <cmath>
+
+#include <iostream>
 
 #include <math/print.hpp>
 #include <math/discrete/discrete.hpp>
@@ -16,14 +19,19 @@ namespace math {
 			/** @name Constructors
 			 * @{
 			 */
-			vecbase() {}
+			vecbase() { loadZero(); }
 			vecbase(vecbase<T,N> const & rhs) {
 				for(int i = 0; i < N; ++i) {
 					v_[i] = rhs.v_[i];
 				}
+				//rhs.print();
+				//print();
 			}
 			vecbase(T const * const rhs) {
-				memcpy(v_, rhs, N * sizeof(T));
+				for(int i = 0; i < N; ++i) {
+					v_[i] = rhs[i];
+				}
+				//memcpy(v_, rhs, N * sizeof(T));
 			}
 			/** @} */
 			void	loadZero() {
@@ -32,10 +40,13 @@ namespace math {
 				}
 			}
 			T	magnitude() const {
-				T a;
+				T a = 0;
 				for(int i = 0; i < N; ++i) {
 					a += v_[i] * v_[i];
 				}
+	
+				std::cout << "length squared = " << a << std::endl;
+
 				return sqrt(a);
 			}
 			void	Normalize() {
@@ -49,9 +60,9 @@ namespace math {
 					throw;
 				}
 				
-				T scalefactor = 1.0f/length;
-				
-				(*this) *= scalefactor;
+				std::cout << "normalizing length = " << length << std::endl;
+
+				(*this) /= length;
 			}
 			bool		isFinite() const {
 				for(int i = 0; i < N; ++i) {
@@ -64,6 +75,9 @@ namespace math {
 					if(isnan(v_[i])) return true;
 				}
 				return false;
+			}
+			bool		isSane() {
+				return (isFinite() && (!isNan()));
 			}
 			void		write(FILE* file) const {
 				fwrite(v_, sizeof(T), N, file);
@@ -124,7 +138,6 @@ namespace math {
 					v_[i] *= rhs;
 				}
 				return *this;
-
 			}
 			vecbase<T,N>&	operator/=(const T rhs) {
 				for(int i = 0; i < N; ++i) {
@@ -191,7 +204,9 @@ namespace math {
 			void	print() const {
 				for(int i = 0; i < N; i++) {
 					::math::print(v_[i]);
+					printf(" ");
 				}
+				printf("\n");
 			}
 		protected:
 			bool	operator<(vecbase<T,N> const & rhs) {
@@ -348,34 +363,34 @@ namespace math {
 			/** @brief determinant */
 			T	det() const {
 				int** perm;
-				int* sig;
-				math::discrete::permutations(perm, sig, N);
+				int* trans;
+				math::discrete::permutations(perm, trans, N);
 				int p = math::discrete::p(N,N);
-
+				
 				T res = 0;
 				for(int i = 0; i < p; ++i) {
 					T prod = 1;
 					for (int j = 0; j < N; ++j) {
 						prod *= matbase<T,N,N>::v(j,perm[i][j]);
 					}
-					res += sig[i] * prod;
+					res += pow(-1.0, trans[i]) * prod;
 				}
 				return res;
 			}
 			/** @brief determinant of subset */
 			T	det(int* a, int* b, int n) const {
 				int** perm;
-				int* sig;
-				math::discrete::permutations(perm, sig, N);
+				int* trans;
+				math::discrete::permutations(perm, trans, N);
 				int p = math::discrete::p(N,N);
-
+				
 				T res = 0;
 				for(int i = 0; i < p; ++i) {
 					T prod = 1;
 					for (int j = 0; j < N; ++j) {
 						prod *= matbase<T,N,N>::v(a[j],b[perm[i][j]]);
 					}
-					res += sig[i] * prod;
+					res += pow(-1.0, trans[i]) * prod;
 				}
 
 			}

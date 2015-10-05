@@ -138,32 +138,31 @@ namespace math {
 			mat44<T> operator*(const mat44<T> & rhs) const {
 				//return matbase<T,4,4>::operator*(rhs);
 				//Optimise for matrices in which bottom row is (0, 0, 0, 1) in both matrices
-				if(matbase<T,4,4>::v(0,3)==0.0f && matbase<T,4,4>::v(1,3)==0.0f && matbase<T,4,4>::v(2,3)==0.0f && matbase<T,4,4>::v(3,3)==1.0f	&&
-						rhs.matbase<T,4,4>::v(0,3)==0.0f && rhs.matbase<T,4,4>::v(1,3)==0.0f &&
-						rhs.matbase<T,4,4>::v(2,3)==0.0f && rhs.matbase<T,4,4>::v(3,3)==1.0f)
-				{
-					return math::mat44<T>(
-							v(0,0)*rhs.v(0,0)+v(1,0)*rhs.v(0,1)+v(2,0)*rhs.v(0,2),
-							v(0,1)*rhs.v(0,0)+v(1,1)*rhs.v(0,1)+v(2,1)*rhs.v(0,2),
-							v(0,2)*rhs.v(0,0)+v(1,2)*rhs.v(0,1)+v(2,2)*rhs.v(0,2),
-							0.0f,
-							v(0,0)*rhs.v(1,0)+v(1,0)*rhs.v(1,1)+v(2,0)*rhs.v(1,2),
-							v(0,1)*rhs.v(1,0)+v(1,1)*rhs.v(1,1)+v(2,1)*rhs.v(1,2),
-							v(0,2)*rhs.v(1,0)+v(1,2)*rhs.v(1,1)+v(2,2)*rhs.v(1,2),
-							0.0f,
-							v(0,0)*rhs.v(2,0)+v(1,0)*rhs.v(2,1)+v(2,0)*rhs.v(2,2),
-							v(0,1)*rhs.v(2,0)+v(1,1)*rhs.v(2,1)+v(2,1)*rhs.v(2,2),
-							v(0,2)*rhs.v(2,0)+v(1,2)*rhs.v(2,1)+v(2,2)*rhs.v(2,2),
-							0.0f,
-							v(0,0)*rhs.v(3,0)+v(1,0)*rhs.v(3,1)+v(2,0)*rhs.v(3,2)+v(3,0),
-							v(0,1)*rhs.v(3,0)+v(1,1)*rhs.v(3,1)+v(2,1)*rhs.v(3,2)+v(3,1),
-							v(0,2)*rhs.v(3,0)+v(1,2)*rhs.v(3,1)+v(2,2)*rhs.v(3,2)+v(3,2),
-							1.0f);
-				}
+				if(v(0,3)==0.0f && v(1,3)==0.0f && v(2,3)==0.0f && v(3,3)==1.0f) {
 
+					if(rhs.v(0,3)==0.0f && rhs.v(1,3)==0.0f && rhs.v(2,3)==0.0f && rhs.v(3,3)==1.0f) {
+
+						return math::mat44<T>(
+								v(0,0)*rhs.v(0,0)+v(1,0)*rhs.v(0,1)+v(2,0)*rhs.v(0,2),
+								v(0,1)*rhs.v(0,0)+v(1,1)*rhs.v(0,1)+v(2,1)*rhs.v(0,2),
+								v(0,2)*rhs.v(0,0)+v(1,2)*rhs.v(0,1)+v(2,2)*rhs.v(0,2),
+								0.0f,
+								v(0,0)*rhs.v(1,0)+v(1,0)*rhs.v(1,1)+v(2,0)*rhs.v(1,2),
+								v(0,1)*rhs.v(1,0)+v(1,1)*rhs.v(1,1)+v(2,1)*rhs.v(1,2),
+								v(0,2)*rhs.v(1,0)+v(1,2)*rhs.v(1,1)+v(2,2)*rhs.v(1,2),
+								0.0f,
+								v(0,0)*rhs.v(2,0)+v(1,0)*rhs.v(2,1)+v(2,0)*rhs.v(2,2),
+								v(0,1)*rhs.v(2,0)+v(1,1)*rhs.v(2,1)+v(2,1)*rhs.v(2,2),
+								v(0,2)*rhs.v(2,0)+v(1,2)*rhs.v(2,1)+v(2,2)*rhs.v(2,2),
+								0.0f,
+								v(0,0)*rhs.v(3,0)+v(1,0)*rhs.v(3,1)+v(2,0)*rhs.v(3,2)+v(3,0),
+								v(0,1)*rhs.v(3,0)+v(1,1)*rhs.v(3,1)+v(2,1)*rhs.v(3,2)+v(3,1),
+								v(0,2)*rhs.v(3,0)+v(1,2)*rhs.v(3,1)+v(2,2)*rhs.v(3,2)+v(3,2),
+								1.0f);
+					}
+				}
 				//Optimise for when bottom row of 1st matrix is (0, 0, 0, 1)
-				if(	matbase<T,4,4>::v(0,3)==0.0f && matbase<T,4,4>::v(1,3)==0.0f && matbase<T,4,4>::v(2,3)==0.0f && matbase<T,4,4>::v(3,3)==1.0f)
-				{
+				if(v(0,3)==0.0f && v(1,3)==0.0f && v(2,3)==0.0f && v(3,3)==1.0f) {
 					return math::mat44<T>(
 							v(0,0)*rhs.v(0,0)+v(1,0)*rhs.v(0,1)+v(2,0)*rhs.v(0,2)+v(3,0)*rhs.v(0,3),
 							v(0,1)*rhs.v(0,0)+v(1,1)*rhs.v(0,1)+v(2,1)*rhs.v(0,2)+v(3,1)*rhs.v(0,3),
@@ -342,48 +341,104 @@ namespace math {
 				tmp[9] = matbase<T,4,4>::v(2,2) * matbase<T,4,4>::v(3,0);
 				tmp[10] = matbase<T,4,4>::v(2,0) * matbase<T,4,4>::v(3,1);
 				tmp[11] = matbase<T,4,4>::v(2,1) * matbase<T,4,4>::v(3,0);
-				
+
 				//calculate first 8 elements (cofactors)
-				result.v(0,0) = tmp[0] * v(1,1) + tmp[3] * v(1,2) + tmp[4]*v(1,3) - tmp[1]*v(1,1) - tmp[2]*v(1,2) - tmp[5]*v(1,3);
-				result.v(0,1) = tmp[1] * v(1,0) + tmp[6] * v(1,2) + tmp[9]*v(1,3) - tmp[0]*v(1,0) - tmp[7]*v(1,2) - tmp[8]*v(1,3);
-				result.v(0,2) = tmp[2] * v(1,0) + tmp[7] * v(1,1) + tmp[10]*v(1,3) - tmp[3]*v(1,0) - tmp[6]*v(1,1) - tmp[11]*v(1,3);
-				result.v(0,3) = tmp[5] * v(1,0) + tmp[8] * v(1,1) + tmp[11]*v(1,2) - tmp[4]*v(1,0) - tmp[9]*v(1,1) - tmp[10]*v(1,2);
-				result.v(1,0) = tmp[1] * v(0,1) + tmp[2] * v(0,2) + tmp[5]*v(0,3) - tmp[0]*v(0,1) - tmp[3]*v(0,2) - tmp[4]*v(0,3);
-				result.v(1,1) = tmp[0] * v(0,0) + tmp[7] * v(0,2) + tmp[8]*v(0,3) - tmp[1]*v(0,0) - tmp[6]*v(0,2) - tmp[9]*v(0,3);
-				result.v(1,2) = tmp[3] * v(0,0) + tmp[6] * v(0,1) + tmp[11]*v(0,3) - tmp[2]*v(0,0) - tmp[7]*v(0,1) - tmp[10]*v(0,3);
-				result.v(1,3) = tmp[4] * v(0,0) + tmp[9] * v(0,1) + tmp[10]*v(0,2) - tmp[5]*v(0,0) - tmp[8]*v(0,1) - tmp[11]*v(0,2);
+				result.v(0,0) =
+						tmp[0] * v(1,1) + tmp[3] * v(1,2) +
+						tmp[4] * v(1,3) - tmp[1] * v(1,1) -
+						tmp[2] * v(1,2) - tmp[5] * v(1,3);
+				
+				result.v(0,1) =	
+						tmp[1] * v(1,0) + tmp[6] * v(1,2) +
+						tmp[9] * v(1,3) - tmp[0] * v(1,0) -
+						tmp[7] * v(1,2) - tmp[8] * v(1,3);
+
+				result.v(0,2) =
+						tmp[2] * v(1,0) + tmp[7] * v(1,1) +
+						tmp[10]* v(1,3) - tmp[3] * v(1,0) -
+						tmp[6] * v(1,1) - tmp[11]* v(1,3);
+
+				result.v(0,3) = 
+						tmp[5] * v(1,0) + tmp[8] * v(1,1) +
+						tmp[11]* v(1,2) - tmp[4] * v(1,0) -
+						tmp[9] * v(1,1) - tmp[10]* v(1,2);
+
+				result.v(1,0) = 
+						tmp[1] * v(0,1) + tmp[2] * v(0,2) +
+						tmp[5] * v(0,3) - tmp[0] * v(0,1) -
+						tmp[3] * v(0,2) - tmp[4] * v(0,3);
+
+				result.v(1,1) = 
+						tmp[0] * v(0,0) + tmp[7] * v(0,2) +
+						tmp[8] * v(0,3) - tmp[1] * v(0,0) -
+						tmp[6] * v(0,2) - tmp[9] * v(0,3);
+
+				result.v(1,2) =
+						tmp[3] * v(0,0) + tmp[6] * v(0,1) +
+						tmp[11]* v(0,3) - tmp[2] * v(0,0) -
+						tmp[7] * v(0,1) - tmp[10]* v(0,3);
+
+				result.v(1,3) =
+						tmp[4] * v(0,0) + tmp[9] * v(0,1) +
+						tmp[10]* v(0,2) - tmp[5] * v(0,0) -
+						tmp[8] * v(0,1) - tmp[11]* v(0,2);
+
 				//calculate pairs for second 8 elements (cofactors)
-				tmp[0] = matbase<T,4,4>::v(0,2)*matbase<T,4,4>::v(1,3);
-				tmp[1] = matbase<T,4,4>::v(0,3)*matbase<T,4,4>::v(1,2);
-				tmp[2] = matbase<T,4,4>::v(0,1)*matbase<T,4,4>::v(1,3);
-				tmp[3] = matbase<T,4,4>::v(0,3)*matbase<T,4,4>::v(1,1);
-				tmp[4] = matbase<T,4,4>::v(0,1)*matbase<T,4,4>::v(1,2);
-				tmp[5] = matbase<T,4,4>::v(0,2)*matbase<T,4,4>::v(1,1);
-				tmp[6] = matbase<T,4,4>::v(0,0)*matbase<T,4,4>::v(1,3);
-				tmp[7] = matbase<T,4,4>::v(0,3)*matbase<T,4,4>::v(1,0);
-				tmp[8] = matbase<T,4,4>::v(0,0)*matbase<T,4,4>::v(1,2);
-				tmp[9] = matbase<T,4,4>::v(0,2)*matbase<T,4,4>::v(1,0);
-				tmp[10] = matbase<T,4,4>::v(0,0)*matbase<T,4,4>::v(1,1);
-				tmp[11] = matbase<T,4,4>::v(0,1)*matbase<T,4,4>::v(1,0);
+				tmp[0] = v(0,2) * v(1,3);
+				tmp[1] = v(0,3) * v(1,2);
+				tmp[2] = v(0,1) * v(1,3);
+				tmp[3] = v(0,3) * v(1,1);
+				tmp[4] = v(0,1) * v(1,2);
+				tmp[5] = v(0,2) * v(1,1);
+				tmp[6] = v(0,0) * v(1,3);
+				tmp[7] = v(0,3) * v(1,0);
+				tmp[8] = v(0,0) * v(1,2);
+				tmp[9] = v(0,2) * v(1,0);
+				tmp[10] = v(0,0) * v(1,1);
+				tmp[11] = v(0,1) * v(1,0);
 
 				//calculate second 8 elements (cofactors)
-				result.v(2,0) = tmp[0]*v(3,1) + tmp[3]*v(3,2) + tmp[4]*v(3,3)-tmp[1]*v(3,1) - tmp[2]*v(3,2) - tmp[5]*v(3,3);
-				result.v(2,1) = tmp[1]*v(3,0) + tmp[6]*v(3,2) + tmp[9]*v(3,3)-tmp[0]*v(3,0) - tmp[7]*v(3,2) - tmp[8]*v(3,3);
-				result.v(2,2) = tmp[2]*v(3,0) + tmp[7]*v(3,1) + tmp[10]*v(3,3)-tmp[3]*v(3,0) - tmp[6]*v(3,1) - tmp[11]*v(3,3);
-				result.v(2,3) = tmp[5]*v(3,0) + tmp[8]*v(3,1) + tmp[11]*v(3,2)-tmp[4]*v(3,0) - tmp[9]*v(3,1) - tmp[10]*v(3,2);
-				result.v(3,0) = tmp[2]*v(2,2) + tmp[5]*v(2,3) + tmp[1]*v(2,1)-tmp[4]*v(2,3) - tmp[0]*v(2,1) - tmp[3]*v(2,2);
-				result.v(3,1) = tmp[8]*v(2,3) + tmp[0]*v(2,0) + tmp[7]*v(2,2)-tmp[6]*v(2,2) - tmp[9]*v(2,3) - tmp[1]*v(2,0);
-				result.v(3,2) = tmp[6]*v(2,1) + tmp[11]*v(2,3) + tmp[3]*v(2,0)-tmp[10]*v(2,3) - tmp[2]*v(2,0) - tmp[7]*v(2,1);
-				result.v(3,3) = tmp[10]*v(2,2) + tmp[4]*v(2,0) + tmp[9]*v(2,1)-tmp[8]*v(2,1) - tmp[11]*v(2,2) - tmp[5]*v(2,0);
+				result.v(2,0) =
+					tmp[0] * v(3,1) + tmp[3] * v(3,2) +
+					tmp[4] * v(3,3) - tmp[1] * v(3,1) -
+					tmp[2] * v(3,2) - tmp[5] * v(3,3);
+				result.v(2,1) =
+					tmp[1] * v(3,0) + tmp[6] * v(3,2) +
+					tmp[9] * v(3,3) - tmp[0] * v(3,0) -
+					tmp[7] * v(3,2) - tmp[8] * v(3,3);
+				result.v(2,2) =
+					tmp[2] * v(3,0) + tmp[7] * v(3,1) +
+					tmp[10]* v(3,3) - tmp[3] * v(3,0) -
+					tmp[6] * v(3,1) - tmp[11]* v(3,3);
+				result.v(2,3) =
+					tmp[5] * v(3,0) + tmp[8] * v(3,1) +
+					tmp[11]* v(3,2) - tmp[4] * v(3,0) -
+					tmp[9] * v(3,1) - tmp[10]* v(3,2);
+				result.v(3,0) =
+					tmp[2] * v(2,2) + tmp[5]*v(2,3) +
+					tmp[1] * v(2,1) -tmp[4]*v(2,3) -
+					tmp[0] * v(2,1) - tmp[3]*v(2,2);
+				result.v(3,1) = 
+					tmp[8] * v(2,3) + tmp[0]*v(2,0) +
+					tmp[7]*v(2,2)-tmp[6]*v(2,2) -
+					tmp[9]*v(2,3) - tmp[1]*v(2,0);
+				result.v(3,2) =
+					tmp[6] * v(2,1) + tmp[11]*v(2,3) +
+					tmp[3]*v(2,0)-tmp[10]*v(2,3) -
+					tmp[2]*v(2,0) - tmp[7]*v(2,1);
+				result.v(3,3) =
+					tmp[10]* v(2,2) + tmp[4]*v(2,0) +
+					tmp[9]*v(2,1)-tmp[8]*v(2,1) -
+					tmp[11]*v(2,2) - tmp[5]*v(2,0);
 
 				// calculate determinant
 				det = matsqu<T,4>::det();
-/*
-				det =	matbase<T,4,4>::v(0,0)*result.GetEntry(0)
-					+matbase<T,4,4>::v(0,1)*result.GetEntry(1)
-					+matbase<T,4,4>::v(0,2)*result.GetEntry(2)
-					+matbase<T,4,4>::v(0,3)*result.GetEntry(3);
-*/
+				/*
+				   det =	matbase<T,4,4>::v(0,0)*result.GetEntry(0)
+				   +matbase<T,4,4>::v(0,1)*result.GetEntry(1)
+				   +matbase<T,4,4>::v(0,2)*result.GetEntry(2)
+				   +matbase<T,4,4>::v(0,3)*result.GetEntry(3);
+				 */
 				if(det==0.0f)
 				{
 					mat44<T> id;
@@ -418,18 +473,18 @@ namespace math {
 				//and the negative of the inverse rotated translation part
 				//transposed
 				return math::mat44<T>(
-						matbase<T,4,4>::v(0,0),
-						matbase<T,4,4>::v(0,1),
-						matbase<T,4,4>::v(0,2),
-						-(matbase<T,4,4>::v(0,0)*matbase<T,4,4>::v(3,0)+matbase<T,4,4>::v(0,1)*matbase<T,4,4>::v(3,1)+matbase<T,4,4>::v(0,2)*matbase<T,4,4>::v(3,2)),
-						matbase<T,4,4>::v(1,0),
-						matbase<T,4,4>::v(1,1),
-						matbase<T,4,4>::v(1,2),
-						-(matbase<T,4,4>::v(1,0)*matbase<T,4,4>::v(3,0)+matbase<T,4,4>::v(1,1)*matbase<T,4,4>::v(3,1)+matbase<T,4,4>::v(1,2)*matbase<T,4,4>::v(3,2)),
-						matbase<T,4,4>::v(2,0),
-						matbase<T,4,4>::v(2,1),
-						matbase<T,4,4>::v(2,2),
-						-(matbase<T,4,4>::v(2,0)*matbase<T,4,4>::v(3,0)+matbase<T,4,4>::v(2,1)*matbase<T,4,4>::v(3,1)+matbase<T,4,4>::v(2,2)*matbase<T,4,4>::v(3,2)),
+						v(0,0),
+						v(0,1),
+						v(0,2),
+						-(v(0,0) * v(3,0) + v(0,1) * v(3,1) + v(0,2) * v(3,2)),
+						v(1,0),
+						v(1,1),
+						v(1,2),
+						-(v(1,0) * v(3,0) + v(1,1) * v(3,1) + v(1,2) * v(3,2)),
+						v(2,0),
+						v(2,1),
+						v(2,2),
+						-(v(2,0) * v(3,0) + v(2,1) * v(3,1) + v(2,2) * v(3,2)),
 						0.0f, 0.0f, 0.0f, 1.0f);
 			}
 			void		SetTranslation(const vec3<T> & translation) {
@@ -460,47 +515,47 @@ namespace math {
 
 				matsqu<T,4>::loadIdentity();
 
-				matbase<T,4,4>::v(0,0)=(u.v[0])*(u.v[0]) + cosAngle*(1-(u.v[0])*(u.v[0]));
-				matbase<T,4,4>::v(1,0)=(u.v[0])*(u.v[1])*(oneMinusCosAngle) - sinAngle*u.v[2];
-				matbase<T,4,4>::v(2,0)=(u.v[0])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[1];
+				v(0,0)=(u.v[0])*(u.v[0]) + cosAngle*(1-(u.v[0])*(u.v[0]));
+				v(1,0)=(u.v[0])*(u.v[1])*(oneMinusCosAngle) - sinAngle*u.v[2];
+				v(2,0)=(u.v[0])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[1];
 
-				matbase<T,4,4>::v(0,1)=(u.v[0])*(u.v[1])*(oneMinusCosAngle) + sinAngle*u.v[2];
-				matbase<T,4,4>::v(1,1)=(u.v[1])*(u.v[1]) + cosAngle*(1-(u.v[1])*(u.v[1]));
-				matbase<T,4,4>::v(2,1)=(u.v[1])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[0];
+				v(0,1)=(u.v[0])*(u.v[1])*(oneMinusCosAngle) + sinAngle*u.v[2];
+				v(1,1)=(u.v[1])*(u.v[1]) + cosAngle*(1-(u.v[1])*(u.v[1]));
+				v(2,1)=(u.v[1])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[0];
 
-				matbase<T,4,4>::v(0,2)=(u.v[0])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[1];
-				matbase<T,4,4>::v(1,2)=(u.v[1])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[0];
-				matbase<T,4,4>::v(2,2)=(u.v[2])*(u.v[2]) + cosAngle*(1-(u.v[2])*(u.v[2]));
+				v(0,2)=(u.v[0])*(u.v[2])*(oneMinusCosAngle) - sinAngle*u.v[1];
+				v(1,2)=(u.v[1])*(u.v[2])*(oneMinusCosAngle) + sinAngle*u.v[0];
+				v(2,2)=(u.v[2])*(u.v[2]) + cosAngle*(1-(u.v[2])*(u.v[2]));
 			}
 			void		SetRotationX(const T angle)
 			{
 				matsqu<T,4>::loadIdentity();
 
-				matbase<T,4,4>::v(1,1)=(T)cos(M_PI*angle/180);
-				matbase<T,4,4>::v(1,2)=(T)sin(M_PI*angle/180);
+				v(1,1)=(T)cos(M_PI*angle/180);
+				v(1,2)=(T)sin(M_PI*angle/180);
 
-				matbase<T,4,4>::v(2,1)=-matbase<T,4,4>::v(1,2);
-				matbase<T,4,4>::v(2,2)=matbase<T,4,4>::v(1,1);
+				v(2,1)=-v(1,2);
+				v(2,2)=v(1,1);
 			}
 			void		SetRotationY(const T angle)
 			{
 				matsqu<T,4>::loadIdentity();
 
-				matbase<T,4,4>::v(0,0)=(T)cos(M_PI*angle/180);
-				matbase<T,4,4>::v(0,2)=-(T)sin(M_PI*angle/180);
+				v(0,0)=(T)cos(M_PI*angle/180);
+				v(0,2)=-(T)sin(M_PI*angle/180);
 
-				matbase<T,4,4>::v(2,0)=-matbase<T,4,4>::v(0,2);
-				matbase<T,4,4>::v(2,2)=matbase<T,4,4>::v(0,0);
+				v(2,0)=-v(0,2);
+				v(2,2)=v(0,0);
 			}
 			void		SetRotationZ(const T angle)
 			{
 				matsqu<T,4>::loadIdentity();
 
-				matbase<T,4,4>::v(0,0)=(T)cos(M_PI*angle/180);
-				matbase<T,4,4>::v(0,1)=(T)sin(M_PI*angle/180);
+				v(0,0)=(T)cos(M_PI*angle/180);
+				v(0,1)=(T)sin(M_PI*angle/180);
 
-				matbase<T,4,4>::v(1,0)=-matbase<T,4,4>::v(0,1);
-				matbase<T,4,4>::v(1,1)=matbase<T,4,4>::v(0,0);
+				v(1,0) = -v(0,1);
+				v(1,1) =  v(0,0);
 			}
 			void		SetRotationEuler(const T angleX, const T angleY, const T angleZ)
 			{
@@ -696,7 +751,7 @@ namespace math {
 
 
 
-						~mat44() {}	//empty
+			~mat44() {}	//empty
 
 
 			//unary operators

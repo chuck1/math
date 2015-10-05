@@ -41,10 +41,10 @@ namespace math {
 	 * @todo use these classes in the vclip algorithm
 	 */
 	namespace geo {
-		class vertex;
-		class tri;
-		class quad;
-		class polyhedron;
+		//template<typename> class vertex;
+		//template<typename> class tri;
+		//template<typename> class quad;
+		//template<typename> class polyhedron;
 	}
 }
 

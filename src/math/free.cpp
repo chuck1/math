@@ -18,5 +18,14 @@ void	math::hexdump(void* v, size_t s) {
 	}
 	printf("\n");
 }
+void	math::scan(char const * s, float& f) {
+
+	int c = sscanf(s, "%f", &f);
+	assert(c==1);
+}
+void	math::scan(char const * s, double& f) {
+	int c = sscanf(s, "%lf", &f);
+	assert(c==1);
+}
 
 

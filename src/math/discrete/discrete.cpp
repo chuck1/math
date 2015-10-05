@@ -1,5 +1,5 @@
 #include <cstdio>
-
+#include <iostream>
 #include <math/print.hpp>
 #include <math/discrete/discrete.hpp>
 
@@ -11,13 +11,16 @@ int	math::discrete::factorial(int n) {
 	return (n == 1 || n == 0) ? 1 : factorial(n - 1) * n;
 }
 void	math::discrete::permutations(int** perm, int* trans, int i, int N) {
-
+	
 	int n = factorial(N-i-1);
-
+	
 	//printf("i=%i n=%i N=%i perm=%p\n", i, n, N, perm);
+	
+	int** temp_perm = perm;
+	int* temp_trans = trans;
 
-	int** temp = perm;
-
+	int transpose = 0;
+	
 	if(i == N) {
 
 	} else {
@@ -29,7 +32,7 @@ void	math::discrete::permutations(int** perm, int* trans, int i, int N) {
 			cont = false;
 			//printf("temp=%p\n",temp);
 			for(int k = 0; k < i; k++) {
-				if(j == (*temp)[k]) {
+				if(j == (*temp_perm)[k]) {
 					cont = true;
 					//printf("j=%i taken\n",j);
 					break;
@@ -40,7 +43,8 @@ void	math::discrete::permutations(int** perm, int* trans, int i, int N) {
 
 			//printf("j = %i\n",j);
 
-			temp = perm;
+			temp_perm = perm;
+			temp_trans = trans;
 
 			if(i+1 < N) {
 				//printf("perm = %p\n",perm);
@@ -53,8 +57,10 @@ void	math::discrete::permutations(int** perm, int* trans, int i, int N) {
 				//printf("perm = %p i = %i j = %i\n",perm,i,j);
 
 				(*perm)[i] = j;
-				(*trans)++;
-
+				(*trans) += transpose;
+				
+				//std::cout << "trans = " << ((long)trans)/4 << " " << p << std::endl;
+				
 				//temp = *perm;
 
 				perm++;
@@ -63,9 +69,10 @@ void	math::discrete::permutations(int** perm, int* trans, int i, int N) {
 
 			if(i+1 < N) {
 				//printf("perm = %p\n",perm);
-				math::discrete::permutations(temp, trans, i+1, N);
+				math::discrete::permutations(temp_perm, temp_trans, i+1, N);
 			}
-
+			
+			transpose++;
 		}
 		//}
 	}

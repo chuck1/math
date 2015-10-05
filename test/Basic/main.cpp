@@ -10,10 +10,10 @@ using namespace std;
 
 int main() {
 	
-	math::transform<double>		t;
-	math::Color::color<double>	c;
+	math::transform<float>		t;
+	math::Color::color<float>	c;
 
-	math::mat44<double>		m1;
+		
 	
 	// discrete
 	int ** perm;
@@ -22,18 +22,30 @@ int main() {
 	cout << n <<endl;
 	math::discrete::permutations(perm, trans, 3);
 	math::print(perm,n,3);
-
+	math::print(trans,n);
+	
 	// mat44
+	math::mat44<float> m1(t);
+	math::mat44<float> m2(m1);
+	
 	cout << m1.det() << endl;
 	m1.getInverseTranspose();
 	
-	// quat
-	math::quat<double>		q(m1);
-
-	// xml
-	t = math::Xml::parse_transform<double>(NULL, t);
 	
-
+	m1.getInverse() * m2;
+	
+	// quat
+	printf("quat\n");
+	math::quat<float> q;
+	
+	q = math::quat<float>(0, math::vec3<float>(1,0,0));
+	
+	cout << "sane = " << q.isSane() << endl;
+	
+	// xml
+	t = math::Xml::parse_transform<float>(NULL, t);
+	
+	
 }
 
 

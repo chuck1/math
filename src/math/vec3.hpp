@@ -17,14 +17,14 @@ namespace math {
 			 * @{
 			 */
 			vec3() { vecbase<T,3>::loadZero(); }
-			vec3(math::vecbase<T,3> const & rhs): math::vecbase<double,3>(rhs) {}
-			vec3(math::vec3<T> const & rhs): math::vecbase<double,3>(rhs) {}
-			vec3(double const & nx, double const & ny, double const & nz) {
+			vec3(math::vecbase<T,3> const & rhs): math::vecbase<T,3>(rhs) {}
+			vec3(math::vec3<T> const & rhs): math::vecbase<T,3>(rhs) {}
+			vec3(T const & nx, T const & ny, T const & nz) {
 				vecbase<T,3>::v_[0] = nx;
 				vecbase<T,3>::v_[1] = ny;
 				vecbase<T,3>::v_[2] = nz;
 			}
-			vec3(double const * const rhs): math::vecbase<double,3>(rhs) {}
+			vec3(T const * const rhs): math::vecbase<T,3>(rhs) {}
 #ifdef PHYSX
 			vec3(physx::PxVec3 const & rhs) {
 				vecbase<T,3>::v_[0] = rhs.x;
@@ -96,7 +96,7 @@ namespace math {
 			void RotateX(T angle) {
 				(*this)=GetRotatedX(angle);
 			}
-			math::vec3<T> GetRotatedY(double angle) const {
+			math::vec3<T> GetRotatedY(T angle) const {
 
 				if(angle==0.0) return (*this);
 
@@ -108,11 +108,11 @@ namespace math {
 						y(),
 						-x()*sinAngle + z()*cosAngle);
 			}
-			void RotateY(double angle) {
+			void RotateY(T angle) {
 
 				(*this)=GetRotatedY(angle);
 			}
-			math::vec3<T> GetRotatedZ(double angle) const {
+			math::vec3<T> GetRotatedZ(T angle) const {
 
 				if(angle==0.0) return (*this);
 
@@ -124,12 +124,12 @@ namespace math {
 						x()*sinAngle + y()*cosAngle,
 						z());
 			}
-			void RotateZ(double angle) {
+			void RotateZ(T angle) {
 
 				(*this)=GetRotatedZ(angle);
 			}
 			
-			math::vec3<T> GetRotatedAxis(double angle, const math::vec3<T> & axis) const {
+			math::vec3<T> GetRotatedAxis(T angle, const math::vec3<T> & axis) const {
 
 				if(angle==0.0) return (*this);
 				/*
@@ -206,12 +206,12 @@ namespace math {
 				a -= rhs;
 				return a;
 			}
-			vec3<T>		operator*(const double rhs) const {
+			vec3<T>		operator*(const T rhs) const {
 				vec3<T> a(*this);
 				a *= rhs;
 				return a;
 			}
-			vec3<T>		operator/(const double rhs) const {
+			vec3<T>		operator/(const T rhs) const {
 				vec3<T> a(*this);
 				a /= rhs;
 				return a;
@@ -226,19 +226,19 @@ namespace math {
 			 * @{
 			 */
 			math::vec3<T>&		operator+=(math::vec3<T> const & rhs) {
-				math::vecbase<double,3>::operator+=(rhs);
+				math::vecbase<T,3>::operator+=(rhs);
 				return *this;
 			}
 			math::vec3<T>&		operator-=(const vec3<T> & rhs) {
-				math::vecbase<double,3>::operator-=(rhs);
+				math::vecbase<T,3>::operator-=(rhs);
 				return *this;
 			}
-			math::vec3<T>&		operator*=(const double rhs) {
-				math::vecbase<double,3>::operator*=(rhs);
+			math::vec3<T>&		operator*=(const T rhs) {
+				math::vecbase<T,3>::operator*=(rhs);
 				return *this;
 			}
-			math::vec3<T>&		operator/=(const double rhs) {
-				math::vecbase<double,3>::operator/=(rhs);
+			math::vec3<T>&		operator/=(const T rhs) {
+				math::vecbase<T,3>::operator/=(rhs);
 				return *this;
 			}			/** @} */
 
@@ -261,14 +261,7 @@ namespace math {
 				return *this;
 			}
 #endif
-
-
-
-
-
-
-
-			void		RotateAxis(double angle, const math::vec3<T> & axis) {
+			void		RotateAxis(T angle, const math::vec3<T> & axis) {
 
 				(*this) = GetRotatedAxis(angle, axis);
 			}

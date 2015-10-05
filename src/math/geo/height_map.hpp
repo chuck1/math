@@ -1,22 +1,22 @@
 #ifndef __MATH_GEO_HEIGHT_MAP_HPP__
 #define __MATH_GEO_HEIGHT_MAP_HPP__
 
+#include <math/geo/polyhedron.hpp>
 
 namespace math {
 	namespace geo {
-		class vertex;
-		class tri;
-
-		class height_map {
+		template <typename T> class height_map {
 			public:
-				height_map(int,int);
+				height_map(int nx, int ny) {
+					vertices_	= new vertex<T>[(nx+1)*(ny+1)];
+					tris_		= new tri<T>[nx*ny*2];
+				}
 
-				vertex*	vertices_;
-				tri*	tris_;
+				vertex<T>*		vertices_;
+				tri<T>*			tris_;
 		};
 	}
 }
-
 
 
 

@@ -10,6 +10,9 @@ namespace math {
 		F a = t*f;
 		return (a - floor(a));
 	}
+
+	void	scan(char const * s, float& f);
+	void	scan(char const * s, double& f);
 }
 
 #endif
